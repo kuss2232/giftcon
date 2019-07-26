@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,12 +21,12 @@
 					<!-- start:csTab -->
 <ul class="csTab mb70">
 	<li><a href="/giftcon/notice.conn" class="on"><span class="icoNotice"></span><em>공지사항</em></a></li>
-	<li><a href="/bbs/faqList.do"><span class="icoFaq"></span><em>FAQ</em></a></li>
-	<li><a href="/bbs/qnaList.do"><span class="icoOneAsk"></span><em>1:1문의</em></a></li>
+	<li><a href="/giftcon/FAQ.conn"><span class="icoFaq"></span><em>FAQ</em></a></li>
+	<li><a href=""><span class="icoOneAsk"></span><em>1:1문의</em></a></li>
 </ul>
 					<!-- /end:csTab -->
 					<!-- start:sub_title -->
-					<div class="subTit">[공지사항] 도넛북 서비스의 새로운 소식을 알려드립니다!</div>
+					<div class="subTit">[공지사항] 쉐어콘 서비스의 새로운 소식을 알려드립니다!</div>
 					<!-- /end:sub_title -->
 					<!-- start:contents -->
 					<div class="viewBox">
@@ -36,6 +37,11 @@
 							</span>
 						</div>
 						<div class="notiCont">${noticeDetail.NOTICE_CNT}</div>
+						<div class="notiCont">
+							<c:if test="${noticeDetail.NOTICE_IMG ne null}">
+								<img src="/giftcon/file/noticeFile/${noticeDetail.NOTICE_IMG}" width="500">
+							</c:if>
+                 	</div>
 					</div>
 					<!-- /end:contents -->
 					<!-- start:btm -->
