@@ -61,23 +61,6 @@
 	]]>
 </update>
 
-<!-- 삭제, 탈퇴한 회원 목록 -->
-
-<select id="deleteMemberList" resultType="hashmap" parameterType="hashmap">
-	
-	<![CDATA[
-		SELECT 
-			MEMBER_NUM,
-			MEMBER_ID,
-			MEMBER_NAME,
-			MEMBER_PHONE,
-			MEMBER_EMAIL
-		FROM MEMBER
-		WHERE MEMBER_STATE = 2
-		ORDER BY MEMBER_NUM DESC
-	]]>
-</select>
-
 <!-- 회원 ID로 회원 검색 -->
 <select resultType="hashmap" parameterType="hashmap" id="searchMemberId">
 	<![CDATA[
@@ -86,7 +69,8 @@
 			MEMBER_ID,
 			MEMBER_NAME,
 			MEMBER_PHONE,
-			MEMBER_EMAIL
+			MEMBER_EMAIL,
+			MEMBER_STATE
 		FROM MEMBER
 		WHERE MEMBER_ID like '%' || #{isSearch} || '%'
 		ORDER BY MEMBER_NUM DESC
@@ -101,7 +85,8 @@
 			MEMBER_ID,
 			MEMBER_NAME,
 			MEMBER_PHONE,
-			MEMBER_EMAIL
+			MEMBER_EMAIL,
+			MEMBER_STATE
 		FROM MEMBER
 		WHERE MEMBER_NAME like '%' || #{isSearch} || '%'
 		ORDER BY MEMBER_NUM DESC
@@ -117,7 +102,8 @@
 			MEMBER_ID,
 			MEMBER_NAME,
 			MEMBER_PHONE,
-			MEMBER_EMAIL
+			MEMBER_EMAIL,
+			MEMBER_STATE
 		FROM MEMBER
 		WHERE MEMBER_PHONE like '%' || #{isSearch} || '%'
 		ORDER BY MEMBER_NUM DESC
@@ -133,9 +119,28 @@
 			MEMBER_ID,
 			MEMBER_NAME,
 			MEMBER_PHONE,
-			MEMBER_EMAIL
+			MEMBER_EMAIL,
+			MEMBER_STATE
 		FROM MEMBER
 		WHERE MEMBER_EMAIL like '%' || #{isSearch} || '%'
+		ORDER BY MEMBER_NUM DESC
+	]]>
+</select>
+
+
+<!-- 회원 상태로 회원 검색 -->
+<select id="searchMemberState" resultType="hashmap" parameterType="hashmap">
+	
+	<![CDATA[
+		SELECT 
+			MEMBER_NUM,
+			MEMBER_ID,
+			MEMBER_NAME,
+			MEMBER_PHONE,
+			MEMBER_EMAIL,
+			MEMBER_STATE
+		FROM MEMBER
+		WHERE MEMBER_STATE = #{isSearch}
 		ORDER BY MEMBER_NUM DESC
 	]]>
 </select>
