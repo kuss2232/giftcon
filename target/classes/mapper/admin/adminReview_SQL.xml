@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="adminReview">
+	<!-- 관리자 전체 리뷰 리스트 (최신순) -->
+	<select id="selectReviewList" resultType="hashmap">
+      <![CDATA[
+	SELECT
+		R.REVIEW_NUM,
+		R.GOODS_NUM,
+		R.MEMBER_NUM,
+		R.REVIEW_CONTENT,
+		R.REVIEW_REGDATE,
+		R.REVIEW_GRADE,
+		R.REVIEW_IMG,
+		M.MEMBER_ID,
+		G.GOODS_NAME
+	FROM
+		REVIEW R, MEMBER M, GOODS G
+	WHERE
+		M.MEMBER_NUM=R.MEMBER_NUM AND R.GOODS_NUM=G.GOODS_NUM
+	ORDER BY
+		REVIEW_NUM DESC
+      ]]>
+	</select>
+
+	<!-- 관리자 리뷰 검색 -->
+	<select id="selectSearchList" parameterType="hashmap" resultType="hashmap">
+	SELECT
+		R.REVIEW_NUM,
+		R.GOODS_NUM,
+		R.MEMBER_NUM,
+		R.REVIEW_CONTENT,
+		R.REVIEW_REGDATE,
+		R.REVIEW_GRADE,
+		R.REVIEW_IMG,
+		M.MEMBER_ID,
+		G.GOODS_NAME
+	FROM
+		REVIEW R, MEMBER M, GOODS G
+	WHERE
+		M.MEMBER_NUM=R.MEMBER_NUM AND R.GOODS_NUM=G.GOODS_NUM AND
+<if test='SearchNum.equals("MEMBER_ID")'> <!-- 아이디로 검색 -->
+			M.MEMBER_ID LIKE '%' || #{SearchKeyword} || '%'
+</if> 
+<if test='SearchNum.equals("GOODS_NAME")'> <!-- 상품이름으로 검색 -->
+			G.GOODS_NAME LIKE '%' || #{SearchKeyword} || '%'
+</if> 
+	ORDER BY
+		REVIEW_NUM DESC
+	</select>
+
+	<!-- 관리자 리뷰 삭제 -->
+	<delete id="deleteReview" parameterType="Integer">
+	 <![CDATA[
+	DELETE FROM REVIEW
+	WHERE REVIEW_NUM=#{REVIEW_NUM}
+    ]]>
+	</delete>
+</mapper>

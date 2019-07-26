@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="memberGoods">
+
+
+<!-- 상품 검색 -->		
+
+<select id="searchGoods" parameterType="hashmap" resultType="hashmap">
+<![CDATA[
+	SELECT 
+		A.GOODS_NUM,
+ 		A.GOODS_NAME,
+ 		A.GOODS_PRICE,
+ 		A.GOODS_DCPRICE,
+		A.GOODS_SIMPLE,
+		A.GOODS_SOLDOUT,
+		A.GOODS_HITCOUNT
+ 	FROM
+ 		GOODS A, GOODS_IMG B
+ 	WHERE
+ 		GOODS_NAME LIKE '%'||#{searchKeyword}||'%' 
+ 	ORDER BY 
+ 		GOODS_NUM DESC
+]]>
+</select>
+
+<!-- 카테고리 별 많이 본 순 -->
+<select id="categoryGoodsBest" parameterType="hashmap" resultType="hashmap">
+<![CDATA[
+	SELECT
+ 		A.GOODS_NUM,
+ 		A.GOODS_NAME,
+ 		A.GOODS_PRICE,
+ 		A.GOODS_DCPRICE,
+ 		A.GOODS_SIMPLE,
+ 		A.GOODS_SOLDOUT, 
+		A.GOODS_HITCOUNT
+ FROM
+ 		GOODS A, GOODS_IMG B
+ WHERE 
+		A.CATEGORY_NUM = #{CATEGORY_NUM}
+ ORDER BY 
+ 		A.GOODS_HITCOUNT DESC
+]]>
+</select>
+
+<!-- 카테고리별 평점순 -->
+<select id="categoryGoodsGrade" parameterType="hashmap" resultType="hashmap">
+<![CDATA[
+SELECT 
+	A.GOODS_NUM, A.GOODS_NAME, 
+	A.GOODS_PRICE, A.GOODS_DCPRICE, 
+	A.GOODS_SIMPLE, A.GOODS_SOLDOUT, 
+	A.GOODS_HITCOUNT, B.GOODS_IMG1, AVG(C.REVIEW_GRADE) AS GRADE 
+FROM 
+	GOODS A, GOODS_IMG B, REVIEW C 
+WHERE 
+	A.CATEGORY_NUM = #{CATEGORY_NUM} 
+	AND A.GOODS_NUM = B.GOODS_NUM
+	AND A.GOODS_NUM = C.GOODS_NUM
+GROUP BY 
+	A.GOODS_NUM, A.GOODS_NAME, A.GOODS_PRICE, 
+	A.GOODS_DCPRICE, A.GOODS_SIMPLE, 
+	A.GOODS_SOLDOUT, A.GOODS_HITCOUNT, B.GOODS_IMG1
+ORDER BY 
+	GRADE DESC;
+]]>
+</select>
+
+
+<!-- 상세보기시 조회수 올리기 -->
+<update id="goodsHitcount" parameterType="hashmap">
+UPDATE GOODS SET GOODS_HITCOUNT+1 WHERE GOODS_NUM = #{GOODS_NUM}
+</update>
+
+<!-- 리뷰 작성시 구매여부 체크 -->
+<select id="orderCheck" parameterType="hashmap" resultType="hashmap">
+<![CDATA[
+	SELECT 
+		GOODS_NUM 
+	FROM 
+		ORDERS 
+	WHERE 
+		MEMBER_NUM = #{MEMBER_NUM} 
+		AND GOODS_NUM = #{GOODS_NUM}
+]]>
+</select>
+
+<!-- 상품별 리뷰 -->
+
+<select id="goodsReview" parameterType="hashmap" resultType="hashmap">
+<![CDATA[
+	SELECT * 
+	FROM 
+		REVIEW 
+	WHERE 
+		GOODS_NUM = #{GOODS_NUM} 
+	ORDER BY 
+		REVIEW_REGDATE DESC
+]]>
+</select>
+<!--주문 내역 생성 -->
+<insert id="createOrder" parameterType="hashmap" >
+<![CDATA[
+	INSERT INTO 
+		ORDERS(
+		ORDER_NUM,
+		ORDER_AMOUNT,
+		MEMBER_NUM,
+		GOODS_NUM,
+		ORDER_DATE,
+		ORDER_PRICE,
+		ORDER_PAYMENT,
+		ORDER_ECHECK
+	) VALUES (
+		ORDER_NUM_SEQ.NEXTVAL,
+		#{ORDER_AMOUNT},
+		#{MEMBER_NUM},
+		#{GOODS_NUM},
+		#{ORDER_DATE},
+		#{ORDER_PRICE},
+		#{ORDER_PAYMENT},
+		#{ORDER_ECHECK} 
+	)
+]]>
+</insert>
+<!-- 주문 내역보기 -->
+<select id="orderList" parameterType="hashmap" resultType="hashmap">
+<![CDATA[
+	SELECT  
+		O.ORDER_NUM,
+		O.ORDER_DATE,
+		G.GOODS_NAME,
+		O.ORDER_AMOUNT,
+		O.ORDER_PRICE,
+		O.ORDER_PAYMENT
+	FROM 
+		GOODS G, ORDERS O
+	WHERE
+		O.MEMBER_NUM = #{MEMBER_NUM}
+		AND G.GOODS_NUM = O.GOODS_NUM
+]]>
+</select>
+
+<!-- 전체 상품 리스트 -->
+<select id="goodsList" parameterType="hashmap" resultType="hashmap">
+<![CDATA[
+	SELECT 
+		A.GOODS_NUM, 
+		A.GOODS_NAME, 
+		A.GOODS_PRICE, 
+		A.GOODS_DCPRICE, 
+		A.GOODS_SIMPLE,
+		A.CATEGORY_NUM,
+		A.GOODS_SOLDOUT,
+		A.GOODS_HITCOUNT,
+		A.GOODS_AMOUNT,
+		B.GOODS_IMG1
+	FROM 
+		GOODS A, GOODS_IMG B
+	WHERE
+		A.GOODS_NUM = B.GOODS_NUM
+]]>
+</select>
+<!--상품 상세보기 -->
+<select id="goodsDetail" parameterType="hashmap" resultType="hashmap">
+<![CDATA[
+	SELECT
+		A.GOODS_NUM, 
+		A.GOODS_NAME, 
+		A.GOODS_PRICE, 
+		A.GOODS_DCPRICE, 
+		A.CATEGORY_NUM,
+		A.GOODS_SOLDOUT,
+		A.GOODS_HITCOUNT,
+		A.GOODS_AMOUNT,
+		B.GOODS_IMG1,
+		B.GOODS_IMG2,
+		B.GOODS_IMG3
+	FROM
+		GOODS A, GOODS_IMG B
+	WHERE
+		A.GOODS_NUM = #{GOODS_NUM}
+		AND A.GOODS_NUM = B.GOODS_NUM
+]]>
+</select>
+
+<!--카테고리1 상품리스트 -->
+<select id="goodsBigCategoryList" parameterType="hashmap" resultType="hashmap">
+<![CDATA[
+	SELECT 
+		A.GOODS_NUM, 
+		A.GOODS_NAME, 
+		A.GOODS_PRICE, 
+		A.GOODS_DCPRICE, 
+		A.GOODS_SIMPLE,
+		A.CATEGORY_NUM,
+		A.GOODS_SOLDOUT,
+		A.GOODS_HITCOUNT,
+		A.GOODS_AMOUNT,
+		B.GOODS_IMG1
+	FROM 
+		GOODS A, 
+		GOODS_IMG B, 
+		CATEGORY C
+	WHERE
+		A.GOODS_NUM = B.GOODS_NUM 
+		AND A.CATEGORY_NUM = C.CATEGORY_NUM 
+		AND  C.BIG_CATEGORY = #{BIG_CATEGORY}
+]]>
+</select>
+<!-- 카테고리2 상품리스트 -->
+<select id="goodsSmallCategoryList" parameterType="hashmap" resultType="hashmap">
+<![CDATA[
+	SELECT 
+		A.GOODS_NUM, 
+		A.GOODS_NAME, 
+		A.GOODS_PRICE, 
+		A.GOODS_DCPRICE, 
+		A.GOODS_SIMPLE,
+		A.CATEGORY_NUM,
+		A.GOODS_SOLDOUT,
+		A.GOODS_HITCOUNT,
+		A.GOODS_AMOUNT,
+		B.GOODS_IMG1
+	FROM 
+		GOODS A, 
+		GOODS_IMG B,
+		CATEGORY C
+	WHERE
+		A.GOODS_NUM = B.GOODS_NUM 
+		AND A.CATEGORY_NUM = C.CATEGORY_NUM 
+		AND C.BIG_CATEGORY = #{SMALL_CATEGORY}
+]]>
+</select>
+
+<!--전체 상품 수 -->
+<select id="goodsCount" parameterType="hashmap" resultType="hashmap">
+<![CDATA[
+	SELECT 
+		COUNT(GOODS_NUM) 
+	FROM 
+		GOODS
+]]>
+</select>
+
+<!--인기 상품 리스트 -->
+<select id="goodsBestList" parameterType="hashmap" resultType="hashmap">
+<![CDATA[
+	SELECT 	
+		GOODS_NAME, 
+		GOODS_PRICE, 
+		GOODS_DCPRICE, 
+		GOODS_IMG1,
+		GOODS_HITCOUNT
+	FROM(
+		SELECT 
+			A.GOODS_NAME, 
+			A.GOODS_PRICE, 
+			A.GOODS_DCPRICE, 
+			B.GOODS_IMG1,
+			A.GOODS_HITCOUNT
+		FROM 
+			GOODS A, GOODS_IMG B
+		WHERE
+			A.GOODS_NUM = B.GOODS_NUM 
+		ORDER BY 
+			A.GOODS_HITCOUNT DESC
+	)WHERE ROWNUM <6
+]]>
+</select>
+
+<!--회원 할인상품 리스트 보기(높은가격순) -->
+<select id="goodsSaleList1" parameterType="hashmap" resultType="hashmap">
+<![CDATA[
+	SELECT 
+		A.GOODS_NUM, 
+		A.GOODS_NAME, 
+		A.GOODS_PRICE, 
+		A.GOODS_DCPRICE, 
+		A.GOODS_SIMPLE,
+		A.CATEGORY_NUM,
+		A.GOODS_SOLDOUT,
+		A.GOODS_HITCOUNT,
+		A.GOODS_AMOUNT,
+		B.GOODS_IMG1
+	FROM 	
+		GOODS A, GOODS_IMG B
+	WHERE 
+		A.GOODS_NUM=B.GOODS_NUM 
+		AND A.GOODS_PRICE > A.GOODS_DCPRICE 
+	ORDER BY 
+		A.GOODS_DCPRICE DESC
+]]>
+</select>
+
+<!--할인중인 상품 리스트(카테고리 정렬) -->
+<select id="goodsSaleList2" parameterType="hashmap" resultType="hashmap">
+<![CDATA[
+	SELECT 
+		A.GOODS_NUM, 
+		A.GOODS_NAME, 
+		A.GOODS_PRICE, 
+		A.GOODS_DCPRICE, 
+		A.GOODS_SIMPLE,
+		A.CATEGORY_NUM,
+		A.GOODS_SOLDOUT,
+		A.GOODS_HITCOUNT,
+		A.GOODS_AMOUNT,
+		B.GOODS_IMG1
+	FROM 
+		GOODS A, GOODS_IMG B
+	WHERE 
+		A.GOODS_NUM=B.GOODS_NUM 
+		AND A.GOODS_PRICE > A.GOODS_DCPRICE 
+	ORDER BY 
+		A.CATEGORY_NUM DESC
+]]>
+</select>
+
+</mapper>

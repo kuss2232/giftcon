@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="adminnotice">
+<!-- 공지사항 리스트 -->
+	<select id="noticeList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+		SELECT
+			NOTICE_NUM,
+			NOTICE_REGDATE,
+			NOTICE_TITLE,
+			NOTICE_CNT,
+			NOTICE_IMG,
+			NOTICE_HITCOUNT
+		FROM
+			NOTICE
+		ORDER BY
+			NOTICE_REGDATE DESC
+		]]>
+	</select>
+<!-- 공지사항 쓰기 -->
+	<insert id="insertNotice" parameterType="hashmap">
+		<![CDATA[
+		INSERT INTO NOTICE
+			(NOTICE_NUM,
+			NOTICE_REGDATE,
+			NOTICE_TITLE,
+			NOTICE_CNT,
+			NOTICE_IMG,
+			NOTICE_HITCOUNT)
+		VALUES
+			(NOTICE_NUM_SEQ.NEXTVAL,
+			SYSDATE, 
+			#{TITLE},
+			#{CONTENT},
+			#{IMG},
+			0)
+		]]>
+	</insert>
+<!-- 공지사항 조회수 증가 -->
+    <update id="updateHitcount" parameterType="hashmap">
+		<![CDATA[
+			UPDATE 
+				NOTICE 
+			SET
+				NOTICE_HITCOUNT = NVL(NOTICE_HITCOUNT, 0) + 1
+			WHERE
+				NOTICE_NUM = #{NOTICE_NUM}	
+		]]>
+	</update>
+	<!-- 공지사항 상세보기 -->
+   <select id="noticeDetail" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+			    NOTICE_NUM,
+			    NOTICE_REGDATE,
+			    NOTICE_TITLE,
+			    NOTICE_CNT,
+			    NOTICE_IMG,
+			    NOTICE_HITCOUNT
+			FROM
+			    NOTICE
+			WHERE
+				NOTICE_NUM=#{NOTICE_NUM}		
+		]]>
+	</select>
+	<!-- 공지사항 수정 -->
+	 <update id="updateNotice" parameterType="hashmap">
+		<![CDATA[
+			UPDATE 
+				NOTICE 
+			SET
+			    	NOTICE_TITLE = #{TITLE},
+			   	NOTICE_CNT = #{CONTENT}
+			   	NOTICE_IMG = #{IMG}
+			WHERE
+				NOTICE_NUM = #{NOTICE_NUM}	
+		]]>
+	</update>
+	<!-- 공지사항 삭제 -->
+	 <update id="deleteNotice" parameterType="hashmap">
+		<![CDATA[
+			DELETE
+			FROM
+				NOTICE
+			WHERE
+				NOTICE_NUM = #{NOTICE_NUM}
+		]]>
+	</update>
+	<!-- 공지사항 검색 -->
+	 <select id="searchNotice" parameterType="hashmap" resultType="hashmap">
+		SELECT
+			NOTICE_NUM,
+			NOTICE_REGDATE,
+			NOTICE_TITLE,
+			NOTICE_CNT,
+			NOTICE_IMG,
+			NOTICE_HITCOUNT
+		FROM
+			NOTICE
+		WHERE 	
+	<if test='SearchNum.equals("1")'> <!-- 제목 검색 -->
+			NOTICE_TITLE LIKE '%' || #{SearchKeyword} || '%'	
+	</if>
+	<if test='SearchNum.equals("2")'> <!-- 내용 검색 -->
+			NOTICE_CNT LIKE '%' || #{SearchKeyword} || '%'
+	</if>
+		ORDER BY NOTICE_REGDATE DESC
+</select>
+</mapper> 

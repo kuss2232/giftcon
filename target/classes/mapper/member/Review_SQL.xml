@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="review">
+<!-- 회원 리뷰 등록 -->
+	<insert id="insertReview" parameterType="hashmap">
+		<![CDATA[
+		INSERT INTO REVIEW
+			REVIEW_NUM,
+			GOODS_NUM,
+			MEMBER_NUM,
+			REVIEW_CNT,
+			REVIEW_REGDATE,
+			REVIEW_GRADE,
+			REVIEW_IMG
+		VALUES(
+			REVIEW_NUM_SEQ.NEXTVAL,
+			#{GOODS_NUM},
+			#{MEMBER_NUM},
+			#{REVIEW_CNT},
+			SYSDATE,
+			#{REVIEW_GRADE},
+			#{REVIEW_IMG}
+)
+		]]>
+	</insert>
+	
+	<!-- 한 상품에 대한 리뷰 리스트 보여주기 -->
+	<select id="searchReview" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+	SELECT
+		REVIEW_NUM,
+		GOODS_NUM,
+		MEMBER_NUM,
+		REVIEW_CNT,
+		REVIEW_REGDATE,
+		REVIEW_GRADE,
+		REVIEW_IMG
+	FROM REVIEW
+	WHERE GOODS_NUM = #{GOODS_NUM}
+	ORDER BY REVIEW_REGDATE DESC
+	]]>
+	</select>
+	<!-- 평점별로 리뷰 보여주기 -->
+	<select id="reviewList" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+	SELECT
+		REVIEW_NUM,
+	GOODS_NUM,
+	MEMBER_NUM,
+	REVIEW_CNT,
+	REVIEW_REGDATE,
+	REVIEW_GRADE,
+	REVIEW_IMG
+FROM REVIEW
+WHERE GOODS_NUM = #{GOODS_NUM}
+AND REVIEW_GRADE = #{REVIEW_GRADE}
+ORDER BY REVIEW_REGDATE DESC
+	]]>
+	</select>
+	<!-- 회원 리뷰삭제 -->
+	<delete id="reviewDelete" parameterType="hashmap">
+		<![CDATA[
+			DELETE FROM REVIEW
+		WHERE
+		 REIVEW_NUM  = #{REVIEW_NUM}
+		]]>
+	</delete>
+</mapper>

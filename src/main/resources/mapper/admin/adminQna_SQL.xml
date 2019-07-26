@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="adminQna">
+
+<!-- QNA 테이블글 내림차순 조회하기 -->
+<select id="qnaList" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+		SELECT
+			QNA_NUM,
+			QNA_TITLE,
+			QNA_CNT,
+			QNA_COMMENT,
+			MEMBER_NUM,
+			QNA_DATE,
+			QNA_REDATE,
+			QNA_FILE,
+			QNA_CHECK
+		FROM
+			QNA ORDER BY QNA_NUM DESC
+	]]>
+</select>
+
+<!-- QNA 댓글 수정하기 -->
+<update id="updateQnaCommand" parameterType="hashmap">
+	<![CDATA[
+	UPDATE
+		QNA
+	SET
+		QNA_COMMENT = #{QNA_COMMENT},
+		QNA_REDATE = sysdate 
+	WHERE
+		QNA_NUM = #{QNA_NUM}
+    ]]>
+</update>
+
+<!-- QNA 댓글 삭제하기 -->
+<update id="deleteQnaCommand" parameterType="hashmap">
+	<![CDATA[
+	UPDATE
+		QNA
+	SET
+		QNA_COMMENT = null,
+		QNA_REDATE = null,
+		QNA_CHECK = 'N'
+	WHERE
+		QNA_NUM = #{QNA_NUM}
+    ]]>
+</update>
+
+<!-- 제목으로 QNA 글 검색-->
+<select id="searchQnaTitleList" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+	SELECT 
+		Q.QNA_NUM,
+		Q.QNA_TITLE,
+		Q.QNA_CNT,
+		Q.QNA_COMMENT,
+		M.MEMBER_NUM,
+		Q.QNA_DATE,
+		Q.QNA_REDATE,
+		Q.QNA_FILE,
+		Q.QNA_CHECK
+	FROM
+		QNA Q , MEMBER M 
+	WHERE
+		Q.QNA_NUM = M.MEMBER_NUM
+		AND Q.QNA_TITLE LIKE '%' || #{SearchKeyword} || '%'
+	ORDER BY QNA_NUM DESC
+	]]>
+</select>
+
+<!-- 사용자 ID로 QNA 글 검색-->
+<select id="searchQnaMemberList" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+	SELECT 
+		Q.QNA_NUM,
+		Q.QNA_TITLE,
+		Q.QNA_CNT,
+		Q.QNA_COMMENT,
+		M.MEMBER_NUM,
+		Q.QNA_DATE,
+		Q.QNA_REDATE,
+		Q.QNA_FILE,
+		Q.QNA_CHECK
+	FROM
+		QNA Q , MEMBER M 
+	WHERE
+		Q.MEMBER_NUM = M.MEMBER_NUM
+		AND M.MEMBER_ID LIKE '%' || #{SearchKeyword} || '%'
+	]]>
+</select>
+
+</mapper>

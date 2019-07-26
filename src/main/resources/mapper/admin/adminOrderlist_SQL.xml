@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="adminOrderlist">
+
+
+
+
+	<!-- 전체주문 리스트 보기 -->
+	<select id="allOrderList" resultType="hashmap">
+		<![CDATA[ 
+			SELECT A.ORDER_NUM, A.MEMBER_NUM, A.GOODS_NUM, SUM(A.ORDER_AMOUNT), A.ORDER_DATE,
+				A.ORDER_PRICE, A.ORDER_PAYMENT,	B.GOODS_NAME, D.GOODS_IMG1, C.MEMBER_ID
+			FROM ORDERS A, GOODS B, MEMBER C, GOODS_IMG D 
+			WHERE 
+			AND A.MEMBER_NUM = C.MEMBER_NUM
+			AND A.GOODS_NUM = B.GOODS_NUM 
+			AND B.GOODS_NUM = D.GOODS_NUM
+			GROUP BY A.ORDER_NUM, A.MEMBER_NUM, A.GOODS_NUM, A.ORDER_DATE, A.ORDER_PRICE, 
+			A.ORDER_PAYMENT,B.GOODS_NAME, D.GOODS_IMG1, C.MEMBER_ID
+			ORDER BY ORDER_DATE DESC, ORDER_NUM DESC
+		]]>
+	</select>
+	
+	
+	
+	<!--  전체주문 수 보기  -->
+	<select id="allOrderNumList" resultType="hashmap">
+	<![CDATA[
+		SELECT COUNT(ORDER_NUM) FROM ORDERS ORDER BY ORDER_NUM DESC
+	]]>
+	</select>
+	
+	
+	
+	<!-- 주문삭제 -->
+	<delete id="orderDelete" parameterType="hashmap">
+		<![CDATA[
+	DELETE ORDERS WHERE ORDER_NUM = #{ORDER_NUM}
+		]]>
+	</delete>
+	
+	<!-- 관리자가 사용자 ID로 검색하기 -->
+<select id="adminOrderSearchID" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+	SELECT
+	O.ORDER_NUM,
+	O.ORDER_AMOUNT,
+	O.MEMBER_NUM,
+	O.GOODS_NUM,
+	O.ORDER_DATE,
+	O.ORDER_PRICE,
+	O.ORDER_PAYMENT
+	FROM
+	ORDERS O, MEMBER M
+	WHERE
+	M.MEMBER_NUM=O.MEMBER_NUM and M.member_id LIKE '%'|| #{searchkeyword} || '%'
+		]]>
+	</select>
+	
+	<!-- 결제상태로 N인걸로 검색하기 -->
+<select id="adminOrderSearchN" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+	SELECT
+	ORDER_NUM,
+	ORDER_AMOUNT,
+	MEMBER_NUM,
+	GOODS_NUM,
+	ORDER_DATE,
+	ORDER_PRICE,
+	ORDER_PAYMENT,
+	ORDER_ECHECK
+	FROM
+	ORDERS WHERE ORDER_PAYMENT='N';
+		]]>
+	</select>
+
+	<!-- 결제상태 y인걸로 검색하기 -->
+	<select id="adminOrderSearchY" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+		ORDER_NUM,
+		ORDER_AMOUNT,
+		MEMBER_NUM,
+		GOODS_NUM,
+		ORDER_DATE,
+		ORDER_PRICE,
+		ORDER_PAYMENT,
+		ORDER_ECHECK
+				FROM
+		ORDERS WHERE ORDER_PAYMENT='Y';
+		]]>
+	</select>
+	<!-- 결제상태 C인걸로 검색하기 -->
+	<select id="adminOrderSearchC" parameterType="hashmap" resultType="hashmap">
+      <![CDATA[
+		SELECT
+		ORDER_NUM,
+		ORDER_AMOUNT,
+		MEMBER_NUM,
+		GOODS_NUM,
+		ORDER_DATE,
+		ORDER_PRICE,
+		ORDER_PAYMENT,
+		ORDER_ECHECK
+        FROM
+      	ORDERS WHERE ORDER_PAYMENT='C';
+               ]]>
+      </select>
+	<!-- 결제상태 변경 -->
+	<update id="updateOrderPayMent" parameterType="hashmap">
+	
+	<![CDATA[
+		UPDATE 	ORDERS set
+	ORDER_PAYMENT=#{ORDER_PAYMENT}
+	WHERE ORDER_NUM=#{ORDER_NUM};
+	]]>
+	
+	</update>
+	<!-- 회원 주문상세보기 -->
+	<select id="orderDetail" resultType="hashmap">
+		<![CDATA[
+		SELECT
+			M.MEMBER_NAME,
+			M.MEMBER_ID,
+			M.MEMBER_EMAIL,
+			M.MEMBER_PHONE,
+			G.GOODS_NAME,
+			G.GOODS_PRICE,
+			G.GOODS_DCPRICE,
+			O.ORDER_AMOUNT
+			FROM
+			GOODS G,
+			MEMBER M,
+			ORDERS O
+				WHERE
+			O.GOODS_NUM = G.GOODS_NUM
+					AND
+			O.MEMBER_NUM = M.MEMBER_NUM
+					AND
+			O.MEMBER_NUM=#{MEMBER_NUM} AND O.GOODS_NUM=#{GOODS_NUM};
+		]]>
+	</select>
+	
+	</mapper>
+	
+	

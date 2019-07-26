@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="event">
+<!-- 이벤트 리스트 (진행 중) -->
+<select id="adEventselectList" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+		SELECT 
+			EVENT_NUM,
+			EVENT_REGDATE,
+			EVENT_IMG1,
+			EVENT_START,
+			EVENT_END
+		FROM
+			EVENT
+		WHERE EVENT_START<= SYSDATE AND SYSDATE <= EVENT_END
+	]]>
+	</select>
+
+<!-- 이벤트 리스트 (종료) -->
+<select id="adEndEventselectList" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+		SELECT 
+			EVENT_NUM,
+			EVENT_REGDATE,
+			EVENT_IMG1,
+			EVENT_START,
+			EVENT_END
+		FROM
+			EVENT 
+		WHERE EVENT_END < SYSDATE
+	]]> 
+</select>
+<!-- 이벤트 쓰기 -->
+<insert id="adEventinsert" parameterType="hashmap" useGeneratedKeys="true" keyProperty="EVENT_NUM">
+	<selectKey keyProperty="EVENT_NUM" resultType="string" order="BEFORE">
+		SELECT EVENT_NUM_SEQ.NEXTVAL FROM DUAL
+	</selectKey>
+	<![CDATA[
+		INSERT INTO EVENT
+			(EVENT_NUM,
+			EVENT_REGDATE,
+			EVENT_START,
+			EVENT_END,
+			EVENT_IMG1,
+			EVENT_IMG2,
+			EVENT_IMG3,
+			EVENT_IMG4)
+		VALUES
+			(EVENT_NUM_SEQ.NEXTVAL,
+			SYSDATE, 
+			#{EVENT_START},
+			#{EVENT_END},
+			#{IMG1},
+			#{IMG2},
+			#{IMG3},
+			#{IMG4})
+	]]>
+</insert>
+
+<!-- 이벤트 상세보기 -->
+<select id="adEventselectDetail" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+		SELECT
+			EVENT_NUM,
+			EVENT_REGDATE,
+			EVENT_START,
+			EVENT_END,
+			EVENT_IMG1,
+			EVENT_IMG2,
+			EVENT_IMG3,
+			EVENT_IMG4
+		FROM
+			EVENT
+		WHERE
+			EVENT_NUM=#{EVENT_NUM}	
+	]]>
+</select>
+<!-- 이벤트 수정 -->
+<update id="adEventupdate" parameterType="hashmap">
+	<![CDATA[
+		UPDATE 
+			EVENT 
+		SET
+			EVENT_START = #{EVENT_START},
+			EVENT_END = #{EVENT_END},
+			EVENT_IMG1 = #{IMG1},
+			EVENT_IMG2 = #{IMG2},
+			EVENT_IMG3 = #{IMG3},
+			EVENT_IMG4 = #{IMG4}
+		WHERE
+			EVENT_NUM = #{EVENT_NUM}	
+	]]>
+</update>
+<!-- 이벤트 삭제 -->
+<delete id="adEventdelete" parameterType="hashmap">
+	<![CDATA[
+		DELETE FROM EVENT
+		WHERE
+			EVENT_NUM = #{EVENT_NUM}
+	]]>
+</delete>
+
+</mapper>

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cart">
+
+<!-- 장바구니 넣기전 같은 상품 있는지 확인 -->
+<select id="cartCheck" parameterType="hashmap" resultType="hashmap">
+<![CDATA[
+	SELECT * 
+	FROM 
+		CART 
+	WHERE 
+		GOODS_NUM=#{GOODS_NUM} 
+		AND MEMBER_NUM=#{MEMBER_NUM}
+]]>
+</select>
+
+<!-- 회원 장바구니 넣기-->
+<insert id="addCart" parameterType="hashmap" useGeneratedKeys="true" keyProperty="CART_NUM">
+	<selectKey keyProperty="CART_NUM" resultType="integer" order="BEFORE">
+		SELECT CART_NUM_SEQ.NEXTVAL FROM DUAL
+	</selectKey>
+		<![CDATA[
+			INSERT INTO CART ( 
+				CART_NUM, 
+				MEMBER_NUM, 
+				GOODS_NUM, 
+				CART_AMOUNT, 
+				CART_REGDATE
+			) VALUES ( 
+				#{CART_NUM}, 
+				#{MEMBER_NUM}, 
+				#{GOODS_NUM},
+				#{CART_AMOUNT}, 
+				SYSDATE 
+			)
+]]>
+</insert>
+
+
+<!-- 회원 장바구니 조회 -->
+<select id="cartList" parameterType="hashmap" resultType="hashmap">
+<![CDATA[
+	SELECT DISTINCT 
+			A.GOODS_NUM, A.CART_NUM, A.MEMBER_NUM,
+			A.CART_REGDATE, A.CART_AMOUNT,
+			B.GOODS_NAME, B.GOODS_PRICE, B.GOODS_DCPRICE,
+			C.GOODS_IMG1
+	FROM 
+		CART A, GOODS B, GOODS_IMG C 
+	WHERE 
+		A.MEMBER_NUM=${MEMBER_NUM}
+		AND A.GOODS_NUM=B.GOODS_NUM 
+		AND C.GOODS_NUM=A.GOODS_NUM
+	ORDER BY 
+		A.CART_REGDATE DESC
+]]>
+</select>
+
+<!-- 장바구니 수량 수정 -->
+<update id="cartAmountModify" parameterType="hashmap">
+<![CDATA[
+	UPDATE 
+		CART 
+	SET 
+		CART_AMOUNT = #{CART_AMOUNT}
+	WHERE 
+		CART_NUM = #{CART_NUM}
+]]>
+</update>
+
+<!-- 회원 장바구니-상품 완전삭제 -->
+<delete id="cartDeleteAll" parameterType="hashmap">
+<![CDATA[
+	DELETE 
+	FROM 
+		CART 
+	WHERE 
+		MEMBER_NUM=#{MEMBER_NUM} 
+]]>
+</delete>
+
+<!-- 회원 장바구니 상품 선택삭제 -->
+<delete id="cartDelete" parameterType="hashmap">
+<![CDATA[
+	DELETE 
+	FROM 
+		CART 
+	WHERE 
+		MEMBER_NUM=#{MEMBER_NUM}
+		AND CART_NUM=#{CART_NUM} 
+]]>
+</delete>
+
+	
+
+
+<!-- 회원별 장바구니 전체 상품 수 -->
+<select id="cartCount" parameterType="hashmap" resultType="hashmap">
+<![CDATA[
+	SELECT 
+		COUNT(*) 
+	FROM 
+		CART
+	WHERE 
+		MEMBER_NUM=1
+]]>	
+</select>
+
+
+<!-- 주문 등록 후 장바구니 삭제 -->
+<insert id="addOrderToCart" useGeneratedKeys="true" keyProperty="ORDER_NUM">
+	<selectKey keyProperty="ORDER_NUM" resultType="integer" order="BEFORE">
+	SELECT ORDER_NUM_SEQ.NEXTVAL FROM DUAL
+	</selectKey>
+<![CDATA[
+	INSERT INTO ORDERS(
+		ORDER_NUM, 
+		ORDER_AMOUNT, 
+		MEMBER_NUM, 
+		GOODS_NUM, 
+		ORDER_DATE, 
+		ORDER_PRICE, 
+		ORDER_PAYMENT, 
+		ORDER_ECHECK,
+		CART_NUM) 
+	VALUES(#{ORDER_NUM}, 
+		(SELECT CART_AMOUNT FROM CART WHERE CART_NUM = #{CART_NUM}),
+      		(SELECT MEMBER_NUM FROM CART WHERE CART_NUM = #{CART_NUM}),
+     	   	(SELECT GOODS_NUM FROM CART WHERE CART_NUM = #{CART_NUM}), 
+		SYSDATE, 
+		#{ORDER_PRICE}, 
+		'N', 
+		'N',
+		#{CART_NUM}
+	);
+]]>
+</insert>
+
+<!-- 트리거(장바구니 추가시 카트 삭제)
+CREATE OR REPLACE TRIGGER addOrder_trg
+AFTER INSERT ON ORDERS
+FOR EACH ROW
+BEGIN
+  DELETE FROM CART WHERE cart_num = :new.cart_num;
+END; 
+-->
+
+</mapper>
