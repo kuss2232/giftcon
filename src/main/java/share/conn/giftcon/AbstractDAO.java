@@ -77,14 +77,14 @@ public class AbstractDAO {
 	
 	
 
-	// °¡ÀÔÇÑ È¸¿ø ¾ÆÀÌµğ °Ë»ö
+	// ê°€ì…í•œ íšŒì› ì•„ì´ë”” ê²€ìƒ‰
 	@SuppressWarnings("rawtypes")
 	public List searchMemberList(String map, Object params) {
 		printQueryId(map);
 		return sqlSession.selectList(map, params);
 	}
 	
-	// °¡ÀÔÇÑ È¸¿ø ¾ÆÀÌµğ Áßº¹ È®ÀÎ
+	// ê°€ì…í•œ íšŒì› ì•„ì´ë”” ì¤‘ë³µ í™•ì¸
 	@SuppressWarnings("rawtypes")
 	public String selectMemberId(String queryId, Object params) {
 		printQueryId(queryId);
@@ -92,10 +92,10 @@ public class AbstractDAO {
 	}
 
 
-	// ÀÌ¸§ °Ë»ö
+	// ì´ë¦„ ê²€ìƒ‰
 
 
-	// °¡ÀÔÇÑ È¸¿ø ÀÌ¸§ °Ë»ö
+	// ê°€ì…í•œ íšŒì› ì´ë¦„ ê²€ìƒ‰
 	@SuppressWarnings("rawtypes")
 	public List searchMemberName(String queryId, Object params) {
 		printQueryId(queryId);
@@ -103,15 +103,15 @@ public class AbstractDAO {
 	}
 
 
-	// È¸¿ø¾ÆÀÌµğ·Î °Ë»ö
+	// íšŒì›ì•„ì´ë””ë¡œ ê²€ìƒ‰
 
-	// °¡ÀÔÇÑ È¸¿ø ÀüÈ­¹øÈ£ °Ë»ö
-
-
-	// È¸¿ø¾ÆÀÌµğ·Î °Ë»ö
+	// ê°€ì…í•œ íšŒì› ì „í™”ë²ˆí˜¸ ê²€ìƒ‰
 
 
-	// °¡ÀÔÇÑ È¸¿ø ÀüÈ­¹øÈ£ °Ë»ö
+	// íšŒì›ì•„ì´ë””ë¡œ ê²€ìƒ‰
+
+
+	// ê°€ì…í•œ íšŒì› ì „í™”ë²ˆí˜¸ ê²€ìƒ‰
 
 	@SuppressWarnings("rawtypes")
 	public List searchMemberPhone(String queryId, Object params) {
@@ -121,17 +121,17 @@ public class AbstractDAO {
 
 
 
-	// E-Mail °Ë»ö
+	// E-Mail ê²€ìƒ‰
 
-	// °¡ÀÔÇÑ È¸¿ø ÀÌ¸ŞÀÏ °Ë»ö
-
-
-
-	// E-Mail °Ë»ö
-	// °¡ÀÔÇÑ È¸¿ø ÀÌ¸ŞÀÏ °Ë»ö
+	// ê°€ì…í•œ íšŒì› ì´ë©”ì¼ ê²€ìƒ‰
 
 
-	// °¡ÀÔÇÑ È¸¿ø ÀÌ¸ŞÀÏ °Ë»ö
+
+	// E-Mail ê²€ìƒ‰
+	// ê°€ì…í•œ íšŒì› ì´ë©”ì¼ ê²€ìƒ‰
+
+
+	// ê°€ì…í•œ íšŒì› ì´ë©”ì¼ ê²€ìƒ‰
 
 	@SuppressWarnings("rawtypes")
 	public List searchMemberEmail(String queryId, Object params) {
@@ -139,21 +139,21 @@ public class AbstractDAO {
 		return sqlSession.selectList(queryId, params);
 	}
 	
-	// ±ÛÁ¦¸ñ °Ë»ö
+	// ê¸€ì œëª© ê²€ìƒ‰
 	@SuppressWarnings("rawtypes")
 	public List searchTitleList(String queryId, Object params, String isSearch) {
 		printQueryId(queryId);
 		return sqlSession.selectList(queryId, params);
 	}
 
-	// ±Û³»¿ë °Ë»ö
+	// ê¸€ë‚´ìš© ê²€ìƒ‰
 	@SuppressWarnings("rawtypes")
 	public List searchContentList(String queryId, Object params, String isSearch) {
 		printQueryId(queryId);
 		return sqlSession.selectList(queryId, params);
 	}
 	
-	// ÆäÀÌÂ¡
+	// í˜ì´ì§•
 	@SuppressWarnings("unchecked")
 	public Object selectPagingList(String queryId, Object params){
 		printQueryId(queryId);
