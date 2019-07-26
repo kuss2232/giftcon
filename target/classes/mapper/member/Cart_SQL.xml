@@ -3,9 +3,9 @@
 <mapper namespace="cart">
 
 <!-- 장바구니 넣기전 같은 상품 있는지 확인 -->
-<select id="cartCheck" parameterType="hashmap" resultType="hashmap">
+<select id="cartCheck" parameterType="hashmap" resultType="Integer">
 <![CDATA[
-	SELECT * 
+	SELECT COUNT(*) 
 	FROM 
 		CART 
 	WHERE 
@@ -95,7 +95,7 @@
 
 
 <!-- 회원별 장바구니 전체 상품 수 -->
-<select id="cartCount" parameterType="hashmap" resultType="hashmap">
+<select id="cartCount" resultType="hashmap">
 <![CDATA[
 	SELECT 
 		COUNT(*) 
