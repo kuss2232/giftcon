@@ -55,14 +55,16 @@ public class AdminMemberController {
 			searchNum = Integer.parseInt(request.getParameter("searchNum"));
 			isSearchMap.put("isSearch", isSearch);	
 
-			if (searchNum == 0) { // ���̵�
+			if (searchNum == 0) { // 아이디
 				memberList = adminMemberService.searchMemberId(isSearchMap);
-			} else if (searchNum == 1) { // �̸�
+			} else if (searchNum == 1) { // 이름
 				memberList = adminMemberService.searchMemberName(isSearchMap);
-			} else if (searchNum == 2) { // ��ȭ��ȣ
+			} else if (searchNum == 2) { // 전화번호
 				memberList = adminMemberService.searchMemberPhone(isSearchMap);
-			} else if (searchNum == 3) { // �̸���
+			} else if (searchNum == 3) { // 이메일
 				memberList = adminMemberService.searchMemberEmail(isSearchMap);
+			} else if (searchNum == 4) { //상태
+				memberList = adminMemberService.searchMemberState(isSearchMap);
 			}
 
 			totalCount = memberList.size();

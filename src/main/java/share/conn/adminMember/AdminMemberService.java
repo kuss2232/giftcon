@@ -27,4 +27,7 @@ public interface AdminMemberService {
 		
 	// 회원 이메일로 검색
 	public List<Map<String, Object>> searchMemberEmail(Map<String, Object> map) throws Exception;
+	
+	// 회원 상태로 검색
+	public List<Map<String, Object>> searchMemberState(Map<String, Object> map) throws Exception;
 }
