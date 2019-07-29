@@ -48,6 +48,7 @@
 	<!-- ModelAndView의 이름을 그대로 URL로 사용 -->
 
 	<bean class="org.springframework.web.servlet.view.UrlBasedViewResolver"
+	 	p:viewClass="org.springframework.web.servlet.view.JstlView" 
 		p:order="1" p:suffix=".jsp" p:prefix="/WEB-INF/jsp/">
 	</bean>
 
