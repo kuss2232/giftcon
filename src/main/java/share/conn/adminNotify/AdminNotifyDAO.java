@@ -14,59 +14,43 @@ public class AdminNotifyDAO extends AbstractDAO{
 	
 	// 공지사항 목록
 		@SuppressWarnings("unchecked")
-		public List<Map<String, Object>> notifyList(Map<String, Object> map) throws Exception {
-			return (List<Map<String, Object>>) selectList("notify.notifyList", map);
+		public List<Map<String, Object>> noticeList(Map<String, Object> map) throws Exception {
+			return (List<Map<String, Object>>) selectList("adminnotice.noticeList", map);
 		}
 		
 		// 공지사항 상세보기
 		@SuppressWarnings("unchecked")
 		public Map<String, Object> notifyDetail(Map<String, Object> map) throws Exception {
-			return (Map<String, Object>) selectOne("notify.notifyDetail", map);
+			return (Map<String, Object>) selectOne("adminnotice.noticeDetail", map);
 		}
 		
 		// 조회수 증가
-		public void updateHitCnt(Map<String, Object> map) throws Exception {
-			update("notify.notifyUpdateHitCnt", map);
+		public void updateHitCount(Map<String, Object> map) throws Exception {
+			update("adminnotice.updateHitcount", map);
 		}
 		
 		// 공지사항 수정
 		public void notifyModify(Map<String, Object> map) throws Exception {
-			update("notify.notifyModify", map);
+			update("adminnotice.updateNotice", map);
 		}
 		
 		// 공지사항 삭제
 		public void notifyDelete(Map<String, Object> map) throws Exception {
-			delete("notify.notifyDelete", map);
+			delete("adminnotice.deleteNotice", map);
 		}
 		
 		// 공지사항 등록
-		public void notifyWrite(Map<String, Object> map, HttpServletRequest request) throws Exception {
-			insert("notify.notifyWrite", map);
+		public void insertNotice(Map<String, Object> map, HttpServletRequest request) throws Exception {
+			insert("adminnotice.insertNotice", map);
 		}
 		
-		// 제목으로 공지사항 검색
+		//  공지사항 검색 (제목과 내용으로 검색 포함)
 		@SuppressWarnings("unchecked")
-		public List<Map<String, Object>> notifyTitleSearch(Map<String, Object> map) throws Exception {
-			return (List<Map<String, Object>>) selectList("notify.notifySearchTitleList", map);
-		}
-		
-		// 내용으로 공지사항 검색
-		@SuppressWarnings("unchecked")
-		public List<Map<String, Object>> notifyContentSearch(Map<String, Object> map) throws Exception {
-			return (List<Map<String, Object>>) selectList("notify.notifySearchContentList", map);
-		}
-		
-		// 파일첨부1
-		public void notifyImage1(Map<String, Object> map) throws Exception {
-			update("notify.notifyImage1", map);
-		}
-		
-		//공지사항 이미지 등록
-		public void insertNotifyImage(Map<String, Object> map) throws Exception {
-		   update("notify.insertNotifyImage", map);
+		public List<Map<String, Object>> notifySearch(Map<String, Object> map) throws Exception {
+			return (List<Map<String, Object>>) selectList("adminnotice.searchNotice", map);
 		}
 	}
 	
 	
 
-}
+
