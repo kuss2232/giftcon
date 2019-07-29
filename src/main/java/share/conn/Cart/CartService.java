@@ -14,11 +14,11 @@ public interface CartService {
 	
 	public void cartAmountModify(Map<String,Object> map) throws Exception;
 	
-	public void cartDeleteAll(int member_num) throws Exception;
+	public void cartDeleteAll(Map<String, Object> map) throws Exception;
 	
 	public void cartDelete(Map<String, Object> map) throws Exception;
 	
 	public int cartCount() throws Exception;
 	
-	public void addOrderToCart() throws Exception;
+	public void addOrderToCart(Map<String, Object> map) throws Exception;
 }
