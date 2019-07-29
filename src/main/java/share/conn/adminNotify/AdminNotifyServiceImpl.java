@@ -13,7 +13,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
  @Service("adminNotifyService")
 public class AdminNotifyServiceImpl implements AdminNotifyService {
 	 	
-	 	@Resource(name = "AdminNotifyDAO")
+	 	@Resource(name = "adminNotifyDAO")
 	 	private AdminNotifyDAO adminNotifyDao;
 
 		// 공지사항 목록
