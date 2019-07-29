@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import share.conn.adminNotify.AdminNotifyService;
 import share.conn.giftcon.CommandMap;
 import share.conn.Paging.Paging;
+import share.conn.adminNotify.AdminNotifyDAO;
 
 @Controller
 public class AdminNotifyController {
@@ -142,7 +143,7 @@ public class AdminNotifyController {
 	}
 
 	// 공지사항 수정
-	@RequestMapping(value = "notify/adminNotifyModify")
+	@RequestMapping(value = "notify/adminNotifyModify,conn")
 	public ModelAndView notifyModify(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("redirect:/admin/Notice/admin_notice");
 
