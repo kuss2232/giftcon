@@ -10,7 +10,6 @@ import share.conn.giftcon.AbstractDAO;
 @Repository("cartDAO")
 public class CartDAO extends AbstractDAO{
 	
-	@SuppressWarnings("unchecked")
 	public Integer cartCheck(Map<String,Object> map) throws Exception{
 		return (Integer)selectOne("cart.cartCheck", map);
 	}
@@ -27,8 +26,8 @@ public class CartDAO extends AbstractDAO{
 		update("cart.cartAmountModify", map);
 	}
 	
-	public void cartDeleteAll(int member_num) throws Exception{
-		delete("cart.cartDeleteAll", member_num);
+	public void cartDeleteAll(Map<String, Object> map) throws Exception{
+		delete("cart.cartDeleteAll", map);
 	}
 	
 	public void cartDelete(Map<String,Object> map) throws Exception{

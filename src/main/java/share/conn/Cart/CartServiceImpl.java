@@ -26,6 +26,7 @@ public class CartServiceImpl implements CartService{
 	}
 
 	@Override
+	@SuppressWarnings("unchecked")
 	public List<Map<String, Object>> cartList(Map<String, Object> map) throws Exception {
 		return cartDAO.cartList(map);
 	}
@@ -36,8 +37,8 @@ public class CartServiceImpl implements CartService{
 	}
 
 	@Override
-	public void cartDeleteAll(int member_num) throws Exception {
-		cartDAO.cartDeleteAll(member_num);
+	public void cartDeleteAll(Map<String, Object> map) throws Exception {
+		cartDAO.cartDeleteAll(map);
 	}
 
 	@Override
@@ -51,7 +52,7 @@ public class CartServiceImpl implements CartService{
 	}
 
 	@Override
-	public void addOrderToCart() throws Exception {
+	public void addOrderToCart(Map<String, Object> map) throws Exception {
 		cartDAO.addOrderToCart();
 	}
 

@@ -16,10 +16,11 @@ import share.conn.adminNotify.AdminNotifyService;
 import share.conn.giftcon.CommandMap;
 import share.conn.Paging.Paging;
 
+
 @Controller
 public class AdminNotifyController {
 	
-	private int searchNum;
+	private int SearchNum;
 
 	private String SearchKeyword;
 
@@ -30,14 +31,14 @@ public class AdminNotifyController {
 	private int blockPage = 5;
 	private String pagingHtml;
 	private Paging page;
-	private String filePath = "D:\\java\\Git\\giftcon\\src\\main\\webapp\\file\\noticefile\\";
+
 	
 
 	@Resource(name = "adminNotifyService")
 	private AdminNotifyService adminNotifyService;
 
 	// 공지사항 목록
-	@RequestMapping(value =  "/notify/adminNotifyList")
+	@RequestMapping(value =  "/notify/adminNotifyList.conn")
 	public ModelAndView adminNotifyList(CommandMap commandMap, HttpServletRequest request) throws Exception {
 
 		if (request.getParameter("currentPage") == null || request.getParameter("currentPage").trim().isEmpty()
@@ -48,7 +49,7 @@ public class AdminNotifyController {
 		}
 
 		ModelAndView mv = new ModelAndView();
-		List<Map<String, Object>> noticeList = adminNotifyService.notifyList(commandMap.getMap());
+		List<Map<String, Object>> noticeList = adminNotifyService.noticeList(commandMap.getMap());
 
 		
 		Map<String, Object> SearchKeywordMap = new HashMap<String, Object>();
@@ -57,17 +58,17 @@ public class AdminNotifyController {
 
 		if (SearchKeyword != null) {
 		
-			searchNum = Integer.parseInt(request.getParameter("searchNum"));
+			SearchNum = Integer.parseInt(request.getParameter("SearchNum"));
 			SearchKeywordMap.put("SearchKeyword", SearchKeyword);
 
-			if (searchNum == 0) { // 회원ID
-				noticeList = adminNotifyService.notifyTitleSearch(SearchKeywordMap);
-			} else if (searchNum == 1) { // 상품이름
-				noticeList = adminNotifyService.notifyContentSearch(SearchKeywordMap);
+			if (SearchNum == 1) { // 제목검색
+				noticeList = adminNotifyService.notifySearch(SearchKeywordMap);
+			} else if (SearchNum == 2) { // 내용검색
+				noticeList = adminNotifyService.notifySearch(SearchKeywordMap);
 			}
 
 			totalCount = noticeList.size();
-			page = new Paging(currentPage, totalCount, blockCount, blockPage, "adminNotifyList", searchNum, SearchKeyword);
+			page = new Paging(currentPage, totalCount, blockCount, blockPage, "noticeList", SearchNum, SearchKeyword);
 			pagingHtml = page.getPagingHtml().toString();
 
 			int lastCount = totalCount;
@@ -78,19 +79,19 @@ public class AdminNotifyController {
 			noticeList = noticeList.subList(page.getStartCount(), lastCount);
 
 			mv.addObject("SearchKeyword", SearchKeyword);
-			mv.addObject("searchNum", searchNum);
+			mv.addObject("SearchNum", SearchNum);
 			mv.addObject("totalCount", totalCount);
 			mv.addObject("pagingHtml", pagingHtml);
 			mv.addObject("currentPage", currentPage);
 			mv.addObject("noticeList", noticeList);
-			mv.setViewName("notice/adminnoticeList");
+			mv.setViewName("admin/Notice/admin_notice");
 
 			return mv;
 
 		} else {
 			totalCount = noticeList.size();
 
-			page = new Paging(currentPage, totalCount, blockCount, blockPage, "adminNotifyList");
+			page = new Paging(currentPage, totalCount, blockCount, blockPage, "noticeList");
 			pagingHtml = page.getPagingHtml().toString();
 
 			int lastCount = totalCount;
@@ -105,66 +106,73 @@ public class AdminNotifyController {
 			mv.addObject("currentPage", currentPage);
 
 			mv.addObject("noticeList", noticeList);
-			mv.setViewName("adminNoticeList");
+			mv.setViewName("admin/Notice/admin_notice");
 
 			return mv;
 		}
 	}
 
 	// 공지사항 등록 폼
-	@RequestMapping(value = "/notify/adminNotifyForm")
+	@RequestMapping(value = "/notify/adminNotifyForm.conn")
 	public ModelAndView adminNotifyForm() throws Exception {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("notifyForm");
+		mv.setViewName("admin/Notice/admin_noticeForm");
 		return mv;
 	}
 
 	// 공지사항 등록
-	@RequestMapping(value = "/notify/adminInsertNotify")
-	public ModelAndView adminInsertNotify(CommandMap commandMap, HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("redirect:/notify/adminNotifyList");
+	@RequestMapping(value = "/notify/adminInsertNotify.conn")
+	public ModelAndView insertNotice(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("redirect:/admin/Notice/admin_notice");
 
-		adminNotifyService.notifyWrite(commandMap.getMap(), request);
+		adminNotifyService.insertNotice(commandMap.getMap(), request);
 
 		return mv;
 	}
+	
+	//공지사항 상세보기
+	@RequestMapping(value = "/notify/adminNoticeDetail.conn")
+	public ModelAndView noticeDetail(CommandMap commandMap) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		
+		Map<String, Object> noticeDetail = adminNotifyService.notifyDetail(commandMap.getMap());
+		
+		mv.addObject("noticeDetail", noticeDetail);
+		mv.setViewName("/admin/Notice/admin_noticedetail");		
+		
+		return mv;
+	}
+	
 
 	// 공지사항 수정 폼
-	@RequestMapping(value = "/notify/adminNotifyDetail")
-	public ModelAndView adminNotifyDetail(CommandMap commandMap, HttpServletRequest request) throws Exception {
+	@RequestMapping(value = "/notify/adminNoticeModifyForm.conn")
+	public ModelAndView notifyDetail(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView();
 
 		Map<String, Object> notifyDetail = adminNotifyService.notifyDetail(commandMap.getMap());
 		mv.addObject("notifyDetail", notifyDetail);
 
-		mv.setViewName("notifyModifyForm");
+		mv.setViewName("admin/Notice/admin_noticeModifyForm");
 		return mv;
 	}
 
 	// 공지사항 수정
-	@RequestMapping(value = "notify/adminNotifyModify")
-	public ModelAndView adminNotifyModify(CommandMap commandMap, HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("redirect:/notify/adminNotifyList");
+	@RequestMapping(value = "notify/adminNotifyModify.conn")
+	public ModelAndView notifyModify(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("redirect:/admin/Notice/admin_notice");
 
 		adminNotifyService.notifyModify(commandMap.getMap(), request);
-		mv.addObject("NOTIFY_NUMBER", commandMap.get("NOTIFY_NUMBER"));
+		mv.addObject("NOTICE_NUM", commandMap.get("NOTICE_NUM"));
 
 		return mv;
 	}
 
 	// 공지사항 삭제
-	@RequestMapping(value = "/notify/adminDeleteNotify")
+	@RequestMapping(value = "/notify/adminDeleteNotify.conn")
 	public ModelAndView adminDeleteNotify(CommandMap commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView("redirect:/notify/adminNotifyList");
+		ModelAndView mv = new ModelAndView("redirect:/admin/Notice/admin_notice");
 
-		Map<String, Object> deleteNotify = adminNotifyService.notifyDetail(commandMap.getMap());
-
-		if (deleteNotify.get("NOTIFY_IMAGE") != null) {
-			File removeFile = new File(filePath + deleteNotify.get("NOTIFY_IMAGE"));
-			removeFile.delete();
-		}
-
-		adminNotifyService.notifyDelete(commandMap.getMap());
+			adminNotifyService.notifyDelete(commandMap.getMap());
 
 		return mv;
 	}
