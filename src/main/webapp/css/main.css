@@ -1,0 +1,281 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+/* 브랜드샵 */
+div.brandArea {padding-top: 22px;  width: 100%; height: 192px; background: #dee8f5;}
+div.brandArea div.brandRoll {position: relative;}
+div.brandArea span.btn a {display: inline-block; width: 34px; height: 58px; text-indent: -9950em;}
+div.brandRoll span.btn a.btnPrevBrand {position: absolute; top: 45px; left: 0; background: url(../images/main/btn_prev_brand.png) no-repeat;}
+div.brandRoll span.btn a.btnNextBrand {position: absolute; top: 45px; right: 0; background: url(../images/main/btn_next_brand.png) no-repeat;}
+
+/* 혜택 메인비주얼 */
+div.joinWrap {width: 100%; height: 202px; position:relative;}
+div.joinWrap div.joinArea {width: 100%; height: 202px;}
+div.joinWrap div.joinArea div.rollBox {display:none; width: 100%; height: 202px; position: absolute; float:left;}
+div.joinWrap div.joinArea div.rollBox a {display:block; width:1100px; height:202px; margin:0 auto; cursor:pointer;}
+
+
+div.joinWrap div.pageNav {position: absolute; top: 10px; right: 50%; margin-right:-550px;}
+div.joinWrap div.pageNav span {width:10px; height: 10px; float:left; border-radius: 50%; cursor: pointer; display: inline-block; zoom:1; *display:inline; margin-right: 4px; background-color: #000; opacity: 0.3; text-indent: -10000em;}
+div.joinWrap div.pageNav span.on {background-color: #000; opacity: 1;}
+div.joinWrap > span {display: block; position: absolute; top: 74px; cursor: pointer; width: 34px; height: 54px; text-indent:-10000em; background: url(../images/main/btn_guide.png) no-repeat;}
+div.joinWrap span.arrowL {left: 50%; margin-left:-600px;}
+div.joinWrap span.arrowR {right: 50%; margin-right:-600px; background-position: -34px 0;}
+
+div.brandBox {margin: 0 auto;}
+div.brandBox div.frame {margin:0 auto; width: 957px; overflow:hidden; position:relative;}
+div.frame ul.brandList {display: inline-block; width: 9000px; height: 170px;}
+@-moz-document url-prefix() {
+	div.frame ul.brandList {display: inline-block; width: 9000px; height: 172px;}
+}
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+	div.frame ul.brandList {display: inline-block; width: 9000px; height: 171px;}
+}
+div.frame ul.brandList li {list-style:none; float:left; width:163px;}
+div.frame ul.brandList li > a {display: inline-block; width:163px; overflow: hidden;}
+ul.brandList li > a span.brandName {display: inline-block; margin-top: 10px; width: 142px; font-size: 14px; font-weight: 600; color: #555; text-align: center;}
+
+
+/* div.brandRoll ul.brandList {display: inline-block; padding-left: 71px; width: 957px;}
+ul.brandList li {float: left; padding-right: 21px; width: 142px; height: 170px; text-align: center;}
+ul.brandList li.last {padding-right: 0;}
+ul.brandList li a span.brandName {display: inline-block; margin-top: 10px; width: 142px; font-size: 14px; font-weight: 600; color: #555;} */
+
+/* 혜택_추천태그,서비스 */
+div.benefitArea {display: inline-block; width: 100%;}
+div.benefitArea div.beneBox {height: 240px;}
+/* div.beneBox div.tagBox {float: left; width: 525px; margin-right: 50px;}
+div.tagBox h2 {display: inline-block; margin-bottom: 13px; font-size: 24px; font-weight: 600; color: #000;}
+div.tagBox > div {padding: 16px 26px 15px 26px; width: 473px; height: 169px; border: 1px solid #e9e9e9;}
+div.tagBox > div ul.tagImgList {margin-bottom: 8px; width: 471px; height: 96px;}
+ul.tagImgList li {float: left; padding-right: 29px;}
+ul.tagImgList li.last {padding-right: 0;}
+ul.tagImgList li div.opacityBox {position: relative;}
+ul.tagImgList li div.opacityBox span.opacity {display: inline-block; width: 96px; height: 96px; opacity: 0.5; background: #000; position: absolute; top: 0; left: 0;}
+ul.tagImgList li div.opacityBox span.txt {position: absolute; top: 43px; left: 0;}
+ul.tagImgList li div.opacityBox span.txt em {display: inline-block; width: 96px; text-align: center; font-size: 16px; font-weight: 600; color: #fff;}
+div.tagTxt {width: 471px; }
+div.tagTxt a {display: inline-block; margin: 0 7px 8px 0; padding: 5px 10px 7px 10px; background: #f2f2f2; font-size: 12px; color: #555;} */
+div.beneBox div.brandShop {float: left; width: 525px; margin-right: 50px;}
+div.brandShop h2 {display: inline-block; margin-bottom: 13px; font-size: 24px; font-weight: 600; color: #000;}
+div.brandShop > div {width: 523px; height: 198px; border: 1px solid #e9e9e9;}
+div.brandShop > div p.brandImg {display: inline-block; float: left; width: 261px; height: 198px; position: relative;}
+div.brandShop > div p.brandImg > a {display: inline-block; width: 261px; height: 198px;}
+div.brandShop > div p.brandImg > a > img {width: 261px; height: 198px; border-right: 1px solid #e9e9e9;}
+div.brandShop > div p.brandImg a.btnPrevBiz,
+div.brandShop > div p.brandImg a.btnNextBiz {display: inline-block; width: 12px; height: 22px; text-indent: -5000em; position: absolute; top: 159px;}
+div.brandShop > div p.brandImg a.btnPrevBiz {left: 8px; background: url(../images/main/btn_prev_biz.png) no-repeat 0 0;}
+div.brandShop > div p.brandImg a.btnNextBiz {right: 8px; background: url(../images/main/btn_next_biz.png) no-repeat 0 0;}
+div.brandShop > div ul.brandProdList {display: inline-block; float: left; width: 261px;}
+ul.brandProdList li {float: left; padding: 10px; width: 261px; border-bottom: 1px solid #e9e9e9;}
+ul.brandProdList li:nth-last-child(1) {border-bottom: 0;}
+ul.brandProdList li > a {display: inline-block; float: left; margin-right: 10px; width: 80px; height: 80px;}
+ul.brandProdList li > a > img {display: inline-block; width: 80px; height: 80px;}
+ul.brandProdList li > p {float: left; width: 151px; margin-top: 5px;}
+ul.brandProdList li > p > span {display: inline-block; width: 151px; font-size: 12px; color: #777;}
+ul.brandProdList li > p > span.brand > a {color: #777;}
+ul.brandProdList li > p > span.brand > a:hover {color: #444;}
+ul.brandProdList li > p > span.prodName > a {color: #333;}
+ul.brandProdList li > p > span.prodName > a:hover {color: #000;}
+ul.brandProdList li > p > span.prodName {margin: 5px 0 20px 0; width: 151px; font-size: 13px; font-weight: 600; color: #333;}
+ul.brandProdList li > p > span.price {display: inline-block; width: 151px;}
+ul.brandProdList li > p > span.price span.dcPrice {display: inline-block; margin-right: 5px; font-size: 13px; text-decoration: line-through; color: #888;}
+ul.brandProdList li > p > span.price span.prodPrice {font-size: 14px; font-weight: 600; color: #2164bf;}
+
+
+div.donutbookService {float: left; width: 525px;}
+div.donutbookService h2 {display: inline-block; margin-bottom: 13px; font-size: 24px; font-weight: 600; color: #000;}
+div.donutbookService ul.serviceBox {display: inline-block; width: 525px;}
+div.donutbookService ul.serviceBox li {float: left; margin-right: 21px; padding-top: 22px; width: 161px; height: 202px; border: 1px solid #e9e9e9;}
+div.donutbookService ul.serviceBox li.last {margin-right: 0;}
+ul.serviceBox li a {display: block; width: 161px; text-align: center;}
+ul.serviceBox li a span.sIcon {display: block; padding-left: 44px; width: 80px; height: 80px; background: url(../images/main/ico_service.jpg) no-repeat;}
+ul.serviceBox li a span.service1 {background-position: 44px 0;}
+ul.serviceBox li a span.service2 {background-position: 44px -130px;}
+ul.serviceBox li a span.service3 {background-position: 44px -260px;}
+ul.serviceBox li a span.serviceTit {display: inline-block; margin-top: 21px; font-size: 17px; font-weight: 600; color: #000;}
+ul.serviceBox li a span.serviceTxt {display: inline-block; margin-top: 5px; font-size: 12px; font-weight: normal; color: #888;}
+
+
+/* 롤링 배너 */
+div.partnerArea {width: 1100px; height: 118px; margin: 0 auto; position:relative;}
+div.partnerArea div.partnerBoxL {width: 536px; height: 118px; float:left; position: relative;}
+div.partnerArea div.partnerBoxL div.rollArea {width: 536px; height: 118px; overflow: hidden; position:relative;}
+div.partnerArea div.partnerBoxL div.rollArea div.rollBox {width: 2680px; height: 118px; position: absolute; top: 0;}
+div.partnerArea div.partnerBoxL div.rollArea div.rollBox a {width: 536px; height: 118px; display: block; float: left;}
+div.partnerArea div.partnerBoxL div.pageNav {position: absolute; top: 10px; left: 10px;}
+div.partnerArea div.partnerBoxL div.pageNav span {width:8px; height: 8px; border-radius: 50%; cursor: pointer; display: block; float: left; margin-right: 4px; background-color: #fff; opacity: 0.3; text-indent: -10000em;}
+div.partnerArea div.partnerBoxL div.pageNav span.on {background-color: #000; opacity: 1;}
+
+div.partnerArea div.partnerBoxR {width: 536px; height: 118px; float:right; position: relative;}
+div.partnerArea div.partnerBoxR div.rollArea {width: 536px; height: 118px; overflow: hidden; position:relative;}
+div.partnerArea div.partnerBoxR div.rollArea div.rollBox {width: 2680px; height: 118px; position: absolute; top: 0;}
+div.partnerArea div.partnerBoxR div.rollArea div.rollBox a {width: 536px; height: 118px; display: block; float:left;}
+div.partnerArea div.partnerBoxR div.pageNav {position: absolute; top: 10px; left: 10px;}
+div.partnerArea div.partnerBoxR div.pageNav span {width: 8px; height: 8px; border-radius: 50%; cursor:pointer; display: block; float: left; margin-right: 4px; background-color: #fff; opacity: 0.3; text-indent: -10000em;}
+div.partnerArea div.partnerBoxR div.pageNav span.on {background-color: #000; opacity: 1;}
+
+/* 공지사항 */
+div.notiArea {display: inline-block; width: 100%; height: 52px;}
+div.notiArea div.notiBox { height: 52px; background: #f7f7f7;}
+div.notiBox span.tit {display: inline-block; float:left; padding: 8px 20px 0 20px; width: 104px; height: 36px; background: url(../images/main/img_notice_1.jpg) no-repeat 20px 8px;}
+div.notiBox span.tit em {display: inline-block; padding: 9px 0 0 0; width: 104px; text-align: center; font-size: 16px; font-weight: 600; color: #fff;}
+div.notiBox ul.notiList {float:left; width: 900px;}
+ul.notiList li {float: left; padding: 18px 30px 0 12px; width: 450px; background: url(../images/common/bul_img.png) no-repeat 0 25px;}
+ul.notiList li > a > span.notiNew {display: inline-block; margin-top: -1px; margin-left: 8px; padding: 3px 6px; background: #2164bf; font-size: 11px; font-weight: 600; color: #fff; vertical-align: top;}
+ul.notiList li a {font-size: 14px; color: #333; vertical-align: top;}
+div.notiBox span.btnMore a {display: inline-block; margin: 14px 20px 0 0; width: 25px; height: 25px; background: url(../images/common/bul_img.png) no-repeat 0 -54px; text-indent: -9940em;}
+
+
+/* 베스트 상품 */
+div.todayprodArea {width: 100%;}
+div.bestBox h2 {display: inline-block; margin-bottom: 15px; font-size: 24px; font-weight: 600; color: #000;}
+div.bestBox span.h2SubTit {display: inline-block; margin: 5px 0 0 10px; font-size: 15px; font-weight: 600; color: #666; vertical-align: top;}
+div.bestBox ul.prodList {display: inline-block; width: 1100px;}
+ul.prodList li {float: left; margin: 0 28px 30px 0; width: 252px; border: 1px solid #e9e9e9;}
+ul.prodList li.last {margin-right: 0;}
+ul.prodList li div.prodBox {padding: 0 10px; width: 232px; text-align: center; position: relative;}
+div.prodBox p.icoFlag {width: 250px; position: absolute; top: 0; left: 0;}
+p.icoFlag span.bestF {display: inline-block; float: left; width: 40px; height: 41px; background: url(../images/common/ico_buy.png) no-repeat 0 -132px;}
+p.icoFlag span.bestF em{display: inline-block; margin-top: 8px;  font-size: 15px; font-weight: 600; color: #fff;}
+p.icoFlag span.downF {display: inline-block; float: left; width: 40px; height: 41px; background: url(../images/common/ico_buy.png) no-repeat 0 -223px;}
+p.icoFlag span.downF em{display: inline-block; margin-top: 6px; font-size: 15px; font-weight: 600; color: #000;}
+p.icoFlag span.discountF {display: inline-block; float:right; width:56px; height:56px; margin:5px 5px 0 0; background:url(../images/common/ico_discount.png) no-repeat 0 0; text-indent:-1000em;}
+div.prodBox span.prodImg {display: inline-block; margin-bottom: 5px; width: 232px; height: 200px; text-align: center;}
+div.prodBox span.prodImg img {width: 200px; height: 200px;}
+div.prodBox span.brand {display: inline-block; margin-bottom: 5px; width: 232px; font-size: 13px; color: #777;}
+div.prodBox span.prodName {display: -webkit-box; overflow: hidden; text-overflow: ellipsis; word-wrap: normal; -webkit-line-clamp: 2; -webkit-box-orient: vertical; margin-bottom: 11px; width: 232px; height: 34px; font-size: 14px; font-weight: 600; color: #333;}
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {  
+	div.prodBox span.prodName {display: inline-block; overflow: hidden; text-overflow: ellipsis; word-wrap: normal; -webkit-line-clamp: 2; -webkit-box-orient: vertical; margin-bottom: 11px; width: 232px; height: 34px; font-size: 14px; font-weight: 600; color: #333;}
+}
+div.prodBox span.price {display: inline-block; margin-bottom: 10px; width: 232px;}
+div.prodBox span.price span.dcPrice {display: inline-block; margin-right: 6px; font-size: 14px; text-decoration: line-through; color: #666;}
+div.prodBox span.price span.prodPrice {display: inline-block; font-size: 15px; font-weight: 600; color: #2164bf;}
+div.prodBox ul.sendList {padding: 10px 0 0 22px; margin-bottom: 10px; width: 230px; height: 36px; background: #f5f5f5;}
+ul.sendList li {float: left; margin: 0 0 0 10px; width: 80px; font-size: 13px; color: #04162d; border: none; background: none;}
+ul.sendList li a {display: inline-block; color: #04162d; position: relative;}
+ul.sendList li a span.nowSend {display: inline-block; width: 16px; height: 16px; background: url(../images/common/ico_buy.png) no-repeat 0 0;}
+ul.sendList li a span.cartPut {display: inline-block; width: 17px; height: 16px; background: url(../images/common/ico_buy.png) no-repeat 0 -66px;}
+ul.sendList li a span.sendTxt {display: inline-block; margin-top: -9px; margin-left: 5px; letter-spacing: -0.5px; vertical-align: middle;}
+ul.sendList li a.first:after{content: ""; display: inline-block; background: #ddd; width: 1px; height: 13px; position: absolute; top: 2px; left: 78px;}
+
+
+/* 고객센터 */
+div.csArea {width: 100%;}
+div.csArea div.csBox {margin: 0 auto 70px auto; padding: 20px; width: 1058px;; border: 1px solid #e9e9e9;}
+div.csBox div.csCenter {display: inline-block; padding: 7px 0 0 10px; width: 520px;}
+div.csCenter span.icoCs {float: left; display: inline-block; margin-right: 25px; width: 60px; height: 84px; background: url(/giftcon/images/main/ico_csCenter.png) no-repeat 0 0;}
+div.csCenter div.txtBox {float: left;}
+div.txtBox span.tit {display: inline-block; margin: 10px 0 8px 0; font-size: 16px; font-weight: 600; color: #333;}
+div.txtBox > p {width: 435px;}
+div.txtBox > p > span.num {display: inline-block; margin-left: -6px; margin-right: 20px; font-size: 42px; font-weight: 600; color: #333; letter-spacing: -3px;}
+div.txtBox > p > span.subTxt {display: inline-block; margin-top: 7px; font-size: 12px; font-weight: 500; line-height: 18px; vertical-align: top;}
+div.csBox p.goBox {display: inline-block; width: 248px; height: 104px; background: #f6f6f6; vertical-align: top; position: relative;}
+div.csBox p.mr23 {margin-right: 23px;}
+div.csBox p.goBox > a {display: inline-block;}
+div.csBox p.goBox > a >span.icoOneAsk {position: absolute; top: 15px; left: 43px; width: 75px; height: 74px; background: url(/giftcon/images/main/ico_csCenter.png) no-repeat 0 -134px;}
+div.csBox p.goBox > a > span.icoFaq {position: absolute; top: 21px; left: 35px; width: 74px; height: 64px; background: url(/giftcon/images/main/ico_csCenter.png) no-repeat 0 -258px;}
+div.csBox p.goBox > a > span.tit {display: inline-block; margin: 30px 0 0 142px; font-size: 20px; font-weight: 600; color: #666; text-align: center;}
+div.csBox p.goBox > a > span.tit2 {margin: 30px 0 0 132px;}
+
+
+/* 리뉴얼 안내 레이어 */
+div.totalGuide {display: block; width: 100%; height: 100%; z-index: 1000; position: fixed;}
+div.totalGuide p.guideBackColor {width: 100%; height: 100%; background: #000; opacity: 0.8;}
+div.totalGuide div.guideArea { z-index: 2000; position: absolute; top: 0; left: 0; right: 0;}
+div.guideArea div.black {margin: 0 auto; width: 1100px;}
+div.guideArea div.top {float: right; padding-top: 24px; height: 88px; position: relative; z-index: 2000;}
+div.top > input[type="checkbox"] {padding: 0; width: 1px; height: 1px; box-sizing: border-box; position: absolute; overflow: hidden; border: 0; clip: rect(0 0 0 0);}
+div.top > input[type="checkbox"] + span {display: inline-block; padding: 0 35px 0 30px; min-height: 25px; line-height: 25px; position: relative; background: url(../images/main/ico_guide.png) no-repeat 0 -75px; cursor: pointer; vertical-align: middle;}
+div.top > input[type="checkbox"]:checked + span.on,
+div.top > input[type="checkbox"]:focus + span.on {background: url(../images/main/ico_guide.png) no-repeat 0 -150px;}
+
+div.top > span > em {font-size: 16px; font-weight: 600; color: #fff;}
+div.top a.btnClose {display: inline-block; width: 25px; height: 25px; text-indent: -6600px; background: url(../images/main/ico_guide.png) no-repeat 0 0; vertical-align: top;}
+div.guideCont {width: 1100px; text-align: center; position: relative;}
+div.guideCont img {margin: 0; padding: 0;}
+div.guideCont a.btnStart {display: inline-block; margin-top: 38px; width: 250px; font-size: 28px; font-weight: 600; color: #fff; text-align: center; background: #24c4bb; line-height: 62px;}
+div.guideCont a.btnStart:hover {background: #11a49c;}
+div.guideCont a.btnPrevGuide {display: inline-block; width: 34px; height: 58px; text-indent: -5000px; background: url(../images/main/btn_prev_guide.png) no-repeat 0 0; position: absolute; top: 404px; left: 20px;}
+div.guideCont a.btnNextGuide {display: inline-block; width: 34px; height: 58px; text-indent: -5000px; background: url(../images/main/btn_next_guide.png) no-repeat 0 0; position: absolute; top: 404px; right: 20px;}
+
+
+/* 팝업 상단 영역 */
+div.popupWrap {border: 2px solid #000;}
+div.contWrap {display: block; padding: 20px;}
+div.w360 {width: 360px;}
+div.w420 {width: 420px;}
+div.w460 {width: 460px;}
+div.w490 {width: 490px;}
+div.w500 {width: 500px;}
+div.w560 {width: 560px;}
+div.w640 {width: 640px;}
+div.w660 {width: 660px;}
+div.w700 {width: 700px;}
+div.w717 {width: 717px;}
+
+div.titArea {padding: 16px 0 0 18px; height: 34px; border-bottom: 1px solid #2164bf; position: relative;}
+div.titArea h1.tit {display: inline-block; font-size: 18px; font-weight: 600; color: #333;}
+div.titArea a.btnClose {display: inline-block; width: 25px; height: 25px; text-indent: -8800em; background: url(../images/sub/ico_popup.png) no-repeat 0 0; position: absolute; top: 12px; right: 20px;}
+
+div.popupBtns {margin-top: 20px; text-align: center;}
+
+
+/* 메인_예산검색 */
+div.calculateArea {float: left; margin-bottom: 30px; width: 660px;}
+div.calculateArea p.titTop {float: left; margin-bottom: 10px; width: 100%; position: relative;}
+p.titTop span.tit {display: inline-block; float: left; font-size: 15px; font-weight: 600; color: #2164bf;}
+p.titTop span.btnAlign {position: absolute; top: -6px; right: 0;}
+div.budgetCal {float: left; padding: 20px; width: 620px; background: #f5f5f5; color: #333; position: relative;}
+div.budgetCal div.calBox {float: left; margin-right: 20px; width: 163px;}
+div.budgetCal div.last {margin-right: 0;}
+div.calBox p.tBox {margin-bottom: 5px; width: 163px;}
+div.calBox p.tBox span.titTxt {padding-left: 5px; font-size: 14px; font-weight: 600; color: #333;}
+div.calBox p.tBox span.icoMoney {display: inline-block; width: 15px; height: 18px; background: url(../images/main/ico_popup.png) no-repeat 0 0; vertical-align: top;}
+div.calBox p.tBox span.icoPeople {display: inline-block; margin-top: -3px; width: 17px; height: 23px; background: url(../images/main/ico_popup.png) no-repeat 0 -68px; vertical-align: top;}
+div.calBox p.tBox span.icoPrice {display: inline-block; margin-top: -2px; width: 15px; height: 20px; background: url(../images/main/ico_popup.png) no-repeat 0 -141px; vertical-align: top;}
+div.budgetCal span.icoDivision {display: inline-block; float: left; margin: 32px 20px 0 0; width: 20px; height: 17px; background: url(../images/main/ico_popup.png) no-repeat 0 -211px; vertical-align: top;}
+div.budgetCal span.icoEquals {display: inline-block; float: left; margin: 37px 20px 0 0; width: 20px; height: 11px; background: url(../images/main/ico_popup.png) no-repeat 0 -278px; vertical-align: top;}
+
+div.priceArea1 {display: inline-block; padding: 20px; width: 620px; background: #f5f5f5; position: relative;}
+div.priceArea1 div.priceBar { float: left; margin-top: 20px; width: 620px; height: 6px; background: #f7c600; position: relative;}
+div.priceBar span.price {position: absolute; top: 0; bottom: 0; width: 100%; background: #2164bf;}
+div.priceBar div.ctrlWrap {position: relative; width: 614px;}
+div.ctrlWrap > span {position: absolute; top: -4px; width: 13px; height: 20px; cursor: pointer;}
+div.ctrlWrap span.ctrl { left: 0%; z-index: 0; background: url(../images/sub/ico_mconpon.png) no-repeat 0 0;}
+div.ctrlWrap span.end {left: 100%; z-index: 10; background: url(../images/sub/ico_mconpon.png) no-repeat 0 0;}
+div.ctrlWrap span.priceMin,
+div.ctrlWrap span.priceMax {display: inline-block; width: 70px; position: absolute; top: -25px;}
+div.ctrlWrap span.priceMin {left: 0;}
+div.ctrlWrap span.priceMax {right: -15px;}
+div.ctrlWrap span.priceMin > em,
+div.ctrlWrap span.priceMax >em {font-size: 14px; color: #76869d;}
+div.priceShow {display: inline-block; margin: 10px 0 0 0; width: 620px; text-align: center;}
+div.priceShow span.lowPrice {display: inline-block; padding: 6px 9px 8px 9px; font-size: 12px; font-weight: 600; color: #fff; background: #555;}
+div.priceShow span.highPrice {display: inline-block; padding: 6px 9px 8px 9px; font-size: 12px; font-weight: 600; color: #fff; background: #555;}
+div.calculateResult {width: 660px; height: 275px; overflow-y: scroll; overflow-x: hidden;}
+p.calculateResultTxt {display: inline-block; float: left; margin-bottom: 6px; text-align: left; font-size: 13px; font-weight: 600; color: #333;}
+
+
+/* 메인_대행발송 1:1 상담 */
+div.careTxtPop {padding: 20px; margin-bottom: 20px; font-size: 13px; color: #777; line-height: 18px; background: #ecf3fb;}
+div.aBox {width: 100%;}
+div.aBox span.tit {display: inline-block; margin-bottom: 8px; font-size: 13px; font-weight: 600; color: #333;}
+div.aBox p.checkBox {margin: 5px 0 23px 0; font-size: 11px;}
+div.aBox p.checkBox > input[type="checkbox"] {vertical-align: middle; margin-right: 3px;}
+
+
+/* 고객만족도 설문조사 배너_180712 */
+div.surveyBox {position: fixed; top: 0; left: 32%; padding-top: 100px; width: 580px; z-index: 400;}
+div.surveyBox div.sImg {display: inline-block; width: 580px; font-size: 0; position: relative; vertical-align: top;}
+div.surveyBox div.sImg > a {display: inline-block; width: 756px; height: 694px;}
+div.surveyBox div.sImg a.floBanner > img{z-index: 410;}
+div.surveyBox div.closeBox {display: inline-block; width: 580px; height: 30px; font-size: 12px; color: #fff; background: #313031;}
+div.surveyBox div.closeBox > p {float: right; margin: 8px 10px 0 0;}
+div.surveyBox div.closeBox > p span.todayCheck {display: inline-block; margin-right: 20px;}
+div.surveyBox div.closeBox > p span.todayCheck > input {margin-left: 4px;}
+div.surveyBox div.closeBox > p a.closeCheck {color: #fff;}
+div.surveyBox div.closeBox > p a.closeCheck:hover {color: #f3cad7;}
+
+
