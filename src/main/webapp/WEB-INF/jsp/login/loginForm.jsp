@@ -26,11 +26,11 @@
 									<div class="infoWrite">
 										<p class="writeBox">
 											<label for="userId">아이디</label>
-											<input type="text" name="MEMBER_ID" id="userId" placeholder="아이디를 입력해주세요." class="ipt1 w408">
+											<input type="text" name="MEMBER_ID" id="MEMBER_ID" placeholder="아이디를 입력해주세요." class="ipt1 w408">
 										</p>
 										<p class="writeBox">
 											<label for="userPwd">비밀번호</label>
-											<input type="password" name="MEMBER_PASSWD" id="userPwd" placeholder="비밀번호를 입력해주세요." class="ipt1 w408">
+											<input type="password" name="MEMBER_PASSWD" id="MEMBER_PASSWD" placeholder="비밀번호를 입력해주세요." class="ipt1 w408">
 										</p>
 										<div class="etcBox">
 											<span class="saveId">
@@ -42,11 +42,11 @@
 											<span class="inputTxt"></span>
 										</div>
 									</div>
-									<span class="btnLogin"><a href="/giftcon/login.conn" id="btnLogin" class="btnBigBgBlue1 w120">로그인 </a></span>
+									<span class="btnLogin"><a href="" id="btnLogin" class="btnBigBgBlue1 w120">로그인 </a></span>
 								</div>
-								<input type="submit" value="로그인" class="btnBigBgBlue1 w120" id="btnLogin">
 							</fieldset>
 						<div>
+						
 </div></form>
 						
 						<div class="joinBanner">
@@ -66,6 +66,26 @@
 			<!-- /end:sub_contents -->
 		</div>
 	</div>
+
+
+
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$("#btnLogin").on("click", function(e){
+				e.preventDefault();
+				fn_login();
+			});
+
+		});
+		
+		function fn_login(){
+			var comSubmit = new ComSubmit("userInfo");
+			comSubmit.setUrl("/giftcon/login.conn");
+			comSubmit.submit();
+		}
+
+	</script>
+
 
 </body>
 </html>
