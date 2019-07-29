@@ -15,7 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import share.conn.adminNotify.AdminNotifyService;
 import share.conn.giftcon.CommandMap;
 import share.conn.Paging.Paging;
-import share.conn.adminNotify.AdminNotifyDAO;
+
 
 @Controller
 public class AdminNotifyController {
@@ -31,7 +31,7 @@ public class AdminNotifyController {
 	private int blockPage = 5;
 	private String pagingHtml;
 	private Paging page;
-	private String filePath = "D:\\java\\Git\\giftcon\\src\\main\\webapp\\file\\noticefile\\";
+
 	
 
 	@Resource(name = "adminNotifyService")
@@ -129,6 +129,20 @@ public class AdminNotifyController {
 
 		return mv;
 	}
+	
+	//공지사항 상세보기
+	@RequestMapping(value = "/notify/adminNoticeDetail.conn")
+	public ModelAndView noticeDetail(CommandMap commandMap) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		
+		Map<String, Object> noticeDetail = adminNotifyService.notifyDetail(commandMap.getMap());
+		
+		mv.addObject("noticeDetail", noticeDetail);
+		mv.setViewName("/admin/Notice/admin_noticedetail");		
+		
+		return mv;
+	}
+	
 
 	// 공지사항 수정 폼
 	@RequestMapping(value = "/notify/adminNoticeModifyForm.conn")
@@ -143,7 +157,7 @@ public class AdminNotifyController {
 	}
 
 	// 공지사항 수정
-	@RequestMapping(value = "notify/adminNotifyModify,conn")
+	@RequestMapping(value = "notify/adminNotifyModify.conn")
 	public ModelAndView notifyModify(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("redirect:/admin/Notice/admin_notice");
 

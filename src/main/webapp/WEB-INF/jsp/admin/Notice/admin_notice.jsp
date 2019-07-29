@@ -9,54 +9,20 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <head>
-		<script type="text/javascript">
-				function delchk() {
-						return confirm("삭제하시겠습니까?");
-	}
-				$('.searchOption').val($('.searchOptionVal').val());
-			var onWrite = function() {
-		location.href = 'adminNoticeForm';
-	};
+<link rel="stylesheet" type="text/css"  href="css/NotictList.css">
+		<script type ="text/javascript">
+		function delchk() {
+			return confirm("삭제하시겠습니까?");
+		}
+		$('.searchOption').val($('.searchOptionVal').val());
+		var onWrite = function() {
+			location.href = 'adminNotifyForm';
+		};
+		
+	function locationHref() {location.href="/notify/adminNoticeModifyForm.conn";}
+	
 </script>
-<style type="text/css">
-.paging {
-	text-align: center;
-	height: 32px;
-	margin-top: 5px;
-	margin-bottom: 15px;
-}
 
-.paging a, .paging strong {
-	display: inline-block;
-		width: 36px;
-		height: 32px;
-		line-height: 28px;
-		font-size: 14px;
-		border: 1px solid #e0e0e0;
-		margin-left: 5px;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	border-radius: 3px;
-	-webkit-box-shadow: 1px 1px 1px 0px rgba(235, 235, 235, 1);
-	-moz-box-shadow: 1px 1px 1px 0px rgba(235, 235, 235, 1);
-	box-shadow: 1px 1px 1px 0px rgba(235, 235, 235, 1);
-}
-
-.paging a:first-child {
-	margin-left: 0;
-}
-
-.paging strong {
-	color: #fff;
-	background: #337AB7;
-	border: 1px solid #337AB7;
-}
-
-.paging .page_arw {
-	font-size: 11px;
-	line-height: 30px;
-}
-</style>
 </head>
 <div class="row" style="padding-left: 15px; width: 900px;">
 	<h1 class="page-header">공지사항</h1>
@@ -96,26 +62,27 @@
 									</tr>
 								</thead>
 								<tbody>
-									<%-- <c:forEach var="noticeList" items="${noticeList}"
-										varStatus="stat"> --%>
-										<c:url var="viewURL" value="/notify/adminNotifyDetail">
+									<c:forEach var="noticeList" items="${noticeList}"
+										varStatus="stat">
+										<c:url var="viewURL" value="/notify/adminNotifyList.conn">
 											<c:param name="NOTICE_NUM"
-												value="${notifyList.NOTIFY_NUM }" />
+												value="${noticeList.NOTICE_NUM}" />
 										</c:url>
 										<tr class="gradeA even" role="row">
-											<td style="text-align: center; vertical-align: middle;">1<%-- ${notifyList.NOTIFY_NUMBER} --%></td>
-											<td style="text-align: center; vertical-align: middle;">집중하십시오</td>
-											<td style="text-align: center; vertical-align: middle;">Admin</td>
+											<td style="text-align: center; vertical-align: middle;">${noticeList.NOTICE_NUM}</td>
+											<td style="text-align: center; vertical-align: middle;">${noticeList.NOTICE_TITLE}</td>
+											<td style="text-align: center; vertical-align: middle;">관리자</td>
 											<td style="text-align: center; vertical-align: middle;">
-												<%-- <fmt:formatDate value="${notifyList.NOTIFY_REGDATE}"
-													pattern="YY.MM.dd HH:mm" /> --%>19.07.26 14:54
+												<fmt:formatDate value="${noticeList.NOTICE_REGDATE}"
+													pattern="YY.MM.dd" />
 											</td>
-											<td style="text-align: center; vertical-align: middle;">1</td>
+											<td style="text-align: center; vertical-align: middle;">${noticeList.NOTICE_HITCOUNT}</td>
 											<td style="text-align: center; vertical-align: middle;">
 												<a href="${viewURL}"> <input type="image"
-													src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Cog_font_awesome.svg/32px-Cog_font_awesome.svg.png">
+													src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Cog_font_awesome.svg/32px-Cog_font_awesome.svg.png"
+													onclick="locationHref();">
 											</a>&nbsp;&nbsp; <c:url var="viewURL2"
-													value="/notify/adminDeleteNotify">
+													value="/notify/adminDeleteNotify.conn">
 													<c:param name="NOTIFY_NUMBER"
 														value="${notifyList.NOTIFY_NUMBER }" />
 												</c:url> <a href="${viewURL2}"> <input type="image"
@@ -124,9 +91,9 @@
 											</a>
 											</td>
 										</tr>
-								<%-- 	</c:forEach> --%>
+									</c:forEach>
 									<!--  등록된 글이 없을때 -->
-									<c:if test="${fn:length(notifyList) le 0}">
+									<c:if test="${fn:length(noticeList) le 0}">
 										<tr>
 											<td colspan="9" style="text-align: center;">등록된 공지사항이
 												없습니다.</td>
