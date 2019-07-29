@@ -1,5 +1,76 @@
 package share.conn.Login;
 
+import java.util.Map;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import share.conn.giftcon.CommandMap;
+
+@Controller
 public class LoginController {
+
+	@Resource(name = "loginService")
+	private LoginService loginService;
+
+	@RequestMapping("/loginForm.conn")
+	public ModelAndView loginForm() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("/login/loginForm");
+		return mv;
+	}
+
+	@RequestMapping("/login.conn")
+	public ModelAndView loginComplete(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		
+		HttpSession session = request.getSession();
+		
+		System.out.println("아이디"+ commandMap.get("MEMBER_ID"));
+		Map<String, Object> check = loginService.loginGo(commandMap.getMap());
+						// 아이디로 멤버 정보 꺼내온값
+		if(check == null) { // 아이디에 일치하는 값이 없으면
+			mv.setViewName("/login/loginForm");
+			mv.addObject("message", "존재하지 않는 아이디입니다.");
+			return mv;
+		}else { //아이디에 맞는 값이 존재할경우
+			
+			System.out.println("사용자입력 비번 : "+ commandMap.get("MEMBER_PASSWD") +"\n DB에서 가져온 비번 :"+check.get("MEMBER_PASSWD"));
+			
+			//입력 비번과 DB비밀번호가 같으면
+			if((check.get("MEMBER_PASSWD")).equals(commandMap.get("MEMBER_PASSWD"))) {
+				session.setAttribute("MEMBER_ID", commandMap.get("MEMBER_ID"));
+				//세션에 멤버아이디 띄움
+				mv.addObject("MEMBER",check);//로그인한 member정보 main에 보내줌
+				mv.setViewName("/main/main");
+				return mv;
+			
+			}else { // 비밀번호가 일치하지않을 때
+				mv.setViewName("/login/loginForm");
+				mv.addObject("message", "비밀번호를 확인하시기 바랍니다.");
+				return mv;
+			}
+		} 
+	}
+	
+	@RequestMapping("/logout.conn")
+	public ModelAndView logout(HttpServletRequest request, CommandMap commadMap) {
+		ModelAndView mv = new ModelAndView();
+		HttpSession session = request.getSession(false);
+		//HttpSession이 존재하면 현재 HttpSession을 반환하고 존재하지 않으면 새로이 생성하지 않고 그냥 null을 반환합니다
+		
+		if(session != null) {
+			session.invalidate();
+			//세션 무효화
+		}
+		mv.setViewName("/main/main");
+		return mv;
+		
+	}
 
 }
