@@ -951,7 +951,7 @@ div.slide_box div.img0 p.sImg,
 div.slide_box div.img1 p.sImg {margin: 0 auto; width: 1100px;}
 div.slideBox a.btnLeft,
 div.slideBox a.btnRight {display: inline-block; width: 34px; height: 58px; text-indent: -7400em; position: absolute; top: 148px;}
-div.slideBox a.btnLeft {background: url(../images/sub/ico_event.png) no-repeat 0 0; left: 0;}
+div.slideBox a.btnLeft {background: url(/giftcon/images/sub/ico_event.png) no-repeat 0 0; left: 0;}
 div.slideBox a.btnRight {background: url(../images/sub/ico_event.png) no-repeat 0 -108px; right: 0;}
 div.slideArea div.tabNav {margin: 0 auto; width: 1100px; height: 26px; position: relative;}
 div.tabNav div.btnPosi {text-align: center;}
@@ -1286,4 +1286,5 @@ div.totalInfo span.payTxt2 {display: inline-block; font-weight: 600; font-size: 
 div.totalInfo span.payTxt1 {margin-right: 30px; color: #000;}
 div.totalInfo span.payTxt2 {color: #2164bf;}
 div.totalInfo span.payTxt2 > em {font-size: 14px;}
+
 
