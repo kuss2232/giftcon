@@ -84,7 +84,7 @@ public class AdminMemberController {
 			mv.addObject("pagingHtml", pagingHtml);
 			mv.addObject("currentPage", currentPage);
 			mv.addObject("memberList", memberList);
-			mv.setViewName("memberList");
+			mv.setViewName("/admin/Member/admin_memberList");
 
 			return mv;
 
@@ -107,7 +107,7 @@ public class AdminMemberController {
 			mv.addObject("currentPage", currentPage);
 
 			mv.addObject("memberList", memberList);
-			mv.setViewName("memberList");
+			mv.setViewName("/admin/Member/admin_memberList");
 
 		
 			return mv;
@@ -122,7 +122,7 @@ public class AdminMemberController {
 		Map<String, Object> member = adminMemberService.memberDetail(commandMap.getMap());
 
 		mv.addObject("member", member);
-		mv.setViewName("updateMember");
+		mv.setViewName("/admin/Member/admin_memberModify");
 
 		return mv;
 	}
