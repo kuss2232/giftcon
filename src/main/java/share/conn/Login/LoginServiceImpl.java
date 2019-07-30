@@ -14,8 +14,23 @@ public class LoginServiceImpl implements LoginService{
 	
 	@Override
 	public Map<String, Object> loginGo(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
 		return loginDAO.selectId(map);
 	}
+	
+	@Override
+	public Map<String, Object> findId(Map<String, Object> map) throws Exception{
+		return loginDAO.findId(map);
+	}
+	
+	@Override
+	public Map<String, Object> findPwd(Map<String, Object> map) throws Exception{
+		return loginDAO.findPwd(map);
+	}
+
+	@Override
+	public void chgPw(Map<String, Object> map) throws Exception{
+		loginDAO.chgPw(map);
+	}
+	
 	
 }
