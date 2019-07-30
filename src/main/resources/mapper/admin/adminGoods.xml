@@ -247,7 +247,7 @@
 	</update>
 
 	<!--상품할인 취소(상품번호 1개만) -->
-	<update id="adGoodsDcCalcel" parameterType="integer">
+	<update id="adGoodsDcCancel" parameterType="integer">
 		update GOODS
 		set GOODS_DCPRICE = GOODS_PRICE
 		where GOODS_NUM= #{GOODS_NUM}

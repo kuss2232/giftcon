@@ -234,15 +234,15 @@
 
 
 <!-- 회원 아이디 중복체크 -->
-<select id="memberCheck" parameterType="hashmap" resultType="hashmap">
+<select id="memberCheck" parameterType="hashmap" resultType="Integer">
 <![CDATA[
 	 
 	SELECT
-		MEMBER_NAME
+		COUNT(MEMBER_ID)
 	FROM
 		MEMBER
 	WHERE
-		MEMBER_NAME = #{MEMBER_NAME} 
+		MEMBER_ID = #{MEMBER_ID} 
 
 ]]>
 </select>
