@@ -10,6 +10,7 @@ import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
+import javax.mail.Authenticator;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
@@ -70,13 +71,13 @@ public class JoinController {
 	}
 	@RequestMapping(value = "/joinStep1/modal_email_auth.conn")
 	public ModelAndView email_auth(HttpServletRequest request, HttpServletResponse response, CommandMap Map)throws Exception{
-		String email = (String)Map.getMap().get("email");
+		String email = String.valueOf(request.getParameter("MEMBER_EMAIL"));
 		System.out.println("email = " + email);
 		Map.getMap().put("MEMBER_EMAIL", email);
 
 		int checkNum = joinService.checkMember(Map.getMap());
-		System.out.println("checkNum ="+checkNum);
-
+		System.out.println("checkNum = "+checkNum);
+		
 		if(checkNum == 0) {
 			authNUm = RandomNum();
 			sendEmail(email.toString(),authNUm);
@@ -115,24 +116,43 @@ public class JoinController {
 
 		try {
 			Properties props = new Properties();
-
-			props.put("mail.smtp,starttls.enable", "true");
-			props.put("mail.transport.protocol", "smtp");
-			props.put("mail.smtp.host", host);
-			props.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+			
+			props.put("mail.smtp.user", "ezenyoon2@gmail.com"); 
+			props.put("mail.smtp.host", "smtp.gmail.com");
 			props.put("mail.smtp.port", "465");
-			props.put("mail.smtp.user", from);
-			props.put("mail.smtp.auth","true");
+			props.put("mail.smtp.starttls.enable","true");
+			props.put( "mail.smtp.auth", "true");
+			props.put("mail.smtp.debug", "true");
+			props.put("mail.smtp.socketFactory.port", "465"); 
+			props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory"); 
+			props.put("mail.smtp.socketFactory.fallback", "false");    
+			
 
-			Session mailSession = Session.getInstance(props,new javax.mail.Authenticator() {
-				@Override
-				protected PasswordAuthentication getPasswordAuthentication() {
-					return new PasswordAuthentication("ezenyoon2@gmail.com", "ezenacademy@");
+			Authenticator auth = new javax.mail.Authenticator() {
+				 @Override protected PasswordAuthentication getPasswordAuthentication() {
+				 return new PasswordAuthentication("ezenyoon2@gmail.com", "ezenacademy@"); }
+			};
 
-				}
+			Session session = Session.getInstance(props, auth);
 
-			});
-			Message msg = new MimeMessage(mailSession);
+			session.setDebug(true); // 메일을 전송할 때 상세한 상황을 콘솔에 출력한다.
+
+			/*
+			 * props.put("mail.smtp,starttls.enable", "true");
+			 * props.put("mail.transport.protocol", "smtp"); props.put("mail.smtp.host",
+			 * host); props.setProperty("mail.smtp.socketFactory.class",
+			 * "javax.net.ssl.SSLSocketFactory"); props.put("mail.smtp.port", "465");
+			 * props.put("mail.smtp.user", from); props.put("mail.smtp.auth","true");
+			 * 
+			 * Session mailSession = Session.getInstance(props,new
+			 * javax.mail.Authenticator() {
+			 * 
+			 * @Override protected PasswordAuthentication getPasswordAuthentication() {
+			 * return new PasswordAuthentication("ezenyoon2@gmail.com", "ezenacademy@"); }
+			 * 
+			 * });
+			 */
+			Message msg = new MimeMessage(session);
 			msg.setFrom(new InternetAddress(from,MimeUtility.encodeText(fromName,"UTF-8","B")));//보내는사람설정
 
 			InternetAddress[] address1 = {new InternetAddress(to1)
@@ -140,7 +160,7 @@ public class JoinController {
 			msg.setRecipients(Message.RecipientType.TO, address1);//받는사람설정1
 			msg.setSubject(subject);//제목설정
 			msg.setSentDate(new java.util.Date());//보내는 날짜설정
-			msg.setContent(content,"text/html;charset=utf-8");//내용설정
+			msg.setContent(content,"text/html; charset=UTF-8");//내용설정
 
 			Transport.send(msg);
 		}catch(MessagingException e) {

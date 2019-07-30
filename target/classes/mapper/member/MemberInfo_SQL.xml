@@ -202,6 +202,16 @@ WHERE QNA_NUM = #{QNA_NUM}
 	]]>
 </update>
 
+<select id="checkMember" parameterType="hashmap" resultType="integer">
+<![CDATA[
+	SELECT 
+		COUNT(MEMBER_EMAIL)
+	FROM
+		MEMBER
+	WHERE
+		MEMBER_EMAIL = #{MEMBER_EMAIL}
+]]>
+</select>
 
 <!-- 회원 아이디 중복체크 -->
 <select id="memberCheck" parameterType="hashmap" resultType="Integer">
