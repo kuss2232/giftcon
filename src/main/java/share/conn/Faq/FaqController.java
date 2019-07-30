@@ -7,9 +7,11 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import share.conn.Paging.Paging;
@@ -91,6 +93,27 @@ public class FaqController {
 			return mv;
 		}
 
+	}
+	
+	@RequestMapping(value = "/FAQCategory.conn", method = RequestMethod.POST)
+	@ResponseBody
+	public ModelAndView FAQCatogory(@RequestBody CommandMap commandMap, HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		
+		
+		//String category = request.getParameter("FAQ_CATEGORY");
+		//System.out.println(" 값 확인0 +++++++++++" + request.getParameter("FAQ_CATEGORY"));
+
+		//commandMap.put("FAQ_CATEGORY", category);
+
+		System.out.println(" CommandMap값 확인  +++++++++++" + commandMap.get("FAQ_CATEGORY"));
+		
+		List<Map<String, Object>> faqlist = faqService.faqCategoryList(commandMap.getMap());
+		
+		mv.addObject("faqlist", faqlist);
+		mv.setViewName("jsonView");
+
+		return mv;
 	}
 	 
 }
