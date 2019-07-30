@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@include file="../module/header.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -83,7 +84,7 @@ function FAQCategory(num){
 <ul class="csTab mb70">
 	<li><a href="/giftcon/notice.conn"><span class="icoNotice"></span><em>공지사항</em></a></li>
 	<li><a href="/giftcon/FAQ.conn" class="on"><span class="icoFaq"></span><em>FAQ</em></a></li>
-	<li><a href="/bbs/qnaList.do"><span class="icoOneAsk"></span><em>1:1문의</em></a></li>
+	<li><a href="/giftcon/mypage/qna/insertform.conn"><span class="icoOneAsk"></span><em>1:1문의</em></a></li>
 </ul>
 					<!-- /end:csTab -->
 					
@@ -168,3 +169,4 @@ $(".askList .myAskList .faqTit").click(function(){
 </script>
 </body>
 </html>
+<%@include file="../module/footer.jsp"%>

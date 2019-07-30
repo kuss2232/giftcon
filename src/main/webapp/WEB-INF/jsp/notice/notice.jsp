@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@include file="../module/header.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
@@ -7,6 +8,9 @@
 <head>
 
 <title>title</title>
+<style>
+div.paging > div > a.disabled:hover {border: 1px solid #ddd;}
+</style>
 <link rel="stylesheet" type="text/css" href="/giftcon/css/common.css">
 <link rel="stylesheet" type="text/css" href="/giftcon/css/jquery/swiper.min.css">
 <link rel="stylesheet" type="text/css" href="/giftcon/css/sub.css">
@@ -27,22 +31,21 @@
 					<!-- start:csTab -->
 <ul class="csTab mb70">
 	<li><a href="/giftcon/notice.conn" class="on"><span class="icoNotice"></span><em>공지사항</em></a></li>
-	<li><a href="/bbs/faqList.do"><span class="icoFaq"></span><em>FAQ</em></a></li>
-	<li><a href="/bbs/qnaList.do"><span class="icoOneAsk"></span><em>1:1문의</em></a></li>
+	<li><a href="/giftcon/FAQ.conn"><span class="icoFaq"></span><em>FAQ</em></a></li>
+	<li><a href="/giftcon/mypage/qna/insertform.conn"><span class="icoOneAsk"></span><em>1:1문의</em></a></li>
 </ul>
 					<!-- /end:csTab -->
 					<!-- start:sub_title -->
 					<form id="bbsFrm" name="bbsFrm" action="/giftcon/notice.conn" method="GET">
 						<input type="hidden" name="currentPage">
 					<div class="subTit">[공지사항] 쉐어콘 서비스의 새로운 소식을 알려드립니다!
-						<div class="noticeSearch">
-							
-								<select class="btn"name="SearchNum" id="SearchNum" >
+						<div class="noticeSearch" align="right">
+								<select class="btn"name="SearchNum" id="SearchNum">
 									<option value="1">제목</option>
 									<option value="2">내용</option>
 								</select>
 							<input class="ipt4 w220" type="text" name="SearchKeyword" id="SearchKeyword" />
-							<input class="ipt3" type="submit" value="검색" />							
+							<input class="ipt3" type="submit" value="검색" />
 						</div>
 					</div>
 					<div>
@@ -81,7 +84,7 @@
 						</tbody>
 					</table>
 					<!-- /end:contents -->
-					<div class="paging">${pagingHtml}</div>
+					<div class="paging"><div class="page"><a class="disabled">${pagingHtml}</a></div></div>
 				</div>
 			</div>
 			<!-- /end:contents -->
@@ -107,11 +110,12 @@ function fn_Detail(obj) {
 }
 function goList(pageNum) {
 	var form = document.bbsFrm;
-	form.pageNo.value = pageNo;
+	form.pageNum.value = pageNum;
 	form.target = "_self";
-	form.action = "/giftcon/noticedetail.conn";
+	form.action = "/giftcon/notice.conn";
 	form.submit();
 }
 </script>
 </body>
 </html>
+<%@include file="../module/footer.jsp"%>
