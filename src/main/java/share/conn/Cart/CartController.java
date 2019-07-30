@@ -25,7 +25,7 @@ public class CartController {
 	private String pagingHtml;
 	private Paging page;
 	
-	@Resource(name = "adminMemberService")
+	@Resource(name = "cartService")
 	private CartService cartService;
 	
 	//장바구니에 같은 상품이 있는지 확인
