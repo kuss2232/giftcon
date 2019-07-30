@@ -109,7 +109,7 @@ function viewSubMenu() {
 							<tr>
 							  <th scope="row"><label for="id"><span class="mustTxt">*</span> 아이디</label></th>
 							  <td class="last">
-							  	<input type="text" class="ipt2 w260" id="userId" name="MEMBER_ID" maxlength="20" autocomplete="off"> <a href="/giftcon/checkId.conn" id="ckUserId" class="btnSmlBgGray1 w93">중복확인</a>
+							  	<input type="text" class="ipt2 w260" id="userId" name="MEMBER_ID" maxlength="20" autocomplete="off"> <a href="#" id="ckUserId" class="btnSmlBgGray1 w93">중복확인</a> <!-- href="/giftcon/checkId.conn" -->
 							  	<span class="inpTxt" id="userIdTxt"></span>
 							  	<span class="guideTxt">* 영문/숫자 혼합으로 4~12자 이내</span>
 							  </td>
@@ -164,21 +164,53 @@ function viewSubMenu() {
 			<!-- /end:contents -->
 		</div>
 	</div>
-	   <script type="text/javascript">
-      $(document).ready(function(){
-         $("#ckUserId").on("click", function(e){
-            e.preventDefault();
-            fn_checkId();
-         });
+<script type="text/javascript">
+$(document).ready(function() {
+	$("#ckUserId").on("click", function(e) {
+		e.preventDefault();
+		fn_checkId();
+	});
 
-      });
-      
-      function fn_checkId(){
-         var comSubmit = new ComSubmit("joinFrm");
-         comSubmit.setUrl("/giftcon/checkId.conn");
-         comSubmit.submit();
-      }
+});
 
-   </script>
+function fn_checkId() {
+	var userId = $("#userId").val();
+	var userData = {"MEMBER_ID":userId}
+	if(userId.length < 1)
+	{
+		alert("아이디를 입력해주시기 바랍니다.");
+	}
+	else
+	{
+		$.ajax({
+			type : "POST",
+			url : "/giftcon/checkId.conn",
+			data : userData,
+			dataType : "json",
+			error : function(error) {
+				alert("서버가 응답하지 않습니다. \n다시 시도해주시기 바랍니다.");
+			},
+			success : function(result) {
+				if(result == 0)
+				{
+					$("#userId").attr("disabled", true);
+					alert("사용이 가능한 아이디입니다.");
+				}
+				else if(result == 1)
+				{
+					alert("이미 존재하는 아이디입니다. \n다른 아이디를 사용해주세요.");
+				}
+				else
+				{
+					alert("에러가 발생하였습니다.");
+				}
+			}
+		})
+	}
+	/* var comSubmit = new ComSubmit("joinFrm");
+	comSubmit.setUrl("/giftcon/checkId.conn");
+	comSubmit.submit(); */
+}
+</script>
 </body>
 </html>
