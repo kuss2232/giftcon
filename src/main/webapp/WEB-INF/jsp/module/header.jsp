@@ -9,6 +9,7 @@
 	<link rel="stylesheet" type="text/css" href="/giftcon/css/jquery/jquery-ui.css">
 	<link rel="stylesheet" type="text/css" href="/giftcon/css/main.css">
 	<script src="/giftcon/css/jquery/jquery-1.12.4.min.js"></script>
+	<script src="/giftcon/css/common.js"></script>
 	
 <head>
 	
@@ -111,7 +112,7 @@ $(function () {
 			<div class="top">
 				<h1 class="logo">
 				<a href="/giftcon/main.conn">
-				<img src="D:\css\KakaoTalk_20190722_174237729.png" alt="쉐어콘"></a></h1>
+				<img src="/giftcon/css/main.png" alt="쉐어콘"></a></h1>
 				<div class="searchBox">
 					<form id="goodsHeaderForm" name="goodsHeaderForm" action="/goods/searchList.do" method="GET">
 						<fieldset>
@@ -221,7 +222,7 @@ $(function () {
 					</li>
 				</ul>
 				 <!-- 띠 배너  -->
-					
+	<!-- 				
 						<span id="img0" class="rightBanner" style="display: block;">
 							<a href="http://ppurio.com/mgr/DFLanding.qri?page=CouponEvent&amp;type=cross2&amp;key=donut" target="_blank"><img src="/3N1DATA01/donutbook/contents/banner/88ra54jdupp7fv05d03c.png" alt="" width="201"></a>
 						</span>
@@ -229,7 +230,7 @@ $(function () {
 						<span id="img1" class="rightBanner" style="display: none;">
 							<a href="/contents/promotionList.do?tab=0"><img src="/3N1DATA01/donutbook/contents/banner/549g83zea3od2kbhhwhf.jpg" alt="" width="201"></a>
 						</span>
-					
+					 -->
 				
 			</div>
 			 <!-- 상단 사각 배너 -->

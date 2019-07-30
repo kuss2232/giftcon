@@ -17,6 +17,56 @@ div.paginate > div > a.disabled:hover {border: 1px solid #ddd;}
 <script src="/giftcon/js/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="/giftcon/js/common.js"></script>
 <script type="text/javascript" src="/giftcon/js/gnb.js"></script>
+<script>
+function refreshFAQ(){
+	location.href="/giftcon/FAQ.conn";
+}
+
+function FAQCategory(num){ 
+		
+	var num = num;
+	var faq_ca = null;
+
+	if (num == 1) {
+		faq_ca = $("#FAQ_CATEGORY1").val();
+	} else if (num == 2) {
+		faq_ca = $("#FAQ_CATEGORY2").val();
+	} else if (num == 3) {
+		faq_ca = $("#FAQ_CATEGORY3").val();
+	} else if (num == 4) {
+		faq_ca = $("#FAQ_CATEGORY4").val();
+	} else if (num == 5) {
+		faq_ca = $("#FAQ_CATEGORY5").val();
+	}
+	
+	
+	var data = {
+        		"FAQ_CATEGORY" :  faq_ca	
+        	}
+
+        	jQuery.ajaxSettings.traditional = true;
+        	
+        	$.ajax({
+        		type: "POST",
+        		url: "<c:url value='/FAQCategory.conn'/>",
+        		dateType:"json",
+        		data : data,
+        		contentType : "application/json;charset=UTF-8",
+        		
+        		success:function(data){
+        			alert("성공");
+        		},
+
+        		error : function(jqXHR, textStatus, errorThrown) {
+        			alert("오류가 발생하였습니다.");
+        		}
+        	});
+}
+
+
+
+
+</script>
 </head>
 <body>
 
@@ -42,12 +92,12 @@ div.paginate > div > a.disabled:hover {border: 1px solid #ddd;}
 						<input type="hidden" name="contentType" value="">
 					<!-- start:askCategory -->
 						<div class="askCategory">
-							<a href="">전체</a>
-							<a href="/giftcon/FAQ.conn?c=1">회원</a>
-							<a href="/giftcon/FAQ.conn?c=2">상품</a>
-							<a href="/giftcon/FAQ.conn?c=3">주문</a>
-							<a href="/giftcon/FAQ.conn?c=4">환불</a>
-							<a href="/giftcon/FAQ.conn?c=5">기타</a>
+							<a href="#" onClick="refreshFAQ()">전체</a>
+							<a href="#" id="FAQ_CATEGORY1" onClick="FAQCategory(1)">회원</a>
+							<a href="#" id="FAQ_CATEGORY2" onClick="FAQCategory(2)">상품</a>
+							<a href="#" id="FAQ_CATEGORY3" onClick="FAQCategory(3)">주문</a>
+							<a href="#" id="FAQ_CATEGORY4" onClick="FAQCategory(4)">환불</a>
+							<a href="#" id="FAQ_CATEGORY5" onClick="FAQCategory(5)">기타</a>
 						</div>
 					<div class="faqSearch" align="right">
 							<font size="4">제목 검색 &nbsp;</font>
@@ -59,8 +109,9 @@ div.paginate > div > a.disabled:hover {border: 1px solid #ddd;}
 					<div class="askList">
 						<ul class="myAskList">
 							<c:forEach items="${faqlist}" var="row">
-							<li id="#list_0">
+							<li class="list_0">
 								<input type="hidden" id="FAQ_NUM" name="FAQ_NUM" value="${row.FAQ_NUM}">
+								<input type="hidden" id="FAQ_CATEGORY" value="${row.FAQ_CATEGORY}">
 								<a class="faqTit">
 									<span class="icoQuestion"></span>
 									<span class="faqTit">${row.FAQ_TITLE}</span>

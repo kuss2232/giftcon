@@ -5,8 +5,6 @@
 <html>
 <head>
 	<title></title>
-	<link rel="stylesheet" type="text/css" href="/giftcon/css/sub.css">
-	<link rel="stylesheet" type="text/css" href="/giftcon/css/common.css">
 </head>
 <body>
 <div id="container">
@@ -37,7 +35,7 @@
 												<input type="checkbox" id="saveId" name="saveId"> 아이디 저장
 											</span>
 											<span class="btnPw">
-												<a href="/user/findId.do">아이디찾기/비밀번호재설정</a>
+												<a href="/giftcon/findIdForm.conn">아이디찾기/비밀번호재설정</a>
 											</span>
 											<span class="inputTxt"></span>
 										</div>

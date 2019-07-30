@@ -48,6 +48,7 @@ public class JoinController {
 	}
 	@RequestMapping(value="/joinStep2.conn")
 	public ModelAndView joinStep2(HttpSession session, HttpServletRequest request, HttpServletResponse response, CommandMap Map) {
+
 		ModelAndView mv = new ModelAndView();
 		String emailId = (String) Map.getMap().get("emailId");
 		System.out.println(emailId);

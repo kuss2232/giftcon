@@ -1,13 +1,16 @@
 package share.conn.Login;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import share.conn.giftcon.CommandMap;
@@ -17,7 +20,8 @@ public class LoginController {
 
 	@Resource(name = "loginService")
 	private LoginService loginService;
-
+	
+	//로그인 화면이동
 	@RequestMapping("/loginForm.conn")
 	public ModelAndView loginForm() {
 		ModelAndView mv = new ModelAndView();
@@ -68,9 +72,61 @@ public class LoginController {
 			session.invalidate();
 			//세션 무효화
 		}
-		mv.setViewName("/main/main");
+		mv.setViewName("redirect:/main/main");
 		return mv;
 		
 	}
-
+	//아이디 찾기---------------------------------------------
+	@RequestMapping("/findIdForm.conn")
+	public ModelAndView findIdForm() {
+		ModelAndView mv = new ModelAndView("/login/findIdForm");
+		return mv;
+	}
+	
+	@RequestMapping("/findId.conn")
+	public ModelAndView findId(CommandMap commandMap) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		Map<String, Object> map = loginService.findId(commandMap.getMap());
+		mv.addObject("MEMBER",map);
+		mv.setViewName("/login/findedId");
+		return mv;
+	}
+	
+	//비밀번호 찾기 & 변경 ---------------------------------------
+	@RequestMapping("/findPwForm.conn")
+	public ModelAndView findPwForm() {
+		ModelAndView mv = new ModelAndView("/login/findPwForm");
+		return mv;
+	}
+	//이름 id 비밀번호 값 확인
+	@RequestMapping("chgPwform.conn")
+	public ModelAndView chgPw(CommandMap commandMap) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		Map<String, Object> map = loginService.findPwd(commandMap.getMap());
+		System.out.println("DB에서 가져온 PW : "+ map.get("MEMBER_PASSWD"));
+		mv.addObject("map", map);
+		/*
+		 * mv.addObject("MEMBER_ID", map.get("MEMBER_ID")); mv.addObject("MEMBER_NAME",
+		 * map.get("MEMBER_NAME")); mv.addObject("MEMBER_EMAIL",
+		 * map.get("MEMBER_EMAIL"));
+		 */
+		mv.setViewName("/login/chgPwForm");
+		return mv;
+	}
+	
+	
+	@RequestMapping("/chgPw.conn")
+	public @ResponseBody Map<String, String> findPw(CommandMap commandMap) throws Exception {
+		Map<String, String> data = new HashMap<String, String>();
+		System.out.println("id" + commandMap.get("MEMBER_ID"));
+		try {
+			loginService.chgPw(commandMap.getMap());
+			data.put("result", "SUCCESS");
+		}catch(Exception e){
+			e.printStackTrace();
+			data.put("result", "");
+		}
+		
+		return data;
+	}
 }
