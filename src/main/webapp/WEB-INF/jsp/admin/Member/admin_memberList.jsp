@@ -65,31 +65,31 @@ function delchk(){
 									</tr>
 								</thead>
 								<tbody>
-								<c:forEach var="memberlist"  items="${memberlist}" varStatus="stat">
+								<c:forEach var="memberlist"  items="${memberList}" varStatus="stat">
 								<c:url var="viewURL" value="adminmemberModify.dog" >
-									<c:param name="id" value="${memberlist.id }" />
+									<c:param name="id" value="${memberList.MEMBER_ID}" />
 								</c:url>									
 									<tr class="gradeA even" role="row">
-										<td style="text-align:center;vertical-align:middle;"><a href="${viewURL3}">${memberlist.num}</a></td>
-										<td style="text-align:center;vertical-align:middle;">${memberlist.id}</td>
-										<td style="text-align:center;vertical-align:middle;">${memberlist.name}</td>
-										<td style="text-align:center;vertical-align:middle;">${memberlist.phone}</td>
-										<td style="text-align:center;vertical-align:middle;">${memberlist.email}</td>
+										<td style="text-align:center;vertical-align:middle;"><a href="${viewURL3}">${memberList.MEMBER_NUM}</a></td>
+										<td style="text-align:center;vertical-align:middle;">${memberList.MEMBER_ID}</td>
+										<td style="text-align:center;vertical-align:middle;">${memberList.MEMBER_NAME}</td>
+										<td style="text-align:center;vertical-align:middle;">${memberList.MEMBER_PHONE}</td>
+										<td style="text-align:center;vertical-align:middle;">${memberList.MEMBER_EMAIL}</td>
 										<!-- !!member_state 들어갈 예정!! -->
-										<td style="text-align:center;vertical-align:middle;">${memberlist.point}</td>
+										<td style="text-align:center;vertical-align:middle;">${memberList.MEMBER_STATE}</td>
 										<td style="text-align:center;vertical-align:middle;">
 										<c:url var="viewURL" value="adminMemberDelete.dog" >
-											<c:param name="id" value="${memberlist.id }" />							
+											<c:param name="id" value="${memberList.MEMBER_ID}" />							
 										</c:url>
 											<a href="${viewURL}"><input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Cog_font_awesome.svg/32px-Cog_font_awesome.svg.png"></a>&nbsp;&nbsp;
 										<c:url var="viewURL2" value="adminMemberDelete.dog" >
-											<c:param name="id" value="${memberlist.id }" />							
+											<c:param name="id" value="${memberList.MEMBER_ID}" />							
 										</c:url>	
 										 <a href="${viewURL2}"><input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Trash_font_awesome.svg/32px-Trash_font_awesome.svg.png" onclick="return delchk()"></a></td>									
 									</tr>
 								</c:forEach>
 								<!--  등록된 회원이 없을때 -->
-									<c:if test="${fn:length(memberlist) le 0}">
+									<c:if test="${fn:length(memberList) le 0}">
 										<tr><td colspan="9" style="text-align:center;">등록된 회원이 없습니다</td></tr>
 									</c:if> 
 								</tbody>
