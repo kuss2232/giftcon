@@ -1,70 +1,90 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="memberInfo">
+
 <!-- 회원 정보 꺼내기 -->
 <select id="selectMember" parameterType="hashmap" resultType="hashmap">
-
-		<![CDATA[
-			
+	<![CDATA[	
 		SELECT * FROM
 		MEMBER
 		WHERE MEMBER_ID = #{MEMBER_ID}		
-		]]>
+	]]>
 	</select>
 	
 	<!-- 회원가입 -->
-	<insert id="joinMember" parameterType="hashmap">
+	<insert id="joinMember" parameterType="hashmap" useGeneratedKeys="true" keyProperty="MEMBER_NUM">
+		<selectKey keyProperty="MEMBER_NUM" resultType="integer" order="BEFORE">
+			SELECT MEMBER_NUM_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
 		<![CDATA[
 		INSERT 
 		INTO MEMBER( 
-		 MEMBER_NUM,
-		 MEMBER_ID,
-		 MEMBER_NAME,
-		 MEMBER_JUMIN1, 
-		 MEMBER_JUMIN2,
-		 MEMBER_EMAIL,
-		 MEMBER_PASSWD,
-		 MEMBER_PHONE,
-		 MEMBER_DATE)
-		VALUES(
-		MEMBER_NUM_SEQ.NEXTVAL,
-		 #{MEMBER_ID},
-		 #{MEMBER_NAME},
-		 #{MEMBER_JUMIN1},
-		 #{MEMBER_JUMIN2},
-		 #{MEMBER_EMAIL},
-		 #{MEMBER_PASSWD},
-		 #{MEMBER_PHONE},
-		 SYSDATE)
+			 MEMBER_NUM,
+			 MEMBER_ID,
+			 MEMBER_NAME,
+			 MEMBER_JUMIN1, 
+			 MEMBER_JUMIN2,
+			 MEMBER_EMAIL,
+			 MEMBER_PASSWD,
+			 MEMBER_PHONE,
+			 MEMBER_DATE
+		)VALUES(
+			#{MEMBER_NUM},
+			#{MEMBER_ID},
+			#{MEMBER_NAME},
+			#{MEMBER_JUMIN1},
+			#{MEMBER_JUMIN2},
+			#{MEMBER_EMAIL},
+			#{MEMBER_PASSWD},
+			#{MEMBER_PHONE},
+			SYSDATE
+		)
 ]]>
 </insert>
+
 <!-- 아이디찾기 -->
 <select id="findId" parameterType="hashmap" resultType="hashmap">
 <![CDATA[
 	SELECT
-	 MEMBER_ID
-	  FROM
-	   MEMBER
-	    WHERE
-	     MEMBER_NAME = #{MEMBER_NAME}
-	      AND
-	       MEMBER_EMAIL = #{MEMBER_EMAIL}
+		MEMBER_ID
+	FROM
+		MEMBER
+	WHERE
+		MEMBER_NAME = #{MEMBER_NAME}
+		AND MEMBER_EMAIL = #{MEMBER_EMAIL}
 ]]>
 </select>
 <!-- 비밀번호 찾기 -->
 <select id="findPwd" parameterType="hashmap" resultType="hashmap">
 <![CDATA[
 	SELECT
-	 MEMBER_PASSWD
-	  FROM
-	   MEMBER
-	    WHERE MEMBER_ID = #{MEMBER_ID}
-	     AND
-	      MEMBER_NAME = #{MEMBER_NAME}
-	       AND
-	        MEMBER_EMAIL = #{MEMBER_EMAIL}
+		MEMBER_PASSWD,
+		MEMBER_ID,
+		MEMBER_NAME,
+		MEMBER_EMAIL
+	FROM
+		MEMBER
+	WHERE 
+		MEMBER_ID = #{MEMBER_ID}
+	    AND MEMBER_NAME = #{MEMBER_NAME}
+	    AND MEMBER_EMAIL = #{MEMBER_EMAIL}
 ]]>
 </select>
+
+<!-- 비밀번호 변경 -->
+<update id="chgPw" parameterType="hashmap">
+<![CDATA[
+	UPDATE
+		MEMBER
+	SET
+		MEMBER_PASSWD = #{MEMBER_PASSWD_C}
+	WHERE
+		MEMBER_ID = #{MEMBER_ID}
+		AND MEMBER_NAME  = #{MEMBER_NAME}
+		AND MEMBER_EMAIL = #{MEMBER_EMAIL}			
+]]>
+</update>
+
 <!-- 회원 탈퇴 -->
 <update id="deleteMember" parameterType="hashmap" >
 <![CDATA[
@@ -74,8 +94,9 @@
 		WHERE MEMBER_NUM = #{MEMBER_NUM}
 	]]>
 </update>
+
 <!-- 회원 주문 내역 조회 -->
-<select id="findMemberOrderList" parameterType="hashmap" resultType="hashmap">
+<select id="findmemberOrderList" parameterType="hashmap" resultType="hashmap">
 <![CDATA[
 	SELECT
 		A.ORDER_PRICE, A.ORDER_NUM, 		
@@ -88,28 +109,29 @@
 		WHERE 
    		A.MEMBER_NUM = #{MEMBER_NUM}
 		AND A.GOODS_NUM = C.GOODS_NUM
-		AND A.GOODS_NUM = D.GOODS_NUM
-    	
+    	AND A.GOODS_NUM = D.GOODS_NUM
 		ORDER BY A.ORDER_DATE DESC
 ]]>
 </select>
-<!-- 결제 완료된 주문 목록 확인 -->
 
+<!-- 결제 완료된 주문 목록 확인 -->
 <select id="endOrderList" parameterType="hashmap" resultType="hashmap">
 <![CDATA[
-	SELECT * FROM 
-	(SELECT GOODS_NUM,
-	 ORDER_NUM,
-	 ORDER_AMOUNT,
-	 MEMBER_NUM,
-	 ORDER_PAYMENT,
-	 ORDER_ECHECK,
-	 ORDER_PRICE,
-	 GOODS_NAME,
-	 GOODS_DCPRICE,
-	 ORDER_DATE 
-	FROM 
-	ORDERS NATURAL JOIN GOODS) A 
+	SELECT * FROM (
+		SELECT 
+			GOODS_NUM,
+			ORDER_NUM,
+	 		ORDER_AMOUNT,
+	 		MEMBER_NUM,
+	 		ORDER_PAYMENT,
+	 		ORDER_ECHECK,
+	 		ORDER_PRICE,
+	 		GOODS_NAME,
+	 		GOODS_DCPRICE,
+	 		ORDER_DATE 
+		FROM 
+			ORDERS NATURAL JOIN GOODS
+		) A 
 	WHERE A.ORDER_PAYMENT='Y' 
 	AND A.MEMBER_NUM = #{MEMBER_NUM} 
 	ORDER BY A.ORDER_DATE DESC;
@@ -158,61 +180,79 @@
 	<select id="findQnaList" parameterType="hashmap" resultType="hashmap">
 <![CDATA[
 	SELECT
-	QNA_NUM,
-	QNA_TITLE,
-	QNA_CATEGORY
-	FROM
-	QNA WHERE MEMBER_NUM = #{MEMBER_NUM}
-   ORDER BY QNA_DATE DESC
+		QNA_NUM,
+		QNA_TITLE,
+		QNA_CATEGORY
+	FROM 
+		QNA 
+	WHERE 
+		MEMBER_NUM = #{MEMBER_NUM}
+    ORDER BY 
+		QNA_DATE DESC
 ]]>
 </select>
 
-<!-- QNA 상세보기 -->
+<!-- qna 상세보기 -->
 <select id="qnaDetail" parameterType="hashmap" resultType="hashmap">
-SELECT * 
-FROM
-	QNA 
-WHERE QNA_NUM = #{QNA_NUM}
+<![CDATA[
+	SELECT * 
+	FROM
+	   QNA 
+	WHERE QNA_NUM = #{QNA_NUM}
+]]>
 </select>
 
 <!-- 구매후기 목록 -->
 <select id="reviewList" parameterType="hashmap" resultType="hashmap">
 <![CDATA[
-	 SELECT R.REVIEW_NUM,
+	SELECT R.REVIEW_NUM,
       G.GOODS_NAME,
       M.MEMBER_ID,
       R.REVIEW_CNT,
       R.REVIEW_IMG,
       R.REVIEW_GRADE,
       R.REVIEW_REGDATE
-   FROM
-    REVIEW R, GOODS G, MEMBER M
-   WHERE
-    R.MEMBER_NUM=#{MEMBER_NUM}
-	AND R.MEMBER_NUM=M.MEMBER_NUM
-	AND R.GOODS_NUM=G.GOODS_NUM
-   ORDER BY REVIEW_NUM DESC
+	FROM
+		REVIEW R, 
+		GOODS G, 
+		MEMBER M
+	WHERE
+    	R.MEMBER_NUM=#{MEMBER_NUM}
+		AND R.MEMBER_NUM=M.MEMBER_NUM
+		AND R.GOODS_NUM=G.GOODS_NUM
+	ORDER BY 
+		REVIEW_NUM DESC
 ]]>
 </select>
 
-<!-- 인증한 회원 구분 변경 -->
+<!-- 로그인 할 경우 인증한 회원 구분 변경 -->
 <update id="loginMember" parameterType="hashmap">
 	<![CDATA[
 		UPDATE MEMBER SET MEMBER_STATE = 1 WHERE MEMBER_NUM = #{MEMBER_NUM}
 	]]>
 </update>
 
-
-<!-- 회원 아이디 중복체크 -->
-<select id="memberCheck" parameterType="hashmap" resultType="hashmap">
+<select id="checkMember" parameterType="hashmap" resultType="integer">
 <![CDATA[
-	 
-	SELECT
-		MEMBER_NAME
+	SELECT 
+		COUNT(MEMBER_EMAIL)
 	FROM
 		MEMBER
 	WHERE
-		MEMBER_NAME = #{MEMBER_NAME} 
+		MEMBER_EMAIL = #{MEMBER_EMAIL}
+]]>
+</select>
+
+<!-- 회원 아이디 중복체크 -->
+<select id="memberCheck" parameterType="hashmap" resultType="Integer">
+<![CDATA[
+	 
+	SELECT
+		COUNT(MEMBER_ID)
+	FROM
+		MEMBER
+	WHERE
+		MEMBER_ID = #{MEMBER_ID} 
 
 ]]>
 </select>
