@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 @Service("CartService")
 public class CartServiceImpl implements CartService{
 
-	@Resource(name="CartDAO")
+	@Resource(name="cartDAO")
 	private CartDAO cartDAO;
 	
 	@Override

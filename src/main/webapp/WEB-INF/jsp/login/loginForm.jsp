@@ -5,8 +5,7 @@
 <html>
 <head>
 	<title></title>
-	<link rel="stylesheet" type="text/css" href="/giftcon/css/sub.css">
-	<link rel="stylesheet" type="text/css" href="/giftcon/css/common.css">
+
 </head>
 <body>
 <div id="container">
