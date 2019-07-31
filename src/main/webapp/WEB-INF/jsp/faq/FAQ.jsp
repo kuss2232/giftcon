@@ -130,18 +130,8 @@ function FAQCategory(num){
 					<div>
 </div></form>
 					
-					<div class="paginate">
-						<div class="first"><a class="disabled">처음페이지</a></div>
-						<div class="prev"><a class="disabled">이전페이지</a></div>
-						<ul class="numList">
-							<li><a href="#" onclick="goList(1); return false;" class="on">1</a></li>
-							<li><a href="#" onclick="goList(2); return false;">2</a></li>
-							<li><a href="#" onclick="goList(3); return false;">3</a></li>
-							<li><a href="#" onclick="goList(4); return false;">4</a></li>
-							<li><a href="#" onclick="goList(5); return false;">5</a></li>
-						</ul>
-						<div class="next"><a href="#" onclick="goList(6); return false;">마지막페이지</a></div>
-						<div class="last"><a href="#" onclick="goList(6); return false;">마지막페이지</a></div>
+					<div class="paging">
+						${pagingHtml}
 					</div>
 				</div>
 			</div>
@@ -152,13 +142,6 @@ function FAQCategory(num){
 </div>
 <!--/end:wrap -->
 <script type="text/javascript">
-function goList(pageNo) {
-	var form = document.bbsFrm;
-	form.pageNo.value = pageNo;
-	form.target = "_self";
-	form.action = "/giftcon/FAQ.conn";
-	form.submit();
-}
 
 $(".askList .myAskList .faqTit").click(function(){
 	$(".askList .myAskList .faqView").slideUp(200);
