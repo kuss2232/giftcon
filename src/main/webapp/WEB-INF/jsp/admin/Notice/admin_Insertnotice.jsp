@@ -26,9 +26,9 @@
 						<colgroup>
 							<col width="15%">
 							<col width="*" />
-						</colgroup>
+						</colgroup>	
 						<caption>게시글 작성</caption>
-						</br></br>
+										<br><br>
 						<tbody>
 							<tr>
 								<th scope="row" >제목</th>
@@ -37,16 +37,16 @@
 								</td>
 							</tr>
 							<tr>
-								<th scope="row">내용</th>
+								<th scope="row" >내용</td>
 								<td colspan="2" class="view_text">
-									<textarea rows="20" cols="80" title="내용" id="NOTIFY_CNT" name="NOTIFY_CNT"></textarea>
+									<textarea rows="20" cols="80" title="내용" id="NOTICE_CNT" name="NOTICE_CNT"></textarea>
 								</td>
 							</tr>
-						<!-- 	<tr>
+							<!-- <tr>
 								<th scope="row">첨부<br/>파일</th>
-								<td><input type="file" id="NOTIFY_IMAGE" name="NOTIFY_IMG" style="width: initial;" /></td>
-							</tr>
-						 --></tbody>
+								<td><input type="file" id="NOTICE_IMG" name="NOTICE_IMG" style="width: initial;" /></td>
+							</tr> -->
+						</tbody>
 					</table>
 					<br/>
 					<!-- <input type="file" id="NOTIFY_IMAGE" name="NOTIFY_IMAGE" style="width: initial;" /> <br/> -->
@@ -63,7 +63,7 @@
 					fn_noticeList();
 				});
 
-				$("#InsertNotice").on("click", function(e) { //작성하기 버튼
+				$("#insertNotice").on("click", function(e) { //작성하기 버튼
 					e.preventDefault();
 					fn_notifyWrite();
 					});
@@ -75,16 +75,17 @@
 					comSubmit.submit();
 				}
 
-				function fn_InsertNotice() {
+				function fn_notifyWrite() {
 					var comSubmit = new ComSubmit("frm");
 					comSubmit.setUrl("<c:url value='/notify/adminInsertNotify.conn' />");
+					//comSubmit.addO
 					comSubmit.submit();
 				}
 
 				$('.searchOption').val($('.searchOptionVal').val());
 				
 				var onList = function() {
-					location.href = 'admin_notice';
+					location.href = 'adminNotifyList.conn';
 				};
 		</script>
 </body>

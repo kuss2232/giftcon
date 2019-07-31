@@ -32,9 +32,9 @@
 		VALUES
 			(NOTICE_NUM_SEQ.NEXTVAL,
 			SYSDATE, 
-			#{TITLE},
-			#{CONTENT},
-			#{IMG},
+			#{NOTICE_TITLE},
+			#{NOTICE_CNT},
+			#{NOTICE_IMG},
 			0)
 		]]>
 	</insert>
@@ -71,9 +71,9 @@
 			UPDATE 
 				NOTICE 
 			SET
-			    	NOTICE_TITLE = #{TITLE},
-			   	NOTICE_CNT = #{CONTENT}
-			   	NOTICE_IMG = #{IMG}
+			    	NOTICE_TITLE = #{NOTICE_TITLE},
+			   	NOTICE_CNT = #{NOTICE_CNT}
+			   	NOTICE_IMG = #{NOTICE_IMG}
 			WHERE
 				NOTICE_NUM = #{NOTICE_NUM}	
 		]]>

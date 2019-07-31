@@ -2,41 +2,41 @@
 	pageEncoding="utf-8"%>
 <%@ page import="java.util.*"%>
 <%@ page import="java.text.SimpleDateFormat"%>
+
+
 <%
 	String curDate = new java.text.SimpleDateFormat("yyyyMMdd").format(new java.util.Date());
 %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <head>
+<script src="/giftcon/js/common.js" charset="utf-8"></script>
+<script src="/giftcon/css/jquery/jquery-1.12.4.min.js"></script>
 <link rel="stylesheet" type="text/css"  href="/giftcon/css/NotictList.css"/>
-		  <script type="text/javascript" src="/giftcon/css/jquery/jquery-1.12.4.min.js"></script>
 		  <script>
 		$(document).ready(function(){
 			
-		
-			$("#delete").on("click", function(e){//삭제하기 버튼  
-				if(confirm("정말 삭제하시겠습니까 ?") == true){
-					e.preventDefault();
-					fn_notifyDelete(); 
-					alert("삭제되었습니다");
-					}
-				 else{
-					return ;
-				 }
-			});
-			$("#noticeAdd").on("click",function(e){
+					$("#noticeAdd").on("click",function(e){
 				e.preventDefault();
 				onWrite();
 			})
 			});
 
 		
-		function fn_notifyDelete(){ 
-			var comSubmit = new ComSubmit(); 
-			comSubmit.setUrl("<c:url value='/notify/adminDeleteNotify.conn' />");
-			comSubmit.addParam("NOTICE_NUM", $("#NOTICE_NUM").val());
-			comSubmit.submit(); 
+		function fn_notifyDelete(notice_num){ 
+			if(confirm("정말 삭제하시겠습니까 ?") == true){
+				var comSubmit = new ComSubmit(); 
+				alert("삭제되었습니다");
+				comSubmit.setUrl("<c:url value='/notify/adminDeleteNotify.conn' />");
+				comSubmit.addParam("NOTICE_NUM", notice_num);
+				comSubmit.submit(); 
+				
+				}
+			 else{
+				return ;
+			 }
 			}
 		
 		function onWrite(){
@@ -44,12 +44,12 @@
 		}
 	
 		
-/*     	function locationHref() {
+  	function locationHref() {
 		comSubmit.setUrl("<c:url value='/giftcon/notify/adminNoticeModifyForm.conn' />");
 		comSubmit.addParam("NOTICE_NUM", $("#NOTICE_NUM").val());
 		comSubmit.submit(); 
 		 location.href="/notify/adminNoticeModifyForm.conn"; 
-		}  */
+		}  
 	
 </script>
 
@@ -89,6 +89,7 @@
 										<th style="width: 12%; text-align: center;">관리</th>
 									</tr>
 								</thead>
+								<form id="commonForm" name="commonForm"></form>
 								<tbody>
 									<c:forEach var="noticeList" items="${noticeList}"
 										varStatus="stat">
@@ -114,11 +115,9 @@
 												<a href="${viewURL}" > <input type="image"
 													src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Cog_font_awesome.svg/32px-Cog_font_awesome.svg.png"
 													onclick="locationHref();">
-											</a>&nbsp;&nbsp; <c:url var="viewURL2"
-													value="/notify/adminDeleteNotify.conn">
-													<c:param name="NOTICE_NUM"
-														value="${noticeList.NOTICE_NUM }" />
-												</c:url> <a href="${viewURL2}"  id="delete" > <input type="image"
+											</a>&nbsp;&nbsp; 
+												
+											<a onclick="fn_notifyDelete(${noticeList.NOTICE_NUM})"> <input type="image"
 													src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Trash_font_awesome.svg/32px-Trash_font_awesome.svg.png" >
 											</a>
 											</td>
