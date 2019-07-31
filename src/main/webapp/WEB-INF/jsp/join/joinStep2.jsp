@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -153,7 +154,13 @@ function viewSubMenu() {
 					<!-- /end:join_info -->
 					
 					<div class="btns">
-						<a href="/giftcon/joinComplete.conn" id="btnJoin" class="btnBigBgBlue2 w227">회원가입</a>
+						<c:url var="viewURL" value="/giftcon/joinComplete.conn" >
+                                 <c:param name="MEMBER_EMAIL" value="${adminQnaList.QNA_NUMBER}" />
+                        </c:url>
+						<a href="${viewURL}" id="btnJoin" class="btnBigBgBlue2 w227">회원가입</a>
+						
+                        <input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Trash_font_awesome.svg/32px-Trash_font_awesome.svg.png" onclick="return delchk()">
+                        <a href="${viewURL2}">
 					</div>
 					<input type="password" id="userPwdFake" name="userPwdFake" autocomplete="off" style="display: none;">
 					<div>

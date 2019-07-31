@@ -19,17 +19,14 @@ function ComSubmit(opt_formId) {
 	} 
 	
 	this.setUrl = function setUrl(url){ 
-		alert("설정");
 		this.url = url; 
 	}; 
 	
 	this.addParam = function addParam(key, value){
-		alert("추가");
 		$("#"+this.formId).append($("<input type='hidden' name='"+key+"' id='"+key+"' value='"+value+"' >")); 
 	}; 
 	
 	this.submit = function submit(){
-		alert("이동");
 		var frm = $("#"+this.formId)[0];
 		frm.action = this.url;
 		frm.method = "post";
