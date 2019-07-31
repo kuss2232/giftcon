@@ -51,10 +51,12 @@ public class JoinController {
 	public ModelAndView joinStep2(HttpSession session, HttpServletRequest request, HttpServletResponse response, CommandMap Map) {
 
 		ModelAndView mv = new ModelAndView();
-		String emailId = (String) Map.getMap().get("emailId");
+		//String emailId = (String) Map.getMap().get("MEMBER_ID");
+		String emailId = request.getParameter("MEMBER_EMAIL");
 		System.out.println(emailId);
+		mv.addObject("MEMBER_EMAIL",emailId);
 		mv.setViewName("/join/joinStep2");
-		session.setAttribute("emailId",emailId);
+		//session.setAttribute("emailId",emailId);
 		return mv;
 	}
 
@@ -180,7 +182,7 @@ public class JoinController {
 	@RequestMapping(value="/joinComplete.conn", method=RequestMethod.POST)
 	public ModelAndView joinComplete(CommandMap commandMap, HttpServletRequest request) throws Exception{
 		ModelAndView mv = new ModelAndView();
-		String MEMBER_EMAIL = request.getParameter("MEMBER_EMAIL1");
+		String MEMBER_EMAIL = request.getParameter("MEMBER_EMAIL");
 		Map<String, Object> memberMap = new HashMap<String, Object>();
 		commandMap.getMap().put("MEMBER_EMAIL", MEMBER_EMAIL);
 		memberMap=commandMap.getMap();
