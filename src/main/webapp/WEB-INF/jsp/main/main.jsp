@@ -6,8 +6,10 @@
 <head>
 
 <title>메인</title>
+<%@include file="main-banner.jsp"%>
 <%@include file="bestGoods.jsp"%>
 <%@include file="saleGoods.jsp"%>
+<%@include file="banner.jsp"%>
 <%@include file="cscenter.jsp"%>
 </head>
 <body>
