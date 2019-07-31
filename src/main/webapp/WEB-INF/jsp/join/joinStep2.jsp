@@ -137,13 +137,13 @@ function viewSubMenu() {
 							<tr>
 							  <th scope="row"><label for="cellphone"><span class="mustTxt">*</span> 휴대폰번호</label></th>
 							  <td class="last">
-							  	<input type="text" class="ipt3 w260" id="mobile" name="MEMBER_PHONE"  required="" label="휴대폰번호">
+							  	<input type="text" class="ipt3 w260" id="mobile" name="MEMBER_PHONE" label="휴대폰번호">
 							  	<span class="inpTxt" id="mobileTxt"></span>
 							  </td>
 							</tr>
 							<tr>
 							  <th scope="row"><label for="emal"><span class="mustTxt">*</span> 이메일주소</label></th>
-							  <td class="last"><input type="text" class="ipt2 w110 emailonly" id="emailId" name="MEMBER_EMAIL" title="이메일아이디입력" maxlength="50"> 
+							  <td class="last"><input type="text" class="ipt2 w230 emailonly" id="emailId" name="MEMBER_EMAIL" title="이메일아이디입력" maxlength="50" value="${MEMBER_EMAIL}" disabled="disabled"> 
 								  <span class="inpTxt" id="emailTxt"></span>
 							  </td>
 							</tr>
@@ -153,7 +153,7 @@ function viewSubMenu() {
 					<!-- /end:join_info -->
 					
 					<div class="btns">
-						<a href="/giftcon/joinStep1.conn" id="btnJoin" class="btnBigBgBlue2 w227">회원가입</a>
+						<a href="/giftcon/joinComplete.conn" id="btnJoin" class="btnBigBgBlue2 w227">회원가입</a>
 					</div>
 					<input type="password" id="userPwdFake" name="userPwdFake" autocomplete="off" style="display: none;">
 					<div>
@@ -185,9 +185,10 @@ function fn_checkId() {
 		$.ajax({
 			type : "POST",
 			url : "/giftcon/checkId.conn",
-			data : userData,
+			data : {"MEMBER_ID":userId},
+			//data : userData,
 			dataType : "json",
-			error : function(error) {
+			error : function(erromr) {
 				alert("서버가 응답하지 않습니다. \n다시 시도해주시기 바랍니다.");
 			},
 			success : function(result) {

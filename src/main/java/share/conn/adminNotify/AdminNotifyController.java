@@ -116,7 +116,7 @@ public class AdminNotifyController {
 	@RequestMapping(value = "/notify/adminNotifyForm.conn")
 	public ModelAndView adminNotifyForm() throws Exception {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("admin/Notice/admin_noticeForm");
+		mv.setViewName("admin/Notice/admin_Insertnotice");
 		return mv;
 	}
 

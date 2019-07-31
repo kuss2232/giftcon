@@ -2,24 +2,54 @@
 	pageEncoding="utf-8"%>
 <%@ page import="java.util.*"%>
 <%@ page import="java.text.SimpleDateFormat"%>
+
+
 <%
 	String curDate = new java.text.SimpleDateFormat("yyyyMMdd").format(new java.util.Date());
 %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <head>
-<link rel="stylesheet" type="text/css"  href="css/NotictList.css">
-		<script type ="text/javascript">
-		function delchk() {
-			return confirm("삭제하시겠습니까?");
-		}
-		$('.searchOption').val($('.searchOptionVal').val());
-		var onWrite = function() {
-			location.href = 'adminNotifyForm';
-		};
+<script src="/giftcon/js/common.js" charset="utf-8"></script>
+<script src="/giftcon/css/jquery/jquery-1.12.4.min.js"></script>
+<link rel="stylesheet" type="text/css"  href="/giftcon/css/NotictList.css"/>
+		  <script>
+		$(document).ready(function(){
+			
+					$("#noticeAdd").on("click",function(e){
+				e.preventDefault();
+				onWrite();
+			})
+			});
+
 		
-	function locationHref() {location.href="/notify/adminNoticeModifyForm.conn";}
+		function fn_notifyDelete(notice_num){ 
+			if(confirm("정말 삭제하시겠습니까 ?") == true){
+				var comSubmit = new ComSubmit(); 
+				alert("삭제되었습니다");
+				comSubmit.setUrl("<c:url value='/notify/adminDeleteNotify.conn' />");
+				comSubmit.addParam("NOTICE_NUM", notice_num);
+				comSubmit.submit(); 
+				
+				}
+			 else{
+				return ;
+			 }
+			}
+		
+		function onWrite(){
+			location.href="/giftcon/notify/adminNotifyForm.conn";
+		}
+	
+		
+  	function locationHref() {
+		comSubmit.setUrl("<c:url value='/giftcon/notify/adminNoticeModifyForm.conn' />");
+		comSubmit.addParam("NOTICE_NUM", $("#NOTICE_NUM").val());
+		comSubmit.submit(); 
+		 location.href="/notify/adminNoticeModifyForm.conn"; 
+		}  
 	
 </script>
 
@@ -36,10 +66,8 @@
 					class="dataTables_wrapper form-inline dt-bootstrap no-footer">
 					<div class="row" style="margin-bottom: 5px;">
 						<div class="col-sm-6">
-							<a href="/giftcon/notice/adminNotice">
-								<button type="button" class="btn btn-outline btn-default">전체</button>
-							</a>
-						</div>
+													</div>
+													</br></br>
 						<div class="col-sm-6" style="text-align: right;">
 							<div class="dataTables_info" id="dataTables-example_info"
 								role="status" aria-live="polite">총 게시글 수 : ${totalCount}</div>
@@ -53,14 +81,15 @@
 								aria-describedby="dataTables-example_info">
 								<thead>
 									<tr role="row">
-										<th style="width: 8%; text-align: center;">번호</th>
-										<th style="width: 40%; text-align: center;">제목</th>
-										<th style="width: 8%; text-align: center;">작성자</th>
+										<th style="width: 12%; text-align: center;">번호</th>
+										<th style="width: 45%; text-align: center;">제목</th>
+										<th style="width: 12%; text-align: center;">작성자</th>
 										<th style="width: 12%; text-align: center;">등록일자</th>
 										<th style="width: 8%; text-align: center;">조회수</th>
 										<th style="width: 12%; text-align: center;">관리</th>
 									</tr>
 								</thead>
+								<form id="commonForm" name="commonForm"></form>
 								<tbody>
 									<c:forEach var="noticeList" items="${noticeList}"
 										varStatus="stat">
@@ -70,7 +99,7 @@
 										</c:url>
 										<tr class="gradeA even" role="row">
 											<td style="text-align: center; vertical-align: middle;">${noticeList.NOTICE_NUM}</td>
-											<td style="text-align: center; vertical-align: middle;">${noticeList.NOTICE_TITLE}</td>
+										<td style="text-align: center; vertical-align: middle;" ><a href="/giftcon/notify/adminNoticeDetail.conn">${noticeList.NOTICE_TITLE}</a></td>
 											<td style="text-align: center; vertical-align: middle;">관리자</td>
 											<td style="text-align: center; vertical-align: middle;">
 												<fmt:formatDate value="${noticeList.NOTICE_REGDATE}"
@@ -78,16 +107,18 @@
 											</td>
 											<td style="text-align: center; vertical-align: middle;">${noticeList.NOTICE_HITCOUNT}</td>
 											<td style="text-align: center; vertical-align: middle;">
-												<a href="${viewURL}"> <input type="image"
+											<c:url var="viewURL"
+													value="/notify/adminNoticeModifyForm.conn">
+													<c:param name="NOTICE_NUM"
+														value="${noticeList.NOTICE_NUM }" />
+												</c:url>
+												<a href="${viewURL}" > <input type="image"
 													src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Cog_font_awesome.svg/32px-Cog_font_awesome.svg.png"
 													onclick="locationHref();">
-											</a>&nbsp;&nbsp; <c:url var="viewURL2"
-													value="/notify/adminDeleteNotify.conn">
-													<c:param name="NOTIFY_NUMBER"
-														value="${notifyList.NOTIFY_NUMBER }" />
-												</c:url> <a href="${viewURL2}"> <input type="image"
-													src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Trash_font_awesome.svg/32px-Trash_font_awesome.svg.png"
-													onclick="return delchk()">
+											</a>&nbsp;&nbsp; 
+												
+											<a onclick="fn_notifyDelete(${noticeList.NOTICE_NUM})"> <input type="image"
+													src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Trash_font_awesome.svg/32px-Trash_font_awesome.svg.png" >
 											</a>
 											</td>
 										</tr>
@@ -120,8 +151,9 @@
 								</form>
 							</div>
 							<div style="text-align: left;" class="col-sm-6">
-								<button type="button" onclick="onWrite()"
-									class="btn btn-outline btn-default">쓰기</button>
+														<button id="noticeAdd"
+									class="btn btn-outline btn-default">공지사항 등록</button>
+									
 							</div>
 						</div>
 					</div>

@@ -1,11 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<script src="/giftcon/css/jquery/jquery-1.12.4.min.js"></script>
+<%@ include file="/WEB-INF/include-header.jspf" %>
+<%@ include file="/WEB-INF/include-body.jspf" %>
 <script>
 $(document).ready(function(){
 	$("#check").on("click", function(e) {
 		e.preventDefault();
 		fn_email_code();
+	});
+	
+	$("#confirm").on("click", function(e){
+		e.preventDefault();
+		fn_confirm();
 	});
 })
 	function fn_email_code() {
@@ -20,7 +26,8 @@ $(document).ready(function(){
 			$.ajax({
 				type : "POST",
 				url : "/giftcon/joinStep1/modal_email_auth.conn",
-				data :  email,
+				data :  {"MEMBER_EMAIL":emailId},
+				//data :  email,
 				dataType : "json",/* ({
 					mode : "email_code",
 					email : email
@@ -32,6 +39,7 @@ $(document).ready(function(){
 						alert("이미 가입된 이메일입니다.다른이메일을 입력해주세요");
 					} else {
 						alert("인증번호를 요청하신 이메일로 발송했습니다.");
+						$("#email_Id").attr("disabled", true);
 					}
 
 					if (data != null) {
@@ -45,36 +53,38 @@ $(document).ready(function(){
 		}
 
 	}
-	function member_send() {
-		var f = document.frm;
+	
+	//이메일 확인(인증)
+	function fn_confirm() {
+		var emailId = $("#email_Id").val();
+		var email = {"MEMBER_EMAIL":emailId}
 
-		var email = f.emailId.value;
-
-		if (email == '@') {
+		if (emailId == '@') {
 			alert("이메일을 입력하세요.");
-		} else if (f.emailId.value) {
+		} else if (emailId.value == "") {
 			alert("이메일을 정확히 입력하세요.");
 			console.log("로그 내용1");
 		} else {
 			$.ajax({
 				type : "POST",
-				url : "/joinStep1/modal_email_auth_success.conn",
-				//data: ({Id:$("#Id").val(), Pwd:$("#Pwd").val()}),
-				//contentType: "text/plain; charset=euc-kr",
+				url : "/giftcon/joinStep1/modal_email_auth_success.conn",
 				success : function(data) {
-					/* alert("auth값받음"+data); */
-					console.log("로그 내용1");
+					var code = $("#sing_code").val();
+					//alert("auth값 : "+data + ", code 값 : "+code); 
+					//console.log("로그 내용1");
 					if (data != null) {
-						if (!f.sing_code.value) {
+						if (code.value=="") {
 							alert("인증번호를 입력해 주세요");
-							f.sing_code.focus();
-						} else if (f.sing_code.value != data) {
+							$("#sing_code").focus();
+						} else if (code.value != data.value) {
 							alert("인증번호가 맞지 않습니다.");
-
 						} else {
-							//alert("인증번호가 맞습니다.");
-							f.action = "/joinStep2";
-							f.submit();
+							alert("인증번호가 맞습니다.");
+							var comSubmit = new ComSubmit(); 
+							comSubmit.setUrl("<c:url value='/joinStep2.conn' />");
+							comSubmit.addParam("MEMBER_EMAIL", emailId);
+							alert(emailId);
+							comSubmit.submit(); 
 						}
 					} else {
 						alert("data값없음" + data);
@@ -106,13 +116,13 @@ $(document).ready(function(){
 		<div class="form-group">
 			<label for="inputEmail3" class="col-sm-4 control-label">인증번호</label>
 			<div class="col-sm-20">
-				<input name="sing_code" class="form-control" type="password">
+				<input id="sing_code" class="form-control" type="password">
 
 			</div>
 		</div>
 
 		<div class="text-center" style="padding-top: 10px">
-			<a href="javascript:member_send();" class="btn btn-default">회원가입하기</a>
+			<a href="#" id="confirm" class="btn btn-default">회원가입하기</a>
 		</div>
 	</section>
 </form>
