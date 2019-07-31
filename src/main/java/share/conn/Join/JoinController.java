@@ -137,7 +137,7 @@ public class JoinController {
 
 			Session session = Session.getInstance(props, auth);
 
-			session.setDebug(true); // 메일을 전송할 때 상세한 상황을 콘솔에 출력한다.
+			//session.setDebug(true); // 메일을 전송할 때 상세한 상황을 콘솔에 출력한다.
 
 			/*
 			 * props.put("mail.smtp,starttls.enable", "true");

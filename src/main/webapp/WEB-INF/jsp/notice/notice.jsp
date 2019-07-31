@@ -84,7 +84,7 @@ div.paging > div > a.disabled:hover {border: 1px solid #ddd;}
 						</tbody>
 					</table>
 					<!-- /end:contents -->
-					<div class="paging"><div class="page"><a class="disabled">${pagingHtml}</a></div></div>
+					<div class="paging" align="center"><div class="page"><a class="disabled">${pagingHtml}</a></div></div>
 				</div>
 			</div>
 			<!-- /end:contents -->
