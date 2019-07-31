@@ -10,8 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import share.conn.Paging.Paging;
 import share.conn.giftcon.CommandMap;
+import share.conn.Paging.Paging;
 
 @Controller
 public class NoticeController {
@@ -49,7 +49,7 @@ public class NoticeController {
 			noticeList = noticeService.noticeSearch(commandMap.getMap());
 			
 			totalCount = noticeList.size();
-			page = new Paging(currentPage, totalCount, blockCount, blockPage, "noticeList", searchNum, SearchKeyword);
+			page = new Paging(currentPage, totalCount, blockCount, blockPage, "/giftcon/notice.conn", searchNum, SearchKeyword);
 			pagingHtml = page.getPagingHtml().toString();
 			
 			int lastCount = totalCount;
@@ -58,6 +58,8 @@ public class NoticeController {
 				lastCount = page.getEndCount() + 1;
 			
 			noticeList = noticeList.subList(page.getStartCount(), lastCount);
+			
+
 			
 			mv.addObject("SearchKeyword", SearchKeyword);
 			mv.addObject("SearchNum", searchNum);
@@ -70,15 +72,13 @@ public class NoticeController {
 			return mv;
 		} else {
 			totalCount = noticeList.size();
-
-			page = new Paging(currentPage, totalCount, blockCount, blockPage, "noticeList");
+			page = new Paging(currentPage, totalCount, blockCount, blockPage, "/giftcon/notice.conn");
 			pagingHtml = page.getPagingHtml().toString();
 
 			int lastCount = totalCount;
 
 			if (page.getEndCount() < totalCount)
 				lastCount = page.getEndCount() + 1;
-
 			noticeList = noticeList.subList(page.getStartCount(), lastCount);
 
 			mv.addObject("totalCount", totalCount);
@@ -90,7 +90,6 @@ public class NoticeController {
 			return mv;
 		}
 	}
-	
 	
 	@RequestMapping(value = "/noticeDetail.conn")
 	public ModelAndView noticeDetail(CommandMap commandMap) throws Exception {
