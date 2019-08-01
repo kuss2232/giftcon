@@ -1,6 +1,5 @@
 package share.conn.adminNotify;
 
-import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import share.conn.adminNotify.AdminNotifyService;
 import share.conn.giftcon.CommandMap;
 import share.conn.Paging.Paging;
-import share.conn.adminNotify.AdminNotifyDAO;
+
 
 @Controller
 public class AdminNotifyController {
@@ -160,8 +159,7 @@ public class AdminNotifyController {
 	@RequestMapping(value = "notify/adminNotifyModify.conn")
 	public ModelAndView notifyModify(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("redirect:/notify/adminNotifyList.conn");
-		
-		if(mv.getModel().get("NOTICE_IMG") == null)
+				if(mv.getModel().get("NOTICE_IMG") == null)
 			commandMap.put("NOTICE_IMG", "NONE");
 		
 		adminNotifyService.notifyModify(commandMap.getMap(), request);

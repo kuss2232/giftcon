@@ -7,8 +7,8 @@
 <title>관리자 공지사항</title>
 
 <!-- Service CSS -->
-<link rel="stylesheet" type="text/css" href="/giftcon/css/common.css">
-<link rel="stylesheet" type="text/css" href="/giftcon/css/jquery/swiper.min.css">
+<link rel="stylesheet" type="text/css" href="css/common.css">
+<link rel="stylesheet" type="text/css" href="css/jquery/swiper.min.css">
 <link rel="stylesheet" type="text/css" href="/giftcon/css/sub.css">
 
 </head>
@@ -32,11 +32,11 @@
 							</span>
 						</div>
 						<div class="notiCont">${noticeDetail.NOTICE_CNT}</div>
-						<div class="notiCont">
-							<c:if test="${noticeDetail.NOTICE_IMG ne null}">
+						<%-- <div class="notiCont">
+							<c:if test="${noticeDetail.NOTICE_IMG} != "NONE">
 								<img src="/giftcon/file/noticeFile/${noticeDetail.NOTICE_IMG}" width="500">
 							</c:if>
-                 	</div>
+                 	</div> --%>
 					</div>
 					<!-- /end:contents -->
 					<!-- start:btm -->
@@ -52,7 +52,7 @@
 <script>
 function goList() {
 	var referrer =  document.referrer;
-	(referrer.indexOf("/giftcon/notice.conn")+1) ? history.back() : document.location.href = "/giftcon/notice.conn";
+	(referrer.indexOf("/notify/adminNotifyList.conn")+1) ? history.back() : document.location.href = "/notify/adminNotifyList.conn";
 }
 </script>
 </body>
