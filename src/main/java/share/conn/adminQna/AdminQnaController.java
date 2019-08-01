@@ -112,6 +112,7 @@ public class AdminQnaController {
 			
 			System.out.println("QNA_NUM : " + commandMap.get("QNA_NUM"));
 			System.out.println("QNA_COMMENT : " + request.getParameter("QNA_COMMENT"));
+			commandMap.put("QNA_COMMENT", request.getParameter("QNA_COMMENT"));
 			adminQnaService.updateReply(commandMap.getMap());
 			
 			mv.addObject("QNA_NUM",commandMap.get("QNA_NUM"));

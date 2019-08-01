@@ -70,7 +70,7 @@
 
 				<div class="form-group">
 					<label>답변</label>
-					<textarea class="form-control" id="QNA_REPCONTENT" name="QNA_REPCONTENT" rows="10" cols="30" readonly>${qnaDetail.QNA_REPCONTENT}</textarea>
+					<textarea class="form-control" id="QNA_REPCONTENT" name="QNA_REPCONTENT" rows="10" cols="30" readonly>${qnaDetail.QNA_COMMENT}</textarea>
 				</div>
 				<c:if test="${qnaDetail.QNA_REDATE ne null}">
 					<div class="form-group">

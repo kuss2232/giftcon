@@ -19,7 +19,7 @@
 	<div class="panel panel-default">
 		<div class="panel-heading">Q&A등록 페이지입니다.</div>
 		<div class="panel-body">
-		<form id="commonForm" name="commonForm">
+		<form id="Frm" name="Frm">
 				<input type="hidden" id="QNA_NUMBER" name="QNA_NUMBER" value="${qnaDetail.QNA_NUM}" />
 				<input type="hidden" id="GOODS_NUMBER" name="GOODS_NUMBER" value="${qnaDetail.GOODS_NUM}" />
 				<input type="hidden" id="MEMBER_NUMBER" name="MEMBER_NUMBER" value="${qnaDetail.MEMBER_NUM}" />
@@ -76,9 +76,8 @@
 	}
 
 	function button1_click(){
-		var comSubmit = new ComSubmit();
+		var comSubmit = new ComSubmit("Frm");
 		comSubmit.setUrl("<c:url value='/adminQnaUpdate.conn'/>");
-		alert("코멘트 : " + $("#QNA_COMMENT").val());
 		comSubmit.addParam("QNA_COMMENT", $("#QNA_COMMENT").val());
 		comSubmit.addParam("QNA_NUM",$("#QNA_NUM").val());
 		comSubmit.submit();

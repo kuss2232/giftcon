@@ -32,6 +32,7 @@
 		QNA
 	SET
 		QNA_COMMENT = #{QNA_COMMENT},
+		QNA_CHECK = 'Y',
 		QNA_REDATE = sysdate 
 	WHERE
 		QNA_NUM = #{QNA_NUM}
