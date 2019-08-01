@@ -25,7 +25,7 @@
 	
 	
 	<!--  전체주문 수 보기  -->
-	<select id="allOrderNumList" resultType="hashmap">
+	<select id="allOrderNumList" resultType="integer">
 	<![CDATA[
 		SELECT COUNT(ORDER_NUM) FROM ORDERS ORDER BY ORDER_NUM DESC
 	]]>

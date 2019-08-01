@@ -12,12 +12,17 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 
-	function button2_click(frm) {
-		var Form1 = document.frm;
-		Form1.action = "adminQnaReplyDelete.conn?QNA_NUM=${qnaDetail.QNA_NUM}";
+	function button2_click() {
+		location.href = "adminQnaReplyDelete.conn?QNA_NUM=${qnaDetail.QNA_NUM}";
 	}
 	function goList(){
 		location.href="/giftcon/adminQnaList.conn";
+	}
+	function do_Upate(qna_num){
+		var comSubmit = new ComSubmit("frm");
+		comSubmit.setUrl("<c:url value='/adminQnaReplyForm.conn'/>");
+		comSubmit.addParam("QNA_NUM", qna_num);
+		comSubmit.submit();
 	}
 </script>
 </head>
@@ -30,7 +35,7 @@
 	<div class="panel panel-default">
 		<div class="panel-heading">Q&A 상세보기 페이지입니다.</div>
 		<div class="panel-body">
-				<form id="commonForm" name="commonForm">
+				<form id="frm" name="frm">
 				<div class="form-group">
 					<label>QNA 글번호</label> 
 					<input type="text" class="form-control" name="QNA_NUM" value="${qnaDetail.QNA_NUM}" style="width: initial;" readonly />
@@ -91,13 +96,5 @@
 		</div>
 	</div>
 </div>
-<script>
-	function do_Upate(qna_num){
-		var comSubmit = new ComSubmit();
-		comSubmit.setUrl("<c:url value='/adminQnaReplyForm.conn'/>");
-		comSubmit.addParam("QNA_NUM", qna_num);
-		comSubmit.submit();
-	}
-</script>
 </body>
 </html>

@@ -70,7 +70,7 @@ public class AdminQnaController {
 		}
 		mv.addObject("Searchkeyword", SearchKeyword);
 		mv.addObject("adQnaList",adQnaList);
-		mv.setViewName("/admin/qna/adminQnaList");
+		mv.setViewName("/admin/Qna/adminQnaList");
 		
 		return mv;
 	}
@@ -82,7 +82,7 @@ public class AdminQnaController {
 		Map<String, Object> qnaDetail = adminQnaService.qnaDetail(commandMap.getMap());
 		
 		mv.addObject("qnaDetail", qnaDetail);
-		mv.setViewName("/admin/qna/adminQnaDetail");
+		mv.setViewName("/admin/Qna/adminQnaDetail");
 		
 		return mv;
 	}
@@ -99,7 +99,7 @@ public class AdminQnaController {
 			Map<String, Object> qnaDetail = adminQnaService.qnaDetail(commandMap.getMap());
 			mv.addObject("qnaDetail", qnaDetail);
 		}
-		mv.setViewName("/admin/qna/adminQnaWrite");
+		mv.setViewName("/admin/Qna/adminQnaWrite");
 		return mv;
 	}
 	
