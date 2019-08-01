@@ -32,7 +32,7 @@ public class FaqController {
 	@Resource(name = "faqService")
 	private FaqService faqService;
 
-	@RequestMapping("/FAQ.conn")
+	@RequestMapping("/faq.conn")
 	public ModelAndView FAQ(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView();
 
@@ -67,13 +67,13 @@ public class FaqController {
 			mv.addObject("pagingHtml", pagingHtml);
 			mv.addObject("currentPage", currentPage);
 			mv.addObject("faqlist", faqlist);
-			mv.setViewName("faq/FAQ");
+			mv.setViewName("faq/faq");
 
 			return mv;
 		} else {
 			totalCount = faqlist.size();
 
-			page = new Paging(currentPage, totalCount, blockCount, blockPage, "/giftcon/FAQ.conn");
+			page = new Paging(currentPage, totalCount, blockCount, blockPage, "/giftcon/faq.conn");
 			pagingHtml = page.getPagingHtml().toString();
 
 			int lastCount = totalCount;
@@ -87,7 +87,7 @@ public class FaqController {
 			mv.addObject("pagingHtml", pagingHtml);
 			mv.addObject("currentPage", currentPage);
 			mv.addObject("faqlist", faqlist);
-			mv.setViewName("faq/FAQ");
+			mv.setViewName("faq/faq");
 
 			return mv;
 		}
