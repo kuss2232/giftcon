@@ -72,7 +72,7 @@ public class LoginController {
 			session.invalidate();
 			//세션 무효화
 		}
-		mv.setViewName("redirect:/main/main");
+		mv.setViewName("redirect:/main.conn");
 		return mv;
 		
 	}

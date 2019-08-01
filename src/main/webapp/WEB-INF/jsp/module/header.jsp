@@ -130,10 +130,11 @@ $(function () {
 				<ul class="snb">
 					<%if(session.getAttribute("MEMBER_ID") != null){ %>
 						<li><a href="/giftcon/logout.conn" class="logout" title="로그아웃"><span class="icoLogout"></span><em class="logState">로그아웃</em></a></li>
+						<li><a href="관리자페이지" class="adjoin" title="관리자페이지"><span class="icojoin"></span><em class="logState">관리자페이지</em></a></li>
 					<%}else{ %>
-						<li><a href="/giftcon/loginForm.conn" class="login" title="로그인"><span class="icoLogin"></span><em class="logState">로그인</em></a></li>
+					<li><a href="/giftcon/joinStep1.conn" class="join" title="회원가입"><span class="icojoin"></span><em class="logState">회원가입</em></a></li>
+					<li><a href="/giftcon/loginForm.conn" class="login" title="로그인"><span class="icoLogin"></span><em class="logState">로그인</em></a></li>
 					<%} %>
-						<li><a href="/giftcon/joinStep1.conn" class="join" title="회원가입"><span class="icojoin"></span><em class="logState">회원가입</em></a></li>
 					
 					
 					<li><a href="/giftcon/notice.conn" class="cs" title="고객센터"><span class="icoCs"></span><em class="logState">고객센터</em></a></li>
