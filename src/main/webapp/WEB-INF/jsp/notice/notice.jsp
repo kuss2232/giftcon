@@ -14,7 +14,7 @@ div.paging > div > a.disabled:hover {border: 1px solid #ddd;}
 <link rel="stylesheet" type="text/css" href="/giftcon/css/common.css">
 <link rel="stylesheet" type="text/css" href="/giftcon/css/jquery/swiper.min.css">
 <link rel="stylesheet" type="text/css" href="/giftcon/css/sub.css">
-
+<script type="text/javascript" src="/giftcon/js/jquery/swiper.min.js"></script>
 </head>
 <body>
 
@@ -85,7 +85,7 @@ div.paging > div > a.disabled:hover {border: 1px solid #ddd;}
 					</table>
 					<!-- /end:contents -->
 					<div>
-					<div class="paging" align="center"><div class="page">${pagingHtml}</div></div>
+					<div class="paginate"><ul class="numList">${pagingHtml}</ul></div>
 					</div>
 				</div>
 			</div>
