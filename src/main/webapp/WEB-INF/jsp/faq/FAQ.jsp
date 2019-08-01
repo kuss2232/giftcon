@@ -130,9 +130,7 @@ function FAQCategory(num){
 					<div>
 </div></form>
 					
-					<div class="paging">
-						${pagingHtml}
-					</div>
+					<div class="paginate"><ul class="numList">${pagingHtml}</ul></div>
 				</div>
 			</div>
 			<!-- /end:contents -->
