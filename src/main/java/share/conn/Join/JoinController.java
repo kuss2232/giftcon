@@ -151,7 +151,7 @@ public class JoinController {
 
 			Session session = Session.getInstance(props, auth);
 
-			session.setDebug(true); // 메일을 전송할 때 상세한 상황을 콘솔에 출력한다.
+			//session.setDebug(true); // 메일을 전송할 때 상세한 상황을 콘솔에 출력한다.
 
 			/*
 			 * props.put("mail.smtp,starttls.enable", "true");
@@ -196,11 +196,10 @@ public class JoinController {
 	@RequestMapping(value="/joinComplete.conn", method=RequestMethod.POST)
 	public ModelAndView joinComplete(CommandMap commandMap, HttpServletRequest request) throws Exception{
 		ModelAndView mv = new ModelAndView();
-		String MEMBER_EMAIL = request.getParameter("MEMBER_EMAIL");
-		Map<String, Object> memberMap = new HashMap<String, Object>();
-		commandMap.getMap().put("MEMBER_EMAIL", MEMBER_EMAIL);
-		memberMap=commandMap.getMap();
-		joinService.insertMember(memberMap);
+		String paramId = request.getParameter("MEMBER_ID");
+		if( joinService.checkId(paramId) < 1) {
+			joinService.insertMember(commandMap.getMap());
+		}
 		mv.setViewName("/join/joinComplete");
 		return mv;
 	}
