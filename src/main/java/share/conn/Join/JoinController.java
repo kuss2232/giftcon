@@ -179,14 +179,21 @@ public class JoinController {
 		}
 		return buffer.toString();
 	}
+	
 	@RequestMapping(value="/joinComplete.conn", method=RequestMethod.POST)
 	public ModelAndView joinComplete(CommandMap commandMap, HttpServletRequest request) throws Exception{
 		ModelAndView mv = new ModelAndView();
-		String MEMBER_EMAIL = request.getParameter("MEMBER_EMAIL");
-		Map<String, Object> memberMap = new HashMap<String, Object>();
-		commandMap.getMap().put("MEMBER_EMAIL", MEMBER_EMAIL);
-		memberMap=commandMap.getMap();
-		joinService.insertMember(memberMap, request);
+		/*
+		 * commandMap.getMap().put("MEMBER_EMAIL",
+		 * request.getParameter("MEMBER_EMAIL")); commandMap.getMap().put("MEMBER_ID",
+		 * request.getParameter("MEMBER_ID")); commandMap.getMap().put("MEMBER_PASSWD",
+		 * request.getParameter("MEMBER_PASSWD"));
+		 * commandMap.getMap().put("MEMBER_NAME", request.getParameter("MEMBER_NAME"));
+		 * commandMap.getMap().put("MEMBER_PHONE",
+		 * request.getParameter("MEMBER_PHONE"));
+		 */
+		 
+		joinService.insertMember(commandMap.getMap());
 		mv.setViewName("/join/joinComplete");
 		return mv;
 	}
