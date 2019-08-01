@@ -6,7 +6,7 @@
 </head>
 <body>
 	
-<img src="/giftcon/images/main-banner1.png" id=mainImage alt="YsjImage" style="width:1100px;height:252px; 
+<img src="/giftcon/images/main-banner1.png" id=mainImage alt="YsjImage" style="width:1100px;height:300px; 
 margin-left:auto; margin-right:auto; display:block;">
 
 <script>

@@ -196,8 +196,8 @@ div.agreeArea ul.checkList > li {padding-bottom: 2px;}
 
 div.centerBox {display: inline-block; margin: 30px 0 0 0; width: 1100px; text-align: center;}
 div.centerBox > span {display: inline-block; height: 150px;}
-div.centerBox span.icoPhoneCertify {width: 140px; background: url(/giftcon/images/email.png) no-repeat 0 -895px;}
-div.centerBox span.icoJoinFinish {width: 126px; background: url(/giftcon/images/email.png) no-repeat 0 -1095px;}
+div.centerBox span.icoPhoneCertify {width: 140px; background: url(/giftcon/images/email.png)  0 -895px;}
+div.centerBox span.icoJoinFinish {width: 126px; background: url(/giftcon/images/email.png)  0 -1095px;}
 div.centerBox p.tit {display: inline-block; margin-bottom: 10px; width: 1100px; font-size: 26px; font-weight: 600; color: #333; text-align: center;}
 div.centerBox p.welTxt {display: inline-block; margin-bottom: 30px; width: 1100px; font-size: 20px; font-weight: 500; color: #666; text-align: center;}
 div.centerBox p.welTxt span.point8 {font-weight: 600;  color: #2164bf;}

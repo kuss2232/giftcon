@@ -55,7 +55,7 @@
 									<span class="txt2">아직 쉐어콘 회원이 아니신가요?</span>
 								</p>
 							</div>
-							<a href="/giftcon/joinStep2.conn" class="btnBigLineBlue1 w275">회원가입</a>
+							<a href="/giftcon/joinStep1.conn" class="btnBigLineBlue1 w275">회원가입</a>
 						</div>
 					</div>
 					<!-- /end:login -->

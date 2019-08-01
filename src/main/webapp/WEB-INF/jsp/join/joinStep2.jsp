@@ -45,6 +45,7 @@
 				</div>
 				<div class="btnsExc1">
 					<a href="/giftcon/joinStep2-1.conn" id="btnCert" class="btnBigLineBlue3 w227">이메일 본인인증</a>
+																			
 				</div>
 				<ul class="centerList">
 					<li>- 본인 명의의 이메일로만 인증하실 수 있습니다. (타인 명의를 부정사용하는 경우 3년 이하의 징역 또는 5천만원 이하의 벌금이 부과될 수 있습니다.)</li>

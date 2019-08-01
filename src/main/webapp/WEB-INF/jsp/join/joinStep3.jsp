@@ -15,46 +15,14 @@
 	<div id="container">
 		<div class="contents">
 			
-<style>
-div.depthArea {position:relative;z-index:2}
-</style>
-<script>
-function viewMainMenu() {
-	if( $(".depthArea #mainMenuBox").hasClass("on") ) {
-		$(".depthArea #mainMenuBox").removeClass("on");
-	} else {
-		$(".depthArea #mainMenuBox").addClass("on");
-	}
-	
-	if( $(".depthArea #subMenuBox").hasClass("on") ) {
-		$(".depthArea #subMenuBox").removeClass("on");
-		$('.depthArea #subMenu').slideToggle(300);
-	}
-	
-	$('.depthArea #mainMenu').slideToggle(300);
-}
 
-function viewSubMenu() {
-	if( $(".depthArea #subMenuBox").hasClass("on") ) {
-		$(".depthArea #subMenuBox").removeClass("on");
-	} else {
-		$(".depthArea #subMenuBox").addClass("on");
-	}
-	
-	if( $(".depthArea #mainMenuBox").hasClass("on") ) {
-		$(".depthArea #mainMenuBox").removeClass("on");
-		$('.depthArea #mainMenu').slideToggle(300);
-	}
-	
-	$('.depthArea #subMenu').slideToggle(300);
-}
 </script>
 			<!-- /end:sub_lnb -->
 			<!-- start:contents -->
 			<div class="subWrap">
 				<div class="subLayout">
-					<!-- start:join_step_img -->
-					<div class="stepTitArea" align="center">
+				<!-- start:join_step_img -->
+				<div class="stepTitArea" align="center">
 				<ul class="stepBox">
 					<li class="step1">
 						<div class="stepCont">
