@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Service;
 
+import jdk.nashorn.internal.ir.RuntimeNode.Request;
+
 @Service("joinService")
 public class JoinServiceImpl implements JoinService {
 	
@@ -13,7 +15,7 @@ public class JoinServiceImpl implements JoinService {
 	private JoinDAO joinDAO;
 	
 	@Override
-	public void insertMember(Map<String, Object> map,HttpServletRequest request) throws Exception{
+	public void insertMember(Map<String, Object> map) throws Exception{
 		joinDAO.insertMember(map);
 	}
 	

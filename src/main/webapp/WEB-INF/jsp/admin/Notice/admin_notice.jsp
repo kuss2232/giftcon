@@ -14,7 +14,7 @@
 <head>
 <script src="/giftcon/js/common.js" charset="utf-8"></script>
 <script src="/giftcon/css/jquery/jquery-1.12.4.min.js"></script>
-<link rel="stylesheet" type="text/css"  href="/giftcon/css/NotictList.css"/>
+<link rel="stylesheet" type="text/css"  />
 		  <script>
 		$(document).ready(function(){
 			
@@ -43,14 +43,22 @@
 			location.href="/giftcon/notify/adminNotifyForm.conn";
 		}
 	
-		
+/* 		
   	function locationHref() {
 		comSubmit.setUrl("<c:url value='/giftcon/notify/adminNoticeModifyForm.conn' />");
 		comSubmit.addParam("NOTICE_NUM", $("#NOTICE_NUM").val());
 		comSubmit.submit(); 
 		 location.href="/notify/adminNoticeModifyForm.conn"; 
-		}  
+		}   */
 	
+	function goDetail(notice_num) {
+			var comSubmit = new ComSubmit(); 
+		comSubmit.setUrl("<c:url value='/notify/adminNoticeDetail.conn' />");
+		comSubmit.addParam("NOTICE_NUM", notice_num);
+		comSubmit.submit(); 
+		
+		}  
+  	
 </script>
 
 </head>
@@ -99,7 +107,10 @@
 										</c:url>
 										<tr class="gradeA even" role="row">
 											<td style="text-align: center; vertical-align: middle;">${noticeList.NOTICE_NUM}</td>
-										<td style="text-align: center; vertical-align: middle;" ><a href="/giftcon/notify/adminNoticeDetail.conn">${noticeList.NOTICE_TITLE}</a></td>
+										<td style="text-align: center; vertical-align: middle;" >
+										
+										<a href=" #" onclick="goDetail(${noticeList.NOTICE_NUM});">${noticeList.NOTICE_TITLE}</a></td>
+										
 											<td style="text-align: center; vertical-align: middle;">관리자</td>
 											<td style="text-align: center; vertical-align: middle;">
 												<fmt:formatDate value="${noticeList.NOTICE_REGDATE}"
@@ -114,7 +125,7 @@
 												</c:url>
 												<a href="${viewURL}" > <input type="image"
 													src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Cog_font_awesome.svg/32px-Cog_font_awesome.svg.png"
-													onclick="locationHref();">
+													>
 											</a>&nbsp;&nbsp; 
 												
 											<a onclick="fn_notifyDelete(${noticeList.NOTICE_NUM})"> <input type="image"

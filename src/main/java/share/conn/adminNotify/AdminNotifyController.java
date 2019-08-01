@@ -1,6 +1,5 @@
 package share.conn.adminNotify;
 
-import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,8 +30,7 @@ public class AdminNotifyController {
 	private int blockPage = 5;
 	private String pagingHtml;
 	private Paging page;
-
-	
+		
 
 	@Resource(name = "adminNotifyService")
 	private AdminNotifyService adminNotifyService;
@@ -123,8 +121,9 @@ public class AdminNotifyController {
 	// 공지사항 등록
 	@RequestMapping(value = "/notify/adminInsertNotify.conn")
 	public ModelAndView insertNotice(CommandMap commandMap, HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("redirect:/admin/Notice/admin_notice");
-
+		ModelAndView mv = new ModelAndView("redirect:/notify/adminNotifyList.conn");
+		if(mv.getModel().get("NOTICE_IMG") == null)
+			commandMap.put("NOTICE_IMG", "NONE");
 		adminNotifyService.insertNotice(commandMap.getMap(), request);
 
 		return mv;
@@ -159,8 +158,10 @@ public class AdminNotifyController {
 	// 공지사항 수정
 	@RequestMapping(value = "notify/adminNotifyModify.conn")
 	public ModelAndView notifyModify(CommandMap commandMap, HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("redirect:/admin/Notice/admin_notice");
-
+		ModelAndView mv = new ModelAndView("redirect:/notify/adminNotifyList.conn");
+				if(mv.getModel().get("NOTICE_IMG") == null)
+			commandMap.put("NOTICE_IMG", "NONE");
+		
 		adminNotifyService.notifyModify(commandMap.getMap(), request);
 		mv.addObject("NOTICE_NUM", commandMap.get("NOTICE_NUM"));
 
@@ -170,7 +171,7 @@ public class AdminNotifyController {
 	// 공지사항 삭제
 	@RequestMapping(value = "/notify/adminDeleteNotify.conn")
 	public ModelAndView adminDeleteNotify(CommandMap commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView("redirect:/admin/Notice/admin_notice");
+		ModelAndView mv = new ModelAndView("redirect:/notify/adminNotifyList.conn");
 
 			adminNotifyService.notifyDelete(commandMap.getMap());
 

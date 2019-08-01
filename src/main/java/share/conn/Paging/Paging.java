@@ -61,15 +61,15 @@ public class Paging {
 				break;
 			}
 			if (i == currentPage) {
-				pagingHtml.append("<strong>");
+				pagingHtml.append("<li><a href='#' class='on'>");
 				pagingHtml.append(i);
-				pagingHtml.append("</strong>");
+				pagingHtml.append("</a></li>");
 			} else {
-				pagingHtml.append("<a class='page' href=" + dogName + "?currentPage=");
+				pagingHtml.append("<li><a class='page' href=" + dogName + "?currentPage=");
 				pagingHtml.append(i);
 				pagingHtml.append(">");
 				pagingHtml.append(i);
-				pagingHtml.append("</a>");
+				pagingHtml.append("</a></li>");
 			}
 		}
 
@@ -127,16 +127,16 @@ public class Paging {
 				break;
 			}
 			if (i == currentPage) {
-				pagingHtml.append("<strong>");
+				pagingHtml.append("<li><a href='#' class='on'>");
 				pagingHtml.append(i);
-				pagingHtml.append("</strong>");
+				pagingHtml.append("</a></li>");
 			} else {
-				pagingHtml.append("<a class='page' href=" + dogName + "?currentPage=" + i);
+				pagingHtml.append("<li><a class='page' href=" + dogName + "?currentPage=" + i);
 				if (isSearch != "")
 					pagingHtml.append("&isSearch=" + isSearch + "&searchNum=" + searchNum);
 				pagingHtml.append(">");
 				pagingHtml.append(i);
-				pagingHtml.append("</a>");
+				pagingHtml.append("</a></li>");
 			}
 		}
 		// 다음 block 페이지

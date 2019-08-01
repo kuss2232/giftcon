@@ -130,13 +130,13 @@ div.findGo a.btnTxt:hover {color: #2164bf;}
 /* 회원가입 */
 div.stepTitArea {width: 1100px; margin-bottom: 70px;}
 div.stepTitArea ul.stepBox {display: inline-block; overflow: hidden;}
-ul.stepBox li {float: left; padding: 23px 0 0 40px; height: 97px; border-top: 1px solid #ccc; border-right: 1px solid #ccc; border-bottom: 1px solid #ccc; border-left: none; box-sizing: border-box; position: relative;}
+ul.stepBox li {float: left; padding: 23px 0 0 0px; height: 97px; border-top: 1px solid #ccc; border-right: 1px solid #ccc; border-bottom: 1px solid #ccc; border-left: none; box-sizing: border-box; position: relative;}
 ul.stepBox li:first-child {border: 1px solid #ccc;}
-ul.stepBox li::before {content: ''; position: absolute; top: -1px; left: -2px !important; right: auto; width: 49px; height: 97px; background: url(../images/sub/bg_stepbox_off.png) no-repeat 0 0;}
+ul.stepBox li::before {content: ''; position: absolute; top: -1px; left: -2px !important; right: auto; width: 49px; height: 97px; background: url(/giftcon/images/bg_stepbox_off.png) no-repeat 0 0;}
 ul.stepBox li.on + li::before {content: ''; position: static; top: auto; bottom: auto; left: auto; right: auto;}
 ul.stepBox li.on {background: #2164bf; border: 1px solid #2164bf;}
-ul.stepBox li.on::before {content: ''; position: absolute; top: -1px; left: 49px; width: 49px; height: 97px; background: url(../images/sub/bg_stepboxBack_on.png) no-repeat 0 0;}
-ul.stepBox li.on:after {content: ''; position: absolute; top: -1px; right: -50px; width: 49px; height: 97px; background: url(../images/sub/bg_stepbox_on.png) no-repeat 0 0;}
+ul.stepBox li.on::before {content: ''; position: absolute; top: -1px; left: 49px; width: 49px; height: 97px; background: url(/giftcon/images/bg_stepboxBack_on.png) no-repeat 0 0;}
+ul.stepBox li.on:after {content: ''; position: absolute; top: -1px; right: -50px; width: 49px; height: 97px; background: url(/giftcon/images/bg_stepbox_on.png) no-repeat 0 0;}
 div.stepTitArea ul.stepBox li.step1::before,
 div.stepTitArea ul.stepBox li.on.step1::before {content: ''; position: static; top: auto; bottom: auto; left: auto; right: auto;}
 ul.stepBox li.on div.stepCont span.stNum,
@@ -148,8 +148,8 @@ ul.stepBox li.step4,
 ul.stepBox li.step5 {width: 220px;}
 div.stepCont {padding: 0 0 0 24px;}
 div.stepCont span.stNum {display: block; margin: 0 0 6px 0; font-size: 15px; color: #666;}
-div.stepCont span.stKind {font-size: 21px; font-weight: 600;}
-div.stepChoice {width: 1100px; margin-top: 80px; text-align: center;}
+div.stepCont span.stKind {font-size: 21px; font-weight: 600; }
+div.stepChoice {width: 1100px; margin-top: 80px; }
 div.stepChoice ul.joinChoice {display: inline-block; width: 440px;}
 div.stepChoice ul.joinChoice li {float: left; margin-right: 30px; width: 205px; height: 273px;}
 div.stepChoice ul.joinChoice li.last {margin-right: 0;}
@@ -196,8 +196,8 @@ div.agreeArea ul.checkList > li {padding-bottom: 2px;}
 
 div.centerBox {display: inline-block; margin: 30px 0 0 0; width: 1100px; text-align: center;}
 div.centerBox > span {display: inline-block; height: 150px;}
-div.centerBox span.icoPhoneCertify {width: 140px; background: url(../images/sub/ico_join.png) no-repeat 0 -895px;}
-div.centerBox span.icoJoinFinish {width: 126px; background: url(../images/sub/ico_join.png) no-repeat 0 -1095px;}
+div.centerBox span.icoPhoneCertify {width: 140px; background: url(/giftcon/images/email.png) no-repeat 0 -895px;}
+div.centerBox span.icoJoinFinish {width: 126px; background: url(/giftcon/images/email.png) no-repeat 0 -1095px;}
 div.centerBox p.tit {display: inline-block; margin-bottom: 10px; width: 1100px; font-size: 26px; font-weight: 600; color: #333; text-align: center;}
 div.centerBox p.welTxt {display: inline-block; margin-bottom: 30px; width: 1100px; font-size: 20px; font-weight: 500; color: #666; text-align: center;}
 div.centerBox p.welTxt span.point8 {font-weight: 600;  color: #2164bf;}
@@ -252,18 +252,18 @@ ul.mb40 {margin: 0 0 40px 0;}
 ul.mbNone {margin: 0;}
 ul.csTab li {display: inline-block; float: left; width: 366px; height: 54px; text-align: center; border-right: 1px solid #ccc;}
 ul.csTab li a {display: inline-block; margin-top: 12px; color: #888;}
-ul.csTab li a span.icoNotice {display: table-cell; background: url(../images/sub/ico_csCenter.png) no-repeat 0 -1163px; width: 24px; height: 32px;}
-ul.csTab li a span.icoFaq {display: table-cell; background: url(../images/sub/ico_csCenter.png) no-repeat 0 0; width: 24px; height: 31px;}
-ul.csTab li a span.icoOneAsk {display: table-cell; background: url(../images/sub/ico_csCenter.png) no-repeat 0 -162px; width: 34px; height: 31px;}
+ul.csTab li a span.icoNotice {display: table-cell; background: url(/giftcon/images/main/ico_csCenter2.png) no-repeat 0 -1163px; width: 24px; height: 32px;}
+ul.csTab li a span.icoFaq {display: table-cell; background: url(/giftcon/images/main/ico_csCenter2.png) no-repeat 0 0; width: 24px; height: 31px;}
+ul.csTab li a span.icoOneAsk {display: table-cell; background: url(/giftcon/images/main/ico_csCenter2.png) no-repeat 0 -162px; width: 34px; height: 31px;}
 ul.csTab li a em {display: table-cell; padding: 2px 0 0 10px; font-size: 22px; font-weight: 600; line-height: 26px; vertical-align: top;}
 ul.csTab li a.on,
 ul.csTab li a:hover{color: #2164bf;}
 ul.csTab li a.on span.icoNotice,
-ul.csTab li a:hover span.icoNotice {background: url(../images/sub/ico_csCenter.png) no-repeat 0 -1245px;}
+ul.csTab li a:hover span.icoNotice {background: url(/giftcon/images/main/ico_csCenter2.png) no-repeat 0 -1245px;}
 ul.csTab li a.on span.icoFaq,
-ul.csTab li a:hover span.icoFaq {background: url(../images/sub/ico_csCenter.png) no-repeat 0 -81px;}
+ul.csTab li a:hover span.icoFaq {background: url(/giftcon/images/main/ico_csCenter2.png) no-repeat 0 -81px;}
 ul.csTab li a.on span.icoOneAsk,
-ul.csTab li a:hover span.icoOneAsk {background: url(../images/sub/ico_csCenter.png) no-repeat 0 -243px;}
+ul.csTab li a:hover span.icoOneAsk {background: url(/giftcon/images/main/ico_csCenter2.png) no-repeat 0 -243px;}
 
 div.mySearch {display: inline-block; padding: 40px; width: 1020px; background: #f9f9f9;}
 div.mySearch div.timeSet {float: left; width: 442px; margin-right: 50px;}
@@ -273,8 +273,8 @@ div.timeSet a.on {border: 1px solid #2164bf; color: #2164bf;}
 div.mySearch div.iptDate {float: left;}
 div.iptDate > span {display: inline-block; width: 175px; height: 33px; background: #fff; border: 1px solid #ddd; position: relative;}
 div.iptDate > span > input {display: inline-block; padding: 8px; font-size: 13px; color: #333; border: none;}
-div.iptDate > span a.btnCalendar {width: 24px; height: 23px; position: absolute; top: 5px; right: 3px; background: url(../images/sub/ico_csCenter.png) no-repeat 0 -1090px; text-indent: -8000em;}
-div.iptDate a.btnSearch {display: inline-block; margin-left: 5px; width: 37px; height: 35px; background: url(../images/sub/ico_csCenter.png) no-repeat 0 -401px; vertical-align: top; text-indent: -9010em;}
+div.iptDate > span a.btnCalendar {width: 24px; height: 23px; position: absolute; top: 5px; right: 3px; background: url(/giftcon/images/main/ico_csCenter.png) no-repeat 0 -1090px; text-indent: -8000em;}
+div.iptDate a.btnSearch {display: inline-block; margin-left: 5px; width: 37px; height: 35px; background: url(/giftcon/images/main/ico_csCenter.png) no-repeat 0 -401px; vertical-align: top; text-indent: -9010em;}
 
 div.askList {margin-top: 45px;}
 div.askList > p {float: right; font-size: 15px; font-weight: 600; color: #2164bf;}
@@ -287,24 +287,24 @@ ul.myAskList li > a span.txtCate {width: 132px; text-align: center; border-right
 ul.myAskList li > a span.tit {padding: 0 20px; width: 842px; border-right: 1px solid #e9e9e9;}
 ul.myAskList li > a span.faqTit {width: 1038px;}
 ul.myAskList li > a span.txtState {width: 124px; padding-left: 26px; font-weight: 600; position: relative;}
-ul.myAskList li > a span.txtState em {display: inline-block; width: 16px; height: 8px; background: url(../images/sub/ico_csCenter.png) no-repeat 0 -486px; text-indent: -9200em; position: absolute; top: 20px; right: 26px;}
-ul.myAskList li > a span.icoView {display: inline-block; width: 16px; height: 8px; background: url(../images/sub/ico_csCenter.png) no-repeat 0 -486px; text-indent: -9200em; position: absolute; top: 20px; right: 26px;}
-ul.myAskList li.on > a span.icoView {display: inline-block; width: 16px; height: 8px; background: url(../images/sub/ico_csCenter.png) no-repeat 0 -544px; text-indent: -9200em; position: absolute; top: 20px; right: 26px;}
+ul.myAskList li > a span.txtState em {display: inline-block; width: 16px; height: 8px; background: url(/giftcon/images/main/ico_csCenter.png) no-repeat 0 -486px; text-indent: -9200em; position: absolute; top: 20px; right: 26px;}
+ul.myAskList li > a span.icoView {display: inline-block; width: 16px; height: 8px; background: url(/giftcon/images/main/ico_csCenter.png) no-repeat 0 -486px; text-indent: -9200em; position: absolute; top: 20px; right: 26px;}
+ul.myAskList li.on > a span.icoView {display: inline-block; width: 16px; height: 8px; background: url(/giftcon/images/main/ico_csCenter.png) no-repeat 0 -544px; text-indent: -9200em; position: absolute; top: 20px; right: 26px;}
 
 ul.myAskList li.on > a {background: #ecf3fb;}
 ul.myAskList li.on > a span.txtState {color: #2164bf;}
-ul.myAskList li.on > a span.txtState em {background: url(../images/sub/ico_csCenter.png) no-repeat 0 -544px;}
+ul.myAskList li.on > a span.txtState em {background: url(/giftcon/images/main/ico_csCenter.png) no-repeat 0 -544px;}
 
 ul.myAskList li.on div.view {display: block; padding: 30px 20px; width: 1100px; background: #fff; box-sizing: border-box; border: 1px solid #2164bf;}
 ul.myAskList li.on div.view p.txtDate {padding: 0 0 10px 133px; font-size: 13px; font-weight: 600; color: #2164bf;}
 ul.myAskList li.on div.view p.txtCont {padding: 0 0 30px 133px; font-size: 13px; color: #666; border-bottom: 1px dashed #a6c1e5;}
 ul.myAskList li.on div.view div.answerBox {display: inline-block; padding: 30px 0 0 133px;}
-ul.myAskList li.on div.view div.answerBox span.icoAnswer {display: inline-block; margin-right: 10px; float:left; width: 22px; height: 22px; background: url(../images/sub/ico_csCenter.png) no-repeat 0 -602px; text-indent: -9100em;}
+ul.myAskList li.on div.view div.answerBox span.icoAnswer {display: inline-block; margin-right: 10px; float:left; width: 22px; height: 22px; background: url(/giftcon/images/main/ico_csCenter.png) no-repeat 0 -602px; text-indent: -9100em;}
 ul.myAskList li.on div.view div.answerBox > p {float: left; width: 864px; font-size: 13px; color: #666; line-height: 18px;}
-ul.myAskList li a span.icoQuestion {display: inline-block; float:left; margin: 13px 10px 0 30px; width: 22px; height: 22px; background: url(../images/sub/ico_csCenter.png) no-repeat 0 -1018px; text-indent: -9100em;}
+ul.myAskList li a span.icoQuestion {display: inline-block; float:left; margin: 13px 10px 0 30px; width: 22px; height: 22px; background: url(/giftcon/images/main/ico_csCenter.png) no-repeat 0 -1018px; text-indent: -9100em;}
 
 ul.myAskList li.on div.faqView {display: inline-block; padding: 30px; width: 1100px; background: #fff; box-sizing: border-box; border: 1px solid #2164bf; vertical-align: top;}
-ul.myAskList li.on div.faqView span.icoAnswer {display: inline-block; margin-right: 10px; float:left; width: 22px; height: 22px; background: url(../images/sub/ico_csCenter.png) no-repeat 0 -602px; text-indent: -9100em;}
+ul.myAskList li.on div.faqView span.icoAnswer {display: inline-block; margin-right: 10px; float:left; width: 22px; height: 22px; background: url(/giftcon/images/main/ico_csCenter.png) no-repeat 0 -602px; text-indent: -9100em;}
 ul.myAskList li.on div.faqView > p {float: left; width: 1006px; font-size: 13px; color: #666; line-height: 18px;}
 
 div.paginate {margin: 70px 0 0 0; width: 1100px; text-align: center;}
@@ -315,10 +315,10 @@ div.paginate ul.numList li > a {display: block; width: 42px; height: 38px; box-s
 div.paginate ul.numList li > a.on,
 div.paginate ul.numList li > a:hover {color: #2164bf; border: 1px solid #2164bf;}
 
-div.paginate > div.first a {background: url(../images/sub/ico_csCenter.png) no-repeat 0 -674px;}
-div.paginate > div.prev a {background: url(../images/sub/ico_csCenter.png) no-repeat 0 -760px;}
-div.paginate > div.next a {background: url(../images/sub/ico_csCenter.png) no-repeat 0 -846px;}
-div.paginate > div.last a {background: url(../images/sub/ico_csCenter.png) no-repeat 0 -932px;}
+div.paginate > div.first a {background: url(/giftcon/images/main/ico_csCenter.png) no-repeat 0 -674px;}
+div.paginate > div.prev a {background: url(/giftcon/images/main/ico_csCenter.png) no-repeat 0 -760px;}
+div.paginate > div.next a {background: url(/giftcon/images/main/ico_csCenter.png) no-repeat 0 -846px;}
+div.paginate > div.last a {background: url(/giftcon/images/main/ico_csCenter.png) no-repeat 0 -932px;}
 div.paginate > div > a {display: block; width: 42px; height: 38px; box-sizing: border-box; border: 1px solid #ddd; overflow: hidden; text-indent: -8999em;}
 div.paginate > div > a:hover {border: 1px solid #2164bf;}
 
@@ -415,7 +415,8 @@ div.featureArea p.mb95 {margin-bottom: 95px;}
 div.csArea {display: inline-block; margin-top: 20px; width: 1100px;}
 div.csArea div.csBox {margin:0; padding: 20px; width: 1058px;; border: 1px solid #e9e9e9;}
 div.csBox div.csCenter {display: inline-block; padding: 7px 0 0 10px; width: 520px;}
-div.csCenter span.icoCs {float: left; display: inline-block; margin-right: 25px; width: 60px; height: 84px; background: url(../images/sub/ico_csCenter2.png) no-repeat 0 0;}
+div.csCenter span.icoCs {float: left; display: inline-block; margin-right: 25px; width: 60px; height: 84px; background: url(../images/sub/
+Center2.png) no-repeat 0 0;}
 div.csCenter div.textBox {float: left;}
 div.textBox span.tit {display: inline-block; margin: 10px 0 8px 0; font-size: 16px; font-weight: 600; color: #333;}
 div.textBox > p {width: 435px;}
@@ -625,7 +626,7 @@ p.sendSetting span.writeBox span.byteNum {font-size: 13px; font-weight: 600; col
 p.sendSetting span.sendItem {display: inline-block; margin-right: 50px; font-size: 16px; color: #333;}
 p.sendSetting span.sendItem span.sendRes {display: inline-block; margin-left: 6px; height: 39px;}
 p.sendSetting span.sendItem span.sendRes span.sendAlign {display: inline-block; margin-right: 7px; position: relative;}
-p.sendSetting span.sendItem span.sendRes span.sendAlign a.btnCalendar {width: 24px; height: 23px; position: absolute; top: 7px; right: 7px; background: url(../images/sub/ico_csCenter.png) no-repeat 0 -1090px; text-indent: -8000em;}
+p.sendSetting span.sendItem span.sendRes span.sendAlign a.btnCalendar {width: 24px; height: 23px; position: absolute; top: 7px; right: 7px; background: url(/giftcon/images/ico_csCenter.png) no-repeat 0 -1090px; text-indent: -8000em;}
 p.sendSetting span.sendItem span.sendRes select.resSelect {display: inline-block; margin-right: 4px; width: 100px; height: 39px; border: 1px solid #ccc; vertical-align: top;}
 div.stepArea div.payWrite {display: inline-block; margin: 0 0 15px 0;}
 div.payWrite p.paySetting {display: inline-block; padding-bottom: 20px; width: 1100px; border-bottom: 1px solid #e9e9e9;}
@@ -792,7 +793,7 @@ div.searchArea > div > label.txtNone {display: inline-block; float: left; margin
 div.searchArea > div > p {display: inline-block; float: left; width: 345px; font-size: 13px; color: #666;}
 div.searchArea > div > p > span.iptCal {display: inline-block; width: 161px; height: 33px; background: #fff; border: 1px solid #ddd; position: relative;}
 div.searchArea > div > p > span.iptCal > input[type="text"] {display: inline-block; padding: 8px; border: none; font-size: 14px;}
-div.searchArea > div > p > span.iptCal > a.btnCalendar {width: 24px; height: 23px; position: absolute; top: 5px; right: 3px; background: url(../images/sub/ico_csCenter.png) no-repeat 0 -1090px; text-indent: -8100em;}
+div.searchArea > div > p > span.iptCal > a.btnCalendar {width: 24px; height: 23px; position: absolute; top: 5px; right: 3px; background: url(/giftcon/images/ico_csCenter.png) no-repeat 0 -1090px; text-indent: -8100em;}
 div.searchArea >  div > p > select {display: inline-block; padding-left: 10px; width: 340px; height: 35px; border: 1px solid #ddd;}
 div.searchArea >  div > p > a.dateTxt {display: inline-block; width: 109px; height: 33px; line-height: 32px; font-size: 15px; font-weight: 600; color: #888; text-align: center; background: #fff; border: 1px solid #ddd;}
 div.searchArea >  div > p > a.dateTxt:hover,
@@ -1201,7 +1202,7 @@ div.searchBox01 span.date {display: inline-block; margin-right: 28px;}
 div.searchBox01 span.date > input[type="text"] {display: inline-block; padding: 8px; width: 170px; height: 35px; border: 1px solid #ddd;}
 div.searchBox01 span.iptCal {display: inline-block; margin-right: 30px; width: 161px; height: 33px; background: #fff; border: 1px solid #ddd; position: relative;}
 div.searchBox01 span.iptCal > input[type="text"] {display: inline-block; padding: 8px; border: none;}
-div.searchBox01 span.iptCal > a.btnCalendar {width: 24px; height: 23px; position: absolute; top: 5px; right: 3px; background: url(../images/sub/ico_csCenter.png) no-repeat 0 -1090px; text-indent: -8100em;}
+div.searchBox01 span.iptCal > a.btnCalendar {width: 24px; height: 23px; position: absolute; top: 5px; right: 3px; background: url(/giftcon/images/ico_csCenter.png) no-repeat 0 -1090px; text-indent: -8100em;}
 
 div.formBox {display: inline-block; width: 660px;}
 div.formBox h2.tit {margin-bottom: 15px; width: 660px; padding: 20px; font-size: 20px; font-weight:600; color:#333; text-align:center; border:1px solid #444;}

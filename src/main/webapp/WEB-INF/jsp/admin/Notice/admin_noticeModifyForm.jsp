@@ -33,25 +33,26 @@
 	<div class="panel panel-default">
 		<div class="panel-heading">공지사항 수정 페이지입니다.</div>
 		<div class="panel-body">
-			<form:form id="adminNoticeDetail" action="admin_noticeModifyForm"
+			<form:form id="notifyDetail" action="adminNotifyModify.conn"
 				method="post" name="joinform" onsubmit="return joinValidation(this)"
 				enctype="multipart/form-data">
 				<input type="hidden" id="NOTICE_NUM" name="NOTICE_NUM"
-					value="${noticeDetail.NOTICE_NUM}">
+					value="${notifyDetail.NOTICE_NUM}">
 				<div class="form-group">
 					<label>제목</label> <input type="text" class="form-control"
 						id="NOTICE_TITLE" name="NOTICE_TITLE"
-						value="${noticeDetail.NOTICE_TITLE}" style="width: 500px;" />
+						value="${notifyDetail.NOTICE_TITLE}" style="width: 500px;" />
 				</div>
+				</br>
 				<div class="form-group">
-					<label>내용</label> <input type="text" class="form-control"
+					<label>내용</label> <textarea rows="20"  class="form-control"
 						id="NOTICE_CNT" name="NOTICE_CNT"
-						value="${noticeDetail.NOTICE_CNT}" style="width: 500px;" /> <br />
+						style="width: 500px;">${notifyDetail.NOTICE_CNT}</textarea><br />
 					 <br />
 								</div>
 				<div class="form-group">
 					<label>등록일자</label>
-					<fmt:formatDate value="${noticeDetail.NOTICE_REGDATE}"
+					<fmt:formatDate value="${notifyDetail.NOTICE_REGDATE}"
 						pattern="YY.MM.dd" />
 				</div>
 				<button type="submit" class="btn btn-success">수정</button>
