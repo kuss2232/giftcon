@@ -8,8 +8,9 @@
 	<link rel="stylesheet" type="text/css" href="/giftcon/css/jquery/swiper.min.css">
 	<link rel="stylesheet" type="text/css" href="/giftcon/css/jquery/jquery-ui.css">
 	<link rel="stylesheet" type="text/css" href="/giftcon/css/main.css">
-	<script src="/giftcon/css/jquery/jquery-1.12.4.min.js"></script>
 </head>	
+<%@ include file="/WEB-INF/include-header.jspf" %>
+<%@ include file="/WEB-INF/include-body.jspf" %>
 <body>
 	<div id="container">
 		<div class="contents">
@@ -142,7 +143,7 @@ function viewSubMenu() {
 					<!-- /end:join_info -->
 					
 					<div class="btns">
-						<a href="#" onclick="fn_insert()" id="btnJoin" class="btnBigBgBlue2 w227">회원가입</a>
+						<a href="#" onClick="fn_insert()" id="btnJoin" class="btnBigBgBlue2 w227">회원가입</a>
 					</div>
 					<div>
 </div>
@@ -195,19 +196,20 @@ function fn_checkId() {
 			}
 		})
 	}
-	function fn_insert(){
-		var comSubmit = new ComSubmit(); 
-		comSubmit.setUrl("<c:url value='/joinComplete.conn' />");
-		comSubmit.addParam("MEMBER_ID", $("#userId").val());
-		comSubmit.addParam("MEMBER_PASSWD", $("#userPwd").val());
-		comSubmit.addParam("MEMBER_EMAIL", $("#emailId").val());
-		comSubmit.addParam("MEMBER_PHONE", $("#mobile").val());
-		comSubmit.addParam("MEMBER_NAME", $("#userName").val());
-		comSubmit.submit(); 
-	}
+	
 	/* var comSubmit = new ComSubmit("joinFrm");
 	comSubmit.setUrl("/giftcon/checkId.conn");
 	comSubmit.submit(); */
+}
+function fn_insert(){
+	var comSubmit = new ComSubmit(); 
+	comSubmit.setUrl("<c:url value='/joinComplete.conn' />");
+	comSubmit.addParam("MEMBER_ID", $("#userId").val());
+	comSubmit.addParam("MEMBER_PASSWD", $("#userPwd").val());
+	comSubmit.addParam("MEMBER_EMAIL", $("#emailId").val());
+	comSubmit.addParam("MEMBER_PHONE", $("#mobile").val());
+	comSubmit.addParam("MEMBER_NAME", $("#userName").val());
+	comSubmit.submit(); 
 }
 </script>
 </body>
