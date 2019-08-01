@@ -34,20 +34,33 @@ public class JoinController {
 
 	@Resource(name="joinService")
 	private JoinService joinService;
+	
 
+	@RequestMapping(value="/joinStepComplete.conn")
+	public ModelAndView joinStep4() {
+	ModelAndView mv = new ModelAndView();
+		mv.setViewName("/join/joinStep4");
+		return mv;
+	}
 	@RequestMapping(value="/joinStep1.conn")
 	public ModelAndView joinStep1() {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("/join/joinStep1");
 		return mv;
 	}
+	@RequestMapping(value="/joinStep2.conn")
+	public ModelAndView joinStep2() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("/join/joinStep2");
+		return mv;
+	}
 
-	@RequestMapping(value="/joinStep1/modal_email.conn")
+	@RequestMapping(value="/joinStep2-1.conn")
 	public ModelAndView modal_email() {
 		ModelAndView mv = new ModelAndView("/join/modal_email");
 		return mv;
 	}
-	@RequestMapping(value="/joinStep2.conn")
+	@RequestMapping(value="/joinStep3")
 	public ModelAndView joinStep2(HttpSession session, HttpServletRequest request, HttpServletResponse response, CommandMap Map) {
 
 		ModelAndView mv = new ModelAndView();
@@ -55,10 +68,11 @@ public class JoinController {
 		String emailId = request.getParameter("MEMBER_EMAIL");
 		System.out.println(emailId);
 		mv.addObject("MEMBER_EMAIL",emailId);
-		mv.setViewName("/join/joinStep2");
+		mv.setViewName("/join/joinStep3");
 		//session.setAttribute("emailId",emailId);
 		return mv;
 	}
+
 
 	@RequestMapping(value="/checkId.conn")
 	@ResponseBody
@@ -182,11 +196,10 @@ public class JoinController {
 	@RequestMapping(value="/joinComplete.conn", method=RequestMethod.POST)
 	public ModelAndView joinComplete(CommandMap commandMap, HttpServletRequest request) throws Exception{
 		ModelAndView mv = new ModelAndView();
-		String MEMBER_EMAIL = request.getParameter("MEMBER_EMAIL");
-		Map<String, Object> memberMap = new HashMap<String, Object>();
-		commandMap.getMap().put("MEMBER_EMAIL", MEMBER_EMAIL);
-		memberMap=commandMap.getMap();
-		joinService.insertMember(memberMap, request);
+		String paramId = request.getParameter("MEMBER_ID");
+		if( joinService.checkId(paramId) < 1) {
+			joinService.insertMember(commandMap.getMap());
+		}
 		mv.setViewName("/join/joinComplete");
 		return mv;
 	}
