@@ -15,9 +15,9 @@ div.paginate > div > a.disabled:hover {border: 1px solid #ddd;}
 <link rel="stylesheet" type="text/css" href="/giftcon/css/sub.css">
 
 <!-- jQuery -->
-<script src="/giftcon/js/jquery/jquery-1.12.4.min.js"></script>
-<script type="text/javascript" src="/giftcon/js/common.js"></script>
-<script type="text/javascript" src="/giftcon/js/gnb.js"></script>
+<script src="/giftcon/css/jquery/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="/giftcon/css/common.js"></script>
+<script type="text/javascript" src="/giftcon/css/gnb.js"></script>
 <script>
 function refreshFAQ(){
 	location.href="/giftcon/FAQ.conn";
