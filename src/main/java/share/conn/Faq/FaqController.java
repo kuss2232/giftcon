@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -52,7 +51,7 @@ public class FaqController {
 			faqlist = faqService.searchList(commandMap.getMap(), searchkeyword);
 
 			totalCount = faqlist.size();
-			page = new Paging(currentPage, totalCount, blockCount, blockPage, "noticeList", searchNum, searchkeyword);
+			page = new Paging(currentPage, totalCount, blockCount, blockPage, "/giftcon/FAQ.conn", searchNum, searchkeyword);
 			pagingHtml = page.getPagingHtml().toString();
 
 			int lastCount = totalCount;
@@ -74,7 +73,7 @@ public class FaqController {
 		} else {
 			totalCount = faqlist.size();
 
-			page = new Paging(currentPage, totalCount, blockCount, blockPage, "faqlist");
+			page = new Paging(currentPage, totalCount, blockCount, blockPage, "/giftcon/FAQ.conn");
 			pagingHtml = page.getPagingHtml().toString();
 
 			int lastCount = totalCount;

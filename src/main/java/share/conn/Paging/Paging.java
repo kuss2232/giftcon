@@ -16,11 +16,11 @@ public class Paging {
 
 	// 페이징 생성자
 	public Paging(int currentPage, int totalCount, int blockCount, int blockPage, String dogName) {
-		
-		this.blockCount = blockCount;	//10
-		this.blockPage = blockPage;		//5
-		this.currentPage = currentPage;	//1
-		this.totalCount = totalCount;	//13
+
+		this.blockCount = blockCount;
+		this.blockPage = blockPage;
+		this.currentPage = currentPage;
+		this.totalCount = totalCount;
 		this.dogName = dogName;
 
 		// 전체 페이지 수
@@ -50,7 +50,7 @@ public class Paging {
 		// 이전 block 페이지
 		pagingHtml = new StringBuffer();
 		if (currentPage > blockPage) {
-			pagingHtml.append("<a class='page prv' href=" + dogName + ".conn?currentPage=" + (startPage - 1) + ">");
+			pagingHtml.append("<a class='page prv' href=" + dogName + "?currentPage=" + (startPage - 1) + ">");
 			pagingHtml.append("&lt;");
 			pagingHtml.append("</a>");
 		}
@@ -61,22 +61,21 @@ public class Paging {
 				break;
 			}
 			if (i == currentPage) {
-				pagingHtml.append("<strong>");
-				
+				pagingHtml.append("<li><a href='#' class='on'>");
 				pagingHtml.append(i);
-				pagingHtml.append("</strong>");
+				pagingHtml.append("</a></li>");
 			} else {
-				pagingHtml.append("<a class='page' href=" + dogName + ".conn?currentPage=");
+				pagingHtml.append("<li><a class='page' href=" + dogName + "?currentPage=");
 				pagingHtml.append(i);
 				pagingHtml.append(">");
 				pagingHtml.append(i);
-				pagingHtml.append("</a>");
+				pagingHtml.append("</a></li>");
 			}
 		}
 
 		// 다음 block 페이지
 		if (totalPage - startPage >= blockPage) {
-			pagingHtml.append("<a class='page next' href=" + dogName + ".conn?currentPage=" + (endPage + 1) + ">");
+			pagingHtml.append("<a class='page next' href=" + dogName + "?currentPage=" + (endPage + 1) + ">");
 			pagingHtml.append("&gt;");
 			pagingHtml.append("</a>");
 		}
@@ -90,7 +89,7 @@ public class Paging {
 		this.blockPage = blockPage;
 		this.currentPage = currentPage;
 		this.totalCount = totalCount;
-		
+
 		totalPage = (int) Math.ceil((double) totalCount / blockCount);
 		if (totalPage == 0) {
 			totalPage = 1;
@@ -114,10 +113,10 @@ public class Paging {
 		pagingHtml = new StringBuffer();
 		if (currentPage > blockPage) {
 			if (isSearch != "")
-				pagingHtml.append("<a class='page prv' href=" + dogName + ".conn?currentPage=" + (startPage - 1)
+				pagingHtml.append("<a class='page prv' href=" + dogName + "?currentPage=" + (startPage - 1)
 						+ "&searchNum=" + searchNum + "&isSearch=" + isSearch + ">");
 			else
-				pagingHtml.append("<a class='page prv' href=" + dogName + ".conn?currentPage=" + (startPage - 1) + ">");
+				pagingHtml.append("<a class='page prv' href=" + dogName + "?currentPage=" + (startPage - 1) + ">");
 			pagingHtml.append("&lt;");
 			pagingHtml.append("</a>");
 		}
@@ -128,21 +127,21 @@ public class Paging {
 				break;
 			}
 			if (i == currentPage) {
-				pagingHtml.append("<strong>");
+				pagingHtml.append("<li><a href='#' class='on'>");
 				pagingHtml.append(i);
-				pagingHtml.append("</strong>");
+				pagingHtml.append("</a></li>");
 			} else {
-				pagingHtml.append("<a class='page' href=" + dogName + ".conn?currentPage=" + i);
+				pagingHtml.append("<li><a class='page' href=" + dogName + "?currentPage=" + i);
 				if (isSearch != "")
 					pagingHtml.append("&isSearch=" + isSearch + "&searchNum=" + searchNum);
 				pagingHtml.append(">");
 				pagingHtml.append(i);
-				pagingHtml.append("</a>");
+				pagingHtml.append("</a></li>");
 			}
 		}
 		// 다음 block 페이지
 		if (totalPage - startPage >= blockPage) {
-			pagingHtml.append("<a class='page next' href=" + dogName + ".conn?currentPage=" + (endPage + 1));
+			pagingHtml.append("<a class='page next' href=" + dogName + "?currentPage=" + (endPage + 1));
 			if (isSearch != "")
 				pagingHtml.append("&isSearch=" + isSearch + "&searchNum=" + searchNum);
 			pagingHtml.append(">");

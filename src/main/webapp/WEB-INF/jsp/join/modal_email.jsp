@@ -79,11 +79,9 @@ $(document).ready(function(){
 						} else if (code.value != data.value) {
 							alert("인증번호가 맞지 않습니다.");
 						} else {
-							alert("인증번호가 맞습니다.");
 							var comSubmit = new ComSubmit(); 
-							comSubmit.setUrl("<c:url value='/joinStep2.conn' />");
+							comSubmit.setUrl("<c:url value='/joinStep3.conn' />");
 							comSubmit.addParam("MEMBER_EMAIL", emailId);
-							alert(emailId);
 							comSubmit.submit(); 
 						}
 					} else {

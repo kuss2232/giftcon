@@ -17,9 +17,6 @@ div.paginate > div > a.disabled:hover {border: 1px solid #ddd;}
 
 
 <!-- jQuery -->
-<script type="text/javascript" src="https://www.google-analytics.com/analytics.js"></script>
-<script type="text/javascript" async="" src="https://www.googleadservices.com/pagead/conversion_async.js"></script>
-
 <script src="/giftcon/js/jquery/jquery-1.12.4.min.js"></script>
 <script src="/giftcon/js/jquery/jquery-migrate-1.4.1.min.js"></script>
 <script src="/giftcon/js/jquery/jquery.blockUI.js"></script>
@@ -46,9 +43,6 @@ div.paginate > div > a.disabled:hover {border: 1px solid #ddd;}
 <body>
 <div id="container">
 		<div class="contents">
-<style>
-div.depthArea {position:relative;z-index:2}
-</style>
 
 			<!-- start:contents -->
 			<div class="subWrap">

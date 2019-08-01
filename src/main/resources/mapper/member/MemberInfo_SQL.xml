@@ -13,17 +13,15 @@
 	
 	<!-- 회원가입 -->
 	<insert id="joinMember" parameterType="hashmap" useGeneratedKeys="true" keyProperty="MEMBER_NUM">
-		<selectKey keyProperty="MEMBER_NUM" resultType="integer" order="BEFORE">
+	<selectKey keyProperty="MEMBER_NUM" resultType="string" order="BEFORE">
 			SELECT MEMBER_NUM_SEQ.NEXTVAL FROM DUAL
-		</selectKey>
-		<![CDATA[
+	</selectKey>
+	<![CDATA[
 		INSERT 
 		INTO MEMBER( 
 			 MEMBER_NUM,
 			 MEMBER_ID,
 			 MEMBER_NAME,
-			 MEMBER_JUMIN1, 
-			 MEMBER_JUMIN2,
 			 MEMBER_EMAIL,
 			 MEMBER_PASSWD,
 			 MEMBER_PHONE,
@@ -32,14 +30,12 @@
 			#{MEMBER_NUM},
 			#{MEMBER_ID},
 			#{MEMBER_NAME},
-			#{MEMBER_JUMIN1},
-			#{MEMBER_JUMIN2},
 			#{MEMBER_EMAIL},
 			#{MEMBER_PASSWD},
 			#{MEMBER_PHONE},
 			SYSDATE
 		)
-]]>
+	]]>
 </insert>
 
 <!-- 아이디찾기 -->

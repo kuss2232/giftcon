@@ -16,12 +16,10 @@ div.paginate > div > a.disabled:hover {border: 1px solid #ddd;}
 <link rel="stylesheet" type="text/css" href="/giftcon/css/sub.css">
 
 <!-- jQuery -->
-<script src="/giftcon/js/jquery/jquery-1.12.4.min.js"></script>
-<script type="text/javascript" src="/giftcon/js/common.js"></script>
-<script type="text/javascript" src="/giftcon/js/gnb.js"></script>
+<script src="/giftcon/css/jquery/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="/giftcon/css/common.js"></script>
+<script type="text/javascript" src="/giftcon/css/gnb.js"></script>
 
-<!-- Criteo Script -->
-<script type="text/javascript" src="//static.criteo.net/js/ld/ld.js" async="true"></script>
 <body>
 
 <!-- start:wrap -->
@@ -83,12 +81,7 @@ div.paginate > div > a.disabled:hover {border: 1px solid #ddd;}
 					<!-- /end:ask_list -->
 					<div>
 </div></form>
-					<div class="paginate">
-						<div class="first"><a class="disabled">처음페이지</a></div><div class="prev"><a class="disabled">이전페이지</a></div>
-						<ul class="numList"><li><a href="#" onclick="goList(1); return false;" class="on">1</a></li></ul>
-						<div class="next"><a class="disabled">다음페이지</a></div>
-						<div class="last"><a class="disabled">마지막페이지</a></div>
-					</div>
+					<div class="paginate"><ul class="numList">${pagingHtml}</ul></div>
 				</div>
 			</div>
 			<!-- /end:contents -->
@@ -99,13 +92,6 @@ div.paginate > div > a.disabled:hover {border: 1px solid #ddd;}
 <!--/end:wrap -->
 
 <script type="text/javascript">
-function goList(pageNo) {
-	var form = document.qnaFrm;
-	form.pageNo.value = pageNo;
-	form.target = "_self";
-	form.action = "/bbs/qnaList.do";
-	form.submit();
-}
 
 $(".askList .myAskList .qnaTit").click(function(){
 	$(".askList .myAskList .qnaView").slideUp(200);

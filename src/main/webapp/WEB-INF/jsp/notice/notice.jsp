@@ -14,7 +14,7 @@ div.paging > div > a.disabled:hover {border: 1px solid #ddd;}
 <link rel="stylesheet" type="text/css" href="/giftcon/css/common.css">
 <link rel="stylesheet" type="text/css" href="/giftcon/css/jquery/swiper.min.css">
 <link rel="stylesheet" type="text/css" href="/giftcon/css/sub.css">
-
+<script type="text/javascript" src="/giftcon/css/jquery/swiper.min.js"></script>
 </head>
 <body>
 
@@ -37,7 +37,7 @@ div.paging > div > a.disabled:hover {border: 1px solid #ddd;}
 					<!-- /end:csTab -->
 					<!-- start:sub_title -->
 					<form id="bbsFrm" name="bbsFrm" action="/giftcon/notice.conn" method="GET">
-						<input type="hidden" name="currentPage">
+						<input type="hidden" id="currentPage" name="currentPage">
 					<div class="subTit">[공지사항] 쉐어콘 서비스의 새로운 소식을 알려드립니다!
 						<div class="noticeSearch" align="right">
 								<select class="btn"name="SearchNum" id="SearchNum">
@@ -84,7 +84,9 @@ div.paging > div > a.disabled:hover {border: 1px solid #ddd;}
 						</tbody>
 					</table>
 					<!-- /end:contents -->
-					<div class="paging" align="center"><div class="page"><a class="disabled">${pagingHtml}</a></div></div>
+					<div>
+					<div class="paginate"><ul class="numList">${pagingHtml}</ul></div>
+					</div>
 				</div>
 			</div>
 			<!-- /end:contents -->
@@ -94,28 +96,7 @@ div.paging > div > a.disabled:hover {border: 1px solid #ddd;}
 
 </div>
 <!--/end:wrap -->
-<script type="text/javascript">
-$(document).ready(function() {
-	$("a[name='title']").on("click", function(e) { //상세보기
-		e.preventDefault();
-		fn_Detail($(this));
-	});
-});
-function fn_Detail(obj) {
-	var comSubmit = new ComSubmit();
-	comSubmit.setUrl("<c:url value='/noticedetail.conn' />");
-	comSubmit.addParam("NOTICE_NUM", obj.parent().find("#NOTICE_NUM")
-			.val());
-	comSubmit.submit();
-}
-function goList(pageNum) {
-	var form = document.bbsFrm;
-	form.pageNum.value = pageNum;
-	form.target = "_self";
-	form.action = "/giftcon/notice.conn";
-	form.submit();
-}
-</script>
+
 </body>
 </html>
 <%@include file="../module/footer.jsp"%>
