@@ -63,6 +63,6 @@ public class AdminMemberServiceImpl implements AdminMemberService {
 	// 회원 상태로 검색
 	@Override
 	public List<Map<String, Object>> searchMemberState(Map<String, Object> map) throws Exception {
-		return adminMemberDAO.searchMemberEmail(map);
+		return adminMemberDAO.searchMemberState(map);
 	}
 }

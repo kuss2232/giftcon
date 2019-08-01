@@ -7,12 +7,7 @@
 <head>
 <script type="text/javascript">
 	function delchk() {
-		if(confirm("삭제하시겠습니까?") == true) {
-			location.href="${viewURL2}";
-			alert("삭제되었습니다.");
-		} else {
-			alert("삭제가 취소되었습니다.");
-		}
+		return confirm("삭제하시겠습니까?");
 	}
 </script>
 <style type="text/css">
@@ -60,14 +55,15 @@
 </div>
 <div class="row">
 	<div class="panel panel-default">
-		<div class="panel-heading"> 회원목록페이지 검색, 수정, 삭제 기능하는 페이지입니다. <br/>
-                         (※상태=0 : 이메일 미인증, 상태=1 : 이메일 인증완료, 상태=2 : 탈퇴한 회원) </div>
+		<div class="panel-heading">회원목록페이지 검색, 수정, 삭제 기능하는 페이지입니다. </div>
 		<div class="panel-body">
 			<div class="dataTable_wrapper">
 				<div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
 					<div class="row" style="margin-bottom: 5px;">
 						<div class="col-sm-6">
-                        <button type="button" class="btn btn-outline btn-default" onclick="location.href='/giftcon/member/adminMemberList.conn'">전체</button>
+						<a href="/MODA/member/adminMemberList">
+                        <button type="button" class="btn btn-outline btn-default">전체</button>
+                        </a>
 						</div>
 						<div class="col-sm-6" style="text-align: right;">
 							<div class="dataTables_info" id="dataTables-example_info" role="status" aria-live="polite">총 회원수 : ${totalCount}</div>
@@ -90,26 +86,26 @@
 								</thead>
 								<tbody>
 									<c:forEach var="memberList" items="${memberList}" varStatus="stat">
-										<c:url var="viewURL" value="/member/adminMemberDetail.conn">
-											<c:param name="MEMBER_NUM" value="${memberList.MEMBER_NUM}" />
+										<c:url var="viewURL" value="/member/adminMemberDetail">
+											<c:param name="MEMBER_NUMBER" value="${memberList.MEMBER_NUMBER }" />
 										</c:url>
 										<tr class="gradeA even" role="row">
 											<td style="text-align:center;vertical-align:middle;"><a href="${viewURL3}">${memberList.MEMBER_NUM}</a></td>
-											<td style="text-align:center;vertical-align:middle;">${memberList.MEMBER_ID}</td>
-											<td style="text-align:center;vertical-align:middle;">${memberList.MEMBER_NAME}</td>
-											<td style="text-align:center;vertical-align:middle;">${memberList.MEMBER_PHONE}</td>
-											<td style="text-align:center;vertical-align:middle;">${memberList.MEMBER_EMAIL}</td>
-											<td style="text-align:center;vertical-align:middle;">${memberList.MEMBER_STATE}</td>
+										<td style="text-align:center;vertical-align:middle;">${memberList.MEMBER_ID}</td>
+										<td style="text-align:center;vertical-align:middle;">${memberList.MEMBER_NAME}</td>
+										<td style="text-align:center;vertical-align:middle;">${memberList.MEMBER_PHONE}</td>
+										<td style="text-align:center;vertical-align:middle;">${memberList.MEMBER_EMAIL}</td>
+										<td style="text-align:center;vertical-align:middle;">${memberList.MEMBER_STATE}</td>
 											<td style="text-align: center; vertical-align: middle;">
-											<input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Cog_font_awesome.svg/32px-Cog_font_awesome.svg.png"
-											onclick="location.href='${viewURL}'">
-											&nbsp;&nbsp;
-												<c:url var="viewURL2" value="/member/adminDeleteMember.conn">
+												<a href="${viewURL}">
+													<input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Cog_font_awesome.svg/32px-Cog_font_awesome.svg.png">
+												</a>&nbsp;&nbsp;
+												<c:url var="viewURL2" value="/member/adminDeleteMember">
 													<c:param name="MEMBER_NUM" value="${memberList.MEMBER_NUM}" />
 												</c:url> 
 												<a href="${viewURL2}">
 													<input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Trash_font_awesome.svg/32px-Trash_font_awesome.svg.png"
-														onclick="location.href='${viewURL2}'">
+														onclick="return delchk()">
 												</a>
 											</td>
 										</tr>
@@ -134,7 +130,6 @@
 										<option value="1">이름</option>
 										<option value="2">전화번호</option>
 										<option value="3">이메일</option>
-										<option value="4">상태</option>
 									</select> 
 									<input class="form-control" type="text" name="isSearch" id="isSearch" /> 
 									<span>
@@ -151,4 +146,3 @@
 	</div>
 	<!-- /.panel -->
 </div>
- 

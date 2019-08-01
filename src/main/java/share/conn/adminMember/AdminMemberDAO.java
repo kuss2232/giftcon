@@ -56,7 +56,7 @@ public class AdminMemberDAO extends AbstractDAO{
 		
 		// 회원 상태로 검색
 		@SuppressWarnings("unchecked")
-		public List<Map<String, Object>> searchMemberState(Map<Integer, Object> map) throws Exception {
+		public List<Map<String, Object>> searchMemberState(Map<String, Object> map) throws Exception {
 			return (List<Map<String, Object>>) selectList("adminMember.searchMemberState", map);
 		}
 }
