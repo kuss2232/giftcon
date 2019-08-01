@@ -61,9 +61,9 @@ public class Paging {
 				break;
 			}
 			if (i == currentPage) {
-				pagingHtml.append("<li><strong>");
+				pagingHtml.append("<li><a href='#' class='on'>");
 				pagingHtml.append(i);
-				pagingHtml.append("</strong></li>");
+				pagingHtml.append("</a></li>");
 			} else {
 				pagingHtml.append("<li><a class='page' href=" + dogName + "?currentPage=");
 				pagingHtml.append(i);
@@ -127,9 +127,9 @@ public class Paging {
 				break;
 			}
 			if (i == currentPage) {
-				pagingHtml.append("<li><strong>");
+				pagingHtml.append("<li><a href='#' class='on'>");
 				pagingHtml.append(i);
-				pagingHtml.append("</strong></li>");
+				pagingHtml.append("</a></li>");
 			} else {
 				pagingHtml.append("<li><a class='page' href=" + dogName + "?currentPage=" + i);
 				if (isSearch != "")
