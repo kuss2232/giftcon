@@ -34,7 +34,7 @@ public class AdminGoodsController {
 	private Paging page;
 
 	// 상품 목록 불러오기
-	@RequestMapping(value = "/goods/goodsList.conn")
+	@RequestMapping(value = "/goods/adminGoodsList.conn")
 	public ModelAndView adminGoodsList(CommandMap commandMap, HttpServletRequest request) throws Exception {
 
 		if(request.getParameter("currentPage") == null || request.getParameter("currentPage").trim().isEmpty()
@@ -78,7 +78,7 @@ public class AdminGoodsController {
 			mv.addObject("pagingHtml", pagingHtml);
 			mv.addObject("currentPage", currentPage);
 			mv.addObject("goodsList", adGoodsList);
-			mv.setViewName("goodsList");
+			mv.setViewName("/admin/Goods/admin_goodsList");
 			return mv;
 		}
 		
@@ -120,10 +120,10 @@ public class AdminGoodsController {
 	}
 
 	// 상품 등록
-	@RequestMapping(value = "/goods/goodsInsert.conn")
+	@RequestMapping(value = "/goods/adminInsertGoods.conn")
 	public ModelAndView adGoodsinsert(CommandMap commandMap, HttpServletRequest request) throws Exception {
 
-		 ModelAndView mv = new ModelAndView("redirect:adGoodsList");
+		 ModelAndView mv = new ModelAndView("redirect:/goods/adminGoodsList.conn");
 	      
 	      adminGoodsService.adGoodsinsert(commandMap.getMap(), request);
 
@@ -132,10 +132,10 @@ public class AdminGoodsController {
 	}
 
 	// 상품 수정
-	@RequestMapping(value = "/goods/goodsModify.conn")
+	@RequestMapping(value = "/goods/adminGoodsModify.conn")
 	public ModelAndView adGoodsModify(CommandMap commandMap, HttpServletRequest request) throws Exception {
 
-		ModelAndView mv = new ModelAndView("redirect:adGoodsList");
+		ModelAndView mv = new ModelAndView("redirect:/goods/adminGoodsList.conn");
 
 		adminGoodsService.adGoodsModify(commandMap.getMap(), request);
 
@@ -146,7 +146,7 @@ public class AdminGoodsController {
 	@RequestMapping(value = "/goods/goodsDelete.conn")
 	public ModelAndView adGoodsDelete(CommandMap commandMap) throws Exception {
 
-		ModelAndView mv = new ModelAndView("redirect:adGoodsList");
+		ModelAndView mv = new ModelAndView("redirect:/goods/adminGoodsList.conn");
 
 		adminGoodsService.adGoodsDelete(commandMap.getMap());
 

@@ -5,14 +5,22 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <head>
+<script src="/giftcon/js/common.js" charset="utf-8"></script>
+<script src="/giftcon/css/jquery/jquery-1.12.4.min.js"></script>
+<link rel="stylesheet" type="text/css"  />
 <script type="text/javascript">
-	function delchk() {
-		if(confirm("삭제하시겠습니까?") == true) {
-			location.href="${viewURL2}";
-			alert("삭제되었습니다.");
-		} else {
-			alert("삭제가 취소되었습니다.");
-		}
+function fn_memberDelete(member_num){ 
+	if(confirm("정말 삭제하시겠습니까 ?") == true){
+		var comSubmit = new ComSubmit(); 
+		alert("삭제되었습니다");
+		comSubmit.setUrl("<c:url value='/member/adminDeleteMember.conn' />");
+		comSubmit.addParam("MEMBER_NUM", member_num);
+		comSubmit.submit(); 
+		
+	}
+	 else{
+		alert("삭제가 취소되었습니다.");
+	 }
 	}
 </script>
 <style type="text/css">
@@ -88,13 +96,14 @@
 										<th style="width: 13%; text-align:center;">관리</th>
 									</tr>
 								</thead>
+								<form id="commonForm" name="commonForm"></form>
 								<tbody>
 									<c:forEach var="memberList" items="${memberList}" varStatus="stat">
 										<c:url var="viewURL" value="/member/adminMemberDetail.conn">
 											<c:param name="MEMBER_NUM" value="${memberList.MEMBER_NUM}" />
 										</c:url>
 										<tr class="gradeA even" role="row">
-											<td style="text-align:center;vertical-align:middle;"><a href="${viewURL3}">${memberList.MEMBER_NUM}</a></td>
+											<td style="text-align:center;vertical-align:middle;">${memberList.MEMBER_NUM}</td>
 											<td style="text-align:center;vertical-align:middle;">${memberList.MEMBER_ID}</td>
 											<td style="text-align:center;vertical-align:middle;">${memberList.MEMBER_NAME}</td>
 											<td style="text-align:center;vertical-align:middle;">${memberList.MEMBER_PHONE}</td>
@@ -104,13 +113,9 @@
 											<input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Cog_font_awesome.svg/32px-Cog_font_awesome.svg.png"
 											onclick="location.href='${viewURL}'">
 											&nbsp;&nbsp;
-												<c:url var="viewURL2" value="/member/adminDeleteMember.conn">
-													<c:param name="MEMBER_NUM" value="${memberList.MEMBER_NUM}" />
-												</c:url> 
-												<a href="${viewURL2}">
-													<input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Trash_font_awesome.svg/32px-Trash_font_awesome.svg.png"
-														onclick="location.href='${viewURL2}'">
-												</a>
+											<a onclick="fn_memberDelete(${memberList.MEMBER_NUM})">
+											<input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Trash_font_awesome.svg/32px-Trash_font_awesome.svg.png">
+											</a>
 											</td>
 										</tr>
 									</c:forEach>

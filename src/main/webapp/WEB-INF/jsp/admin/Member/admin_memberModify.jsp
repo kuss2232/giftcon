@@ -60,6 +60,14 @@ function joinValidation(adminModifyMember){
                             <label>이메일</label>
                             <input type="text" class="form-control" id="MEMBER_EMAIL" name="MEMBER_EMAIL" value="${member.MEMBER_EMAIL}" style="width:250px;" />
                         </div>
+                        <div class="form-group">
+                            <label>상태</label>
+                            <input type="text" class="form-control" value="${member.MEMBER_STATE}" style="width:initial;" readonly/>
+                        </div>
+                        <div class="form-group">
+                            <label>가입일자</label>
+                            <input type="text" class="form-control" value="${member.MEMBER_DATE}" style="width:initial;" readonly/>
+                        </div>
 						<button type="submit" class="btn btn-success">회원수정</button>&nbsp;&nbsp;
 						<button type="button" name="searchNum" id="searchNum" class="btn btn-outline btn-default" 
 							onclick="location.href='/giftcon/member/adminMemberList.conn?searchNum=0&isSearch='">
