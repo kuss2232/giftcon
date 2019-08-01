@@ -7,17 +7,21 @@
 <select id="qnaList" parameterType="hashmap" resultType="hashmap">
 	<![CDATA[
 		SELECT
-			QNA_NUM,
-			QNA_TITLE,
-			QNA_CNT,
-			QNA_COMMENT,
-			MEMBER_NUM,
-			QNA_DATE,
-			QNA_REDATE,
-			QNA_FILE,
-			QNA_CHECK
+			A.QNA_NUM,
+			A.QNA_TITLE,
+			A.QNA_CNT,
+			A.QNA_COMMENT,
+			B.MEMBER_ID,
+			A.QNA_DATE,
+			A.QNA_REDATE,
+			A.QNA_FILE,
+			A.QNA_CHECK
 		FROM
-			QNA ORDER BY QNA_NUM DESC
+			QNA A, MEMBER B 
+		WHERE 
+			A.MEMBER_NUM=B.MEMBER_NUM
+		ORDER BY 
+			QNA_NUM DESC
 	]]>
 </select>
 
@@ -66,7 +70,8 @@
 	WHERE
 		Q.QNA_NUM = M.MEMBER_NUM
 		AND Q.QNA_TITLE LIKE '%' || #{SearchKeyword} || '%'
-	ORDER BY QNA_NUM DESC
+	ORDER BY 
+		QNA_NUM DESC
 	]]>
 </select>
 
@@ -88,6 +93,27 @@
 	WHERE
 		Q.MEMBER_NUM = M.MEMBER_NUM
 		AND M.MEMBER_ID LIKE '%' || #{SearchKeyword} || '%'
+	]]>
+</select>
+
+<!-- QNA 상세보기 -->
+<select id="qnaDetail" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+		SELECT
+			A.QNA_NUM,
+			A.QNA_TITLE,
+			A.QNA_COMMENT,
+			A.QNA_CNT,
+			A.QNA_DATE,
+			A.QNA_REDATE,
+			A.QNA_FILE,
+			A.QNA_CATEGORY,
+			B.MEMBER_ID
+		FROM
+			QNA A, MEMBER B
+		WHERE
+			A.MEMBER_NUM = B.MEMBER_NUM
+			AND QNA_NUM = #{QNA_NUM}
 	]]>
 </select>
 
