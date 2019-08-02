@@ -43,7 +43,7 @@
 				( 
 				FAQ_NUM, 
 				FAQ_TITLE, 
-				FAQ_CNT,
+				FAQ_CNT, 
 				FAQ_CATEGORY
 			) 
 			VALUES
@@ -52,9 +52,7 @@
 				#{FAQ_TITLE}, 
 				#{FAQ_CNT}, 
 				#{FAQ_CATEGORY}
-)
-			
-			
+			)
 		]]>
 	</insert>
 	<!-- FAQ 조회수 카운트 -->
@@ -67,7 +65,7 @@
 	</update>
 	
 	<!-- FAQ 수정하기 -->
-	<update id="faqUpdate" parameterType="hashmap">
+	<update id="faqModify" parameterType="hashmap">
 		UPDATE FAQ
 	SET
 		FAQ_TITLE = #{FAQ_TITLE},
@@ -93,10 +91,9 @@
 		SELECT 
 			FAQ_NUM,
 			FAQ_TITLE,
-			FAQ_CNT,
 			FAQ_HITCOUNT
 		FROM FAQ
-		WHERE FAQ_TITLE like '%'||#{searchkeyword}||'%'
+		WHERE FAQ_TITLE like '%'||#{SearchKeyword}||'%'
 		ORDER BY FAQ_NUM DESC
 	]]>
 	</select>
