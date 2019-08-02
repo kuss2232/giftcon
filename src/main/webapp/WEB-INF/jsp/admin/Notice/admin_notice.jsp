@@ -153,8 +153,8 @@
 							<div id="dataTables-example_filter" class="dataTables_filter">
 								<form action="">
 									<select class="form-control" name="searchNum" id="searchNum">
-										<option value="0">제목</option>
-										<option value="1">내용</option>
+										<option value="1">제목</option>
+										<option value="2">내용</option>
 									</select> <input class="form-control" type="text" name="isSearch"
 										id="isSearch" /> <span>
 										<button type="submit" class="btn btn-default">검색</button>

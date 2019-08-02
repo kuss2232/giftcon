@@ -69,7 +69,7 @@
 		UPDATE FAQ
 	SET
 		FAQ_TITLE = #{FAQ_TITLE},
-		FAQ_CNT = #{FAQ_CONTENT},
+		FAQ_CNT = #{FAQ_CNT},
 		FAQ_CATEGORY = #{FAQ_CATEGORY}
 	WHERE
 		FAQ_NUM = #{FAQ_NUM}
@@ -85,17 +85,25 @@
 	</delete>
 	
 	
-	<!-- faq 제목 검색 -->
-	<select id="searchFaqTitle" resultType="hashmap" parameterType="hashmap">
-			<![CDATA[
+	<!-- faq 제목 내용 검색 -->
+	<select id="searchFaq" resultType="hashmap" parameterType="hashmap">
+			
 		SELECT 
 			FAQ_NUM,
 			FAQ_TITLE,
+			FAQ_CNT,
 			FAQ_HITCOUNT
-		FROM FAQ
-		WHERE FAQ_TITLE like '%'||#{SearchKeyword}||'%'
-		ORDER BY FAQ_NUM DESC
-	]]>
+		FROM 
+		FAQ
+		WHERE
+	<if test='SearchNum.equals("1")'>  <!-- 제목 검색 -->
+		 FAQ_TITLE like '%'||#{SearchKeyword}||'%'
+	</if>
+	<if test='SearchNum.equals("2")'> <!-- 내용 검색 -->
+			FAQ_CNT LIKE '%' || #{SearchKeyword} || '%'
+	</if>
+			ORDER BY FAQ_NUM DESC
+	
 	</select>
 	<!-- FAQ 상세보기 -->
 	<select id="faqDetail" resultType="hashmap" parameterType="hashmap">

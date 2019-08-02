@@ -139,6 +139,14 @@ public class AbstractDAO {
 		return sqlSession.selectList(queryId, params);
 	}
 	
+	
+	//검색
+		@SuppressWarnings("rawtypes")
+		public List searchList(String queryId, Object params) {
+			printQueryId(queryId);
+			return sqlSession.selectList(queryId, params);
+		}
+	
 	// 글제목 검색
 	@SuppressWarnings("rawtypes")
 	public List searchTitleList(String queryId, Object params, String isSearch) {
