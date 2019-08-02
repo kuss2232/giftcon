@@ -19,6 +19,7 @@
 		function fn_login(){
 			var comSubmit = new ComSubmit("userInfo");
 			comSubmit.setUrl("/giftcon/login.conn");
+			comSubmit.addParam("#saveId");
 			comSubmit.submit();
 		}
 
@@ -33,40 +34,15 @@
 	
 	<script>
 		$(document).ready(function(){
-			var userInputId = getCookie("userInputId ");
-			$("input[name='id']").val(userInputId);
+			var userInputId = getCookie("userInputId");
+			$("#MEMBER_ID").val(userInputId);
 			
-			if($("input[name='id']").val() != ""){
+			if($("#MEMBER_ID").val() != ""){
 				$("#saveId").attr("checked",true);
 			}
-			$("#saveId").change(function(){
-				if($("saveId").is(":checked")){
-					var userInputId = $("input[name='id']").val();
-					setCookie("userInputId", userInputId, 7);
-				}else{
-					deleteCookie("userInputId");
-				}
-			});
 			
-			$("input[name='id']").keyup(function(){
-				if($("#saveId").is(":checked")){
-					var userInputId = $("input[name='id']").val();
-					setCookie("userInputId",userInputId,7);
-				}
-			});
 		});
-		
-		function setCookie(cookieName, value, exdays){
-			var exdate = new Date();
-			exdate.setDate(exdate.getDate() + exdays);
-			var cookieValue = escape(value) + ((exdays == null) ? " " : "; expires=" + exdate.toGMTString());
-			document.cookie = cookieName + "=" + cookieValue;
-		}
-		function deleteCookie(cookieName){
-			var expireDate = new Date();
-			expireDate.setDate(expireDate.getDate() - 1);
-			document.cookie = cookieName + "= " + "; expires=" + expireDate.toGMTString();
-		}
+
 		function getCookie(cookieName){
 			cookieName = cookieName + "=";
 			var cookieData = document.cookie;
@@ -112,7 +88,7 @@
 											<span class="inputTxt"></span>
 										</div>
 									</div>
-									<span class="btnLogin"><a href="" id="btnLogin" class="btnBigBgBlue1 w120">로그인 </a></span>
+									<span class="btnLogin"><a href="#" id="btnLogin" class="btnBigBgBlue1 w120">로그인 </a></span>
 								</div>
 							</fieldset>
 						<div>
