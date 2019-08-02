@@ -43,10 +43,9 @@ public class AdminGoodsController {
 		}else {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
-		
 		ModelAndView mv = new ModelAndView("adGoodsList");
 
-		List<Map<String, Object>> adGoodsList = adminGoodsService.adGoodsList(commandMap.getMap());
+		List<Map<String, Object>> adGoodsList = adminGoodsService.adGoodsList();
 		
 		if(request.getParameter("isSearch") != null) {
 			isSearch = request.getParameter("isSearch");
@@ -58,8 +57,6 @@ public class AdminGoodsController {
 				adGoodsList = adminGoodsService.adGoodsNameSearch(isSearch);
 			else if(searchNum == 2) // 브랜드명
 				adGoodsList = adminGoodsService.adGoodsCategory2Search(isSearch);
-			else
-				adGoodsList = adminGoodsService.adGoodsList(commandMap.getMap());
 			
 			totalCount = adGoodsList.size();
 			page = new Paging(currentPage, totalCount, blockCount, blockPage, "adGoodsList", searchNum, isSearch);
@@ -77,14 +74,14 @@ public class AdminGoodsController {
 			mv.addObject("totalCount", totalCount);
 			mv.addObject("pagingHtml", pagingHtml);
 			mv.addObject("currentPage", currentPage);
-			mv.addObject("goodsList", adGoodsList);
+			mv.addObject("adGoodsList", adGoodsList);
 			mv.setViewName("/admin/Goods/admin_goodsList");
 			return mv;
 		}
 		
 		totalCount = adGoodsList.size();
 		
-		page = new Paging(currentPage, totalCount, blockCount, blockPage, "goodsList");
+		page = new Paging(currentPage, totalCount, blockCount, blockPage, "adGoodsList");
 		pagingHtml = page.getPagingHtml().toString();
 		
 		int lastCount = totalCount;
@@ -98,23 +95,12 @@ public class AdminGoodsController {
 		mv.addObject("pagingHtml", pagingHtml);
 		mv.addObject("currentPage", currentPage);
 		
-		Calendar today = Calendar.getInstance();
-		Date d = new Date(today.getTimeInMillis());
-
-		for (int i = 0; i < adGoodsList.size(); i++) {
-			if (adGoodsList.get(i).get("GOODS_SALEDATE") != null && adGoodsList.get(i).get("GOODS_DISPRICE") != null) {
-				Date dDay = (Date) adGoodsList.get(i).get("GOODS_SALEDATE");
-				if (dDay.getTime() < d.getTime()) {
-					adGoodsList.get(i).remove("GOODS_SALEDATE");
-					adGoodsList.get(i).remove("GOODS_DISPRICE");
-				}
-			}
-		}
 
 		mv.addObject("adGoodsList", adGoodsList);
 		Integer count = adminGoodsService.adAllGoodsNum();
 		int a = (int) count;
 		mv.addObject("count", a);
+		mv.setViewName("/admin/Goods/admin_goodsList");
 
 		return mv;
 	}
@@ -143,7 +129,7 @@ public class AdminGoodsController {
 	}
 
 	// 상품 삭제
-	@RequestMapping(value = "/goods/goodsDelete.conn")
+	@RequestMapping(value = "/goods/adminGoodsDelete.conn")
 	public ModelAndView adGoodsDelete(CommandMap commandMap) throws Exception {
 
 		ModelAndView mv = new ModelAndView("redirect:/goods/adminGoodsList.conn");

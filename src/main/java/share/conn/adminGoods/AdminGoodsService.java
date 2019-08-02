@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 public interface AdminGoodsService {
 
 	// 상품 리스트
-	public List<Map<String, Object>> adGoodsList(Map<String, Object> map) throws Exception;
+	public List<Map<String, Object>> adGoodsList() throws Exception;
 
 	// 전체 상품 수
 	public Integer adAllGoodsNum() throws Exception;

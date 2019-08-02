@@ -4,6 +4,7 @@
 
 	<!--관리자 페이지 상품리스트 -->
 	<select id="adGoodsList" resultType="hashmap">
+	<![CDATA[
 		SELECT
 		A.GOODS_NUM,
 		A.GOODS_NAME,
@@ -19,12 +20,14 @@
 		WHERE
 		C.CATEGORY_NUM = A.CATEGORY_NUM AND
 		A.GOODS_NUM = B.GOODS_NUM
-		ORDER BY GOODS_NUM;
+		ORDER BY GOODS_NUM
+	]]>
 	</select>
 
 	<!-- 카테고리1 상품리스트 -->
 	<select id="adCategory1GoodsList" parameterType="String"
 		resultType="hashmap">
+	<![CDATA[
 		SELECT
 		A.GOODS_NUM,
 		A.GOODS_NAME,
@@ -40,12 +43,14 @@
 		WHERE
 		C.BIG_CATEGORY = #{BIG_CATEGORY} AND C.CATEGORY_NUM = A.CATEGORY_NUM AND A.GOODS_NUM
 		= B.GOODS_NUM
-		ORDER BY GOODS_NUM;
+		ORDER BY GOODS_NUM
+	]]>
 	</select>
 
 	<!-- 카테고리2 상품리스트 -->
 	<select id="adCategory2GoodsList" parameterType="String"
 		resultType="hashmap">
+	<![CDATA[
 		SELECT
 		A.GOODS_NUM,
 		A.GOODS_NAME,
@@ -62,17 +67,21 @@
 		GOODS A, GOODS_IMG B, CATEGORY C
 		WHERE
 		C.SMALL_CATEGORY = #{SMALL_CATEGORY} AND C.CATEGORY_NUM = A.CATEGORY_NUM AND
-		A.GOODS_NUM = B.GOODS_NUM;
+		A.GOODS_NUM = B.GOODS_NUM
+	]]>
 	</select>
 
 	<!-- 전체 상품 수 -->
 	<select id="adAllGoodsNum" resultType="integer">
+	<![CDATA[
 		SELECT COUNT(GOODS_NUM) FROM GOODS
+	]]>
 	</select>
 	
 	<!-- 상품 상세 -->
 	<select id="adGoodsDetail" parameterType="integer"
 		resultType="hashmap">
+	<![CDATA[
 		SELECT
 		A.GOODS_NUM,
 		A.GOODS_NAME,
@@ -90,11 +99,13 @@
 		FROM
 		GOODS A, GOODS_IMG B, CATEGORY C
 		WHERE
-		A.GOODS_NUM = #{GOODS_NUM} AND A.GOODS_NUM = B.GOODS_NUM AND A.CATEGORY_NUM = C.CATEGORY_NUM;
+		A.GOODS_NUM = #{GOODS_NUM} AND A.GOODS_NUM = B.GOODS_NUM AND A.CATEGORY_NUM = C.CATEGORY_NUM
+	]]>
 	</select>
 
 	<!--상품 등록 -->
 	<insert id="adGoodsinsert" parameterType="hashmap">
+	<![CDATA[
 		INSERT INTO GOODS(
 		GOODS_NUM,
 		GOODS_NAME,
@@ -114,10 +125,12 @@
 		#{CATEGORY_NUM},
 		#{GOODS_AMOUNT}
 		)
+	]]>
 	</insert>
 
 	<!-- 상품 이미지 등록 -->
 	<insert id="adinsertGoodsImg" parameterType="hashmap">
+	<![CDATA[
 		INSERT INTO GOODS_IMG(
 		GOODS_NUM,
 		GOODS_IMG1,
@@ -129,10 +142,12 @@
 		#{GOODS_IMG2},
 		#{GOODS_IMG3}
 		)
+	]]>
 	</insert>
 
 	<!--상품 수정 -->
 	<update id="adGoodsModify" parameterType="hashmap">
+	<![CDATA[
 		UPDATE GOODS
 		SET GOODS_NAME=#{GOODS_NAME},
 		GOODS_PRICE=#{GOODS_PRICE},
@@ -144,20 +159,24 @@
 		GOODS_AMOUNT=#{GOODS_AMOUNT}
 		WHERE
 		GOODS_NUM = #{GOODS_NUM}
+	]]>
 	</update>
 	
 	<!--상품 이미지 수정 -->
 	<update id="adGoodsImgModify" parameterType="hashmap">
+	<![CDATA[
 		UPDATE GOODS_IMG
 		SET GOODS_IMG1=#{GOODS_IMG1},
 		GOODS_IMG2=#{GOODS_IMG2},
 		GOODS_IMG3=#{GOODS_IMG3}
 		WHERE
 		GOODS_NUM = #{GOODS_NUM}
+	]]>
 	</update>
 	
 	<!-- 상품 검색 (상품 번호) -->
 	<select id="adGoodsNumSearch" parameterType="integer"	resultType="hashmap">
+	<![CDATA[
 		SELECT
 		A.GOODS_NUM,
 		A.GOODS_NAME,
@@ -175,10 +194,12 @@
 		AND C.CATEGORY_NUM = A.CATEGORY_NUM AND
 		A.GOODS_NUM = B.GOODS_NUM
 		ORDER BY GOODS_NUM DESC
+	]]>
 	</select>
 
 	<!--상품 검색 (상품명) -->
 	<select id="adGoodsNameSearch" parameterType="String"	resultType="hashmap">
+	<![CDATA[
 		SELECT
 		A.GOODS_NUM,
 		A.GOODS_NAME,
@@ -196,10 +217,12 @@
 		AND C.CATEGORY_NUM = A.CATEGORY_NUM AND
 		A.GOODS_NUM = B.GOODS_NUM
 		ORDER BY GOODS_NUM DESC
+	]]>
 	</select>
 
 	<!-- 상품 검색 (브랜드명) -->
 	<select id="adGoodsCategory2Search" parameterType="String" resultType="hashmap">
+	<![CDATA[
 		SELECT
 		A.GOODS_NUM,
 		A.GOODS_NAME,
@@ -217,18 +240,22 @@
 		AND C.CATEGORY_NUM = A.CATEGORY_NUM AND
 		A.GOODS_NUM = B.GOODS_NUM
 		ORDER BY GOODS_NUM DESC
+	]]>
 	</select>
 	
 	<!-- 상품 삭제 -->
 	<delete id="adGoodsDelete" parameterType="integer">
+	<![CDATA[
 		DELETE
 		FROM GOODS
 		WHERE
 		GOODS_NUM=#{GOODS_NUM}
+	]]>
 	</delete>
 
 	<!--상품 할인적용(상품번호로 1개만 적용) -->
 	<update id="adGoodsDc" parameterType="hashmap">
+	<![CDATA[
 		update GOODS
 		set GOODS_DCPRICE =
 		(
@@ -237,31 +264,39 @@
 		where GOODS_NUM=#{GOODS_NUM}
 		)
 		where GOODS_NUM=#{GOODS_NUM}
+	]]>
 	</update>
 
 	<!--상품할인 적용 (카테고리별) -->
 	<update id="adCategoryDc" parameterType="hashmap">
+	<![CDATA[
 		update GOODS
 		set GOODS_DCPRICE = GOODS_PRICE*NVL((100-#{DISCOUNT})/100,0)
-		where CATEGORY_NUM = #{CATEGORY_NUM};
+		where CATEGORY_NUM = #{CATEGORY_NUM}
+	]]>
 	</update>
 
 	<!--상품할인 취소(상품번호 1개만) -->
 	<update id="adGoodsDcCancel" parameterType="integer">
+	<![CDATA[
 		update GOODS
 		set GOODS_DCPRICE = GOODS_PRICE
 		where GOODS_NUM= #{GOODS_NUM}
+	]]>
 	</update>
 
 	<!--상품할인 취소(카테고리) -->
 	<update id="adCategoryDcCancel" parameterType="integer">
+	<![CDATA[
 		update GOODS
 		set GOODS_DCPRICE = GOODS_PRICE
 		where CATEGORY_NUM= #{CATEGORY_NUM}}
+	]]>
 	</update>
 
 	<!-- 할인중인 상품 리스트(가격 정렬) -->
 	<select id="adDcGoodsListPriceSort" resultType="hashmap">
+	<![CDATA[
 		SELECT A.GOODS_NUM,
 		A.GOODS_NAME,
 		A.GOODS_PRICE,
@@ -279,10 +314,12 @@
 		A.GOODS_NUM=B.GOODS_NUM AND A.GOODS_PRICE > A.GOODS_DCPRICE
 		ORDER BY
 		GOODS_DCPRICE DESC
+	]]>
 	</select>
 
 	<!-- 상품할인 리스트 (전체카테고리) -->
 	<select id="adDcGoodsListAllCategory" resultType="hashmap">
+	<![CDATA[
 		SELECT A.GOODS_NUM,
 		A.GOODS_NAME,
 		A.GOODS_PRICE,
@@ -301,11 +338,12 @@
 		AND A.GOODS_NUM=B.GOODS_NUM 
 		AND A.CATEGORY_NUM = C.CATEGORY_NUM
 		ORDER BY
-		C.BIG_CATEGORY ASC, C.SMALL_CATEGORY ASC;
+		C.BIG_CATEGORY ASC, C.SMALL_CATEGORY ASC
+	]]>
 	</select>
 
 	<!-- 카테고리 추가 -->
-	<insert id="adAddCategory" parameterType="hashmap">
+	<insert id="adAddCategory" parameterType="hashmap"
 		useGeneratedKeys="true" keyProperty="CARTEGORY_NUM">
 		<selectKey keyProperty="CARTEGORY_NUM" resultType="integer"
 			order="BEFORE">

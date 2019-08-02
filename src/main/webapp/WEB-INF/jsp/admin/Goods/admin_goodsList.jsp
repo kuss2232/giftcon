@@ -4,8 +4,54 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>   
 <head>
 <script type="text/javascript">
+//주문번호 같은 열 합치는 Jquery
+$( document ).ready(function() {
+	$('#dataTables-example').rowspan(0);
+	$('#dataTables-example').rowspan(1);
+	$('#dataTables-example').rowspan(2);
+	$('#dataTables-example').rowspan(3);
+	$('#dataTables-example').rowspan(4);
+	$('#dataTables-example').rowspan(5);
+	$('#dataTables-example').rowspan(9);
+	$('#dataTables-example').rowspan(10);
+});
+
+$.fn.rowspan = function(colIdx, isStats) {       
+	return this.each(function(){      
+		var that;     
+		$('tr', this).each(function(row) {      
+			$('td:eq('+colIdx+')', this).filter(':visible').each(function(col) {
+				
+				if ($(this).html() == $(that).html()
+					&& (!isStats 
+							|| isStats && $(this).prev().html() == $(that).prev().html()
+							)
+					) {            
+					rowspan = $(that).attr("rowspan") || 1;
+					rowspan = Number(rowspan)+1;
+
+					$(that).attr("rowspan",rowspan);
+					
+					// do your action for the colspan cell here            
+					$(this).hide();
+					
+					//$(this).remove(); 
+					// do your action for the old cell here
+					
+				} else {            
+					that = this;         
+				}          
+				
+				// set the that if not already set
+				that = (that == null) ? this : that;      
+			});     
+		});    
+	});  
+}; 
 function delchk(){
     return confirm("삭제하시겠습니까?");
+    
+    
 }
 </script>
 <style type="text/css">
@@ -31,7 +77,7 @@ function delchk(){
 <div class="row">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-                         상품목록페이지 검색, 수정, 삭제 기능하는 페이지입니다.
+                         [상품목록페이지] 상품을 검색, 수정, 삭제 기능하는 페이지입니다.
         </div>
         <div class="panel-body">
 			<div class="dataTable_wrapper">
@@ -39,29 +85,29 @@ function delchk(){
 					class="dataTables_wrapper form-inline dt-bootstrap no-footer">
 					<div class="row" style="margin-bottom:5px;">
 						<div class="col-sm-6">
-							<a href="/pet/admin/goodsadminList.dog?searchNum=0&isSearch="><button type="button" class="btn btn-outline btn-default">전체</button></a>
+							<a href="/giftcon/goods/adminGoodsList.conn"><button type="button" class="btn btn-outline btn-default">전체</button></a>
 							<select class="form-control" name="select" onchange="window.open(value,'_self');">
 								<option value ="">--카테고리--</option>
-								<option value ="/pet/admin/goodsadminList.dog?searchNum=2&isSearch=0">치킨/피자/버거</option>
-								<option value ="/pet/admin/goodsadminList.dog?searchNum=2&isSearch=1">커피/음료</option>
-								<option value ="/pet/admin/goodsadminList.dog?searchNum=2&isSearch=2">아이스크림/빙수</option>
-								<option value ="/pet/admin/goodsadminList.dog?searchNum=2&isSearch=3">떡/베이커리</option>
-								<option value ="/pet/admin/goodsadminList.dog?searchNum=2&isSearch=4">편의점/마트</option>
-							</select>					
+								<option value ="/giftcon/goods/adminGoodsList.conn?searchNum=3&isSearch=0">치킨/피자/버거</option>
+								<option value ="/giftcon/goods/adminGoodsList.conn?searchNum=3&isSearch=1">커피/음료</option>
+								<option value ="/giftcon/goods/adminGoodsList.conn?searchNum=3&isSearch=2">아이스크림/빙수</option>
+								<option value ="/giftcon/goods/adminGoodsList.conn?searchNum=3&isSearch=3">떡/베이커리</option>
+								<option value ="/giftcon/goods/adminGoodsList.conn?searchNum=3&isSearch=4">편의점/마트</option>
+							</select>										
 						</div>
 						<div class="col-sm-6" style="text-align:right;">
-							<div class="dataTables_info" id="dataTables-example_info" role="status" aria-live="polite">총 상품 등록수 : ${totalCount}</div>
+							<div class="dataTables_info" id="dataTables-example_info" role="status" aria-live="polite">총 상품수 : ${totalCount}</div>
 						</div>
 						
 					</div>
 					<div class="row">
 						<div class="col-sm-12">
 							<table
-								class="table table-striped table-bordered table-hover dataTable no-footer"
+								class="table  table-bordered table-hover dataTable no-footer"
 								id="dataTables-example" role="grid"
 								aria-describedby="dataTables-example_info">
 								<thead>
-									<tr role="row">
+									<tr role="row" style="vertical-align:middle;">
 										<th style="width: 4%; text-align:center;">번호</th>
 										<th style="width: 10%; text-align:center;">상품사진</th>
 										<th style="width: 10%; text-align:center;">카테고리</th>
@@ -75,35 +121,30 @@ function delchk(){
 									</tr>
 								</thead>
 								<tbody>
-								<c:forEach var="goodsList"  items="${goodsList}" varStatus="stat">
-								<c:url var="viewURL" value="goodsView.dog" >
-									<c:param name="goods_num" value="${goodsList.goods_num }" />
-								    <c:param name="currentPage" value="${currentPage}" />
+								<c:forEach var="adGoodsList"  items="${adGoodsList}" varStatus="stat">
+								<c:url var="viewURL" value="/goods/adminGoodsModify.conn" >
+									<c:param name="GOODS_NUM" value="${adGoodsList.GOODS_NUM}" />
 								</c:url>									
 									<tr class="gradeA even" role="row">
-										<td style="text-align:center;vertical-align:middle;">${goodsList.goods_num}</td>
-										<td style="text-align:center;vertical-align:middle;"><img src="/pet/resources/goods_upload/${goodsList.goods_image}" width="60" height="60" alt="" onerror="this.src='/pet/resources/images/noimg_130.gif'" /></td>
-										<td style="text-align:center;vertical-align:middle;"><c:if test="${goodsList.goods_category eq 0}">치킨/피자/버거</c:if>
-																							<c:if test="${goodsList.goods_category eq 1}">커피/음료</c:if>
-																							<c:if test="${goodsList.goods_category eq 2}">아이스크림/빙수</c:if>
-																							<c:if test="${goodsList.goods_category eq 3}">떡/베이커리</c:if>
-																							<c:if test="${goodsList.goods_category eq 4}">편의점/마트</c:if></td>
-										<td style="text-align:center;vertical-align:middle;">${goodsList.goods_smallcategory}</td>													
-										<td style="text-align:center;vertical-align:middle;"><a href="/pet/goods/goodsView.dog?goods_num=${goodsList.goods_num }&currentPage=${currentPage}">${goodsList.goods_name}</a></td>
-										<td style="text-align:right;vertical-align:middle;"><fmt:formatNumber value="${goodsList.goods_price}" type="number"/></td>
-										<td style="text-align:right;vertical-align:middle;"><fmt:formatNumber value="${goodsList.goods_dcprice}" type="number"/></td>
-										<td style="text-align:right;vertical-align:middle;">${goodsList.goods_amount}</td>									
-										<td style="text-align:center;vertical-align:middle;"><fmt:formatDate value="${goodsList.goods_date}" pattern="YY.MM.dd HH:mm" /></td>
+										<td style="text-align:center;vertical-align:middle;">${adGoodsList.GOODS_NUM}<div style='display:none;'>${adGoodsList.GOODS_NUM}</div></td>										
+										<td style="text-align:center;vertical-align:middle;"><img src="/giftcon/file/goodsFile/${adGoodsList.GOODS_IMG1}" width="60" height="60" alt=""  onerror="this.src='/giftcon/file/noimg_130.gif'" /><div style='display:none;'>${adGoodsList.GOODS_NUM}</div></td>
+										<td style="text-align:center;vertical-align:middle;">${adGoodsList.BIG_CATEGORY}<br/>${adGoodsList.GOODS_SMALLCATEGORY }<div style='display:none;'>${adGoodsList.GOODS_NUM}</div></td>
+										<td style="text-align:center;vertical-align:middle;">${adGoodsList.SMALL_CATEGORY}<div style='display:none;'>${adGoodsList.GOODS_NUM}</div></td>
+										<td style="text-align:center;vertical-align:middle;">${adGoodsList.GOODS_NAME}<div style='display:none;'>${adGoodsList.GOODS_NUM}</div></td>												
+										<td style="text-align:center;vertical-align:middle;">${adGoodsList.GOODS_PRICE}<div style='display:none;'>${adGoodsList.GOODS_NUM}</div></td>
+										<td style="text-align:center;vertical-align:middle;">${adGoodsList.GOODS_DCPRICE}<div style='display:none;'>${adGoodsList.GOODS_NUM}</div></td>
+										<td style="text-align:center;vertical-align:middle;">${adGoodsList.GOODS_AMOUNT}개<div style='display:none;'>${adGoodsList.GOODS_NUM}</div></td>
+										<td style="text-align:center;vertical-align:middle;">${adGoodsList.GOODS_HITCOUNT}<div style='display:none;'>${adGoodsList.GOODS_NUM}</div></td>									
 										<td style="text-align:center;vertical-align:middle;">
-											<a href="/pet/admin/goodsModifyForm.dog?goods_num=${goodsList.goods_num }"><input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Cog_font_awesome.svg/32px-Cog_font_awesome.svg.png"></a>&nbsp;&nbsp;
-										<c:url var="viewURL2" value="goodsDelete.dog" >
-											<c:param name="goods_num" value="${goodsList.goods_num }" />							
+											<a href="${viewURL}"><input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Cog_font_awesome.svg/32px-Cog_font_awesome.svg.png"></a>&nbsp;&nbsp;
+										<c:url var="viewURL2" value="/goods/adminGoodsDelete.conn" >
+											<c:param name="GOODS_NUM" value="${adGoodsList.GOODS_NUM }" />							
 										</c:url>	
-										 <a href="${viewURL2}"><input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Trash_font_awesome.svg/32px-Trash_font_awesome.svg.png" onclick="return delchk()"></a></td>									
+										 <a href="${viewURL2}"><input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Trash_font_awesome.svg/32px-Trash_font_awesome.svg.png" onclick="return delchk()"></a><div style='display:none;'>${adGoodsList.GOODS_NUM}</div></td>									
 									</tr>
 								</c:forEach>
 								<!--  등록된 상품이 없을때 -->
-									<c:if test="${fn:length(goodsList) le 0}">
+									<c:if test="${fn:length(adGoodsList) le 0}">
 										<tr><td colspan="11" style="text-align:center;">등록된 상품이 없습니다</td></tr>
 									</c:if> 
 								</tbody>
