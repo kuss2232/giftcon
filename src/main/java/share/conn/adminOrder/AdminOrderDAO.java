@@ -1,5 +1,60 @@
 package share.conn.adminOrder;
 
-public class AdminOrderDAO {
+import java.util.List;
+import java.util.Map;
+import org.springframework.stereotype.Repository;
+import share.conn.giftcon.AbstractDAO;
 
+@Repository("adminOrderDAO")
+public class AdminOrderDAO extends AbstractDAO{
+	//
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> allOrderList() throws Exception{
+		return selectList("adminOrderlist.allOrderList");
+	}
+	
+	public int allOrderNumList() throws Exception{
+		return (Integer) selectOne("adminOrderlist.allOrderNumList");
+	}
+	
+	public void orderDelete(Map<String,Object> map) throws Exception{
+		delete("adminOrderlist.OrderDelete", map);
+	}
+	
+	//사용자 아이디로 주문검색
+	@SuppressWarnings("unchecked")
+	public List<Map<String,Object>> adminOrderSearchID(Map<String, Object> map) throws Exception{
+		return selectList("adminOrderlist.adminOrderSearchID", map);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Map<String,Object>> adminOrderSearchPay(Map<String,Object> map) throws Exception{
+		return selectList("adminOrderlist.adminOrderSearchPay", map);
+	}
+	
+	public void updateOrderPayment(Map<String,Object> map) throws Exception{
+		update("adminOrderlist.updateOrderPayment", map);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Map<String,Object>> orderDetail(Map<String,Object> map) throws Exception{
+		return selectList("adminOrderlist.orderDetail",map);
+	}
+	
+	public Map<String,Object> adCheckCancel(Map<String,Object> map) throws Exception{
+		return selectOne1("adminOrderCancel.adCheckCancel",map);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Map<String,Object>> adCancelList() throws Exception{
+		return selectList("adminOrderCancel.adCancel");
+	}
+	
+	public Map<String,Object> adCancelSearch(Map<String,Object> map) throws Exception{
+		return selectOne1("adminOrderCancel.adCancelSearch", map);
+	}
+	
+	public void adCancelDelete(Map<String,Object> map) throws Exception{
+		delete("adminOrderCancel.adCancelDelete", map);
+	}
 }

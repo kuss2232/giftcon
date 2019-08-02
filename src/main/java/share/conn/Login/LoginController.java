@@ -36,6 +36,7 @@ public class LoginController {
 		
 		HttpSession session = request.getSession();
 		
+		
 		System.out.println("아이디"+ commandMap.get("MEMBER_ID"));
 		
 		Map<String, Object> check = loginService.loginGo(commandMap.getMap());
@@ -62,8 +63,9 @@ public class LoginController {
 					Cookie delCookie = new Cookie("userInputId", null); // choiceCookieName(쿠키 이름)에 대한 값을 null로 지정
 					delCookie.setMaxAge(0); // 유효시간을 0으로 설정 response.addCookie(delCookie); // 응답 헤더에 추가해서 없어지도록 함 
 				}
-				
+				System.out.println("check : " + check.get("MEMBER_ADMIN"));
 				session.setAttribute("MEMBER_ID", commandMap.get("MEMBER_ID"));
+				session.setAttribute("MEMBER_ADMIN", check.get("MEMBER_ADMIN"));
 				//세션에 멤버아이디 띄움
 				mv.addObject("MEMBER",check);//로그인한 member정보 main에 보내줌
 				mv.setViewName("/main/main");

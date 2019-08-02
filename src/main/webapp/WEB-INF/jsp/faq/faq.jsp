@@ -20,7 +20,7 @@ div.paginate > div > a.disabled:hover {border: 1px solid #ddd;}
 <script type="text/javascript" src="/giftcon/css/gnb.js"></script>
 <script>
 function refreshFAQ(){
-	location.href="/giftcon/FAQ.conn";
+	location.href="/giftcon/faq.conn";
 }
 
 function FAQCategory(num){ 
@@ -84,7 +84,11 @@ function FAQCategory(num){
 <ul class="csTab mb70">
 	<li><a href="/giftcon/notice.conn"><span class="icoNotice"></span><em>공지사항</em></a></li>
 	<li><a href="/giftcon/FAQ.conn" class="on"><span class="icoFaq"></span><em>FAQ</em></a></li>
-	<li><a href="/giftcon/mypage/qna/insertform.conn"><span class="icoOneAsk"></span><em>1:1문의</em></a></li>
+	<%if(session.getAttribute("MEMBER_ID") != null){ %>
+	<li><a href="/giftcon/mypage/qna/insertform.conn" class=""><span class="icoOneAsk"></span><em>1:1문의</em></a></li>
+	<%}else{ %>
+	<li><a href="/giftcon/loginForm.conn"><span class="icoOneAsk"></span><em>1:1문의</em></a></li>
+	<%} %>
 </ul>
 					<!-- /end:csTab -->
 					

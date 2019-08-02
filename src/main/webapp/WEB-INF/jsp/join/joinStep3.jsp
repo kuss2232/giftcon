@@ -113,8 +113,6 @@
 					<div class="btns">
 						<a href="#" onClick="fn_insert()" id="btnJoin" class="btnBigBgBlue2 w227">회원가입</a>
 					</div>
-					<div>
-</div>
 				</div>
 			</div>
 			<!-- /end:contents -->
@@ -164,10 +162,6 @@ function fn_checkId() {
 			}
 		})
 	}
-	
-	/* var comSubmit = new ComSubmit("joinFrm");
-	comSubmit.setUrl("/giftcon/checkId.conn");
-	comSubmit.submit(); */
 }
 function fn_insert(){
 	var comSubmit = new ComSubmit(); 

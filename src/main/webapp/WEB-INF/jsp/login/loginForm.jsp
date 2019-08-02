@@ -31,7 +31,7 @@
 			alert("${message}");
 		}
 	</script>
-	
+	<!-- 아이디저장 -->
 	<script>
 		$(document).ready(function(){
 			var userInputId = getCookie("userInputId");

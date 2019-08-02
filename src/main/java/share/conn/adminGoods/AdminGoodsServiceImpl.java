@@ -25,9 +25,8 @@ public class AdminGoodsServiceImpl implements AdminGoodsService {
 
    // 상품 리스트
    @Override
-   public List<Map<String, Object>> adGoodsList(Map<String, Object> map) throws Exception {
-      List<Map<String, Object>> adGoodsList = adminGoodsDAO.adGoodsList(map);
-      return adGoodsList;
+   public List<Map<String, Object>> adGoodsList() throws Exception {
+      return adminGoodsDAO.adGoodsList();
    }
 
    // 전체 상품 수

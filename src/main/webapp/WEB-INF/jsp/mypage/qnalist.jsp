@@ -33,7 +33,7 @@ div.paginate > div > a.disabled:hover {border: 1px solid #ddd;}
 					<!-- start:csTab -->
 <ul class="csTab mb70">
 	<li><a href="/giftcon/notice.conn"><span class="icoNotice"></span><em>공지사항</em></a></li>
-	<li><a href="/giftcon/FAQ.conn"><span class="icoFaq"></span><em>FAQ</em></a></li>
+	<li><a href="/giftcon/faq.conn"><span class="icoFaq"></span><em>FAQ</em></a></li>
 	<li><a href="/giftcon/mypage/qna/insertform.conn" class="on"><span class="icoOneAsk"></span><em>1:1문의</em></a></li>
 </ul>
 <ul class="subTab">

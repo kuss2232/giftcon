@@ -12,8 +12,8 @@ public class AdminGoodsDAO extends AbstractDAO {
 
    // 상품 리스트
    @SuppressWarnings("unchecked")
-   public List<Map<String, Object>> adGoodsList(Map<String, Object> map) throws Exception {
-      return (List<Map<String, Object>>) selectList("adminGoods.adGoodsList", map);
+   public List<Map<String, Object>> adGoodsList() throws Exception {
+      return selectList("adminGoods.adGoodsList");
    }
 
    // 전체 상품수

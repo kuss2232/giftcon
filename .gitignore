@@ -25,3 +25,7 @@ target/classes/config/spring/context-datasource.xml
 src/main/resources/config/spring/context-datasource.xml
 /.metadata/
 target/m2e-wtp/web-resources/META-INF/maven/share.com/giftcon/pom.properties
+src/main/resources/config/spring/context-datasource.xml
+target/classes/config/spring/context-datasource.xml
+target/m2e-wtp/web-resources/META-INF/MANIFEST.MF
+target/m2e-wtp/web-resources/META-INF/maven/share.com/giftcon/pom.properties
