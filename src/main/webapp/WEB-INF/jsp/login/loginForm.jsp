@@ -4,7 +4,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>로그인</title>
+	<script type="text/javascript" src="d:/css/jquery/main_slide.js"></script>
+	
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$("#btnLogin").on("click", function(e){
+				e.preventDefault();
+				fn_login();
+			});
+
+		});
+		
+		function fn_login(){
+			var comSubmit = new ComSubmit("userInfo");
+			comSubmit.setUrl("/giftcon/login.conn");
+			comSubmit.submit();
+		}
+
+	</script>
+	<!-- 로그인시 알림메세지 -->
+	<script type="text/javascript">
+		if("${message}" != ""){
+			alert("${message}");
+		}
+	</script>
 </head>
 <body>
 <div id="container">
@@ -67,27 +91,6 @@
 
 
 
-	<script type="text/javascript">
-		$(document).ready(function(){
-			$("#btnLogin").on("click", function(e){
-				e.preventDefault();
-				fn_login();
-			});
-
-		});
-		
-		function fn_login(){
-			var comSubmit = new ComSubmit("userInfo");
-			comSubmit.setUrl("/giftcon/login.conn");
-			comSubmit.submit();
-		}
-
-	</script>
-	<script type="text/javascript">
-		if("${message}" != ""){
-			alert("${message}");
-		}
-	</script>
 
 
 </body>

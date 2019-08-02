@@ -78,11 +78,11 @@ $(function () {
 
 <!-- Criteo Script -->
 <script type="text/javascript" src="//static.criteo.net/js/ld/ld.js" async="true"></script>
-	<link rel="stylesheet" type="text/css" href="/css/main.css">
-	<script type="text/javascript" src="/js/brand_slide.js"></script>
-	<script type="text/javascript" src="/js/mbanner_slide.js"></script>
-	<script type="text/javascript" src="/js/banner_slide.js"></script>
-	<script type="text/javascript" src="d:/css/jquery/main_slide.js"></script>
+	<link rel="stylesheet" type="text/css" href="/giftcon/css/main.css">
+	<script type="text/javascript" src="/giftcon/css/jquery/brand_slide.js"></script>
+	<script type="text/javascript" src="/giftcon/css/jquery/mbanner_slide.js"></script>
+	<script type="text/javascript" src="/giftcon/css/jquery/banner_slide.js"></script>
+	<script type="text/javascript" src="/giftcon/css/jquery/main_slide.js"></script>
 
 	<style>
 		ul.brandProdList li > p > span.prodName {white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
