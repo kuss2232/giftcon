@@ -83,6 +83,11 @@
 		}
 
 	</script>
+	<script type="text/javascript">
+		if("${message}" != ""){
+			alert("${message}");
+		}
+	</script>
 
 
 </body>
