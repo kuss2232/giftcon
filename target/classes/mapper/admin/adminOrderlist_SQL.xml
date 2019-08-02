@@ -40,7 +40,7 @@
 		]]>
 	</delete>
 	
-	<!-- 관리자가 사용자 ID로 검색하기 -->
+	<!-- 관리자가 사용자 ID로 주문 검색하기 -->
 <select id="adminOrderSearchID" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 	SELECT
@@ -58,8 +58,8 @@
 		]]>
 	</select>
 	
-	<!-- 결제상태로 N인걸로 검색하기 -->
-<select id="adminOrderSearchN" parameterType="hashmap" resultType="hashmap">
+	<!-- 결제상태에 따른 검색 -->
+<select id="adminOrderSearchPay" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 	SELECT
 	ORDER_NUM,
@@ -71,44 +71,12 @@
 	ORDER_PAYMENT,
 	ORDER_ECHECK
 	FROM
-	ORDERS WHERE ORDER_PAYMENT='N';
+	ORDERS WHERE ORDER_PAYMENT=#{ORDER_PAYMENT};
 		]]>
 	</select>
 
-	<!-- 결제상태 y인걸로 검색하기 -->
-	<select id="adminOrderSearchY" parameterType="hashmap" resultType="hashmap">
-		<![CDATA[
-			SELECT
-		ORDER_NUM,
-		ORDER_AMOUNT,
-		MEMBER_NUM,
-		GOODS_NUM,
-		ORDER_DATE,
-		ORDER_PRICE,
-		ORDER_PAYMENT,
-		ORDER_ECHECK
-				FROM
-		ORDERS WHERE ORDER_PAYMENT='Y';
-		]]>
-	</select>
-	<!-- 결제상태 C인걸로 검색하기 -->
-	<select id="adminOrderSearchC" parameterType="hashmap" resultType="hashmap">
-      <![CDATA[
-		SELECT
-		ORDER_NUM,
-		ORDER_AMOUNT,
-		MEMBER_NUM,
-		GOODS_NUM,
-		ORDER_DATE,
-		ORDER_PRICE,
-		ORDER_PAYMENT,
-		ORDER_ECHECK
-        FROM
-      	ORDERS WHERE ORDER_PAYMENT='C';
-               ]]>
-      </select>
 	<!-- 결제상태 변경 -->
-	<update id="updateOrderPayMent" parameterType="hashmap">
+	<update id="updateOrderPayment" parameterType="hashmap">
 	
 	<![CDATA[
 		UPDATE 	ORDERS set

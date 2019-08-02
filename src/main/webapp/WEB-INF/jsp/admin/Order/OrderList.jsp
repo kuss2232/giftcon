@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+<link rel="stylesheet" type="text/css" href="/giftcon/css/jquery/bootstrapadmin.min.css">
 <body>
 <div class="row" style="padding-left:15px;width:900px;">    
 	<h1 class="page-header">주문목록</h1>
@@ -54,15 +55,14 @@
 									<c:param name="order_num" value="${orderList.order_num }" />
 								</c:url>									
 									<tr class="gradeA even" role="row" height="30px">
-										<td style="text-align:center;vertical-align:middle;">1</td>	<!-- 주문번호 -->							
-										<td style="text-align:center;vertical-align:middle;"><img src="/admin/resources/images/don.jpg"></td>	<!-- 상품이미지 -->
+										<td style="text-align:center;vertical-align:middle;">1 ${orderList.ORDER_NUM}</td>	<!-- 주문번호 -->							
+										<td style="text-align:center;vertical-align:middle;"><img src="/giftcon/resources/images/don.jpg"><img src="/giftcon/resources/images/${orderList.ORDER_IMG}"></td>	<!-- 상품이미지 -->
 										<td style="text-align:center;vertical-align:middle;">돈까스<c:if test="${ORDER_COUNT > 1}">외 ${ORDER_COUNT-1}개</c:if></td>	<!-- 상품이름 -->
-										
-										<td style="text-align:center;vertical-align:middle;">kkkknum1</td>	<!-- 회원ID -->
-										<td style="text-align:center;vertical-align:middle;">3</td>	<!-- 수량 -->
-										<td style="text-align:center;vertical-align:middle;">15000<%-- <fmt:formatNumber value="${orderList.order_sum_money}" type="number"/> --%></td>	<!-- 주문금액합계 -->
-										<td style="text-align:center;vertical-align:middle;">결제 완료</td>		<!-- 주문상태 -->
-										<td style="text-align:center;vertical-align:middle;">2019.07.24<%-- <fmt:formatDate value="${orderList.order_date}" pattern="YY.MM.dd HH:mm" /> --%></td><!-- 주문일자 -->									
+										<td style="text-align:center;vertical-align:middle;">${orderList.ORDER_ID}</td>	<!-- 회원ID -->
+										<td style="text-align:center;vertical-align:middle;">${orderList. }</td>	<!-- 수량 -->
+										<td style="text-align:center;vertical-align:middle;">${orderList. }<%-- <fmt:formatNumber value="${orderList.order_sum_money}" type="number"/> --%></td>	<!-- 주문금액합계 -->
+										<td style="text-align:center;vertical-align:middle;">${orderList. }</td>		<!-- 주문상태 -->
+										<td style="text-align:center;vertical-align:middle;">${orderList. }<%-- <fmt:formatDate value="${orderList.order_date}" pattern="YY.MM.dd HH:mm" /> --%></td><!-- 주문일자 -->									
 										<td style="text-align:center;vertical-align:middle;">	<!-- 관리 -->
 											<a href="${viewURL}"><input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Cog_font_awesome.svg/32px-Cog_font_awesome.svg.png"></a>&nbsp;&nbsp;
 										<c:url var="viewURL2" value="orderadmindelete.dog" >

@@ -16,7 +16,7 @@
 
 
 <!-- 주문 취소 목록 조회 -->
-<select id="adCancelList" resultType="hashmap" parameterType="hashmap">
+<select id="adCancelList" resultType="hashmap">
 	<![CDATA[
 		SELECT 
 			A.ORDER_NUM, A.MEMBER_NUM, A.GOODS_NUM, A.ORDER_AMOUNT, 
@@ -46,7 +46,7 @@
 		WHERE A.MEMBER_NUM = C.MEMBER_NUM(+)
 		AND A.GOODS_NUM = D.GOODS_NUM 
 		AND A.ORDER_PAYMENT IN ('C')
-		AND A.ORDER_NUM LIKE '%'||#{isSearch}||'%'
+		AND #{SELECT} LIKE '%'||#{isSearch}||'%'
 		ORDER BY ORDER_NUM DESC
 	]]>
 </select>
