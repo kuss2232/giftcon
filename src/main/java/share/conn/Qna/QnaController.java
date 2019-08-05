@@ -44,7 +44,6 @@ public class QnaController {
 		commandMap.getMap().put("MEMBER_NUM", mem_num);
 		List<Map<String, Object>> qnaList = qnaService.qnaList(commandMap.getMap());
 		mv.addObject("qnaList", qnaList);
-
 		mv.setViewName("mypage/qnalist");
 		return mv;
 	}
