@@ -8,37 +8,24 @@
 <html>
 <head><style>
 div.paginate > div > a.disabled:hover {border: 1px solid #ddd;}
-</style><!-- 페이지 네이게이터 Include -->
+</style>
 
 <title>title</title>
-<!-- Service CSS -->
-<link rel="stylesheet" type="text/css" href="/giftcon/css/common.css">
-<link rel="stylesheet" type="text/css" href="/giftcon/css/jquery/swiper.min.css">
 
 
-<!-- jQuery -->
-<script src="/giftcon/js/jquery/jquery-1.12.4.min.js"></script>
-<script src="/giftcon/js/jquery/jquery-migrate-1.4.1.min.js"></script>
-<script src="/giftcon/js/jquery/jquery.blockUI.js"></script>
-<script src="/giftcon/js/jquery/jquery.form.js"></script>
-<script src="/giftcon/js/jquery/jquery.cookie.js"></script>
-<script src="/giftcon/js/jquery/swiper.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
 
-<!--  date-picker -->
+
 <link href="/giftcon/css/jquery/jquery-ui.css" rel="stylesheet">
 <script type="text/javascript" src="/js/jquery/jq.datepicker.init.js" charset="utf-8"></script>
 <script type="text/javascript" src="/js/jquery/jquery-ui.min.js" charset="utf-8"></script>
 
-<!-- Common JS -->
-<script type="text/javascript" src="/giftcon/js/common.js"></script>
-<script type="text/javascript" src="/giftcon/js/gnb.js"></script>
 
 
-<!-- Criteo Script -->
+
+
 <script type="text/javascript" src="//static.criteo.net/js/ld/ld.js" async="true"></script>
-	<link rel="stylesheet" type="text/css" href="/giftcon/css/sub.css">
-<script src="//rum.beusable.net/script/b180518e163409u824/b474a1029d" type="text/javascript"></script>
+<script src="//rum.beusable.net/script/b180518e163409u824/b474a1029d" type="text/javascript"></script> 
 </head>
 <body>
 <div id="container">
@@ -54,7 +41,7 @@ div.paginate > div > a.disabled:hover {border: 1px solid #ddd;}
 	<%if(session.getAttribute("MEMBER_ID") != null){ %>
 	<li><a href="/giftcon/mypage/qna/insertform.conn" class="on"><span class="icoOneAsk"></span><em>1:1문의</em></a></li>
 	<%}else{ %>
-	<li><a href="/giftcon/loginForm.conn"><span class="icoOneAsk"></span><em>1:1문의</em></a></li>
+	<li><a href="/giftcon/loginForm.conn"><span class="icoOneAsk"></span></a></li>
 	<%} %>
 </ul>
 <ul class="subTab">
@@ -210,32 +197,15 @@ function goRegist(pageNo) {
 	if (confirm("1:1 문의를 등록하시겠습니까?")) {
 		var formData = new FormData(document.getElementById('qnaFrm'));
 	    $.ajax({
-	        url: "/giftcon/qna/insertform.conn",
+	        url: "/giftcon/mypage/qna/insert.conn",
 	    	type: 'POST',
 	        data:  formData,
 			dataType : 'text',
 	    	contentType: false,
 	        processData:false,
 		    success: function(resultCd) {
-				if(resultCd == "SUCCESS") {
-					alert("1:1 문의가 등록되었습니다.");
-	            	document.location.href = "/giftcon/mypage/qnalist.conn";
-				} else if(resultCd == "ERR01") {
-					alert("로그인 정보가 없습니다.");
-					document.location.href = "/common/login.do";
-				} else if(resultCd == "ERR02") {
-					alert("첨부파일 업로드 가능한 확장자가 아닙니다.\n다시 시도해주세요.");
-					return;
-				} else if(resultCd == "ERR03") {
-					alert("첨부파일은 10MB 이하만 가능합니다.\n다시 시도해주세요.");
-					return;
-				} else if(resultCd == "ERR04") {
-					alert("첨부파일 업로드를 실패했습니다.\n다시 시도해주세요.");
-					return;
-				} else {
-					alert('1:1 문의 등록을 실패했습니다.');
-					return;
-				}
+			alert('1:1 문의가 등록되었습니다.');
+				location.href="/giftcon/mypage/qnalist.conn";
 		    },
 			error: function(data) {
 				alert('1:1 문의 등록을 실패했습니다.\n다시 시도해주세요.');

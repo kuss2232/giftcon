@@ -67,10 +67,10 @@ function delchk(){
 								<tbody>
 								<%-- <c:forEach var="adminQnaList"  items="${adminQnaList}" varStatus="stat"> --%>
 									<c:url var="viewURL" value="adminQnaDetail" >
-										<c:param name="QNA_NUMBER" value="${adminQnaList.QNA_NUMBER }" />
+										<c:param name="QNA_NUMBER" value="${adminQnaList.QNA_NUM }" />
 									</c:url>									
 									<tr class="gradeA even" role="row">
-										<td style="text-align:center;vertical-align:middle;">${adminQnaList.QNA_NUMBER}</td>
+										<td style="text-align:center;vertical-align:middle;">${adminQnaList.QNA_NUM}</td>
 										<td style="text-align:center;vertical-align:middle;">${adminQnaList.QNA_CATEGORY}</td>
 										<td style="text-align:center;vertical-align:middle;">${adminQnaList.MEMBER_ID}</td>
 										<td style="text-align:center;vertical-align:middle;">${adminQnaList.QNA_TITLE}</td>
@@ -86,7 +86,7 @@ function delchk(){
 												<input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Cog_font_awesome.svg/32px-Cog_font_awesome.svg.png">
 											</a>&nbsp;&nbsp;
 										<c:url var="viewURL2" value="adminQnaDelete" >
-											<c:param name="QNA_NUMBER" value="${adminQnaList.QNA_NUMBER}" />
+											<c:param name="QNA_NUMBER" value="${adminQnaList.QNA_NUM}" />
 										</c:url>
 										<a href="${viewURL3}">
 											<input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Trash_font_awesome.svg/32px-Trash_font_awesome.svg.png" onclick="return delchk()">
@@ -102,7 +102,7 @@ function delchk(){
 							</table>
 						</div>
 					</div>
-					<div class="paging">
+					<div class="paging" align="center">
 						${pagingHtml}
 					</div>
 					<div class="row">
@@ -112,7 +112,6 @@ function delchk(){
 									<select class="form-control" name="searchNum" id="searchNum">
 										<option value="0">아이디</option>
 										<option value="1">제목</option>
-										<option value="2">작성자</option>
 									</select>
 									<input class="form-control" type="text" name="isSearch" id="isSearch"/>
 									<span>

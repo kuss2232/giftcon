@@ -6,11 +6,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<style>
+div.paginate > div > a.disabled:hover {border: 1px solid #ddd;}
+</style>
+
 	<link rel="stylesheet" type="text/css" href="/giftcon/css/bootstrapadmin.min.css">
 	<script src="/giftcon/css/common.js" charset="utf-8"></script>
 	<script src="/giftcon/css/jquery/jquery-1.12.4.min.js"></script>
-<title>Insert title here</title>
+<title>관리자Q&A리스트</title>
 
 <script type="text/javascript">
 
@@ -35,10 +38,11 @@ function fn_qnaDetail(qna_num){
 	comSubmit.submit();
 }
 
+
 </script>
 </head>
 <body>
-<div class="row">
+<div class="row" align="center">
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			Q&amp;A 검색, 수정, 삭제 기능하는 페이지입니다.
@@ -137,9 +141,6 @@ function fn_qnaDetail(qna_num){
 							</table>
 						</div>
 					</div>
-					<div class="paging">
-						<strong>1</strong>
-					</div>
 					<div class="row">
 						<div style="text-align:center;">
 							<div id="dataTables-example_filter" class="dataTables_filter">
@@ -159,9 +160,13 @@ function fn_qnaDetail(qna_num){
 				</div>
 			</div>
 			<!-- /.table-responsive -->		
+			<div class="paginate" align="center"><ul class="numList" style="width: 58px; ">${pagingHtml}</ul></div>
 		</div>
 	</div>
+	
         <!-- /.panel -->   
+        
 </div>
+
 </body>
 </html>

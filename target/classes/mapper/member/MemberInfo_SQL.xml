@@ -81,6 +81,18 @@
 ]]>
 </update>
 
+<!-- 비밀번호 변경2(id값만 가지고 변경) -->
+<update id="chgPw2" parameterType="hashmap">
+<![CDATA[
+	UPDATE 
+		MEMBER
+	SET
+		MEMBER_PASSWD = #{MEMBER_PASSWD}
+	WHERE
+		MEMBER_ID = #{MEMBER_ID}
+]]>
+</update>
+
 <!-- 회원 탈퇴 -->
 <update id="deleteMember" parameterType="hashmap" >
 <![CDATA[
@@ -154,7 +166,7 @@
       QNA_NUM,
       QNA_CATEGORY,
       MEMBER_NUM,
-      QNA_TITLE
+      QNA_TITLE,
       QNA_CNT,
       QNA_CHECK,
       QNA_DATE,
@@ -250,4 +262,30 @@
 
 ]]>
 </select>
+
+<!-- 회원 정보 진입시 비밀번호 체크 -->
+<select id="userPwCheck" parameterType="hashmap" resultType="hashmap">
+<![CDATA[
+	SELECT
+		MEMBER_ADMIN
+	FROM
+		MEMBER
+	WHERE
+		MEMBER_ID = #{MEMBER_ID}
+		AND MEMBER_PASSWD = #{MEMBER_PASSWD}
+]]>
+</select>
+
+<!-- 유저정보 수정 -->
+<update id="userInfoUpdate" parameterType="hashmap">
+<![CDATA[
+	UPDATE
+		MEMBER
+	SET
+		MEMBER_EMAIL = #{MEMBER_EMAIL},
+		MEMBER_PHONE = #{MEMBER_PHONE}
+	WHERE
+		MEMBER_ID = #{MEMBER_ID}
+]]>
+</update>
 </mapper>

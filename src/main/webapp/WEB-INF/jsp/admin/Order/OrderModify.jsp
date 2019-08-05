@@ -50,18 +50,17 @@ function validateForm() {
 		<div class="panel-heading" >주문수정 페이지입니다. 이미지를 확인하십시오</div>
 			<div class="panel-body">
 				<%-- <form:form commandName="order" action="orderModify.dog" enctype="multipart/form-data" method="post" name="joinform" onsubmit="return validateForm()">	 --%>
-				<input type="hidden" name="order_num" value="">
 						<div class="form-group">
                             <label>주문번호</label>
-                            <input type="text" class="form-control" value="" style="width:initial;" readonly/>                             
+                            <input type="text" id="order_num" class="form-control" value="${ORDER_NUM}" style="width:initial;" readonly/>                             
                         </div>
                         <div class="form-group">
                             <label>상품명</label>
-                            <input type="text" class="form-control" value="" style="width:500px;" readonly/>                             
+                            <input type="text" id="GOODS_NAME" class="form-control" value="" style="width:500px;" readonly/>                             
                         </div>
                         <div style="border:1px;" class="form-group">
                            <label>상품이미지</label>
-                           <p><img src="/admin/resources/images/don.jpg" width="100" height="100" alt="" onerror="this.src='/admin/resources/images/don.jpg'" />                                                     
+                           <p><img src="/giftcon/resources/images/don.jpg" width="100" height="100" alt="" />                                                     
                         </div>	
                         <div class="form-group">
                             <label>상품수량</label>
