@@ -154,7 +154,7 @@
       QNA_NUM,
       QNA_CATEGORY,
       MEMBER_NUM,
-      QNA_TITLE
+      QNA_TITLE,
       QNA_CNT,
       QNA_CHECK,
       QNA_DATE,

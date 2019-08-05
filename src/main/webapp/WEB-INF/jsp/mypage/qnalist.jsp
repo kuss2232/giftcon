@@ -6,19 +6,9 @@
 <html>
 <head><style>
 div.paginate > div > a.disabled:hover {border: 1px solid #ddd;}
-</style><!-- 페이지 네이게이터 Include -->
+</style>
 
 <title>title</title>
-
-<!-- Service CSS -->
-<link rel="stylesheet" type="text/css" href="/giftcon/css/common.css">
-<link rel="stylesheet" type="text/css" href="/giftcon/css/jquery/swiper.min.css">
-<link rel="stylesheet" type="text/css" href="/giftcon/css/sub.css">
-
-<!-- jQuery -->
-<script src="/giftcon/css/jquery/jquery-1.12.4.min.js"></script>
-<script type="text/javascript" src="/giftcon/css/common.js"></script>
-<script type="text/javascript" src="/giftcon/css/gnb.js"></script>
 
 <body>
 
@@ -48,11 +38,11 @@ div.paginate > div > a.disabled:hover {border: 1px solid #ddd;}
 					<div class="askList">
 						<ul class="myAskList">
 							<c:forEach items="${qnaList}" var="list">
-							<li id="list_0">
+							<li id="list_0" class>
 								<input type="hidden" id="QNA_NUM" name="QNA_NUM" value="${list.QNA_NUM}">
 								<a class="qnaTit">
 									<span class="txtCate">${list.QNA_CATEGORY}</span>
-									<span class="tit">${list.QNA_TITLE}</span>
+									<span class="tit">${list.QNA_TITLE} </span>
 									<span class="txtState">
 									<c:if test="${list.QNA_CHECK.equals('Y')}">
 										답변완료
@@ -64,7 +54,7 @@ div.paginate > div > a.disabled:hover {border: 1px solid #ddd;}
 									</c:if>
 									</span>
 								</a>
-								<div id="view_0" class="qnaView" style="display: none;">
+								<div id="view_0" class="View" style="display: none;">
 									<p class="txtDate">[등록일] 2019.07.22</p>
 									<p class="txtCont">${list.QNA_CNT}</p>
 									<c:if test="${list.QNA_CHECK.equals('Y')}">
@@ -81,7 +71,7 @@ div.paginate > div > a.disabled:hover {border: 1px solid #ddd;}
 					<!-- /end:ask_list -->
 					<div>
 </div></form>
-					<div class="paginate"><ul class="numList">${pagingHtml}</ul></div>
+					<div class="paginate" align="center"><ul class="numList">${pagingHtml}</ul></div>
 				</div>
 			</div>
 			<!-- /end:contents -->
@@ -94,7 +84,7 @@ div.paginate > div > a.disabled:hover {border: 1px solid #ddd;}
 <script type="text/javascript">
 
 $(".askList .myAskList .qnaTit").click(function(){
-	$(".askList .myAskList .qnaView").slideUp(200);
+	$(".askList .myAskList .View").slideUp(200);
 	if ($(this).next().css("display")=="block") return;
 	$(this).next().slideDown(200);
 });

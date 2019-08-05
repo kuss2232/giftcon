@@ -12,6 +12,7 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <head>
+<script src="/giftcon/css/jquery/bootstrapadmin.min.css"></script>
 <script src="/giftcon/js/common.js" charset="utf-8"></script>
 <script src="/giftcon/css/jquery/jquery-1.12.4.min.js"></script>
 <link rel="stylesheet" type="text/css"  />

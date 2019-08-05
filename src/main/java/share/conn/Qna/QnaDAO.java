@@ -26,4 +26,16 @@ public class QnaDAO extends AbstractDAO{
 	public Map<String, Object> qnaDetail(Map<String, Object> map) throws Exception {
 		return (Map<String, Object>) selectOne("memberInfo.qnaDetail", map);
 	}
+	
+	//Q&A제목검색
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> qnaTitleSearch(Map<String,Object> map) throws Exception{
+		return (List<Map<String,Object>>) selectList("adminQna.searchQnaTitleList",map);
+	}
+		
+	//사용자ID로 Q&A제목검색
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> qnaIdSearch(Map<String,Object> map) throws Exception{
+		return (List<Map<String,Object>>) selectList("adminQna.searchQnaMemberList",map);
+	}
 }
