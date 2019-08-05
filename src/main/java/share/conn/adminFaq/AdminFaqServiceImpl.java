@@ -41,9 +41,6 @@ public class AdminFaqServiceImpl implements AdminFaqService {
 	@Override
 	public void faqModify(Map<String, Object> map, HttpServletRequest request) throws Exception {
 		adminfaqDAO.faqModify(map);
-		
-		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
-		
 	}
 
 	// 삭제하기
@@ -61,7 +58,7 @@ public class AdminFaqServiceImpl implements AdminFaqService {
 		return adminfaqDAO.faqCategoryList(map);
 	}
 	
-	// 글 제목 검색
+	//  FAQ 검색
 		@Override
 		public List<Map<String, Object>> faqSearch(Map<String, Object> map) {
 			return adminfaqDAO.faqSearch(map);

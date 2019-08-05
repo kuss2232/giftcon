@@ -97,10 +97,10 @@
 								<span class="fa arrow">▼</span>
 							</a>
 							<ul class="nav nav-second-level">
-								<li><a href="/giftcon/admin-notice.conn">- 공지사항</a></li>
+								<li><a href="/giftcon/notify/adminNotifyList.conn">- 공지사항</a></li>
 								<li><a href="/giftcon/admin_event.conn">- 이벤트</a></li>
-								<li><a href="/giftcon/admin_faq.conn">- FAQ</a></li>
-								<li><a href="/giftcon/admin_qna.conn">- Q&A</a></li>
+								<li><a href="/giftcon/faq/adminFaqList.conn">- FAQ</a></li>
+								<li><a href="/giftcon/adminQnaList.conn">- Q&A</a></li>
 							</ul>
 						</li>
 					</ul>

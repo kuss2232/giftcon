@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/include-header.jspf" %>
 <!DOCTYPE html>
 <html>
 <body>
@@ -48,7 +49,7 @@
 								</c:url>									
 									<tr class="gradeA even" role="row" height="30px">
 										<td style="text-align:center;vertical-align:middle;">1</td>	<!-- 주문번호 -->							
-										<td style="text-align:center;vertical-align:middle;"><img src="/admin/resources/images/don.jpg"></td>	<!-- 상품이미지 -->
+										<td style="text-align:center;vertical-align:middle;"><img src="/giftcon/images/don.jpg"></td>	<!-- 상품이미지 -->
 										<td style="text-align:center;vertical-align:middle;">돈까스</td>	<!-- 상품이름 -->
 										<td style="text-align:center;vertical-align:middle;">돼지 등심으로 만든 돈까스</td>	<!-- 상품간략설명 -->
 										<td style="text-align:center;vertical-align:middle;">kkkknum1</td>	<!-- 회원ID -->

@@ -6,13 +6,10 @@
 <html>
 <head><style>
 div.paginate > div > a.disabled:hover {border: 1px solid #ddd;}
-</style><!-- 페이지 네이게이터 Include -->
+</style>
 
 <title>title</title>
-<!-- Service CSS -->
-<link rel="stylesheet" type="text/css" href="/giftcon/css/common.css">
-<link rel="stylesheet" type="text/css" href="/giftcon/css/jquery/swiper.min.css">
-<link rel="stylesheet" type="text/css" href="/giftcon/css/sub.css">
+
 
 <!-- jQuery -->
 <script src="/giftcon/css/jquery/jquery-1.12.4.min.js"></script>

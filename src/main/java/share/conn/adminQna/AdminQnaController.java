@@ -1,5 +1,5 @@
 package share.conn.adminQna;
-import java.util.Iterator;
+
 import java.util.List;
 import java.util.Map;
 import javax.annotation.Resource;
@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import share.conn.Paging.AdminQNAPaging;
 import share.conn.Paging.Paging;
 import share.conn.giftcon.CommandMap;
 
@@ -19,31 +20,24 @@ public class AdminQnaController {
 	@Resource(name ="adminQnaService")
 	private AdminQnaService adminQnaService;
 	
-	private String SearchKeyword;
-	
 	private int totalCount;
 	private int searchNum;
 	private Integer categoryNum;
 	private Integer repState;
 	
-	private String isSearch;
+	private String SearchKeyword;
 	private int currentPage = 1;
 	private int blockCount = 10;
 	private int blockPage = 10;
 	private String pagingHtml;
+	private AdminQNAPaging page;
 	
-	private Paging page;
 	
 	//Q&a목록
 	@RequestMapping(value= "/adminQnaList.conn")
 	public ModelAndView adminQnaList(CommandMap commandMap, HttpServletRequest request)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		List<Map<String, Object>> adQnaList = adminQnaService.qnaList(commandMap.getMap());
-		Iterator it = adQnaList.iterator();
-		while(it.hasNext()) {
-			System.out.println("qna : "+((Map)it.next()).get("QNA_NUM"));
-		}
-		
 		
 		if (request.getParameter("currentPage") == null || request.getParameter("currentPage").trim().isEmpty()
 				|| request.getParameter("currentPage").equals("0")) {
@@ -53,13 +47,15 @@ public class AdminQnaController {
 		}
 		
 		totalCount = adQnaList.size();
+		
 		SearchKeyword = request.getParameter("SearchKeyword");
 		
 		if (SearchKeyword != null) {
 			searchNum = Integer.parseInt(request.getParameter("searchNum"));
+			SearchKeyword = request.getParameter("SearchKeyword");
 			
 			if(searchNum == 0) {
-				commandMap.put("SearchKeyword", SearchKeyword);
+				commandMap.put("MEMBER_ID", SearchKeyword);
 				adQnaList = adminQnaService.qnaIdSearch(commandMap.getMap());
 				totalCount = adQnaList.size();
 			}else if(searchNum == 1) {
@@ -67,12 +63,46 @@ public class AdminQnaController {
 				adQnaList = adminQnaService.qnaTitleSearch(commandMap.getMap());
 				totalCount = adQnaList.size();
 			}
+			page = new AdminQNAPaging(currentPage, totalCount, blockCount, blockPage, "adminQnaList0", searchNum, SearchKeyword);
+			pagingHtml = page.getPagingHtml().toString();
+			System.out.println("aaaaa"+pagingHtml);
+			int lastCount = totalCount;
+			
+			if(page.getEndCount() < totalCount)
+				lastCount = page.getEndCount() +1;
+			
+			adQnaList = adQnaList.subList(page.getStartCount(), lastCount);
+			System.out.println(pagingHtml);
+			mv.addObject("Searchkeyword", SearchKeyword);
+			mv.addObject("adQnaList",adQnaList);
+			mv.addObject("pagingHtml",pagingHtml);
+			mv.setViewName("admin/Qna/adminQnaList");
+			return mv;
+		} else {
+			
+			totalCount = adQnaList.size();
+			
+			page = new AdminQNAPaging(currentPage, totalCount, blockCount, blockPage, "/giftcon/adminQnaList.conn");
+			pagingHtml = page.getPagingHtml().toString();
+			
+			int lastCount = totalCount;
+			
+			if(page.getEndCount() < totalCount)
+				lastCount = page.getEndCount() +1;
+			
+			adQnaList = adQnaList.subList(page.getStartCount(), lastCount);
+			
+			System.out.println(pagingHtml.toString());
+			
+			mv.addObject("totalCount",totalCount);
+			mv.addObject("currentPage",currentPage);
+			mv.addObject("adQnaList",adQnaList);
+			mv.addObject("pagingHtml",pagingHtml);
+			
+			mv.setViewName("admin/Qna/adminQnaList");
+			
+			return mv;
 		}
-		mv.addObject("Searchkeyword", SearchKeyword);
-		mv.addObject("adQnaList",adQnaList);
-		mv.setViewName("admin/Qna/adminQnaList");
-		
-		return mv;
 	}
 	
 	//Q&A 상세보기
