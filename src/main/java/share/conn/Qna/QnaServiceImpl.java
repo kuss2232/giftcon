@@ -30,5 +30,18 @@ public class QnaServiceImpl implements QnaService{
 		Map<String, Object> qnaDetail = qnaDAO.qnaDetail(map);
 		return qnaDetail;
 	}
+	//Q&A 제목으로검색
+	@Override
+	public List<Map<String, Object>> qnaTitleSearch(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return qnaDAO.qnaTitleSearch(map);
+	}
+	//Q&A 아이디로 검색
+	@Override
+	public List<Map<String, Object>> qnaIdSearch(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return qnaDAO.qnaIdSearch(map);
+	}
+
 
 }

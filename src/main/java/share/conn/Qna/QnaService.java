@@ -13,4 +13,11 @@ public interface QnaService {
 	
 	//QNA 상세보기
 	public Map<String, Object> qnaDetail(Map<String, Object> map) throws Exception;
+	
+	//Q&A제목검색
+	public List<Map<String, Object>> qnaTitleSearch(Map<String,Object> map) throws Exception;
+		
+	//사용자ID로 Q&A제목검색
+	public List<Map<String, Object>> qnaIdSearch(Map<String,Object> map) throws Exception;
+
 }
