@@ -75,7 +75,7 @@ public class AdminGoodsController {
 			mv.addObject("pagingHtml", pagingHtml);
 			mv.addObject("currentPage", currentPage);
 			mv.addObject("adGoodsList", adGoodsList);
-			mv.setViewName("/admin/Goods/admin_goodsList");
+			mv.setViewName("admin/Goods/admin_goodsList");
 			return mv;
 		}
 		
@@ -100,7 +100,7 @@ public class AdminGoodsController {
 		Integer count = adminGoodsService.adAllGoodsNum();
 		int a = (int) count;
 		mv.addObject("count", a);
-		mv.setViewName("/admin/Goods/admin_goodsList");
+		mv.setViewName("admin/Goods/admin_goodsList");
 
 		return mv;
 	}
@@ -109,11 +109,11 @@ public class AdminGoodsController {
 	@RequestMapping(value = "/goods/adminInsertGoods.conn")
 	public ModelAndView adGoodsinsert(CommandMap commandMap, HttpServletRequest request) throws Exception {
 
-		 ModelAndView mv = new ModelAndView("redirect:/goods/adminGoodsList.conn");
-	      
-	      adminGoodsService.adGoodsinsert(commandMap.getMap(), request);
+		ModelAndView mv = new ModelAndView("redirect:/goods/adminGoodsList.conn");
 
-	      return mv;
+		adminGoodsService.adGoodsinsert(commandMap.getMap(), request);
+
+		return mv;
 
 	}
 
