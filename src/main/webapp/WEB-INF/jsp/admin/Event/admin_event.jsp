@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
+
+.<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>   
@@ -8,21 +9,7 @@ function delchk(){
     return confirm("삭제하시겠습니까?");
 }
 </script>
-<style type="text/css">
-.paging{text-align:center;height:32px;margin-top:5px;margin-bottom:15px;}
-.paging a,
-.paging strong{display:inline-block;width:36px;height:32px;line-height:28px;font-size:14px;border:1px solid #e0e0e0;margin-left:5px;
--webkit-border-radius:3px;
-   -moz-border-radius:3px;
-		border-radius:3px;
--webkit-box-shadow:1px 1px 1px 0px rgba(235,235,235,1);
-	-moz-box-shadow:1px 1px 1px 0px rgba(235,235,235,1);
-		  box-shadow:1px 1px 1px 0px rgba(235,235,235,1);
-}
-.paging a:first-child{margin-left:0;}
-.paging strong{color:#fff;background:#337AB7;border:1px solid #337AB7;}
-.paging .page_arw{font-size:11px;line-height:30px;}
-</style>
+
 </head>
 
 <div class="row" style="padding-left:15px;width:900px;">    

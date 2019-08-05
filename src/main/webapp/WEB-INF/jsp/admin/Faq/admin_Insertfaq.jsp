@@ -7,7 +7,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>공지사항 등록하기</title>
+<title>FAQ 등록하기</title>
+<script type="text/javascript" src="/giftcon/css/jquery/jquery-1.12.4.min.js"></script>
 </head>
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/ui.css'/>" />
 <!-- jQuery -->
@@ -21,7 +22,7 @@
 		<div class="panel panel-default">
 			<div class="panel-heading">FAQ 등록 페이지입니다.</div>
 			<div class="panel-body">
-				<form id="frm" >
+				<form id="frm" name="frm" >
 					<table class="faq_view">
 						<colgroup>
 							<col width="15%">
@@ -60,7 +61,7 @@
 					</table>
 					<br/>
 					<!-- <input type="file" id="NOTIFY_IMAGE" name="NOTIFY_IMAGE" style="width: initial;" /> <br/> -->
-					<input type="button" name="업로드" value="작성하기" id="insertFaq" class="btn btn-primary"/>
+					<input type="button" name="업로드" value="작성하기" id="insertFaq" class="btn btn-primary"  />
 					<button type="button" onclick="onList()" id="faqList" class="btn btn-primary">목록</button>
 				</form>
 				</div>
@@ -86,17 +87,27 @@
 				}
 
 				function fn_faqWrite() {
+					if (document.frm.FAQ_TITLE.value == "") {
+						alert("제목을 입력해 주세요.");
+						return false;
+					} else if (document.frm.FAQ_CNT.value == "") {
+						alert("내용을 입력해 주세요.");
+						return false;
+					}
 					var comSubmit = new ComSubmit("frm");
 					comSubmit.setUrl("<c:url value='/faq/adminWriteFaq.conn' />");
 					comSubmit.addParam("FAQ_CATEGORY", $("#FAQ_CATEGORY").val());
 					comSubmit.submit();
+					alert("등록되었습니다.")
 				}
-
-				$('.searchOption').val($('.searchOptionVal').val());
+				
+				
+				
+								$('.searchOption').val($('.searchOptionVal').val());
 				
 				var onList = function() {
 					location.href = 'adminFaqList.conn';
 				};
-		</script>
+		 </script>
 </body>
 </html>
