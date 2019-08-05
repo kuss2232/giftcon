@@ -41,9 +41,6 @@ public class AdminFaqServiceImpl implements AdminFaqService {
 	@Override
 	public void faqModify(Map<String, Object> map, HttpServletRequest request) throws Exception {
 		adminfaqDAO.faqModify(map);
-		
-		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
-		
 	}
 
 	// 삭제하기
