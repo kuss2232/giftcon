@@ -195,7 +195,7 @@ public class AdminFaqController {
 	@RequestMapping(value = "/faq/adminFaqModify.conn")
 	public ModelAndView faqModify(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("redirect:/faq/adminFaqList.conn");
-
+		commandMap.put("FAQ_CATEGORY", request.getParameter("FAQ_CATEGORY"));
 		adminFaqService.faqModify(commandMap.getMap(), request);
 
 		mv.addObject("FAQ_NUM", commandMap.get("FAQ_NUM"));
