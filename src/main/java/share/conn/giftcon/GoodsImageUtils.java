@@ -14,11 +14,13 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 @Component("goodsImageUtils")
 public class GoodsImageUtils {
-
+	//filePath=굿즈 파일 경로
    private static final String filePath = "C:\\java\\maven-app\\MODA\\src\\main\\webapp\\file\\goodsFile\\";
+   //filePath2= 공지사항 파일 경로
    private static final String filePath2 = "C:\\java\\maven-app\\MODA\\src\\main\\webapp\\file\\noticeFile\\";
-   private static final String filePath3 = "C:\\java\\maven-app\\MODA\\src\\main\\webapp\\file\\faqFile\\";
-   private static final String filePath4 = "C:\\java\\maven-app\\MODA\\src\\main\\webapp\\file\\reviewFile\\";
+   //filePath3= 이벤트 파일 경로
+   private static final String filePath3 = "D:\\java\\Git\\giftcon\\src\\main\\webapp\\file\\Eventfile\\";
+   //filePath5= QNA 파일 경로
    private static final String filePath5 = "C:\\java\\maven-app\\MODA\\src\\main\\webapp\\file\\qnaFile\\";
    
    // 상품 썸네일 이미지 등록
@@ -199,23 +201,15 @@ public class GoodsImageUtils {
       }
    }
 
-   // faq 이미지 삭제
-   public void faqImageDelete(Map<String, Object> map) throws Exception {
+   // 이벤트 이미지 삭제
+   public void eventImageDelete(Map<String, Object> map) throws Exception {
 
-      if (map.get("FAQ_IMAGE1") != null) {
-         File removeFile = new File(filePath3 + map.get("FAQ_IMAGE1"));
+      if (map.get("EVENT_IMAGE1") != null) {
+         File removeFile = new File(filePath3 + map.get("EVENT_IMAGE1"));
          removeFile.delete();
       }
    }
-   
-   //리뷰 이미지 삭제
-   public void reviewImageDelete(Map<String, Object> map) throws Exception {
-      if(map.get("REVIEW_IMAGE") != null) {
-         File removeFile = new File(filePath4 + map.get("REVIEW_IMAGE"));
-         removeFile.delete();
-      }
-   }
-   
+    
    //QNA 이미지 삭제
    public void qnaImageDelete(Map<String, Object> map) throws Exception {
       if(map.get("QNA_IMAGE1") != null) {
@@ -269,7 +263,7 @@ public class GoodsImageUtils {
       }
    }
    
-   //faq 이미지 등록
+   //Event 이미지 등록
       public List<Map<String, Object>> faqImage(Map<String, Object> map, HttpServletRequest request)
             throws Exception {
 
@@ -278,13 +272,13 @@ public class GoodsImageUtils {
          List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
          Map<String, Object> listMap = null;
 
-         if (multipartHttpServletRequest.getFiles("FAQ_IMAGE1") != null) {
+         if (multipartHttpServletRequest.getFiles("EVENT_IMAGE*") != null) {
             List<MultipartFile> imageFile = multipartHttpServletRequest.getFiles("FAQ_IMAGE1");
 
             String IMAGE = null;
             String IMAGEExtension = null;
 
-            String FAQ_NUMBER = map.get("FAQ_NUMBER").toString();
+            String EVENT_NUM = map.get("EVENT_NUMBER").toString();
 
             File file = new File(filePath3);
             if (file.exists() == false) {
@@ -296,7 +290,7 @@ public class GoodsImageUtils {
                if (multipartFile.isEmpty() == false) {
                   IMAGEExtension = multipartFile.getOriginalFilename()
                         .substring(multipartFile.getOriginalFilename().lastIndexOf("."));
-                  IMAGE = "FAQ_IMAGE_" + FAQ_NUMBER + IMAGEExtension;
+                  IMAGE = "EVENT_IMAGE*" + EVENT_NUM + IMAGEExtension;
 
                   file = new File(filePath3 + IMAGE);
                   multipartFile.transferTo(file);
@@ -304,7 +298,7 @@ public class GoodsImageUtils {
                   listMap = new HashMap<String, Object>();
                   listMap.put("FAQ_IMAGE1", IMAGE);
 
-                  listMap.put("FAQ_NUMBER", map.get("FAQ_NUMBER"));
+                  listMap.put("EVENT_NUM", map.get("EVENT_NUM"));
                   list.add(listMap);
                }
             }
@@ -314,19 +308,19 @@ public class GoodsImageUtils {
          }
       }
 
-   // faq 이미지 수정
+   // EVENT 이미지 수정
    public Map<String, Object> faqModifyImage(Map<String, Object> map, HttpServletRequest request) throws Exception {
 
       MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
-      MultipartFile file = multipartHttpServletRequest.getFile("FAQ_IMAGE1");
+      MultipartFile file = multipartHttpServletRequest.getFile("EVENT_IMAGE*");
 
-      String fileName = "FAQ_IMAGE_" + map.get("FAQ_NUMBER").toString();
+      String fileName = "EVENT_IMAGE_" + map.get("EVENT_NUM").toString();
       String IMAGEExtension = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
 
       File uploadFile = new File(filePath3 + fileName + IMAGEExtension);
 
-      if (map.get("ORIGINAL_FAQ") != null) {
-         String orgFileName = (String) map.get("ORIGINAL_FAQ");
+      if (map.get("ORIGINAL_EVENT") != null) {
+         String orgFileName = (String) map.get("ORIGINAL_EVENT");
          File removeFile = new File(filePath3 + orgFileName);
          removeFile.delete();
       }
@@ -337,9 +331,9 @@ public class GoodsImageUtils {
 
       }
 
-      map.put("FAQ_IMAGE1", fileName + IMAGEExtension);
+      map.put("EVENT_IMAGE*", fileName + IMAGEExtension);
 
-      System.out.println("FAQ 이미지 수정완료");
+      System.out.println("EVENT 이미지 수정완료");
       return map;
    }
 
@@ -349,7 +343,7 @@ public class GoodsImageUtils {
       MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
       MultipartFile file = multipartHttpServletRequest.getFile("NOTIFY_IMAGE");
 
-      String fileName = "NOTIFY_" + map.get("NOTIFY_NUMBER").toString();
+      String fileName = "NOTIFY_" + map.get("NOTIFY_NUM").toString();
       String IMAGEExtension = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
 
       File uploadFile = new File(filePath2 + fileName + IMAGEExtension);
@@ -371,4 +365,4 @@ public class GoodsImageUtils {
       System.out.println("공지사항 이미지 수정완료");
       return map;
    }
-}
+} 

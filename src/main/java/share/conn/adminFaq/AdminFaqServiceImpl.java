@@ -58,7 +58,7 @@ public class AdminFaqServiceImpl implements AdminFaqService {
 		return adminfaqDAO.faqCategoryList(map);
 	}
 	
-	// 글 제목 검색
+	//  FAQ 검색
 		@Override
 		public List<Map<String, Object>> faqSearch(Map<String, Object> map) {
 			return adminfaqDAO.faqSearch(map);
