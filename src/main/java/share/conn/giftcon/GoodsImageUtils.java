@@ -22,13 +22,13 @@ public class GoodsImageUtils {
    private static final String filePath5 = "C:\\java\\maven-app\\MODA\\src\\main\\webapp\\file\\qnaFile\\";
    
    // 상품 썸네일 이미지 등록
-   public Map<String, Object> goodsThumbnail(Map<String, Object> map, HttpServletRequest request) throws Exception {
+   public Map<String, Object> goodsIMG1(Map<String, Object> map, HttpServletRequest request) throws Exception {
 
       MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
 
-      if (multipartHttpServletRequest.getFile("GOODS_THUMBNAIL") != null) {
-         MultipartFile file = multipartHttpServletRequest.getFile("GOODS_THUMBNAIL");
-         String fileName = "Thumbnail_" + map.get("GOODS_NUMBER").toString();
+      if (multipartHttpServletRequest.getFile("GOODS_IMG1") != null) {
+         MultipartFile file = multipartHttpServletRequest.getFile("GOODS_IMG1");
+         String fileName = "GoodsIMG1_" + map.get("GOODS_NUM").toString();
 
          String IMAGEExtension = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
          
@@ -45,9 +45,64 @@ public class GoodsImageUtils {
          } catch (Exception e) {
 
          }
-         map.put("GOODS_THUMBNAIL", fileName + IMAGEExtension);
+         map.put("GOODS_IMG1", fileName + IMAGEExtension);
       }
       return map;
+   }
+   
+   public Map<String, Object> goodsIMG2(Map<String, Object> map, HttpServletRequest request) throws Exception {
+
+	   MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
+
+	   if (multipartHttpServletRequest.getFile("GOODS_IMG2") != null) {
+		   MultipartFile file = multipartHttpServletRequest.getFile("GOODS_IMG2");
+	       String fileName = "GoodsIMG2_" + map.get("GOODS_NUM").toString();
+
+	       String IMAGEExtension = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
+	         
+	       File file2 = new File(filePath);
+	       if (file2.exists() == false) {
+	            file2.mkdirs(); // 폴더가 존재하지 않으면 폴더 생성
+	   }
+
+	       File uploadFile = new File(filePath + fileName + IMAGEExtension);
+
+	       try {
+	            file.transferTo(uploadFile);
+	       } catch (Exception e) {
+
+	       }
+	         map.put("GOODS_IMG1", fileName + IMAGEExtension);
+	    }
+	    return map;
+   }
+   
+   public Map<String, Object> goodsIMG3(Map<String, Object> map, HttpServletRequest request) throws Exception {
+
+	      MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
+
+	      if (multipartHttpServletRequest.getFile("GOODS_IMG3") != null) {
+	         MultipartFile file = multipartHttpServletRequest.getFile("GOODS_IMG3");
+	         String fileName = "GoodsIMG3_" + map.get("GOODS_NUM").toString();
+
+	         String IMAGEExtension = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
+	         
+	         File file2 = new File(filePath);
+	         if (file2.exists() == false) {
+	            file2.mkdirs(); // 폴더가 존재하지 않으면 폴더 생성
+	         }
+
+	         
+	         File uploadFile = new File(filePath + fileName + IMAGEExtension);
+
+	         try {
+	            file.transferTo(uploadFile);
+	         } catch (Exception e) {
+
+	         }
+	         map.put("GOODS_IMG3", fileName + IMAGEExtension);
+	      }
+	      return map;
    }
 
    // 상품이미지 등록
@@ -65,7 +120,7 @@ public class GoodsImageUtils {
          String IMAGE = null;
          String IMAGEExtension = null;
 
-         String GOODS_NUMBER = map.get("GOODS_NUMBER").toString();
+         String GOODS_NUM = map.get("GOODS_NUM").toString();
 
          File file = new File(filePath);
          if (file.exists() == false) {
@@ -77,7 +132,7 @@ public class GoodsImageUtils {
             if (multipartFile.isEmpty() == false) {
                IMAGEExtension = multipartFile.getOriginalFilename()
                      .substring(multipartFile.getOriginalFilename().lastIndexOf("."));
-               IMAGE = "IMAGE_" + GOODS_NUMBER + "_" + System.currentTimeMillis() + IMAGEExtension;
+               IMAGE = "IMAGE_" + GOODS_NUM + "_" + System.currentTimeMillis() + IMAGEExtension;
 
                file = new File(filePath + IMAGE);
                multipartFile.transferTo(file);
@@ -85,7 +140,7 @@ public class GoodsImageUtils {
                listMap = new HashMap<String, Object>();
                listMap.put("IMAGE", IMAGE);
 
-               listMap.put("GOODS_NUMBER", map.get("GOODS_NUMBER"));
+               listMap.put("GOODS_NUM", map.get("GOODS_NUM"));
                list.add(listMap);
             }
          }
@@ -102,7 +157,7 @@ public class GoodsImageUtils {
       MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
       MultipartFile file = multipartHttpServletRequest.getFile("GOODS_THUMBNAIL");
 
-      String fileName = "Thumbnail_" + map.get("GOODS_NUMBER").toString();
+      String fileName = "Thumbnail_" + map.get("GOODS_NUM").toString();
 
       String IMAGEExtension = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
 
@@ -163,7 +218,7 @@ public class GoodsImageUtils {
                listMap.put("IMAGE", a.substring(0, a.lastIndexOf(".")) + IMAGEExtension);
                listMap.put("ORIGINAL_IMAGE", a);
 
-               listMap.put("GOODS_NUMBER", map.get("GOODS_NUMBER"));
+               listMap.put("GOODS_NUM", map.get("GOODS_NUM"));
                list.add(listMap);
             }
          }
