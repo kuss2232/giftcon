@@ -2,6 +2,9 @@ package share.conn.adminOrder;
 
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Repository;
 import share.conn.giftcon.AbstractDAO;
 
@@ -18,7 +21,7 @@ public class AdminOrderDAO extends AbstractDAO{
 	}
 	
 	public void orderDelete(Map<String,Object> map) throws Exception{
-		delete("adminOrderlist.OrderDelete", map);
+		delete("adminOrderlist.orderDelete", map);
 	}
 	
 	//사용자 아이디로 주문검색
