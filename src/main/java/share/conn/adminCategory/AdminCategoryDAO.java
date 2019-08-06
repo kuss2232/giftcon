@@ -16,12 +16,18 @@ public class AdminCategoryDAO extends AbstractDAO {
 	
 	//카테고리 추가
 	public void insertCategory(Map<String, Object> map) throws Exception{
-		insert("adminCategory.categoryInsert");
+		insert("adminCategory.categoryInsert", map);
 	}
 	
 	//카테고리 삭제
 	public void deleteCategory(Map<String, Object> map) throws Exception{
-		delete("adminCategory.categoryDelete");
+		delete("adminCategory.categoryDelete", map);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> bigCategoryList(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return (List<Map<String, Object>>)selectList("adminCategory.bigCategoryList", map);
 	}
 	
 	

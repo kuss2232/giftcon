@@ -18,21 +18,21 @@
         <div class="box-body">
             <div class="form-group">
                 <label for="CATEGORY_IMG">이미지 파일</label>
-                 <input type="file" name="imageFile" >
+                 <input type="file" name="CATEGORY_IMG" >
             </div>
             <div class="form-group">
                 <label for="SMALL_CATEGORY">브랜드 명</label>
-                <input type="text" class="form-control" id="labelNm" name="labelNm" placeholder="상표명을 입력하십시오." required>
+                <input type="text" class="form-control" id="labelNm" name="SMALL_CATEGORY" placeholder="상표명을 입력하십시오." required>
             </div>
             <div class="form-group">
                 <label for="Big_CATEGORY">카테고리 선택</label>
-     <select class="form-control" name="selectCategory"  id="selectCateogry">
-										<option value="0">치킨/피자/버거</option>
-										<option value="1">커피/음료</option>
-										<option value="2">아이스크림</option>
-										<option value="3">상품권</option>
-										<option value="4">베이커리/도넛</option>
-									</select> 
+     					<select class="form-control" name="BIG_CATEGORY"  id="selectCateogry">
+										<option value="치킨">치킨/피자/버거</option>
+										<option value="커피">커피/음료</option>
+										<option value="아이스크림">아이스크림</option>
+										<option value="상품권">상품권</option>
+										<option value="베이커리">베이커리/도넛</option>
+							</select> 
 					</div>
 				 <a href ="#this" class="btn" id="insert">작성하기</a>
 				 

@@ -17,16 +17,24 @@ public class AdminCategoryController {
 	private AdminCategoryService adminCategoryService;
 	
 	//카테고리 목록
-	@RequestMapping(value ="/category.conn")
+	@RequestMapping(value ="/adminCategory.conn")
 	public ModelAndView adminCategoryList(CommandMap commandMap,HttpServletRequest request) throws Exception{
-		ModelAndView mv = new ModelAndView();
-	      List<Map<String, Object>> adminCategoryList = adminCategoryService.categoryList(commandMap.getMap());
-	      mv.addObject("SMALL_CATEGORY", adminCategoryList);
-	      mv.setViewName("goods/category");
-	      return mv;
+		ModelAndView mv = new ModelAndView("/admin/Category/adminCategory");
+		List<Map<String, Object>> list;
+		if(commandMap.get("BIG_CATEGORY") == null || commandMap.get("BIG_CATEGORY").equals("전체")) {
+			list = adminCategoryService.categoryList(commandMap.getMap());
+		}else {
+			list = adminCategoryService.bigCategoryList(commandMap.getMap());
+		}
+	    
+	    mv.addObject("list", list);
+	    return mv;
+	
 	}
-	//카테고리 추가폼으로 이동
-	@RequestMapping(value = "/adminCategoryInsert.conn")
+
+	
+	//카테고리 추가 화면
+	@RequestMapping(value = "/admincategoryInsertForm.conn")
 	public ModelAndView categoryInsert() {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("/admin/Category/adminCategoryInsert");
@@ -35,23 +43,24 @@ public class AdminCategoryController {
 	
 	
 	//카테고리 추가
-	@RequestMapping(value ="/adminCategory.conn")
+	@RequestMapping(value ="/adminCategoryInsert.conn")
 	public ModelAndView adminCategoryInsert(CommandMap commandMap, HttpServletRequest request) throws Exception{
-		ModelAndView mv = new ModelAndView("redirect:/goods/category.conn");
+		ModelAndView mv = new ModelAndView();
 		adminCategoryService.insertCategory(commandMap.getMap(), request);
+		
+		mv.setViewName("redirect:/adminCategory.conn");
 		return mv;
 	}
 	
 	//카테고리 삭제
 	@RequestMapping(value = "/adminCategoryDelete.conn")
 	public ModelAndView adminCategoryDelete(CommandMap commandMap) throws Exception{
-		ModelAndView mv = new ModelAndView("redirect:/goods/category.conn");
+		ModelAndView mv = new ModelAndView("/admin/adminCategory.conn");
 		adminCategoryService.deleteCategory(commandMap.getMap());
 		return mv;
 	}
 	
-	
-	
+
 	
 
 }

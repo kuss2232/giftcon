@@ -3,10 +3,8 @@
 <mapper namespace="adminCategory">
 
 <!-- 카테고리추가 -->
-<insert id="categoryInsert" parameterType="hashmap" useGeneratedKeys="true" keyProperty="CATEGORY_NUM">
-	<selectKey keyProperty="CATEGORY_NUM" resultType="string" order="BEFORE">
-			SELECT CATEGORY_NUM_SEQ.NEXTVAL FROM DUAL
-	</selectKey>
+<insert id="categoryInsert" parameterType="hashmap">
+	
 	<![CDATA[
 		INSERT 
 		INTO CATEGORY( 
@@ -15,7 +13,7 @@
 			 SMALL_CATEGORY,
 			 CATEGORY_IMG
 		)VALUES(
-			#{CATEGORY_NUM},
+			CATEGORY_NUM_SEQ.NEXTVAL,
 			#{BIG_CATEGORY},
 			#{SMALL_CATEGORY},
 			#{CATEGORY_IMG}
@@ -45,4 +43,16 @@
 ]]>
 </select>
 
+<!-- BIG카테고리로 분류 -->
+<select id="bigCategoryList" parameterType="hashmap" resultType="hashmap">
+<![CDATA[
+	SELECT
+		SMALL_CATEGORY,
+		CATEGORY_IMG
+	FROM
+		CATEGORY
+	WHERE
+		BIG_CATEGORY = #{BIG_CATEGORY}
+]]>
+</select>
 </mapper>
