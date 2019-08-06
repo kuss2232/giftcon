@@ -1,5 +1,90 @@
 package share.conn.Goods;
 
-public class GoodsDAO {
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.stereotype.Repository;
+
+import share.conn.giftcon.AbstractDAO;
+
+@Repository("goodsDAO")
+public class GoodsDAO extends AbstractDAO{
+	
+	//전체 상품 리스트
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> goodsList() throws Exception{
+		return selectList("memberGoods.goodsList");
+	}
+	
+	//전체 상품 수
+	int goodsCount() throws Exception{
+		return (Integer) selectOne("memberGoods.goodsCount");
+	}
+	
+	//상품 이름이나 브랜드로 검색
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> searchGoods() throws Exception{
+		return selectList("memberGoods.searchGoods");
+	}
+	
+	//브랜드리스트
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> smallCategoryList() throws Exception{
+		return selectList("memberGoods.goodsCategoryList");
+	}
+		
+	//큰 카테고리 별 상품 리스트
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> bigCategorygoodsList() throws Exception{
+		return selectList("memberGoods.goodsBigCategoryList");
+	}
+		
+	//작은 카테고리 별 상품 리스트
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> smallCategorygoodsList() throws Exception{
+		return selectList("memberGoods.goodsSmallCategoryList");
+	}
+	
+	//카테고리별 많이 본 순
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> categoryGoodsBest() throws Exception{
+		return selectList("memberGoods.categoryGoodsBest");
+	}
+	
+	//카테고리별 평점순
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> categoryGoodsGrade() throws Exception{
+		return selectList("memberGoods.categoryGoodsGrade");
+	}
+	
+	//인기 상품 리스트
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> goodsBestList() throws Exception{
+		return selectList("memberGoods.goodsBestList");
+	}
+	
+	//할인 상품 리스트(높은가격순)
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> goodsSaleList1() throws Exception{
+		return selectList("memberGoods.goodsSaleList1");
+	}
+	
+	//할인 상품 리스트(카테고리 정렬)
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> goodsSaleList2() throws Exception{
+		return selectList("memberGoods.goodsSaleList2");
+	}
+	
+		
+	// 조회수 증가
+	public void updateHitCount(Map<String, Object> map) throws Exception {
+		update("memberGoods.goodsHitcount", map);
+	}
+	
+	// 상품 상세보기
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> goodsDetail(Map<String, Object> map) throws Exception {
+		return (Map<String, Object>) selectOne("memberGoods.goodsDetail", map);
+	}
 
 }
