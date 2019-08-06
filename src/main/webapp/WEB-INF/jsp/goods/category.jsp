@@ -9,6 +9,7 @@
 <link rel="stylesheet" type="text/css" href="/giftcon/css/sub.css">
 <link rel="stylesheet" type="text/css" href="/giftcon/css/common.css">
 <link rel="stylesheet" type="text/css" href="/giftcon/css/main.css">
+<script type="text/javascript"></script>
 </head>
 <body>
 <div class="subWrap">
@@ -52,7 +53,7 @@
 		
 		<div class="brandLogo">
 			<ul class="brandList" id="brandListAppend">
-			<c:forEach items="${smallcategoryList}" var="list">
+			<c:forEach items="${SMALL_CATEGORY}" var="list">
 				<li>
 					<a href="/giftcon/goods/list.conn?CATEGORY_NUM=${list.CATEGORY_NUM}">
 					<img src="${list.CATEGORY_IMG}" alt=""><span>${list.SMALL_CATEGORY}</span></a>

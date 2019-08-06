@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import share.conn.Paging.AdminQNAPaging;
-import share.conn.Paging.Paging;
+
 import share.conn.giftcon.CommandMap;
 
 @Controller

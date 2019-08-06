@@ -9,7 +9,7 @@
 <body>
 <th:block th:include="admin/category-js"></th:block>
 <h3>카테고리 </h3>
-<tr><small>카테고리를 관리합니다.</small></tr>
+<tr><h1>카테고리를 관리합니다.</h1></tr>
 <br/>
 <div class="box box-primary">
     <div class="box-header with-border">
@@ -29,12 +29,12 @@
             </div>
             <div class="form-group">
                 <label for="Big_CATEGORY">카테고리 선택</label>
-     <select class="form-control" name="selectCategory"  id="selectCateogry">
-										<option value="0">치킨/피자/버거</option>
-										<option value="1">커피/음료</option>
-										<option value="2">아이스크림</option>
-										<option value="3">상품권</option>
-										<option value="4">베이커리/도넛</option>
+     <select class="form-control" name="BIG_CATEGORY"  id="BIG_CATEGORY">
+										<option value="치킨/피자/버거">치킨/피자/버거</option>
+										<option value="커피/음료">커피/음료</option>
+										<option value="아이스크림/빙수">아이스크림/빙수</option>
+										<option value="상품권">상품권</option>
+										<option value="베이커리/도넛">베이커리/도넛</option>
 									</select>    
 					<!-- 빅카테고리 저장해서 넘기는 부분이 없음 팀장님께 부탁하는 걸로  -->        
             </div>
