@@ -19,16 +19,16 @@
 					class="dataTables_wrapper form-inline dt-bootstrap no-footer">
 					<div class="row" style="margin-bottom:5px;">
 						<div class="col-sm-6">
-							<a href="/giftcon/adminOrder.conn?searchNum=0&isSearch="><button type="button" class="btn btn-outline btn-default">전체</button></a>
+							<a href="/giftcon/adminOrder.conn"><button type="button" class="btn btn-outline btn-default">전체</button></a>
 							<select class="form-control" name="select" onchange="window.open(value,'_self');">
 								<option value ="">--주문상태--</option>
-								<option value ="/giftcon/adminOrder.conn?searchNum=2&isSearch=입금대기">입금대기</option>
-								<option value ="/giftcon/adminOrder.conn?searchNum=2&isSearch=구매완료">구매완료</option>
-								<option value ="???????????????">사용완료</option>
+								<option value ="/giftcon/adminOrder.conn?isSearch=N">입금대기</option>
+								<option value ="/giftcon/adminOrder.conn?isSearch=Y">구매완료</option>
+								<option value ="/giftcon/adminOrder.conn?isSearch=E">사용완료</option>
 							</select>													
 						</div>
 						<div class="col-sm-6" style="text-align:right;">
-							<div class="dataTables_info" id="dataTables-example_info" role="status" aria-live="polite">총 주문수 : ${totalCount}</div>
+							<div class="dataTables_info" id="dataTables-example_info" role="status" aria-live="polite">총 주문수 : ${ORDER_COUNT}</div>
 						</div>
 					</div>
 					<div class="row">
@@ -42,7 +42,7 @@
 									<tr role="row" style="vertical-align:middle;">
 										<th style="width: 7%; text-align:center;vertical-align:middle;">주문번호</th>
 										<th style="width: 10%; text-align:center;vertical-align:middle;">상품 이미지</th>						
-										<th style="width: 36%; text-align:center;vertical-align:middle;">상품이름</th>
+										<th style="width: 30%; text-align:center;vertical-align:middle;">상품이름</th>
 										<th style="width: 8%; text-align:center;vertical-align:middle;">회원ID</th>
 										<th style="width: 5%; text-align:center;vertical-align:middle;">수량</th>
 										<th style="width: 8%; text-align:center;vertical-align:middle;">주문금액합계</th>
@@ -54,11 +54,11 @@
 								<tbody>
 								<c:set var="NUM" value="0" />
 								<c:forEach var="orderList"  items="${orderList}">	
-									<c:if test="${test ne orderList.ORDER_NUM}">
-										<c:set var="NUM" value="${orderList.ORDER_NUM}" />
+									<c:if test="${NUM ne orderList.ORDER_NUM}">
+										<c:set var="NUM" value="${orderList.ORDER_NUM}"/>
 									<tr class="gradeA even" role="row" height="30px">
-										<c:url var="Detail" value="/giftcon/adminOrderDetail.conn" >
-											<c:param name="order_num" value="${orderList.ORDER_NUM }" />							
+										<c:url var="Detail" value="/adminOrderDetail.conn" >
+											<c:param name="ORDER_NUM" value="${orderList.ORDER_NUM }" />
 										</c:url>
 										
 										<td style="text-align:center;vertical-align:middle;">
@@ -69,17 +69,15 @@
 										<td style="text-align:center;vertical-align:middle;"><a href="${Detail}">${orderList.GOODS_NAME}<c:if test="${ORDER_COUNT > 1}">외 ${ORDER_COUNT-1}개</c:if></a></td>	<!-- 상품이름 -->
 										<td style="text-align:center;vertical-align:middle;">${orderList.MEMBER_ID}</td>	<!-- 회원ID -->
 										<td style="text-align:center;vertical-align:middle;">${orderList.ORDER_AMOUNT_SUM}</td>	<!-- 수량 -->
-										<td style="text-align:center;vertical-align:middle;">${orderList.ORDER_PAY_SUM}<%-- <fmt:formatNumber value="${orderList.order_sum_money}" type="number"/> --%></td>	<!-- 주문금액합계 -->
+										<td style="text-align:center;vertical-align:middle;">${orderList.ORDER_PAY_SUM}</td>	<!-- 주문금액합계 -->
 										<td style="text-align:center;vertical-align:middle;">${orderList.ORDER_PAYMENT}</td>		<!-- 주문상태 -->
-										<td style="text-align:center;vertical-align:middle;">${orderList.ORDER_DATE}<%-- <fmt:formatDate value="${orderList.order_date}" pattern="YY.MM.dd HH:mm" /> --%></td><!-- 주문일자 -->
+										<td style="text-align:center;vertical-align:middle;">${orderList.ORDER_DATE}</td><!-- 주문일자 -->
 										<td style="text-align:center;vertical-align:middle;">	<!-- 관리 -->
-										<c:url var="viewURL" value="/giftcon/adminOrderModify.conn" >
-											<c:param name="order_num" value="${orderList.ORDER_NUM }" />							
+										<%-- <c:url var="viewURL" value="/giftcon/adminOrderModify.conn" >
+											<c:param name="order_num" value="${orderList.ORDER_NUM}" />							
 										</c:url>
-											<a href="${viewURL}"><input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Cog_font_awesome.svg/32px-Cog_font_awesome.svg.png"></a>&nbsp;&nbsp;
-										<c:url var="viewURL2" value="orderadmindelete.dog" >
-											<c:param name="order_num" value="${orderList.ORDER_NUM }" />							
-										</c:url>	
+											<a href="${viewURL}"><input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Cog_font_awesome.svg/32px-Cog_font_awesome.svg.png"></a>&nbsp;&nbsp; --%>
+										
 										 <a href="${viewURL2}"><input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Trash_font_awesome.svg/32px-Trash_font_awesome.svg.png" onclick="return delchk()"></a></td>									
 									</tr>
 									</c:if>
@@ -98,20 +96,19 @@
 						${pagingHtml}
 					</div>
 					<div class="row">
-							<div style="text-align:center;">
-								<div id="dataTables-example_filter" class="dataTables_filter">
-									<form action="">
-									<select class="form-control" name="searchNum" id="searchNum">
-										<option value="0">전체</option>
-									</select>
-										<input class="form-control" type="text" name="isSearch" id="isSearch"/>
-										<span>
-										<button type="submit" class="btn default">검색</button>
-										</span>
-									</form>
-								</div>							
-							</div>
-							
+						<div style="text-align:center;">
+							<div id="dataTables-example_filter" class="dataTables_filter">
+								<form action="">
+								<select class="form-control" name="SValue" id="SValue">
+									<option value="ID">회원 ID</option>
+								</select>
+									<input class="form-control" type="text" name="isSearch" id="isSearch"/>
+									<span>
+									<button type="submit" class="btn default">검색</button>
+									</span>
+								</form>
+							</div>							
+						</div>
 					</div>
 				</div>
 			</div>

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Service;
 
@@ -24,7 +25,7 @@ public class AdminOrderServiceImpl implements AdminOrderService{
 	}
 
 	@Override
-	public void orderDelete(Map<String, Object> map) throws Exception {
+	public void orderDelete(Map<String,Object> map) throws Exception {
 		adminOrderDAO.orderDelete(map);
 	}
 
