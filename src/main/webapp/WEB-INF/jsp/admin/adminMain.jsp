@@ -75,7 +75,7 @@
 								<span class="fa arrow">▼</span>
 							</a>
 							<ul class="nav nav-second-level">
-								<li><a href="/giftcon/admin-memberList.conn">- 회원목록</a></li>
+								<li><a href="/giftcon/member/adminMemberList.conn">- 회원목록</a></li>
 								<li><a href="/giftcon/admin-memberModify.conn">- 회원수정</a></li>
 							</ul> <!-- /.nav-second-level -->
 						</li>
