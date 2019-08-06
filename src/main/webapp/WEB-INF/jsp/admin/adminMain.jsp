@@ -112,7 +112,7 @@
 		</nav>
 		<div id="page-wrapper">
 			<!-- 메인container-->
-			<tiles:insertAttribute name="body" />
+			<%@include file="./adminMainLayout.jsp"%>
 			<!-- // container -->
 		</div>
 		<!-- /#page-wrapper -->
