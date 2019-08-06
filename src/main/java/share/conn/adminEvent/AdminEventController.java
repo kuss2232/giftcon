@@ -26,13 +26,13 @@ public class AdminEventController {
 	private int blockPage = 5;
 	private String pagingHtml;
 	private Paging page;
-	private String filePath3 = filePath3 = "D:\\java\\Git\\giftcon\\src\\main\\webapp\\file\\Eventfile\\";
+	private String filePath3 = "D:\\java\\Git\\giftcon\\src\\main\\webapp\\file\\Eventfile\\";
 		
 	@Resource(name = "adminEventService")
 	private AdminEventService adminEventService;
 
 	// 이벤트 목록(진행중)
-	@RequestMapping(value =  "/Event/adminEventList.conn")
+	@RequestMapping(value =  "/event/adminEventList.conn")
 	public ModelAndView adminEventList(CommandMap commandMap, HttpServletRequest request) throws Exception {
 
 		if (request.getParameter("currentPage") == null || request.getParameter("currentPage").trim().isEmpty()
@@ -43,7 +43,7 @@ public class AdminEventController {
 		}
 
 		ModelAndView mv = new ModelAndView();
-		List<Map<String, Object>> eventList = adminEventService.nowEventList(commandMap.getMap());
+		List<Map<String, Object>> eventList = adminEventService.eventList(commandMap.getMap());
 
 		
 		 totalCount = eventList.size();
@@ -61,22 +61,22 @@ public class AdminEventController {
 			mv.addObject("pagingHtml", pagingHtml);
 			mv.addObject("currentPage", currentPage);
 			mv.addObject("eventList", eventList);
-			mv.setViewName("admin/event/admin_event");
+			mv.setViewName("admin/Event/admin_event");
 
 			return mv;
 
 	}
 	
 	// EVENT 등록 폼
-		@RequestMapping(value = "/Event/adminEventForm.conn")
+		@RequestMapping(value = "/event/adminEventForm.conn")
 		public ModelAndView EventInsertForm() throws Exception {
 			ModelAndView mv = new ModelAndView();
-			mv.setViewName("/admin/Event/admin_EventInsert");
+			mv.setViewName("/admin/Event/admin_Insertevent");
 			return mv;
 		}
 		
 		// EVENT 등록
-		@RequestMapping(value = "/Event/adminEventInsert.conn")
+		@RequestMapping(value = "/event/adminEventInsert.conn")
 		public ModelAndView Event(CommandMap commandMap, HttpServletRequest request) throws Exception {
 			ModelAndView mv = new ModelAndView("redirect:/Event/adminEventList.conn");
 	//System.out.println(" CommandMap값 확인  +++++++++++" + commandMap.get("EVENT_*"));
@@ -86,14 +86,14 @@ public class AdminEventController {
 		}
 		
 		//EVENT 상세보기
-		@RequestMapping(value = "/EVENT/adminEventDetail.conn")
+		@RequestMapping(value = "/event/adminEventDetail.conn")
 		public ModelAndView eventDetail(CommandMap commandMap) throws Exception {
 			ModelAndView mv = new ModelAndView();
 			
 			Map<String, Object> eventDetail = adminEventService.eventDetail(commandMap.getMap());
 			
 			mv.addObject("eventDetail", eventDetail);
-			mv.setViewName("/admin/EVENT/admin_EVENTdetail");		
+			mv.setViewName("/admin/Event/admin_eventdetail");		
 			
 			return mv;
 		}
@@ -101,22 +101,22 @@ public class AdminEventController {
 
 
 		// EVENT 수정 폼 이동
-		@RequestMapping(value = "/EVENT/adminEVENTModifyForm.conn")
-		public ModelAndView EVENTModifyForm(CommandMap commandMap) throws Exception {
+		@RequestMapping(value = "/event/adminEventModifyForm.conn")
+		public ModelAndView EventModifyForm(CommandMap commandMap) throws Exception {
 			ModelAndView mv = new ModelAndView();
 
-			Map<String, Object> EVENTDetail = adminEventService.eventDetail(commandMap.getMap());
-			mv.addObject("EVENTDetail", EVENTDetail);
-			mv.setViewName("/admin/EVENT/admin_EVENTModifyForm");
+			Map<String, Object> eventDetail = adminEventService.eventDetail(commandMap.getMap());
+			mv.addObject("eventDetail", eventDetail);
+			mv.setViewName("/admin/Event/admin_eventModifyForm");
 
 			return mv;
 		}
 
 		// EVENT 수정
-		@RequestMapping(value = "/EVENT/adminEVENTModify.conn")
-		public ModelAndView EVENTModify(CommandMap commandMap, HttpServletRequest request) throws Exception {
-			ModelAndView mv = new ModelAndView("redirect:/EVENT/adminEVENTList.conn");
-			commandMap.put("EVENT_CATEGORY", request.getParameter("EVENT_CATEGORY"));
+		@RequestMapping(value = "/event/adminEventModify.conn")
+		public ModelAndView EventModify(CommandMap commandMap, HttpServletRequest request) throws Exception {
+			ModelAndView mv = new ModelAndView("redirect:/EVENT/adminEventList.conn");
+			
 			adminEventService.eventModify(commandMap.getMap(), request);
 
 			mv.addObject("EVENT_NUM", commandMap.get("EVENT_NUM"));
@@ -125,9 +125,9 @@ public class AdminEventController {
 		}
 
 		// EVENT 삭제
-		@RequestMapping(value = "/EVENT/adminDeleteEVENT.conn")
-		public ModelAndView EVENTDelete(CommandMap commandMap) throws Exception {
-			ModelAndView mv = new ModelAndView("redirect:/EVENT/adminEVENTList.conn");
+		@RequestMapping(value = "/event/adminDeleteEvent.conn")
+		public ModelAndView EventDelete(CommandMap commandMap) throws Exception {
+			ModelAndView mv = new ModelAndView("redirect:/event/adminEventList.conn");
 
 			//Map<String, Object> deleteEVENT = adminEVENTService.EVENTDetail(commandMap.getMap());
 

@@ -319,7 +319,7 @@ public class GoodsImageUtils {
    }
    
    //Event 이미지 등록
-      public List<Map<String, Object>> faqImage(Map<String, Object> map, HttpServletRequest request)
+      public List<Map<String, Object>> eventImage(Map<String, Object> map, HttpServletRequest request)
             throws Exception {
 
          MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
@@ -328,12 +328,12 @@ public class GoodsImageUtils {
          Map<String, Object> listMap = null;
 
          if (multipartHttpServletRequest.getFiles("EVENT_IMAGE*") != null) {
-            List<MultipartFile> imageFile = multipartHttpServletRequest.getFiles("FAQ_IMAGE1");
+            List<MultipartFile> imageFile = multipartHttpServletRequest.getFiles("EVENT_IMG1");
 
             String IMAGE = null;
             String IMAGEExtension = null;
 
-            String EVENT_NUM = map.get("EVENT_NUMBER").toString();
+            String EVENT_NUM = map.get("EVENT_NUM").toString();
 
             File file = new File(filePath3);
             if (file.exists() == false) {
@@ -345,13 +345,13 @@ public class GoodsImageUtils {
                if (multipartFile.isEmpty() == false) {
                   IMAGEExtension = multipartFile.getOriginalFilename()
                         .substring(multipartFile.getOriginalFilename().lastIndexOf("."));
-                  IMAGE = "EVENT_IMAGE*" + EVENT_NUM + IMAGEExtension;
+                  IMAGE = "EVENT_IMG1" + EVENT_NUM + IMAGEExtension;
 
                   file = new File(filePath3 + IMAGE);
                   multipartFile.transferTo(file);
 
                   listMap = new HashMap<String, Object>();
-                  listMap.put("FAQ_IMAGE1", IMAGE);
+                  listMap.put("EVENT_IMG1", IMAGE);
 
                   listMap.put("EVENT_NUM", map.get("EVENT_NUM"));
                   list.add(listMap);
