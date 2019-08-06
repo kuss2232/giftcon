@@ -3,6 +3,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>   
 <head>
+<script src="/giftcon/js/common.js" charset="utf-8"></script>
+<script src="/giftcon/css/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
 //주문번호 같은 열 합치는 Jquery
 $( document ).ready(function() {
@@ -48,11 +50,21 @@ $.fn.rowspan = function(colIdx, isStats) {
 		});    
 	});  
 }; 
-function delchk(){
-    return confirm("삭제하시겠습니까?");
-    
-    
+
+function fn_goodsDelete(goods_num){ 
+	if(confirm("정말 삭제하시겠습니까 ?") == true){
+		var comSubmit = new ComSubmit(); 
+		alert("삭제되었습니다");
+		comSubmit.setUrl("<c:url value='/goods/adminGoodsDelete.conn' />");
+		comSubmit.addParam("GOODS_NUM", goods_num);
+		comSubmit.submit(); 
+		
+	}
+	 else{
+		alert("삭제가 취소되었습니다.");
+	 }
 }
+
 </script>
 <style type="text/css">
 .paging{text-align:center;height:32px;margin-top:5px;margin-bottom:15px;}
@@ -120,9 +132,10 @@ function delchk(){
 										<th style="width: 8%; text-align:center;">관리</th>
 									</tr>
 								</thead>
+								<form id="commonForm" name="commonForm"></form>
 								<tbody>
 								<c:forEach var="adGoodsList"  items="${adGoodsList}" varStatus="stat">
-								<c:url var="viewURL" value="/goods/adminGoodsModify.conn" >
+								<c:url var="viewURL" value="/goods/goodsModifyForm.conn" >
 									<c:param name="GOODS_NUM" value="${adGoodsList.GOODS_NUM}" />
 								</c:url>									
 									<tr class="gradeA even" role="row">
@@ -135,12 +148,11 @@ function delchk(){
 										<td style="text-align:center;vertical-align:middle;">${adGoodsList.GOODS_DCPRICE}<div style='display:none;'>${adGoodsList.GOODS_NUM}</div></td>
 										<td style="text-align:center;vertical-align:middle;">${adGoodsList.GOODS_AMOUNT}개<div style='display:none;'>${adGoodsList.GOODS_NUM}</div></td>
 										<td style="text-align:center;vertical-align:middle;">${adGoodsList.GOODS_HITCOUNT}<div style='display:none;'>${adGoodsList.GOODS_NUM}</div></td>									
-										<td style="text-align:center;vertical-align:middle;">
-											<a href="${viewURL}"><input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Cog_font_awesome.svg/32px-Cog_font_awesome.svg.png"></a>&nbsp;&nbsp;
-										<c:url var="viewURL2" value="/goods/adminGoodsDelete.conn" >
-											<c:param name="GOODS_NUM" value="${adGoodsList.GOODS_NUM }" />							
-										</c:url>	
-										 <a href="${viewURL2}"><input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Trash_font_awesome.svg/32px-Trash_font_awesome.svg.png" onclick="return delchk()"></a><div style='display:none;'>${adGoodsList.GOODS_NUM}</div></td>									
+										<td style="text-align:center;vertical-align:middle;">										
+										<input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Cog_font_awesome.svg/32px-Cog_font_awesome.svg.png" onclick="location.href='${viewURL}'">&nbsp;&nbsp;	
+										<a onclick="fn_goodsDelete(${adGoodsList.GOODS_NUM})">
+										<input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Trash_font_awesome.svg/32px-Trash_font_awesome.svg.png"></a>
+										<div style='display:none;'>${adGoodsList.GOODS_NUM}</div></td>									
 									</tr>
 								</c:forEach>
 								<!--  등록된 상품이 없을때 -->

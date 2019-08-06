@@ -129,17 +129,22 @@
 	]]>
 	</insert>
 	
+	<select id="selectGoodsNum" parameterType="hashmap" resultType="Integer">
+		SELECT GOODS_NUM
+		FROM GOODS
+		WHERE GOODS_NAME = #{GOODS_NAME}
+	</select>
+	
 	<!-- 상품 썸네일 이미지 등록 -->
 	<update id="insertGoodsIMG1" parameterType="hashmap">
 		<![CDATA[
-			UPDATE GOODS_IMG 
-			SET GOODS_IMG1= #{GOODS_IMG1} 
-			WHERE GOODS_NUM=#{GOODS_NUM}
+			INSERT INTO GOODS_IMG (GOODS_NUM, GOODS_IMG1, GOODS_IMG2)
+			VALUES(#{GOODS_NUM}, #{GOODS_IMG1}, #{GOODS_IMG2})
 		]]>
 	</update>
 	
 	<!-- 카테고리넘 찾기 -->
-	<select id="adGoodsSelectCategory" parameterType="hashmap">
+	<select id="adGoodsSelectCategory" parameterType="hashmap" resultType="hashmap">
 	<![CDATA[
 		SELECT
 			CATEGORY_NUM
@@ -183,9 +188,10 @@
 	<!-- 상품 이미지 정보 -->
 	<select id="selectOneGoodsImage" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			SELECT IMAGE FROM GOODS_IMG
+			SELECT GOODS_IMG1, GOODS_IMG2, GOODS_IMG3 
+			FROM GOODS_IMG
 			WHERE GOODS_NUM=#{GOODS_NUM}
-			ORDER BY GOODS_IMAGE_NUMBER ASC
+			ORDER BY GOODS_NUM ASC
 		]]>
 	</select>
 	

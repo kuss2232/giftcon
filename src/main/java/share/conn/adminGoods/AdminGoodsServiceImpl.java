@@ -48,15 +48,18 @@ public class AdminGoodsServiceImpl implements AdminGoodsService {
 
       adminGoodsDAO.adGoodsinsert(map);
       
-      map = goodsImageUtils.goodsIMG1(map, request);
+      goodsImageUtils.goodsIMG1(map, request);
+      int num = adminGoodsDAO.selectGoodsNum(map);
+      map.put("GOODS_NUM", num);
       adminGoodsDAO.insertGoodsIMG1(map);
    }
    
-   //카테고리 불러오기
-   public List<Map<String, Object>> adGoodsSelectCategory() throws Exception {
-	      return adminGoodsDAO.adGoodsSelectCategory();
+   //카테고리 불러오기 (빅카테고리, 스몰카테고리로 카테고리넘 찾기)
+   public Map<String,Object> adGoodsSelectCategory(Map<String, Object> map) throws Exception {
+	      return adminGoodsDAO.adGoodsSelectCategory(map);
    }
    
+   //수정 폼으로 이동
    @Override
    public List<Map<String, Object>> modifyGoodsForm(Map<String, Object> map) throws Exception {
       List<Map<String, Object>> goodsDetail = adminGoodsDAO.modifyGoodsForm(map);
@@ -75,10 +78,6 @@ public class AdminGoodsServiceImpl implements AdminGoodsService {
    public void adGoodsModify(Map<String, Object> map, HttpServletRequest request) throws Exception {
 
       // 상품 기본정보 수정
-      if (map.get("GOODS_ONOFF") == null) {
-         map.put("GOODS_ONOFF", 1);
-      }
-
       adminGoodsDAO.adGoodsModify(map);
 
       MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
@@ -86,7 +85,7 @@ public class AdminGoodsServiceImpl implements AdminGoodsService {
       // 상품 이미지 수정, 삭제
       System.out.println("이미지 : " + map.get("ORIGINAL_IMAGE"));
 
-      if (map.get("ORIGINAL_IMAGE") != null) {
+      if (map.get("ORIGINAL_IMAGE1") != null) {
          List<Map<String, Object>> adGoodsImageList = goodsImageUtils.parseUpdateImages(map, request);
 
          if (adGoodsImageList.size() > 0) {
@@ -94,6 +93,24 @@ public class AdminGoodsServiceImpl implements AdminGoodsService {
                adminGoodsDAO.adGoodsImgModify(adGoodsImageList.get(i));
             }
          }         
+      }
+      if (map.get("ORIGINAL_IMAGE2") != null) {
+          List<Map<String, Object>> adGoodsImageList = goodsImageUtils.parseUpdateImages(map, request);
+
+          if (adGoodsImageList.size() > 0) {
+             for (int i = 0; i < adGoodsImageList.size(); i++) {
+                adminGoodsDAO.adGoodsImgModify(adGoodsImageList.get(i));
+             }
+          }         
+      }
+      if (map.get("ORIGINAL_IMAGE3") != null) {
+          List<Map<String, Object>> adGoodsImageList = goodsImageUtils.parseUpdateImages(map, request);
+
+          if (adGoodsImageList.size() > 0) {
+             for (int i = 0; i < adGoodsImageList.size(); i++) {
+                adminGoodsDAO.adGoodsImgModify(adGoodsImageList.get(i));
+             }
+          }         
       }
 
       // 새로 입력된 이미지 등록
