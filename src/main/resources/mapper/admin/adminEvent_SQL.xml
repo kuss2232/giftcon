@@ -3,7 +3,7 @@
 
 <mapper namespace="event">
 <!-- 이벤트 리스트 (진행 중) -->
-<select id="adEventselectList" parameterType="hashmap" resultType="hashmap">
+<select id="adEventList" parameterType="hashmap" resultType="hashmap">
 	<![CDATA[
 		SELECT 
 			EVENT_TITLE
@@ -19,7 +19,7 @@
 	</select>
 
 <!-- 이벤트 리스트 (종료) -->
-<select id="adEndEventselectList" parameterType="hashmap" resultType="hashmap">
+<select id="adEndEventList" parameterType="hashmap" resultType="hashmap">
 	<![CDATA[
 		SELECT 
 			EVENT_TITLE
@@ -34,10 +34,7 @@
 	]]> 
 </select>
 <!-- 이벤트 쓰기 -->
-<insert id="adEventinsert" parameterType="hashmap" useGeneratedKeys="true" keyProperty="EVENT_NUM">
-	<selectKey keyProperty="EVENT_NUM" resultType="string" order="BEFORE">
-		SELECT EVENT_NUM_SEQ.NEXTVAL FROM DUAL
-	</selectKey>
+<insert id="adEventinsert" parameterType="hashmap" >
 	<![CDATA[
 		INSERT INTO EVENT
 			(EVENT_NUM,
@@ -63,7 +60,7 @@
 </insert>
 
 <!-- 이벤트 상세보기 -->
-<select id="adEventselectDetail" parameterType="hashmap" resultType="hashmap">
+<select id="adEventDetail" parameterType="hashmap" resultType="hashmap">
 	<![CDATA[
 		SELECT
 			EVENT_NUM,

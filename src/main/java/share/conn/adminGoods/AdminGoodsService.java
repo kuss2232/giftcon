@@ -18,7 +18,16 @@ public interface AdminGoodsService {
 	
 	// 상품 등록
 	public void adGoodsinsert(Map<String, Object> map, HttpServletRequest request) throws Exception;
-
+	
+	//카테고리 불러오기
+	public List<Map<String, Object>> adGoodsSelectCategory() throws Exception;
+	
+	// 상품 수정 폼으로 이동
+	public List<Map<String, Object>> modifyGoodsForm(Map<String, Object> map) throws Exception;
+	
+	//상품 이미지 정보
+	public List<Map<String, Object>> modifyGoodsFormImage(Map<String, Object> map) throws Exception;
+		
 	//상품 수정
 	public void adGoodsModify(Map<String, Object> map, HttpServletRequest request) throws Exception;
 

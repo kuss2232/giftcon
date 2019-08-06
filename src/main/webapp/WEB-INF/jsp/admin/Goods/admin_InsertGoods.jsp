@@ -116,15 +116,17 @@ function BIG_CATEGORYChange() {
 					<th scope="row">가격</th>
 					<td><input type="text" id="GOODS_PRICE" name="GOODS_PRICE" class="wdp_90"></input></td>
 				</tr>
+				
 				<tr>
 					<th scope="row">카테고리</th>
 					<td>
 						<select id="BIG_CATEGORY" name="BIG_CATEGORY" onchange="BIG_CATEGORYChange();" size=1>
 						<OPTION value=''>대분류</OPTION>
-						<OPTION value='CPB'>치킨/피자/버거</OPTION>
-						<OPTION value='Coffee'>커피/음료</OPTION>
-						<OPTION value='Bread'>떡/베이커리</OPTION>
-						<OPTION value='Mart'>편의점/마트</OPTION>
+						<OPTION value='치킨/피자/버거'>치킨/피자/버거</OPTION>
+						<OPTION value='커피/음료'>커피/음료</OPTION>
+						<OPTION value='아이스크림/빙수'>아이스크림/빙수</OPTION>
+						<OPTION value='떡/베이커리'>떡/베이커리</OPTION>
+						<OPTION value='편의점/마트'>편의점/마트</OPTION>
 						 
 						</select>
 						<SELECT id="SMALL_CATEGORY" name="SMALL_CATEGORY" size=1>
@@ -147,12 +149,13 @@ function BIG_CATEGORYChange() {
 				<tr>
 					<td colspan="2" class="view_text">
 						<textarea rows="5" cols="100" title="내용" id="GOODS_SIMPLE" name="GOODS_SIMPLE" placeholder="기본 설명"></textarea>
+						<br/><br/>
 						<textarea rows="10" cols="100" title="내용" id="GOODS_DETAIL" name="GOODS_DETAIL" placeholder="상세 설명"></textarea>
 						<br/><br/>
 					</td>
 				</tr>
 				<tr>
-					<th scope="row">물량 수정</th>
+					<th scope="row">물량</th>
 					<td><input type="text" id="GOODS_AMOUNT" name="GOODS_AMOUNT" class="wdp_90"></input></td>
 				</tr>
 				<tr>

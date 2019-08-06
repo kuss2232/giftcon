@@ -88,7 +88,7 @@ function delchk(){
 							<a href="/giftcon/goods/adminGoodsList.conn"><button type="button" class="btn btn-outline btn-default">전체</button></a>
 							<select class="form-control" name="select" onchange="window.open(value,'_self');">
 								<option value ="">--카테고리--</option>
-								<option value ="/giftcon/goods/adminGoodsList.conn?searchNum=3&isSearch=0">치킨/피자/버거</option>
+								<option value ="/giftcon/goods/adminGoodsList.conn?searchNum=3&isSearch=">치킨/피자/버거</option>
 								<option value ="/giftcon/goods/adminGoodsList.conn?searchNum=3&isSearch=1">커피/음료</option>
 								<option value ="/giftcon/goods/adminGoodsList.conn?searchNum=3&isSearch=2">아이스크림/빙수</option>
 								<option value ="/giftcon/goods/adminGoodsList.conn?searchNum=3&isSearch=3">떡/베이커리</option>

@@ -31,13 +31,35 @@ public class AdminGoodsDAO extends AbstractDAO {
    public void adGoodsinsert(Map<String, Object> map) throws Exception {
       insert("adminGoods.adGoodsinsert", map);
    }
-  
+   
+   
+   //카테고리 불러오기
+   public List<Map<String, Object>> adGoodsSelectCategory() throws Exception{
+	   return selectList("adminGoods.adGoodsSelectCategory");
+   }
+   
+   //썸네일 등록
+   public void insertGoodsIMG1(Map<String, Object> map) throws Exception {
+	      update("adminGoods.insertGoodsIMG1", map);
+   }
    
    // 이미지 등록
    public void adinsertGoodsImg(Map<String, Object> map) throws Exception {
       insert("adminGoods.adinsertGoodsImg", map);
    }
+   
+   // 상품 수정 폼으로 이동(데이터 들고감)
+   @SuppressWarnings("unchecked")
+   public List<Map<String, Object>> modifyGoodsForm(Map<String, Object> map) throws Exception {
+      return (List<Map<String, Object>>) selectList("adminGoods.selectOneGoods", map);
+   }
 
+   // 상품 이미지 정보
+   @SuppressWarnings("unchecked")
+   public List<Map<String, Object>> modifyGoodsFormImage(Map<String, Object> map) throws Exception {
+      return (List<Map<String, Object>>) selectList("adminGoods.selectOneGoodsImage", map);
+   }
+   
    // 상품 수정
    public void adGoodsModify(Map<String, Object> map) throws Exception {
       update("adminGoods.adGoodsModify", map);

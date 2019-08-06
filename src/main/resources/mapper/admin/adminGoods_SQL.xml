@@ -102,7 +102,8 @@
 		A.GOODS_NUM = #{GOODS_NUM} AND A.GOODS_NUM = B.GOODS_NUM AND A.CATEGORY_NUM = C.CATEGORY_NUM
 	]]>
 	</select>
-
+	
+	
 	<!--상품 등록 -->
 	<insert id="adGoodsinsert" parameterType="hashmap">
 	<![CDATA[
@@ -127,7 +128,29 @@
 		)
 	]]>
 	</insert>
-
+	
+	<!-- 상품 썸네일 이미지 등록 -->
+	<update id="insertGoodsIMG1" parameterType="hashmap">
+		<![CDATA[
+			UPDATE GOODS_IMG 
+			SET GOODS_IMG1= #{GOODS_IMG1} 
+			WHERE GOODS_NUM=#{GOODS_NUM}
+		]]>
+	</update>
+	
+	<!-- 카테고리넘 찾기 -->
+	<select id="adGoodsSelectCategory" parameterType="hashmap">
+	<![CDATA[
+		SELECT
+			CATEGORY_NUM
+		FROM
+			CATEGORY
+		WHERE
+			BIG_CATEGORY=#{BIG_CATEGORY} AND
+			SMALL_CATEGORY=#{SMALL_CATEGORY}
+	]]>
+	</select>
+	
 	<!-- 상품 이미지 등록 -->
 	<insert id="adinsertGoodsImg" parameterType="hashmap">
 	<![CDATA[
@@ -144,7 +167,28 @@
 		)
 	]]>
 	</insert>
+	
+	<!-- 상품 수정 폼으로 이동 -->
+	<select id="selectOneGoods" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT A.GOODS_NUM, A.GOODS_NAME,A.GOODS_PRICE,A.GOODS_DCPRICE,A.GOODS_SIMPLE,
+			A.GOODS_DETAIL,A.CATEGORY_NUM, A.GOODS_AMOUNT,
+			C.BIG_CATEGORY, C.SMALL_CATEGORY
+     		FROM GOODS A, CATEGORY C 
+			WHERE A.CATEGORY_NUM = C.CATEGORY_NUM  
+			AND A.GOODS_NUM= 1
+		]]>
+	</select>
 
+	<!-- 상품 이미지 정보 -->
+	<select id="selectOneGoodsImage" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT IMAGE FROM GOODS_IMG
+			WHERE GOODS_NUM=#{GOODS_NUM}
+			ORDER BY GOODS_IMAGE_NUMBER ASC
+		]]>
+	</select>
+	
 	<!--상품 수정 -->
 	<update id="adGoodsModify" parameterType="hashmap">
 	<![CDATA[

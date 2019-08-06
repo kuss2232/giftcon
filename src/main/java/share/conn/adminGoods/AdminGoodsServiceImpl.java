@@ -41,21 +41,35 @@ public class AdminGoodsServiceImpl implements AdminGoodsService {
 	   List<Map<String, Object>> adGoodsDetail = adminGoodsDAO.adGoodsDetail(map);
 	   return adGoodsDetail;
    }
+   
    // 상품 등록
    @Override
    public void adGoodsinsert(Map<String, Object> map, HttpServletRequest request) throws Exception {
 
       adminGoodsDAO.adGoodsinsert(map);
-
-      List<Map<String, Object>> adGoodsImageList = goodsImageUtils.parseInsertFileInfo(map, request);
-
-      if (adGoodsImageList.size() > 0) {
-         for (int i = 0; i < adGoodsImageList.size(); i++) {
-            adminGoodsDAO.adinsertGoodsImg(adGoodsImageList.get(i));
-         }
-      }
+      
+      map = goodsImageUtils.goodsIMG1(map, request);
+      adminGoodsDAO.insertGoodsIMG1(map);
+   }
+   
+   //카테고리 불러오기
+   public List<Map<String, Object>> adGoodsSelectCategory() throws Exception {
+	      return adminGoodsDAO.adGoodsSelectCategory();
+   }
+   
+   @Override
+   public List<Map<String, Object>> modifyGoodsForm(Map<String, Object> map) throws Exception {
+      List<Map<String, Object>> goodsDetail = adminGoodsDAO.modifyGoodsForm(map);
+      return goodsDetail;
    }
 
+   // 수정 폼 이동할때 상품 이미지 같이 가져오기
+   @Override
+   public List<Map<String, Object>> modifyGoodsFormImage(Map<String, Object> map) throws Exception {
+      List<Map<String, Object>> goodsImage = adminGoodsDAO.modifyGoodsFormImage(map);
+      return goodsImage;
+   }
+   
    // 상품 수정
    @Override
    public void adGoodsModify(Map<String, Object> map, HttpServletRequest request) throws Exception {
