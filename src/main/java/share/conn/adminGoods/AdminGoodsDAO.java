@@ -33,14 +33,19 @@ public class AdminGoodsDAO extends AbstractDAO {
    }
    
    
-   //카테고리 불러오기
-   public List<Map<String, Object>> adGoodsSelectCategory() throws Exception{
-	   return selectList("adminGoods.adGoodsSelectCategory");
+   //카테고리 불러오기 (빅카테고리, 스몰카테고리로 카테고리넘 찾기)
+public Map<String,Object> adGoodsSelectCategory(Map<String, Object> map) throws Exception{
+	   return selectOne1("adminGoods.adGoodsSelectCategory", map);
    }
    
    //썸네일 등록
    public void insertGoodsIMG1(Map<String, Object> map) throws Exception {
 	      update("adminGoods.insertGoodsIMG1", map);
+   }
+   
+   // 상품 번호 찾기
+   public int selectGoodsNum(Map<String,Object> map) throws Exception{
+	   return (Integer) selectOne("adminGoods.selectGoodsNum",map);
    }
    
    // 이미지 등록

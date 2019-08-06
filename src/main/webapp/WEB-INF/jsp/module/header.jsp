@@ -137,7 +137,7 @@ $(function () {
 						<%} %>
 					<%}else {%>
 						<li><a href="/giftcon/loginForm.conn" class="login" title="로그인"><span class="icoLogin"></span><em class="logState"></em>로그인</a></li>
-						<li><a href="/giftcon/joinStep1.conn" class="join" title="회원가입"><span class="icojoin"></span>`<em class="logState">회원가입</em></a></li>
+						<li><a href="/giftcon/joinStep1.conn" class="join" title="회원가입"><span class="icojoin"></span><em class="logState">회원가입</em></a></li>
 					<%} %>
 					
 					
@@ -175,7 +175,7 @@ $(function () {
 						</ul>
 					</li>
 					<li>
-						<a href="/contents/promotionList.do" title="기획전/이벤트 바로가기" class="">기획전/이벤트</a>
+						<a href="/giftcon/eventList.conn" title="기획전/이벤트 바로가기" class="">이벤트</a>
 						<ul class="smenu s02" style="display: none;">
 							<li>
 								<a href="/contents/promotionList.do" class="first">기획/테마전</a>
