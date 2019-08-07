@@ -17,6 +17,7 @@ import share.conn.adminEvent.AdminEventService;
 import share.conn.giftcon.CommandMap;
 import share.conn.Paging.Paging;
 
+@Controller
 public class AdminEventController {
 	
 	// 페이징 변수
@@ -28,12 +29,12 @@ public class AdminEventController {
 	private Paging page;
 	private String filePath3 = "D:\\java\\Git\\giftcon\\src\\main\\webapp\\file\\Eventfile\\";
 		
-	@Resource(name = "adminEventService")
+	@Resource(name = "AdminEventService")
 	private AdminEventService adminEventService;
 
 	// 이벤트 목록(진행중)
 	@RequestMapping(value =  "/event/adminEventList.conn")
-	public ModelAndView adminEventList(CommandMap commandMap, HttpServletRequest request) throws Exception {
+	public ModelAndView eventList(CommandMap commandMap, HttpServletRequest request) throws Exception {
 
 		if (request.getParameter("currentPage") == null || request.getParameter("currentPage").trim().isEmpty()
 				|| request.getParameter("currentPage").equals("0")) {
@@ -77,10 +78,10 @@ public class AdminEventController {
 		
 		// EVENT 등록
 		@RequestMapping(value = "/event/adminEventInsert.conn")
-		public ModelAndView Event(CommandMap commandMap, HttpServletRequest request) throws Exception {
-			ModelAndView mv = new ModelAndView("redirect:/Event/adminEventList.conn");
-	//System.out.println(" CommandMap값 확인  +++++++++++" + commandMap.get("EVENT_*"));
-			adminEventService.eventInsert(commandMap.getMap(), request);
+		public ModelAndView eventInsert(CommandMap commandMap, HttpServletRequest request) throws Exception {
+			ModelAndView mv = new ModelAndView("redirect:/event/adminEventList.conn");
+			
+		adminEventService.eventInsert(commandMap.getMap(), request);
 
 			return mv;
 		}

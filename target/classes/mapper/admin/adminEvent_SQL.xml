@@ -43,9 +43,8 @@
 			EVENT_START,
 			EVENT_END,
 			EVENT_IMG1,
-			EVENT_IMG2,
-			EVENT_IMG3,
-			EVENT_IMG4)
+			EVENT_IMG2
+			)
 		VALUES
 			(EVENT_NUM_SEQ.NEXTVAL,
 			SYSDATE,
@@ -53,9 +52,8 @@
 			#{EVENT_START},
 			#{EVENT_END},
 			#{EVENT_IMG1},
-			#{EVENT_IMG2},
-			#{EVENT_IMG3},
-			#{EVENT_IMG4})
+			#{EVENT_IMG2}
+			)
 	]]>
 </insert>
 

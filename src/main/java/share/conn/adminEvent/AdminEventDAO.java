@@ -25,7 +25,7 @@ import share.conn.giftcon.AbstractDAO;
 				}
 		
 		//EVENT 등록
-		public void eventInsert(Map<String, Object> map, HttpServletRequest request) throws Exception {
+		public void eventInsert(Map<String, Object> map) throws Exception {
 			insert("event.adEventinsert", map);
 		}
 		
