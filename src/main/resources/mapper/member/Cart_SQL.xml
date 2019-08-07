@@ -105,13 +105,10 @@
 
 
 <!-- 주문 등록 후 장바구니 삭제 -->
-<insert id="addOrderToCart" useGeneratedKeys="true" keyProperty="ORDER_NUM">
-	<selectKey keyProperty="ORDER_NUM" resultType="integer" order="BEFORE">
-	SELECT ORDER_NUM_SEQ.NEXTVAL FROM DUAL
-	</selectKey>
+<insert id="addOrderToCart" resultType="hashmap">
 <![CDATA[
 	INSERT INTO ORDERS(
-		ORDER_NUM, 
+		ORDER_NUM_SEQ.NEXTVAL, 
 		ORDER_AMOUNT, 
 		MEMBER_NUM, 
 		GOODS_NUM, 
