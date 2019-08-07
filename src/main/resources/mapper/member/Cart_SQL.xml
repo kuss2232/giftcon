@@ -99,7 +99,7 @@
 	FROM 
 		CART
 	WHERE 
-		MEMBER_NUM=1
+		MEMBER_NUM=#{MEMBER_NUM}
 ]]>	
 </select>
 
