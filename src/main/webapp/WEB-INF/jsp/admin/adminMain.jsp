@@ -75,7 +75,7 @@
 								<span class="fa arrow">▼</span>
 							</a>
 							<ul class="nav nav-second-level">
-								<li><a href="/giftcon/admin-memberList.conn">- 회원목록</a></li>
+								<li><a href="/giftcon/member/adminMemberList.conn">- 회원목록</a></li>
 								<li><a href="/giftcon/admin-memberModify.conn">- 회원수정</a></li>
 							</ul> <!-- /.nav-second-level -->
 						</li>
@@ -101,6 +101,7 @@
 								<li><a href="/giftcon/admin_event.conn">- 이벤트</a></li>
 								<li><a href="/giftcon/faq/adminFaqList.conn">- FAQ</a></li>
 								<li><a href="/giftcon/adminQnaList.conn">- Q&A</a></li>
+								<li><a href="/giftcon/adminCategory.conn">- 카테고리추가</a></li>
 							</ul>
 						</li>
 					</ul>
@@ -111,7 +112,7 @@
 		</nav>
 		<div id="page-wrapper">
 			<!-- 메인container-->
-			<tiles:insertAttribute name="body" />
+			<%@include file="./adminMainLayout.jsp"%>
 			<!-- // container -->
 		</div>
 		<!-- /#page-wrapper -->

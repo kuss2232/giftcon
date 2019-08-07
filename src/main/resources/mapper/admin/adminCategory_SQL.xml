@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="adminCategory">
+
+<!-- 카테고리추가 -->
+<insert id="categoryInsert" parameterType="hashmap">
+	
+	<![CDATA[
+		INSERT 
+		INTO CATEGORY( 
+			 CATEGORY_NUM,
+			 BIG_CATEGORY,
+			 SMALL_CATEGORY,
+			 CATEGORY_IMG
+		)VALUES(
+			CATEGORY_NUM_SEQ.NEXTVAL,
+			#{BIG_CATEGORY},
+			#{SMALL_CATEGORY},
+			#{CATEGORY_IMG}
+		)
+	]]>
+</insert>
+
+<!-- 카테고리 삭제 -->
+<delete id="categoryDelete" parameterType="hashmap">
+<![CDATA[
+	DELETE 
+	FROM 
+		CATEGORY
+	WHERE 
+		CATEGORY_NUM=#{CATEGORY_NUM} 
+]]>
+</delete>
+
+<!-- 카테고리 목록보기 -->
+<select id="categorySelect" parameterType="hashmap" resultType="hashmap">
+<![CDATA[
+	SELECT
+	  *
+	FROM 
+		CATEGORY
+	
+]]>
+</select>
+
+<!-- BIG카테고리로 분류 -->
+<select id="bigCategoryList" parameterType="hashmap" resultType="hashmap">
+<![CDATA[
+	SELECT
+		SMALL_CATEGORY,
+		CATEGORY_IMG
+	FROM
+		CATEGORY
+	WHERE
+		BIG_CATEGORY = #{BIG_CATEGORY}
+]]>
+</select>
+</mapper>

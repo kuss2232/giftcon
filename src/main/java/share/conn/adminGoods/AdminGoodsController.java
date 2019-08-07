@@ -107,9 +107,10 @@ public class AdminGoodsController {
 	
 	// 상품 등록폼으로 이동
 	@RequestMapping(value = "/goods/goodsInsertForm.conn")
-	public ModelAndView goodsInsertForm() {
+	public ModelAndView goodsInsertForm() throws Exception {
 
 		ModelAndView mv = new ModelAndView();
+		
 		mv.setViewName("/admin/Goods/admin_InsertGoods");
 
 		return mv;
@@ -120,32 +121,26 @@ public class AdminGoodsController {
 	public ModelAndView adGoodsinsert(CommandMap commandMap, HttpServletRequest request) throws Exception {
 
 		ModelAndView mv = new ModelAndView("redirect:/goods/adminGoodsList.conn");
-
+		System.out.println(commandMap.get("BIG_CATEGORY")+"BIG_CATEGORY ---- : " + commandMap.get("SMALL_CATEGORY") + "SMALL_CATEGORY --- -");
+		Map<String,Object> category = adminGoodsService.adGoodsSelectCategory(commandMap.getMap());
+		commandMap.put("CATEGORY_NUM", Integer.parseInt(category.get("CATEGORY_NUM").toString()));
 		adminGoodsService.adGoodsinsert(commandMap.getMap(), request);
 
 		return mv;
 
 	}
 	// 상품 수정폼으로 이동
-	@RequestMapping(value = "/goods/goodsModifyForm")
+	@RequestMapping(value = "/goods/goodsModifyForm.conn")
 	public ModelAndView goodsModifyForm(CommandMap commandMap) throws Exception {
 
-		ModelAndView mv = new ModelAndView("goodsModifyForm");
+		ModelAndView mv = new ModelAndView("/admin/Goods/admin_goodsModifyForm");
 
 		List<Map<String, Object>> goodsDetail = adminGoodsService.modifyGoodsForm(commandMap.getMap());
 		mv.addObject("goodsDetail", goodsDetail);
 		Map<String, Object> goodsBasic = goodsDetail.get(0);
 
 		mv.addObject("goodsBasic", goodsBasic);
-			
-		if (goodsBasic.get("GOODS_SALEDATE") != null) {
-				Date from = new Date();
-				from = (Date) goodsBasic.get("GOODS_SALEDATE");
-				SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
-				String to = transFormat.format(from);
-				mv.addObject("SALEDATE", to);
-		}
-
+	
 		List<Map<String, Object>> goodsImage = adminGoodsService.modifyGoodsFormImage(commandMap.getMap());
 		mv.addObject("goodsImage", goodsImage);
 
@@ -153,7 +148,7 @@ public class AdminGoodsController {
 	}
 	
 	// 상품 수정
-	@RequestMapping(value = "/goods/adminGoodsModify.conn")
+	@RequestMapping(value = "/goods/adminModifyGoods.conn")
 	public ModelAndView adGoodsModify(CommandMap commandMap, HttpServletRequest request) throws Exception {
 
 		ModelAndView mv = new ModelAndView("redirect:/goods/adminGoodsList.conn");

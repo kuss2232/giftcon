@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 public interface AdminOrderService {
 	public List<Map<String,Object>> allOrderList() throws Exception;
@@ -12,7 +13,7 @@ public interface AdminOrderService {
 	public int allOrderNumList() throws Exception;
 	
 	//주문 삭제
-	public void orderDelete(Map<String, Object> map) throws Exception;
+	public void orderDelete(Map<String,Object> map) throws Exception;
 	
 	//관리자가 사용자 ID로 검색
 	public List<Map<String,Object>> adminOrderSearchID(Map<String,Object> map) throws Exception;

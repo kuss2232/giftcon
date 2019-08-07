@@ -5,7 +5,7 @@
 
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-<title>상품입력</title>
+<title>상품수정</title>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>  
@@ -126,25 +126,58 @@ function BIG_CATEGORYChange() {
 					<td>
 						<select id="BIG_CATEGORY" name="BIG_CATEGORY" onchange="BIG_CATEGORYChange();" size=1>
 						<OPTION value=''>대분류</OPTION>
-						<OPTION value='치킨/피자/버거'>치킨/피자/버거</OPTION>
-						<OPTION value='커피/음료'>커피/음료</OPTION>
-						<OPTION value='아이스크림/빙수'>아이스크림/빙수</OPTION>
-						<OPTION value='떡/베이커리'>떡/베이커리</OPTION>
-						<OPTION value='편의점/마트'>편의점/마트</OPTION>
-						 
+						<c:choose>
+						<c:when test="${goodsBasic.BIG_CATEGORY eq '치킨/피자/버거'  }">
+							<OPTION value='치킨/피자/버거' selected>치킨/피자/버거</OPTION>
+							<OPTION value='커피/음료'>커피/음료</OPTION>
+							<OPTION value='아이스크림/빙수'>아이스크림/빙수</OPTION>
+							<OPTION value='떡/베이커리'>떡/베이커리</OPTION>
+							<OPTION value='편의점/마트'>편의점/마트</OPTION>
+						</c:when>
+						<c:when test="${goodsBasic.BIG_CATEGORY eq '커피/음료'  }">
+							<OPTION value='치킨/피자/버거'>치킨/피자/버거</OPTION>
+							<OPTION value='커피/음료' selected>커피/음료</OPTION>
+							<OPTION value='아이스크림/빙수'>아이스크림/빙수</OPTION>
+							<OPTION value='떡/베이커리'>떡/베이커리</OPTION>
+							<OPTION value='편의점/마트'>편의점/마트</OPTION>
+						</c:when>
+						<c:when test="${goodsBasic.BIG_CATEGORY eq '아이스크림/빙수'  }">
+							<OPTION value='치킨/피자/버거'>치킨/피자/버거</OPTION>
+							<OPTION value='커피/음료'>커피/음료</OPTION>
+							<OPTION value='아이스크림/빙수' selected>아이스크림/빙수</OPTION>
+							<OPTION value='떡/베이커리'>떡/베이커리</OPTION>
+							<OPTION value='편의점/마트'>편의점/마트</OPTION>
+						</c:when>
+						<c:when test="${goodsBasic.BIG_CATEGORY eq '떡/베이커리'  }">
+							<OPTION value='치킨/피자/버거'>치킨/피자/버거</OPTION>
+							<OPTION value='커피/음료'>커피/음료</OPTION>
+							<OPTION value='아이스크림/빙수'>아이스크림/빙수</OPTION>
+							<OPTION value='떡/베이커리' selected>떡/베이커리</OPTION>
+							<OPTION value='편의점/마트'>편의점/마트</OPTION>
+						</c:when>
+						<c:when test="${goodsBasic.BIG_CATEGORY eq '편의점/마트'  }">
+							<OPTION value='치킨/피자/버거'>치킨/피자/버거</OPTION>
+							<OPTION value='커피/음료'>커피/음료</OPTION>
+							<OPTION value='아이스크림/빙수'>아이스크림/빙수</OPTION>
+							<OPTION value='떡/베이커리'>떡/베이커리</OPTION>
+							<OPTION value='편의점/마트' selected>편의점/마트</OPTION>
+						</c:when>
+						<c:otherwise>
+							<OPTION value='치킨/피자/버거'>치킨/피자/버거</OPTION>
+							<OPTION value='커피/음료'>커피/음료</OPTION>
+							<OPTION value='아이스크림/빙수'>아이스크림/빙수</OPTION>
+							<OPTION value='떡/베이커리'>떡/베이커리</OPTION>
+							<OPTION value='편의점/마트'>편의점/마트</OPTION>
+						</c:otherwise>
+						</c:choose>
 						</select>
 						<SELECT id="SMALL_CATEGORY" name="SMALL_CATEGORY" size=1>
-						 <OPTION value=''>대분류를 먼저 선택하세요</OPTION>
+						 <OPTION value=''>소분류를 바꾸시려면 대분류를 먼저 선택하세요</OPTION>
+						 <c:if test="${goodsBasic.SMALL_CATEGORY ne null }">
+						 <OPTION value="${goodsBasic.SMALL_CATEGORY}" selected>${goodsBasic.SMALL_CATEGORY}</OPTION>
+						 </c:if>
 						</SELECT>
 					</td>
-				</tr>
-				<tr>
-					<th scope="row">이미지1</th>
-					<td><input type="file" id="GOODS_IMG1" name="GOODS_IMG1" value="${goodsBasic.GOODS_IMG1 }"></td>
-				</tr>
-				<tr>
-					<th scope="row">이미지2</th>
-					<td><input type="file" id="GOODS_IMG2" name="GOODS_IMG2" value="${goodsBasic.GOODS_IMG2}"></td>
 				</tr>
 				<tr>
 					<th scope="row">할인 가격</th>
@@ -160,11 +193,30 @@ function BIG_CATEGORYChange() {
 				</tr>
 				<tr>
 					<th scope="row">물량 수정</th>
-					<td><input type="text" id="GOODS_AMOUNT" name="GOODS_AMOUNT" class="wdp_90"></input></td>
+					<td><input type="text" id="GOODS_AMOUNT" name="GOODS_AMOUNT" class="wdp_90" value="${goodsBasic.GOODS_AMOUNT}"></input></td>
 				</tr>
 				<tr>
-					<th scope="row">추가 이미지</th>
-					<td><input type="file" id="GOODS_IMG3" name="GOODS_IMG3"></td>
+				<td colspan="4">
+				<div id="fileDiv">
+					<c:forEach var="goodsImage"  items="${goodsImage}" varStatus="stat">
+						<input type="hidden" name="ORIGINAL_IMAGE1" value="${goodsImage.GOODS_IMG1}">
+						<input type="hidden" name="ORIGINAL_IMAGE2" value="${goodsImage.GOODS_IMG2}">
+						<input type="hidden" name="ORIGINAL_IMAGE3" value="${goodsImage.GOODS_IMG3}">
+						<p>
+						기존 이미지1 : <img src="/MODA/file/goodsFile/${goodsImage.GOODS_IMG1}" width="60" height="60" alt=""  onerror="this.src='/MODA/file/noimg_130.gif'" /> <br/>
+						<input type="file" id="file" name="MODIFY_IMAGE_${goodsImage.GOODS_IMG1}">
+						<input type="hidden" name="${goodsImage.GOODS_IMG1}" value="1">
+						기존 이미지2 : <img src="/MODA/file/goodsFile/${goodsImage.GOODS_IMG2}" width="60" height="60" alt=""  onerror="this.src='/MODA/file/noimg_130.gif'" /> <br/>
+						<input type="file" id="file" name="MODIFY_IMAGE_${goodsImage.GOODS_IMG2}">
+						<input type="hidden" name="${goodsImage.GOODS_IMG2}" value="2">
+						기존 이미지3 : <img src="/MODA/file/goodsFile/${goodsImage.GOODS_IMG3}" width="60" height="60" alt=""  onerror="this.src='/MODA/file/noimg_130.gif'" /> <br/>
+						<input type="file" id="file" name="MODIFY_IMAGE_${goodsImage.GOODS_IMG3}">
+						<input type="hidden" name="${goodsImage.GOODS_IMG3}" value="3">
+						※업로드시 기존 이미지는 삭제됩니다.
+						</p>
+					</c:forEach>
+				</div>
+				</td>
 				</tr>
 			</tbody>
 		</table>
@@ -224,21 +276,6 @@ function BIG_CATEGORYChange() {
 				fn_insertGood();
 				}
 			});
-			
-			$("#addFile").on("click", function(e){ //파일 추가 버튼
-				e.preventDefault();
-				fn_addFile();
-			});
-			
-			$("#addKind").on("click", function(e){ //파일 추가 버튼
-				e.preventDefault();
-				fn_addKind();
-			});
-			
-			$("a[name='delete']").on("click", function(e){ //삭제 버튼
-				e.preventDefault();
-				fn_deleteKind($(this));
-			});
 		});
 		
 		function fn_openGoodsList(){
@@ -249,7 +286,7 @@ function BIG_CATEGORYChange() {
 		
 		function fn_insertGood(){
 			var comSubmit = new ComSubmit("frm");
-			comSubmit.setUrl("<c:url value='/goods/adminInsertGoods.conn' />");
+			comSubmit.setUrl("<c:url value='/goods/adminModifyGoods.conn' />");
 			comSubmit.submit();
 		}
 		

@@ -18,7 +18,7 @@
 
 <scRIPT language="Javascript">
 
-function BIG_CATEGORYChange() {
+function BIG_CATEGORYChange(frm) {
  var x = document.frm.BIG_CATEGORY.options.selectedIndex;
  var groups=document.frm.BIG_CATEGORY.options.length;
  var group=new Array(groups);
@@ -53,6 +53,7 @@ function BIG_CATEGORYChange() {
  }
  temp.options[0].selected=true
 }
+
 /* function GOODS_CATEGORY2Change() {
  var GOODS_CATEGORY1 = document.frm.GOODS_CATEGORY1.options.selectedIndex;
  var x = document.frm.GOODS_CATEGORY2.options.selectedIndex;
@@ -112,15 +113,12 @@ function BIG_CATEGORYChange() {
 					<th scope="row">상품명</th>
 					<td><input type="text" id="GOODS_NAME" name="GOODS_NAME" class="wdp_90"></input></td>
 				</tr>
-				<tr>
-					<th scope="row">가격</th>
-					<td><input type="text" id="GOODS_PRICE" name="GOODS_PRICE" class="wdp_90"></input></td>
-				</tr>
+				
 				
 				<tr>
 					<th scope="row">카테고리</th>
 					<td>
-						<select id="BIG_CATEGORY" name="BIG_CATEGORY" onchange="BIG_CATEGORYChange();" size=1>
+						<select id="BIG_CATEGORY" name="BIG_CATEGORY" onchange="BIG_CATEGORYChange(this.form);" size=1>
 						<OPTION value=''>대분류</OPTION>
 						<OPTION value='치킨/피자/버거'>치킨/피자/버거</OPTION>
 						<OPTION value='커피/음료'>커피/음료</OPTION>
@@ -129,18 +127,15 @@ function BIG_CATEGORYChange() {
 						<OPTION value='편의점/마트'>편의점/마트</OPTION>
 						 
 						</select>
-						<SELECT id="SMALL_CATEGORY" name="SMALL_CATEGORY" size=1>
+						<SELECT id="SMALL_CATEGORY" name="SMALL_CATEGORY" onchange="SMALL_CATEGORYChange(this.form);" size=1>
 						 <OPTION value=''>대분류를 먼저 선택하세요</OPTION>
 						</SELECT>
 					</td>
 				</tr>
+				
 				<tr>
-					<th scope="row">이미지1</th>
-					<td><input type="file" id="GOODS_IMG1" name="GOODS_IMG1"></td>
-				</tr>
-				<tr>
-					<th scope="row">이미지2</th>
-					<td><input type="file" id="GOODS_IMG2" name="GOODS_IMG2"></td>
+					<th scope="row">가격</th>
+					<td><input type="text" id="GOODS_PRICE" name="GOODS_PRICE" class="wdp_90"></input></td>
 				</tr>
 				<tr>
 					<th scope="row">할인 가격</th>
@@ -159,7 +154,15 @@ function BIG_CATEGORYChange() {
 					<td><input type="text" id="GOODS_AMOUNT" name="GOODS_AMOUNT" class="wdp_90"></input></td>
 				</tr>
 				<tr>
-					<th scope="row">추가 이미지</th>
+					<th scope="row">이미지1</th>
+					<td><input type="file" id="GOODS_IMG1" name="GOODS_IMG1"></td>
+				</tr>
+				<tr>
+					<th scope="row">이미지2</th>
+					<td><input type="file" id="GOODS_IMG2" name="GOODS_IMG2"></td>
+				</tr>
+				<tr>
+					<th scope="row">이미지3</th>
 					<td><input type="file" id="GOODS_IMG3" name="GOODS_IMG3"></td>
 				</tr>
 			</tbody>
@@ -197,12 +200,6 @@ function BIG_CATEGORYChange() {
 				 } else if($('#SMALL_CATEGORY').val()==''){
 					 alert("상품 소분류를 선택해 주세요.");
 						return false;
-				 } else if($('#GOODS_IMG1').val()==""){
-					 alert("이미지1을 등록해 주세요.");
-						return false;
-				 } else if($('#GOODS_IMG2').val()==""){
-					 alert("이미지2를 등록해 주세요.");
-						return false;
 				 } else if($('#GOODS_SIMPLE').val()==""){
 					 alert("상품 간략설명을 입력해 주세요.");
 						return false;
@@ -212,33 +209,21 @@ function BIG_CATEGORYChange() {
 				 } else if($('#GOODS_AMOUNT').val()==""){
 					 alert("상품 수량을 입력해 주세요.");
 						return false;
-				 } else if($('#GOODS_IMG3').val()==""){
-					 alert("이미지3을 등록해 주세요.");
+				 } else if($('#GOODS_IMG1').val()==""){
+					 alert("이미지1을 등록해 주세요.");
+						return false;
+				 } else if($('#GOODS_IMG2').val()==""){
+					 alert("이미지2를 등록해 주세요.");
 						return false;
 				 }
 				 else{
 				fn_insertGood();
 				}
 			});
-			
-			$("#addFile").on("click", function(e){ //파일 추가 버튼
-				e.preventDefault();
-				fn_addFile();
-			});
-			
-			$("#addKind").on("click", function(e){ //파일 추가 버튼
-				e.preventDefault();
-				fn_addKind();
-			});
-			
-			$("a[name='delete']").on("click", function(e){ //삭제 버튼
-				e.preventDefault();
-				fn_deleteKind($(this));
-			});
 		});
 		
 		function fn_openGoodsList(){
-			var comSubmit = new ComSubmit();
+			var comSubmit = new ComSubmit();	
 			comSubmit.setUrl("<c:url value='/goods/adminGoodsList.conn' />");
 			comSubmit.submit();
 		}
