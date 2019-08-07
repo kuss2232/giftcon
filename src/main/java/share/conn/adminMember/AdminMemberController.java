@@ -68,7 +68,7 @@ public class AdminMemberController {
 			}
 
 			totalCount = memberList.size();
-			page = new Paging(currentPage, totalCount, blockCount, blockPage, "adminMemberList", searchNum, isSearch);
+			page = new Paging(currentPage, totalCount, blockCount, blockPage, "adminMemberList.conn", searchNum, isSearch);
 			pagingHtml = page.getPagingHtml().toString();
 
 			int lastCount = totalCount;
@@ -92,7 +92,7 @@ public class AdminMemberController {
 
 			totalCount = memberList.size();
 
-			page = new Paging(currentPage, totalCount, blockCount, blockPage, "adminMemberList");
+			page = new Paging(currentPage, totalCount, blockCount, blockPage, "adminMemberList.conn");
 			pagingHtml = page.getPagingHtml().toString();
 
 			int lastCount = totalCount;

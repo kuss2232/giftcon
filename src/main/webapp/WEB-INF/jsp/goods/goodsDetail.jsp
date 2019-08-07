@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@include file="../module/header.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -25,7 +26,7 @@
 				<div class="productImg">
 					<p class="icoFlag">
 					</p>
-					<img src="${goodsDetail.GOODS_IMG2}" alt="">
+					<img src="/giftcon/images/email.png<%-- ${goodsDetail.GOODS_IMG2} --%>" alt="">
 				</div>
 				<div class="infoBox">
 					<p class="prodName">[${goodsDetail.SMALL_CATEGORY}] ${goodsDetail.GOODS_NAME}</p>
@@ -55,9 +56,8 @@
 
 						<a href="javascript:insertCart(10091);"
 							class="btnBigLineBlack2 w213 mr10"
-							onmousedown="_AceTM.AddCart(1);">장바구니 담기</a> <a
-							href="/order/order.do?goodsNo=10091" class="btnBigBgBlue8 w213"
-							onmousedown="_AceTM.BuyNow(1);">주문하기</a>
+							onmousedown="_AceTM.AddCart(1);">장바구니 담기</a> 
+							<a href="/giftcon/orderForm.conn?GOODS_NUM=${goodsDetail.GOODS_NUM}" class="btnBigBgBlue8 w213"onmousedown="_AceTM.BuyNow(1);">주문하기</a>
 
 					</p>
 				</div>
@@ -122,11 +122,11 @@
 			</div>
 			<!-- /end:product_detail -->
 			<!-- start:tab_recommend -->
-			<ul class="subTab">
+			<!-- <ul class="subTab">
 				<li><a href="javascript:viewTab('priceTab');" id="priceOnOff"
 					class="on">추천상품</a></li>
 			</ul>
-			<!-- /end:tab_recommend -->
+			/end:tab_recommend
 			<div id="priceTab">
 				<div class="todayprodArea">
 					<div class="fixBox bestBox">
@@ -333,13 +333,32 @@
 						</ul>
 					</div>
 				</div>
-			</div>
+			</div> -->
 
 			<div class="subTit">상품 후기</div>
+			<div>
+			
+			<c:forEach var="review"  items="${reviewDetail}">	
+			
+			<tr>
+				<td>작성자: ${review.MEMBER_NUM}</td>
+				<td>후기 : ${review.REVIEW_CNT}</td>
+			</tr>
+			</c:forEach>
+			</div>
+			
 
 			<div class="askList">
-				<ul class="myAskList">
-
+				<form name="frm">
+					<input type="hidden" id="goodsNum" name="goodsNum" value="${goodsDetail.GOODS_NUM}" />
+					<input type="hidden" id="memberId" name="memberNum" value="${MEMBER_ID}" />
+					<textarea id="content" name="content" rows="10" cols="100" class="commentForm"></textarea>
+					
+					<input type=button style="width:45pt;height:30pt; color:BLACK" id="btn" value="댓글작성" class="commentBt" />
+				</form>
+				
+				
+				<!-- <ul class="myAskList">
 					<li id="list_0" class=""><a href="#" onclick="javascript:goDetail(0, 298); return false;"> 
 					<span class="icoQuestion"></span> 
 					<span class="faqTit">등급별 혜택은 어떻게 적용되나요?</span>
@@ -352,7 +371,7 @@
 								확인하실 수 있습니다.</p>
 						</div></li>
 
-				</ul>
+				</ul> -->
 			</div>
 			
 
@@ -362,6 +381,31 @@
 </div>
 </div>
 <script type="text/javascript">
+$(document).ready(function() {
+	$("#btn").on("click", function(e) {
+		e.preventDefault();
+		fn_insertReview();
+	});
+});
+function fn_insertReview(){
+	var cnt = $("#content").val();
+	$.ajax({
+		type:"POST",
+		data:{"REVIEW_CNT":cnt,
+				"GOODS_NUM": $("#goodsNum").val(),
+				"MEMBER_ID": $("#memberId").val(),
+				"REVIEW_GRADE":5},
+        url:"/giftcon/goods/reviewInsert.conn",
+       	error : function(erromr) {
+			alert("서버가 응답하지 않습니다. \n다시 시도해주시기 바랍니다.");
+		},
+		success : function() {
+			alert("등록");
+		}
+	});
+
+}
+	
 function goDetail(index, bbsNo) {
 	
 	var listId = "#list_"+index;
@@ -386,3 +430,4 @@ function goDetail(index, bbsNo) {
 </script>
 </body>
 </html>
+<%@include file="../module/footer.jsp"%>

@@ -43,18 +43,16 @@
 							  <th class="alignC">수량</th>
 							  <th class="alignC last">유효기간</th>
 							</tr>
-							<c:forEach items="${goods}" var="goods">
-								<tr>
+								<tr>						  
 								  <td class="alignC"><img src="${goods.GOODS_IMG1}" alt=""></td>
-								  <td>[${goods.SMALL_CATEGORY] ${goods.GOODS_NAME}</td>
+								  <td>${goods.SMALL_CATEGORY} : ${goods.GOODS_NAME}</td>
 								  <td class="alignC" id="price">${goods.GOODS_PRICE}</td>
 								  <td class="alignC">수량 받아오기</td>
 								  <td class="alignC last">90일</td>
 								</tr>
-							</c:forEach>
 						  </tbody>
 						</table>
-						<p class="priceOne">1건당 발송금액 : 원</p>
+						<p class="priceOne">1건당 발송금액 :${goods.GOODS_PRICE}원</p>
 						<!-- /end:product_list -->
 					</div>
 					<!-- /end:send_step01 -->

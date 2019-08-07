@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import share.conn.Paging.GoodsPaging;
+import share.conn.Review.ReviewService;
 import share.conn.giftcon.CommandMap;
 
 @Controller
@@ -29,6 +30,10 @@ public class GoodsController {
 	
 	@Resource(name="goodsService")
 	private GoodsService goodsService;
+	
+	@Resource(name="reviewService")
+	private ReviewService reviewService;
+	
 	
 	@RequestMapping("/goods/category.conn")
 	public ModelAndView categoryList(CommandMap commandMap)throws Exception{
@@ -60,13 +65,19 @@ public class GoodsController {
 	         HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
+		System.out.println(commandMap.get("GOODS_NUM"));
 		Map<String, Object> goodsDetail = goodsService.goodsDetail(commandMap.getMap());
-		
+		List<Map<String, Object>> reviewDetail = reviewService.searchReview(commandMap.getMap());
+		System.out.println();
+		mv.addObject("reviewDetail", reviewDetail);
+		mv.addObject("MEMBER_ID",session.getAttribute("MEMBER_ID"));
 		mv.addObject("goodsDetail", goodsDetail);
 		mv.setViewName("goods/goodsDetail");		
 		
 		return mv;
 	}
+	
+	
 	
 	
 

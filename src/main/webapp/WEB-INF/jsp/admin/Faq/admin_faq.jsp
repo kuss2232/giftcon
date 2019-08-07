@@ -66,7 +66,7 @@ $(document).ready(function(){
 						</div>
 
 					</div>
-					<div class="row">
+					<div class="row" align="center">
 						<div class="col-sm-12">
 							<table
 								class="table table-striped table-bordered table-hover dataTable no-footer"

@@ -25,4 +25,6 @@ public class ReviewDAO extends AbstractDAO{
 	public void reviewDelete(Map<String,Object> map) throws Exception{
 		delete("review.reviewDelete", map);
 	}
+	
+	
 }

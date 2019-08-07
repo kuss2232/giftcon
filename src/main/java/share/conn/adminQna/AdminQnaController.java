@@ -55,7 +55,7 @@ public class AdminQnaController {
 			SearchKeyword = request.getParameter("SearchKeyword");
 			
 			if(searchNum == 0) {
-				commandMap.put("MEMBER_ID", SearchKeyword);
+				commandMap.put("SearchKeyword", SearchKeyword);
 				adQnaList = adminQnaService.qnaIdSearch(commandMap.getMap());
 				totalCount = adQnaList.size();
 			}else if(searchNum == 1) {
