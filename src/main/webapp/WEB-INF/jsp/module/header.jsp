@@ -145,7 +145,7 @@ $(function () {
 					
 					
 					<li><a href="/giftcon/notice.conn" class="cs" title="고객센터"><span class="icoCs"></span><em class="logState">고객센터</em></a></li>
-					<li class="exc last"><a href="/cart/cartlist.conn" class="cart" title="장바구니"><span class="icoCart"><em class="counting" id="headerCartCount"><b>0</b></em></span><em class="logState">장바구니</em></a></li>
+					<li class="exc last"><a href="/giftcon/cart/cartlist.conn" class="cart" title="장바구니"><span class="icoCart"><em class="counting" id="headerCartCount"><b>0</b></em></span><em class="logState">장바구니</em></a></li>
 				</ul>
 				<div>
 </div></form>

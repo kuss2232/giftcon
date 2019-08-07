@@ -44,7 +44,7 @@
 								<c:set var="price" value="0"/>
 								<c:forEach var="cartList"  items="${cartList}">	
 									<tr class="gradeA even" role="row" height="30px">
-										<c:url var="Detail" value="/goods/goodsDetail.conn" >
+										<c:url var="Detail" value="/goods/Detail.conn" >
 											<c:param name="GOODS_NUM" value="${cartList.GOODS_NUM}" />
 										</c:url>
 										
