@@ -55,18 +55,11 @@ public class AdminNotifyController {
 		SearchKeyword = request.getParameter("SearchKeyword");
 
 		if (SearchKeyword != null) {
-		
 			SearchNum = Integer.parseInt(request.getParameter("SearchNum"));
-			SearchKeywordMap.put("SearchKeyword", SearchKeyword);
-
-			if (SearchNum == 1) { // 제목검색
-				noticeList = adminNotifyService.notifySearch(SearchKeywordMap);
-			} else if (SearchNum == 2) { // 내용검색
-				noticeList = adminNotifyService.notifySearch(SearchKeywordMap);
-			}
+			noticeList = adminNotifyService.notifySearch(commandMap.getMap());
 
 			totalCount = noticeList.size();
-			page = new Paging(currentPage, totalCount, blockCount, blockPage, "noticeList", SearchNum, SearchKeyword);
+			page = new Paging(currentPage, totalCount, blockCount, blockPage, "adminNotifyList.conn", SearchNum, SearchKeyword);
 			pagingHtml = page.getPagingHtml().toString();
 
 			int lastCount = totalCount;
@@ -89,7 +82,7 @@ public class AdminNotifyController {
 		} else {
 			totalCount = noticeList.size();
 
-			page = new Paging(currentPage, totalCount, blockCount, blockPage, "noticeList");
+			page = new Paging(currentPage, totalCount, blockCount, blockPage, "adminNotifyList.conn");
 			pagingHtml = page.getPagingHtml().toString();
 
 			int lastCount = totalCount;
@@ -102,7 +95,6 @@ public class AdminNotifyController {
 			mv.addObject("totalCount", totalCount);
 			mv.addObject("pagingHtml", pagingHtml);
 			mv.addObject("currentPage", currentPage);
-
 			mv.addObject("noticeList", noticeList);
 			mv.setViewName("admin/Notice/admin_notice");
 

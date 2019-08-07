@@ -12,7 +12,7 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <head>
-<script src="/giftcon/js/common.js" charset="utf-8"></script>
+<script src="/giftcon/css/common.js" charset="utf-8"></script>
 <script src="/giftcon/css/jquery/jquery-1.12.4.min.js"></script>
 <link rel="stylesheet" type="text/css"  />
 		  <script>
@@ -151,12 +151,11 @@
 						<div style="text-align: center;">
 							<div id="dataTables-example_filter" class="dataTables_filter">
 								<form action="">
-									<select class="form-control" name="searchNum" id="searchNum">
+									<select class="form-control" name="SearchNum" id="SearchNum">
 										<option value="1">제목</option>
 										<option value="2">내용</option>
-									</select> <input class="form-control" type="text" name="isSearch"
-										id="isSearch" /> <span>
-										<button type="submit" class="btn btn-default">검색</button>
+									</select> <input class="form-control" type="text" name="SearchKeyword" id="SearchKeyword" /> <span>
+										<input type="submit" class="btn btn-default" value="검색">
 									</span>
 								</form>
 							</div>
