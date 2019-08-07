@@ -17,4 +17,5 @@ public interface AdminCategoryService {
 	//카테고리 정렬
 	public List<Map<String, Object>> bigCategoryList(Map<String, Object> map) throws Exception;
 
+	public Map<String, Object> categoryCount(Map<String, Object> map) throws Exception;
 }

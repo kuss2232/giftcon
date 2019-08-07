@@ -28,7 +28,7 @@
 	FROM 
 		CATEGORY
 	WHERE 
-		CATEGORY_NUM=#{CATEGORY_NUM} 
+		SMALL_CATEGORY = #{SMALL_CATEGORY} 
 ]]>
 </delete>
 
@@ -54,5 +54,17 @@
 	WHERE
 		BIG_CATEGORY = #{BIG_CATEGORY}
 ]]>
+</select>
+
+<!-- 전체 수량 -->
+<select id="categoryCount" parameterType="hashmap" resultType="hashmap">
+		SELECT
+			COUNT(*)
+		FROM
+			CATEGORY
+	<if test="BIG_CATEGORY != null">
+		WHERE
+			BIG_CATEGORY = #{BIG_CATEGORY}
+	</if>		
 </select>
 </mapper>

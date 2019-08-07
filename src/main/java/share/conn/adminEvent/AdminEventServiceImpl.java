@@ -18,8 +18,8 @@ public class AdminEventServiceImpl implements AdminEventService{
 	
 	//이벤트 리스트(진행 중)
 	@Override
-	public List<Map<String, Object>> nowEventList(Map<String, Object> map) throws Exception {
-		return adminEventDAO.nowEventList(map);
+	public List<Map<String, Object>> eventList(Map<String, Object> map) throws Exception {
+		return adminEventDAO.eventList(map);
 	}
 	
 	//이벤트 리스트(종료) 
@@ -58,6 +58,11 @@ public class AdminEventServiceImpl implements AdminEventService{
 			adminEventDAO.eventDelete(map);
 		}
 		
+		// 파일첨부1
+		@Override
+		public void eventImage(Map<String, Object> map) throws Exception {
+			adminEventDAO.eventImage(map);
+		}
 	
 
 	}

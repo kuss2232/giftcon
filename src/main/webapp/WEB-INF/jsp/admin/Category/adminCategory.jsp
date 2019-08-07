@@ -13,7 +13,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script>
-function setCategory(categoryNo) {
+/* function setCategory(categoryNo) {
 	var form = document.brandForm;
 	form.pageNo.value = 1;
 	form.categoryNo.value = categoryNo;
@@ -28,7 +28,7 @@ function setCategory(categoryNo) {
 				fn_login();
 			});
 
-		}); 
+		});  */
 		
 	function fn_login(num){
 		var comSubmit = new ComSubmit("brandForm");
@@ -77,7 +77,7 @@ function setCategory(categoryNo) {
 				<c:forEach items="${list}" var="list">
 					<li class="last"><a
 						href="/goods/mainShop.do?searchBrandNoList=71"><img
-							src="D:/sharecon/giftcon/src/main/webapp/images/category/${list.CATEGORY_IMG}" alt=""><span>${list.SMALL_CATEGORY}</span></a>
+							src="/giftcon/images/category/${list.CATEGORY_IMG}" alt=""><span>${list.SMALL_CATEGORY}</span></a>
 					</li>
 				</c:forEach>
 				</ul>
