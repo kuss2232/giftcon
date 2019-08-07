@@ -20,6 +20,10 @@ public class AdminOrderDAO extends AbstractDAO{
 		return (Integer) selectOne("adminOrderlist.allOrderNumList");
 	}
 	
+	public void orderNumDelete(Map<String,Object> map) throws Exception{
+		delete("adminOrderlist.orderNumDelete", map);
+	}
+	
 	public void orderDelete(Map<String,Object> map) throws Exception{
 		delete("adminOrderlist.orderDelete", map);
 	}
