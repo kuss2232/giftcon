@@ -15,10 +15,8 @@
 </select>
 
 <!-- 회원 장바구니 넣기-->
-<insert id="addCart" parameterType="hashmap" useGeneratedKeys="true" keyProperty="CART_NUM">
-	<selectKey keyProperty="CART_NUM" resultType="integer" order="BEFORE">
-		SELECT CART_NUM_SEQ.NEXTVAL FROM DUAL
-	</selectKey>
+<insert id="addCart" parameterType="hashmap">
+
 		<![CDATA[
 			INSERT INTO CART ( 
 				CART_NUM, 
@@ -27,7 +25,7 @@
 				CART_AMOUNT, 
 				CART_REGDATE
 			) VALUES ( 
-				#{CART_NUM}, 
+				CART_NUM_SEQ.NEXTVAL, 
 				#{MEMBER_NUM}, 
 				#{GOODS_NUM},
 				#{CART_AMOUNT}, 
@@ -40,13 +38,13 @@
 <!-- 회원 장바구니 조회 -->
 <select id="cartList" parameterType="hashmap" resultType="hashmap">
 <![CDATA[
-	SELECT DISTINCT 
+	SELECT 
 			A.GOODS_NUM, A.CART_NUM, A.MEMBER_NUM,
 			A.CART_REGDATE, A.CART_AMOUNT,
-			B.GOODS_NAME, B.GOODS_PRICE, B.GOODS_DCPRICE,
+			B.GOODS_NAME, B.GOODS_PRICE, B.GOODS_DCPRICE, B.GOODS_AMOUNT
 			C.GOODS_IMG1
 	FROM 
-		CART A, GOODS B, GOODS_IMG C 
+		CART A, GOODS B, GOODS_IMG C
 	WHERE 
 		A.MEMBER_NUM=${MEMBER_NUM}
 		AND A.GOODS_NUM=B.GOODS_NUM 
@@ -86,8 +84,7 @@
 	FROM 
 		CART 
 	WHERE 
-		MEMBER_NUM=#{MEMBER_NUM}
-		AND CART_NUM=#{CART_NUM} 
+		CART_NUM=#{CART_NUM} 
 ]]>
 </delete>
 
