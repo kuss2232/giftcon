@@ -24,6 +24,7 @@ public class AdminCategoryDAO extends AbstractDAO {
 		delete("adminCategory.categoryDelete", map);
 	}
 	
+	
 	@SuppressWarnings("unchecked")
 	public List<Map<String, Object>> bigCategoryList(Map<String, Object> map) {
 		// TODO Auto-generated method stub

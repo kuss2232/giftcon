@@ -14,6 +14,7 @@ public interface AdminCategoryService {
 	//카테고리 삭제
 	public void deleteCategory(Map<String, Object> map) throws Exception;
 
+	//카테고리 정렬
 	public List<Map<String, Object>> bigCategoryList(Map<String, Object> map) throws Exception;
 
 }
