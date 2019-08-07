@@ -24,9 +24,9 @@
 		}
 	function fn_delete(category){
 		if(confirm("삭제하시겠습니가?") == true){
-			var comSummit = new ComSubmit("category");
-			alert("삭제되었습니다.");
+			var comSubmit = new ComSubmit("category");
 			comSubmit.setUrl("/giftcon/adminCategoryDelete.conn");
+			alert("삭제되었습니다.");
 			comSubmit.addParam("SMALL_CATEGORY",category);
 			comSubmit.submit();	
 		}
@@ -57,11 +57,12 @@
 					<a href="javascript:fn_login('편의점/마트')"> <font size="3px" >편의점/마트</font></a>&nbsp;&nbsp;&nbsp;/
 					
 					<a href="javascript:fn_login('커피/음료')"><font size="3px" >커피/음료</font></a>&nbsp;&nbsp;&nbsp;
-
 				
 			</div>
 			<!-- /end:product_search -->
-
+				<div class="subTit1 mt44">
+				<span class="resultTxt"><em>상품: ${count}</em></span>
+			</div>
 			<!-- start:search_product -->
 			<div class="brandLogo">
 				<ul class="brandList" id="brandListAppend">
@@ -77,8 +78,11 @@
  <br>
 
 <div class="box box-primary">
-    <div class="box-header with-border">
+    <div class="box-header with-border">           
         <h2 class="box-title" align="center">목록</h2>
+        <div align="right">
+        <a href="/giftcon/admincategoryInsertForm.conn"><input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Cog_font_awesome.svg/32px-Cog_font_awesome.svg.png">추가</a>
+    </div>
        
         
     </div>
@@ -96,6 +100,7 @@
                 </tr>
             </thead>
             <tbody>
+          
            
             <%-- <c:forEach var="faqList"  items="${faqList}" varStatus="stat"> --%> 
             <c:forEach items="${list}" var="list">
@@ -108,10 +113,7 @@
                               <td align="center"><img src="/giftcon/images/category/${list.CATEGORY_IMG}"></td>
                               <td style="text-align:center;vertical-align:middle;">${list.SMALL_CATEGORY}</td>
                               <td style="text-align:center;vertical-align:middle;">   
-                              <a href="${viewURL}"><input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Cog_font_awesome.svg/32px-Cog_font_awesome.svg.png"></a>&nbsp;&nbsp;                        
-                              <c:url var="viewURL2" value="adminFaqDelete.dog" >
-                              </c:url>
-                               <a href="${viewURL2}"><input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Trash_font_awesome.svg/32px-Trash_font_awesome.svg.png" onclick="fn_delete(${list.SMALL_CATEGORY})"></a></td>  										                         
+                               <a href=""><input type="image"  onclick="fn_delete('${list.SMALL_CATEGORY}')"  src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Trash_font_awesome.svg/32px-Trash_font_awesome.svg.png"></a></td>  										                         
                            </tr>
                            </c:forEach>  
             </tbody>
