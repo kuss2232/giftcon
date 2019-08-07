@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>관리자 공지사항</title>
+<title>관리자 FAQ</title>
 
 <!-- Service CSS -->
 <link rel="stylesheet" type="text/css" href="css/common.css">
@@ -47,7 +47,7 @@
 <script>
 function goList() {
 	var referrer =  document.referrer;
-	(referrer.indexOf("/faq/adminFaqList.conn")+1) ? history.back() : document.location.href = "/notify/adminNotifyList.conn";
+	(referrer.indexOf("/faq/adminFaqList.conn")+1) ? history.back() : document.location.href = "/faq/adminFaqList.conn";
 }
 </script>
 </body>

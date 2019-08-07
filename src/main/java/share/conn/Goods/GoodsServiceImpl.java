@@ -1,5 +1,6 @@
 package share.conn.Goods;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -45,8 +46,8 @@ public class GoodsServiceImpl implements GoodsService{
 
 	//작은 카테고리 별 상품 리스트
 	@Override
-	public List<Map<String, Object>> smallCategorygoodsList() throws Exception {
-		return goodsDAO.smallCategorygoodsList();
+	public List<Map<String, Object>> smallCategorygoodsList(String[] category) throws Exception {
+		return goodsDAO.smallCategorygoodsList(category);
 	}
 
 	//카테고리별 많이 본 순

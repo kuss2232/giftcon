@@ -22,23 +22,37 @@ public class AdminOrderController {
 	@RequestMapping(value="/adminOrder.conn")
 	public ModelAndView adminOrder(HttpServletRequest request, CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		String Search = (String) request.getParameter("isSearch");
-		System.out.println("========================="+ Search +"===============================");
+		String Search = request.getParameter("isSearch");
 		List<Map<String, Object>> adOrderList;
-		if(Search != null)
+		if(request.getParameter("SearchNum") != null)
 		{
 			commandMap.put("Search", Search);
-			adOrderList = adminOrderService.adminOrderSearchPay(commandMap.getMap());
+			adOrderList = adminOrderService.adminOrderSearchID(commandMap.getMap());
 			mv.addObject("orderList",adOrderList);
 		}
 		else {
-			adOrderList = adminOrderService.allOrderList();
-			mv.addObject("orderList", adOrderList);
+			if(Search != null)
+			{
+				commandMap.put("Search", Search);
+				adOrderList = adminOrderService.adminOrderSearchPay(commandMap.getMap());
+				mv.addObject("orderList",adOrderList);
+			}
+			else {
+				adOrderList = adminOrderService.allOrderList();
+				mv.addObject("orderList", adOrderList);
+			}
 		}
+		
 		mv.addObject("ORDER_COUNT", adOrderList.size());
 		mv.setViewName("/admin/Order/OrderList");
 		return mv;
 	}
+	//결제 상태 수정
+	@RequestMapping(value="/adminOrderPAY.conn")
+	public void OrderPayModify(HttpServletRequest request, HttpServletResponse response, CommandMap commandMap) throws Exception{
+		adminOrderService.updateOrderPayment(commandMap.getMap());
+	}
+	
 	
 	@RequestMapping(value="/adminOrderDetail.conn")
 	public ModelAndView OrderDetail(HttpServletRequest request, CommandMap commandMap) throws Exception{
@@ -50,8 +64,15 @@ public class AdminOrderController {
 		return mv;
 	}
 	
-	 @RequestMapping(value="/orderDelete.conn") 
-	 public void OrderDelete(HttpServletRequest request, CommandMap commandMap, HttpServletResponse response) throws Exception{
-		 adminOrderService.orderDelete(commandMap.getMap());
-	 }
+	@RequestMapping(value="/orderNumDelete.conn") 
+	public void OrderNumDelete(HttpServletRequest request, CommandMap commandMap, HttpServletResponse response) throws Exception{
+		adminOrderService.orderNumDelete(commandMap.getMap());
+	}
+	
+	@RequestMapping(value="/orderDelete.conn") 
+	public void OrderDelete(HttpServletRequest request, CommandMap commandMap, HttpServletResponse response) throws Exception{
+		adminOrderService.orderDelete(commandMap.getMap());
+	}
+	 
+	 
 }

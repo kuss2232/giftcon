@@ -69,22 +69,12 @@
 		</div>
 		<script type="text/javascript">
 			$(document).ready(function() {
-				$("#faqList").on("click", function(e) { //목록으로 버튼
-					e.preventDefault();
-					fn_faqList();
-				});
 
 				$("#insertFaq").on("click", function(e) { //작성하기 버튼
 					e.preventDefault();
 					fn_faqWrite();
 					});
 				});
-
-				function fn_faqList() {
-					var comSubmit = new ComSubmit();
-					comSubmit.setUrl("<c:url value='/faq/adminFaqList.conn' />");
-					comSubmit.submit();
-				}
 
 				function fn_faqWrite() {
 					if (document.frm.FAQ_TITLE.value == "") {
@@ -107,7 +97,7 @@
 				
 				var onList = function() {
 					location.href = 'adminFaqList.conn';
-				};
+				}; 
 		 </script>
 </body>
 </html>

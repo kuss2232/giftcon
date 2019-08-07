@@ -8,16 +8,21 @@
 		R.REVIEW_NUM,
 		R.GOODS_NUM,
 		R.MEMBER_NUM,
-		R.REVIEW_CONTENT,
+		R.REVIEW_CNT,
 		R.REVIEW_REGDATE,
 		R.REVIEW_GRADE,
 		R.REVIEW_IMG,
 		M.MEMBER_ID,
-		G.GOODS_NAME
+		G.GOODS_NAME,
+		G.GOODS_PRICE,
+		G.GOODS_DCPRICE,
+		F.GOODS_IMG1
 	FROM
-		REVIEW R, MEMBER M, GOODS G
+		REVIEW R, MEMBER M, GOODS G, GOODS_IMG F
 	WHERE
-		M.MEMBER_NUM=R.MEMBER_NUM AND R.GOODS_NUM=G.GOODS_NUM
+		M.MEMBER_NUM=R.MEMBER_NUM 
+		AND R.GOODS_NUM=G.GOODS_NUM
+		AND G.GOODS_NUM=F.GOODS_NUM
 	ORDER BY
 		REVIEW_NUM DESC
       ]]>
@@ -29,25 +34,30 @@
 		R.REVIEW_NUM,
 		R.GOODS_NUM,
 		R.MEMBER_NUM,
-		R.REVIEW_CONTENT,
+		R.REVIEW_CNT,
 		R.REVIEW_REGDATE,
 		R.REVIEW_GRADE,
 		R.REVIEW_IMG,
 		M.MEMBER_ID,
-		G.GOODS_NAME
+		G.GOODS_NAME,
+		G.GOODS_PRICE,
+		G.GOODS_DCPRICE,
+		F.GOODS_IMG1
 	FROM
-		REVIEW R, MEMBER M, GOODS G
+		REVIEW R, MEMBER M, GOODS G, GOODS_IMG F
 	WHERE
-		M.MEMBER_NUM=R.MEMBER_NUM AND R.GOODS_NUM=G.GOODS_NUM AND
-<if test='SearchNum.equals("MEMBER_ID")'> <!-- 아이디로 검색 -->
-			M.MEMBER_ID LIKE '%' || #{SearchKeyword} || '%'
-</if> 
-<if test='SearchNum.equals("GOODS_NAME")'> <!-- 상품이름으로 검색 -->
-			G.GOODS_NAME LIKE '%' || #{SearchKeyword} || '%'
-</if> 
-	ORDER BY
-		REVIEW_NUM DESC
-	</select>
+		R.MEMBER_NUM=M.MEMBER_NUM 
+		AND R.GOODS_NUM=G.GOODS_NUM 
+		AND G.GOODS_NUM=F.GOODS_NUM 
+			
+		<if test='searchNum.equals("0")'> <!-- 아이디로 검색 -->
+			AND G.GOODS_NAME LIKE '%' || #{SearchKeyword} || '%'
+		</if>
+		<if test='searchNum.equals("1")'> <!-- 상품이름으로 검색 -->
+			AND M.MEMBER_ID LIKE '%' || #{SearchKeyword} || '%'
+		</if>
+
+</select>
 
 	<!-- 관리자 리뷰 삭제 -->
 	<delete id="deleteReview" parameterType="Integer">
@@ -56,4 +66,35 @@
 	WHERE REVIEW_NUM=#{REVIEW_NUM}
     ]]>
 	</delete>
+	
+	<!-- 관리자 리뷰 수 -->
+	<select id="reviewCount" resultType="hashmap">
+		<choose>
+			
+			<when test="searchNum != null and searchNum.equals(0)">
+			SELECT
+				COUNT(A.REVIEW_NUM)
+			FROM
+				REVIEW A, GOODS B
+			WHERE
+				A.GOODS_NUM = B.GOODS_NUM
+				AND GOODS_NAME = LIKE '%' || #{SearchKeyword} || '%'
+			</when>
+			<when test="searchNum != null and searchNum.equals(1)">
+			SELECT
+				COUNT(A.REVIEW_NUM)
+			FROM
+				REVIEW A, MEMBER B
+			WHERE
+				A.MEMBER_NUM = B.MEMBER_NUM
+				AND MEMBER_ID = LIKE '%' || #{SearchKeyword} || '%'
+			</when>
+			<otherwise>
+			SELECT
+				COUNT(A.REVIEW_NUM) AS CNT
+			FROM
+				REVIEW A
+			</otherwise>
+		</choose>
+	</select>
 </mapper>

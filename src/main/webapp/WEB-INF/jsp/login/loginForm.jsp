@@ -5,7 +5,7 @@
 <html>
 <head>
 	<title>로그인</title>
-	<script type="text/javascript" src="d:/css/jquery/main_slide.js"></script>
+	<script type="text/javascript" src="/giftcon/css/jquery/main_slide.js"></script>
 	
 	<script type="text/javascript">
 		$(document).ready(function(){

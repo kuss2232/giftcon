@@ -114,7 +114,7 @@ public class Paging {
 		if (currentPage > blockPage) {
 			if (isSearch != "")
 				pagingHtml.append("<a class='page prv' href=" + dogName + "?currentPage=" + (startPage - 1)
-						+ "&searchNum=" + searchNum + "&isSearch=" + isSearch + ">");
+						+ "&SearchNum=" + searchNum + "&SearchKeyword=" + isSearch + ">");
 			else
 				pagingHtml.append("<a class='page prv' href=" + dogName + "?currentPage=" + (startPage - 1) + ">");
 			pagingHtml.append("&lt;");
@@ -133,7 +133,7 @@ public class Paging {
 			} else {
 				pagingHtml.append("<li><a class='page' href=" + dogName + "?currentPage=" + i);
 				if (isSearch != "")
-					pagingHtml.append("&isSearch=" + isSearch + "&searchNum=" + searchNum);
+					pagingHtml.append("&SearchKeyword=" + isSearch + "&SearchNum=" + searchNum);
 				pagingHtml.append(">");
 				pagingHtml.append(i);
 				pagingHtml.append("</a></li>");
@@ -143,7 +143,7 @@ public class Paging {
 		if (totalPage - startPage >= blockPage) {
 			pagingHtml.append("<a class='page next' href=" + dogName + "?currentPage=" + (endPage + 1));
 			if (isSearch != "")
-				pagingHtml.append("&isSearch=" + isSearch + "&searchNum=" + searchNum);
+				pagingHtml.append("&SearchKeyword=" + isSearch + "&SearchNum=" + searchNum);
 			pagingHtml.append(">");
 			pagingHtml.append("&gt;");
 			pagingHtml.append("</a>");

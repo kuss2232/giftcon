@@ -10,6 +10,8 @@
 <link rel="stylesheet" type="text/css" href="/giftcon/css/common.css">
 <link rel="stylesheet" type="text/css" href="/giftcon/css/main.css">
 <script type="text/javascript" src="/giftcon/css/common.js"></script>
+<script src="/giftcon/css/jquery/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.0/jquery.js"></script>
 </head>
 <body>
 <div id="container">
@@ -49,24 +51,26 @@
 			</ul>
 		</div>
 		<div class="searchCate">
+		<form action="" method="get" id="categoryform">
 			<p class="tit">브랜드</p>
 			<ul class="brandCheck">
-				<li><input type="checkbox" name="brandCheckAll" id="brandCheckAll"> 전체</li>
+				<li><input type="checkbox" id="brandCheckAll"> 전체</li>
 			<c:forEach items="${smallcategoryList}" var="list">
-				<li><input type="checkbox" class="check" name="searchBrandNoList" value="${list.CATEGORY_NUM}">${list.SMALL_CATEGORY}</li>
+				<li><input type="checkbox" class="check" name="category" value="${list.CATEGORY_NUM}">${list.SMALL_CATEGORY}</li>
 			</c:forEach>
 			</ul>
-		</div>
-		<div class="btn">
+			<div class="btn">
 			<a href="/giftcon/goods/list.conn" class="btnBigLineBlue2 w163 mr10">초기화</a>
-			<a href="javascript:goSearch();" class="btnBigBgBlue2 w163">상품검색</a>
+			<a href="#" class="btnBigBgBlue2 w163" onclick="formSubmit(); return false;">상품검색</a>
+			</div>
+		</form>
 		</div>
 	</div>
 
 	<div class="subTit1">
 		<span class="resultTxt">All<em>(${goodsCount}건)</em></span>
 		<ul class="txtTab">
-			<li><a href="javascript:goOrder('OD001');" class="on">인기순</a></li>
+			<li><a href="javascript:goOrder('OD001');">인기순</a></li>
 			<li><a href="javascript:goOrder('OD002');">최신등록순</a></li>
 			<li><a href="javascript:goOrder('OD003');">낮은가격순</a></li>
 			<li class="last"><a href="javascript:goOrder('OD004');" class="lineNone">높은가격순 </a></li>
@@ -111,42 +115,16 @@
 </div>
 </div>
 <script>
-$(document).ready(function() {
-	$("#priceSearchSlide").slider({
-		range:true,
-		min:0,
-		max:805.0,
-		values: [0.0, 805.0],
-		slide: function(event, ui) {
-			$("#priceSearchStart").val(ui.values[0]*100 );
-			$("#priceSearchEnd").val(ui.values[1]*100 );
-		}
-	});
-	
-	$("#priceSearchStart").change(function () {
-		$("#priceSearchSlide").slider("values", 0, parseInt($(this).val()/100));
-	});
-	$("#priceSearchEnd").change(function () {
-		$("#priceSearchSlide").slider("values", 1, parseInt($(this).val()/100));
-	});
-	
-	$("#brandCheckAll").click(function () {
-		$(".check").prop('checked', $(this).prop('checked'));
-	});
-	
-	$(".check").click(function() {
-		if ($(".check").length == $(".check:checked").length) {
-			$("#brandCheckAll").prop('checked', true);
-		} else {
-			$("#brandCheckAll").prop('checked', false);
-		}
-	});
-	
-	
-	$("#brandCheckAll").prop('checked', true);
-	$(".check").prop('checked', true);
-	
-});
+$(document).ready(function(){
+	//전체를 체크하면 나머지도 전부 체크
+    $("#brandCheckAll").click(function(){
+        if($("#brandCheckAll").prop("checked")){
+            $("input[name=category]").prop("checked",true);
+        }else{
+            $("input[name=category]").prop("checked",false);
+        }
+    })
+})
 
 function setCategory(categoryNo) {
 	if( categoryNo == 0 ) {
@@ -163,23 +141,10 @@ function setCategory(categoryNo) {
 		form.action = "/giftcon/goods/list.conn";
 		form.submit();
 	}
-	
 }
-
-function goSearch() {
-	var form = document.goodsForm;
-	form.action = "/giftcon/goods/list.conn";
-	
-	var max = parseInt($("#priceSearchSlide").slider( "option", "max" ) * 100);
-	var priceSearchEnd = parseInt(form.priceSearchEnd.value);
-	
-	if (max == priceSearchEnd) {
-		// 가격바 조정이 없으면 가격바 초기화
-		form.pageNo.value = 1;
-		form.priceSearchStart.value = 0;
-		form.priceSearchEnd.value = 0;
-	}
-	form.submit();
+function formSubmit()
+{
+document.getElementById("categoryform").submit();
 }
 </script>
 </body>

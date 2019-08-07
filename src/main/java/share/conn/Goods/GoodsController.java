@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import share.conn.Paging.GoodsPaging;
@@ -45,15 +46,24 @@ public class GoodsController {
 	}
 	
 	@RequestMapping("/goods/list.conn")
-	public ModelAndView goodscategoryList(CommandMap Map)throws Exception{
+	public ModelAndView goodscategoryList(CommandMap map, HttpServletResponse response, HttpServletRequest request 
+			)throws Exception{
 		ModelAndView mv = new ModelAndView();
-		
 		int goodsCount = goodsService.goodsCount();
-		List<Map<String, Object>> goodsList = goodsService.goodsList();
+		List<Map<String, Object>> goodsList;
+		String[] category = request.getParameterValues("category");
+		
+		if (category != null) {
+			goodsList = goodsService.smallCategorygoodsList(category);
+		} else {
+			goodsList = goodsService.goodsList();
+		}
+		
 		List<Map<String, Object>> smallcategoryList = goodsService.smallCategoryList();
 		
 		mv.addObject("goodsCount", goodsCount);
 		mv.addObject("smallcategoryList", smallcategoryList);
+		mv.addObject("category", category);
 		mv.addObject("goodsList", goodsList);
 		mv.setViewName("goods/list");
 		return mv;
