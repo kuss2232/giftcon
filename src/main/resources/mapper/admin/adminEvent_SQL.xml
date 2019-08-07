@@ -22,7 +22,7 @@
 <select id="adEndEventList" parameterType="hashmap" resultType="hashmap">
 	<![CDATA[
 		SELECT 
-			EVENT_TITLE,
+			EVENT_TITLE
 			EVENT_NUM,
 			EVENT_REGDATE,
 			EVENT_IMG1,

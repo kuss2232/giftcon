@@ -9,7 +9,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-@Service("CartService")
+@Service("cartService")
 public class CartServiceImpl implements CartService{
 
 	@Resource(name="cartDAO")
