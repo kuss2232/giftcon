@@ -21,13 +21,17 @@ public class AdminCategoryController {
 	public ModelAndView adminCategoryList(CommandMap commandMap,HttpServletRequest request) throws Exception{
 		ModelAndView mv = new ModelAndView("/admin/Category/adminCategory");
 		List<Map<String, Object>> list;
+		Map<String, Object> count;
 		if(commandMap.get("BIG_CATEGORY") == null || commandMap.get("BIG_CATEGORY").equals("전체")) {
 			list = adminCategoryService.categoryList(commandMap.getMap());
+			count = adminCategoryService.categoryCount(commandMap.getMap());
 		}else {
 			list = adminCategoryService.bigCategoryList(commandMap.getMap());
+			count = adminCategoryService.categoryCount(commandMap.getMap());
 		}
 	    
 	    mv.addObject("list", list);
+	    mv.addObject("count", count);
 	    return mv;
 	
 	}
@@ -55,12 +59,12 @@ public class AdminCategoryController {
 	//카테고리 삭제
 	@RequestMapping(value = "/adminCategoryDelete.conn")
 	public ModelAndView adminCategoryDelete(CommandMap commandMap) throws Exception{
-		ModelAndView mv = new ModelAndView("/admin/adminCategory.conn");
+		ModelAndView mv = new ModelAndView("/admin/Category/adminCategory.conn");
 		adminCategoryService.deleteCategory(commandMap.getMap());
 		return mv;
 	}
 	
-
+	//카테고리별 수량
 	
 
 }

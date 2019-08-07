@@ -1,7 +1,6 @@
 package share.conn.adminCategory;
 import java.util.List;
 import java.util.Map;
-import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Repository;
 import share.conn.giftcon.AbstractDAO;
 
@@ -29,8 +28,11 @@ public class AdminCategoryDAO extends AbstractDAO {
 		// TODO Auto-generated method stub
 		return (List<Map<String, Object>>)selectList("adminCategory.bigCategoryList", map);
 	}
-	
-	
+
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> categoryCount(Map<String, Object> map){
+		return (Map<String, Object>)selectOne("adminCategory.categoryCount", map);
+	}
 	
 
 }

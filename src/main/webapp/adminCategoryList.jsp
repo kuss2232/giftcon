@@ -11,12 +11,12 @@
 <h3>카테고리 </h3>
 <tr><h1>카테고리를 관리합니다.</h1></tr>
 <br/>
-<div class="box box-primary">
+<!-- <div class="box box-primary">
     <div class="box-header with-border">
         <h3 class="box-title">브랜드 등록</h3>
     </div>
-    <!-- /.box-header -->
-    <!-- form start -->
+    /.box-header
+    form start
     <form role="form" th:action="@{/category}" method="post">
         <div class="box-body">
             <div class="form-group">
@@ -36,13 +36,13 @@
 										<option value="상품권">상품권</option>
 										<option value="베이커리/도넛">베이커리/도넛</option>
 									</select>    
-					<!-- 빅카테고리 저장해서 넘기는 부분이 없음 팀장님께 부탁하는 걸로  -->        
+					빅카테고리 저장해서 넘기는 부분이 없음 팀장님께 부탁하는 걸로         
             </div>
             <input type="submit" class="btn btn-primary" value="저장"/>
         </div>
-        <!-- /.box-body -->
+        /.box-body
     </form>
-</div>
+</div> -->
  
  
  <br>
