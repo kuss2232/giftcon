@@ -125,7 +125,7 @@ $(document).ready(function(){
 						</div>
 					</div>
 
-					<div class="paging" align="center">${pagingHtml}</div>
+					<div class="paging">${pagingHtml}</div>
 
 					<div class="row">
 						<div style="text-align: center;">

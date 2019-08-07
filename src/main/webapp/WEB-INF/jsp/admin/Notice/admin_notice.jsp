@@ -12,7 +12,6 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <head>
-<script src="/giftcon/css/jquery/bootstrapadmin.min.css"></script>
 <script src="/giftcon/js/common.js" charset="utf-8"></script>
 <script src="/giftcon/css/jquery/jquery-1.12.4.min.js"></script>
 <link rel="stylesheet" type="text/css"  />
@@ -74,9 +73,7 @@
 				<div id="dataTables-example_wrapper"
 					class="dataTables_wrapper form-inline dt-bootstrap no-footer">
 					<div class="row" style="margin-bottom: 5px;">
-						<div class="col-sm-6">
-													</div>
-													</br></br>
+									</br></br>
 						<div class="col-sm-6" style="text-align: right;">
 							<div class="dataTables_info" id="dataTables-example_info"
 								role="status" aria-live="polite">총 게시글 수 : ${totalCount}</div>
@@ -102,10 +99,10 @@
 								<tbody>
 									<c:forEach var="noticeList" items="${noticeList}"
 										varStatus="stat">
-										<c:url var="viewURL" value="/notify/adminNotifyList.conn">
+										<%-- <c:url var="viewURL" value="/notify/adminNotifyList.conn">
 											<c:param name="NOTICE_NUM"
 												value="${noticeList.NOTICE_NUM}" />
-										</c:url>
+										</c:url> --%>
 										<tr class="gradeA even" role="row">
 											<td style="text-align: center; vertical-align: middle;">${noticeList.NOTICE_NUM}</td>
 										<td style="text-align: center; vertical-align: middle;" >
@@ -115,7 +112,7 @@
 											<td style="text-align: center; vertical-align: middle;">관리자</td>
 											<td style="text-align: center; vertical-align: middle;">
 												<fmt:formatDate value="${noticeList.NOTICE_REGDATE}"
-													pattern="YY.MM.dd" />
+													pattern="YYYY.MM.dd" />
 											</td>
 											<td style="text-align: center; vertical-align: middle;">${noticeList.NOTICE_HITCOUNT}</td>
 											<td style="text-align: center; vertical-align: middle;">
@@ -129,7 +126,8 @@
 													>
 											</a>&nbsp;&nbsp; 
 												
-											<a onclick="fn_notifyDelete(${noticeList.NOTICE_NUM})"> <input type="image"
+			<a onclick="fn_notifyDelete(${noticeList.NOTICE_NUM})">  
+			<input type="image"
 													src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Trash_font_awesome.svg/32px-Trash_font_awesome.svg.png" >
 											</a>
 											</td>
