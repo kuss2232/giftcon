@@ -7,6 +7,8 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import share.conn.giftcon.CommandMap;
 import share.conn.Paging.Paging;
 
+@Controller
 public class CartController {
 	
 	//페이징
@@ -47,12 +50,18 @@ public class CartController {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
 		
-		ModelAndView mv = new ModelAndView();
-		
+		HttpSession session = request.getSession();
+		System.out.println(session.getAttribute("MEMBER_NUM"));
+		String str = session.getAttribute("MEMBER_NUM").toString();
+
+		commandMap.put("MEMBER_NUM", str);
+
 		List<Map<String, Object>> cartList = cartService.cartList(commandMap.getMap());
 		
+		ModelAndView mv = new ModelAndView();
+		
 		totalCount = cartList.size();
-
+		
 		page = new Paging(currentPage, totalCount, blockCount, blockPage, "cartList");
 		pagingHtml = page.getPagingHtml().toString();
 
@@ -68,14 +77,14 @@ public class CartController {
 		mv.addObject("currentPage", currentPage);
 
 		mv.addObject("cartList", cartList);
-		mv.setViewName("cartList");
+		mv.setViewName("mypage/cartList");
 
 		return mv;
 	}
 	
 	//장바구니 수량 수정
 	@RequestMapping(value = "/cart/cartAmountModify.conn")
-	public void cartAmountModify(CommandMap commandMap, HttpServletRequest request) throws Exception {
+	public void cartAmountModify(CommandMap commandMap, HttpServletRequest request,HttpServletResponse response) throws Exception {
 		cartService.cartAmountModify(commandMap.getMap());
 	}
 	
@@ -87,7 +96,7 @@ public class CartController {
 	
 	//장바구니 상품 선택 삭제
 	@RequestMapping(value = "/cart/cartDelete.conn")
-	public void cartDelete(CommandMap commandMap, HttpServletRequest request) throws Exception {
+	public void cartDelete(CommandMap commandMap, HttpServletRequest request,HttpServletResponse response) throws Exception {
 		cartService.cartDelete(commandMap.getMap());
 	}
 	
