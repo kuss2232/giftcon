@@ -69,7 +69,7 @@
 										<td style="text-align:center;vertical-align:middle;">${orderList.MEMBER_ID}</td>	<!-- 회원ID -->
 										<td style="text-align:center;vertical-align:middle;">${orderList.ORDER_AMOUNT_SUM}</td>	<!-- 수량 -->
 										<td style="text-align:center;vertical-align:middle;">${orderList.ORDER_PAY_SUM}</td>	<!-- 주문금액합계 -->
-										<td style="text-align:center;vertical-align:middle;">${orderList.ORDER_PAYMENT}
+										<td style="text-align:center;vertical-align:middle;"><c:if test="${orderList.ORDER_PAYMENT eq 'N'}">입금 대기</c:if><c:if test="${orderList.ORDER_PAYMENT eq 'Y'}">결제 완료</c:if>
 											<select class="form-control" id="select" onchange="fn_PAY_Modify(${orderList.ORDER_NUM})">
 												<option value ="">상태 변경</option>
 												<option value ="N">입금대기</option>
