@@ -14,7 +14,7 @@ import share.conn.giftcon.AbstractDAO;
 
 		//이벤트 리스트(진행중)
 		@SuppressWarnings("unchecked")
-		public List<Map<String, Object>> nowEventList(Map<String, Object> map) throws Exception {
+		public List<Map<String, Object>> eventList(Map<String, Object> map) throws Exception {
 			return (List<Map<String, Object>>) selectList("event.adEventList", map);
 		}
 
@@ -43,6 +43,21 @@ import share.conn.giftcon.AbstractDAO;
 		//EVENT 삭제
 		public void eventDelete(Map<String, Object> map) throws Exception {
 			delete("event.adEventdelete", map);
+		}
+		
+		// 이벤트 파일첨부
+		public void eventImage(Map<String, Object> map) throws Exception {
+			update("event.eventImage", map);
+		}
+		
+		//이벤트 이미지 등록
+		public void insertEventImage(Map<String, Object> map) throws Exception {
+		   update("event.insertEventImage", map);
+		}
+		
+		//파일리스트 삭제
+		public void deleteEventFile(Map<String, Object> map) throws Exception {
+			update("event.deleteEventFileList", map);
 		}
 		
 		}

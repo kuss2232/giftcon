@@ -52,10 +52,10 @@
 			#{EVENT_TITLE},		 
 			#{EVENT_START},
 			#{EVENT_END},
-			#{IMG1},
-			#{IMG2},
-			#{IMG3},
-			#{IMG4})
+			#{EVENT_IMG1},
+			#{EVENT_IMG2},
+			#{EVENT_IMG3},
+			#{EVENT_IMG4})
 	]]>
 </insert>
 
@@ -87,10 +87,10 @@
 			EVENT_TITLE = #{EVENT_TITLE},
 			EVENT_START = #{EVENT_START},
 			EVENT_END = #{EVENT_END},
-			EVENT_IMG1 = #{IMG1},
-			EVENT_IMG2 = #{IMG2},
-			EVENT_IMG3 = #{IMG3},
-			EVENT_IMG4 = #{IMG4}
+			EVENT_IMG1 = #{EVENT_IMG1},
+			EVENT_IMG2 = #{EVENT_IMG2},
+			EVENT_IMG3 = #{EVENT_IMG3},
+			EVENT_IMG4 = #{EVENT_IMG4}
 		WHERE
 			EVENT_NUM = #{EVENT_NUM}	
 	]]>
@@ -103,5 +103,42 @@
 			EVENT_NUM = #{EVENT_NUM}
 	]]>
 </delete>
+
+
+	<!-- 이벤트 파일첨부 -->
+	<update id="eventImage" parameterType="hashmap">
+		<![CDATA[
+			UPDATE EVENT 
+			SET 
+				EVENT_IMG1 = #{EVENT_IMG1}
+				EVENT_IMG2 = #{EVENT_IMG2}
+				EVENT_IMG3 = #{EVENT_IMG3}
+				EVENT_IMG4 = #{EVENT_IMG4}
+			WHERE 
+				EVENT_NUM = #{EVENT_NUM}
+		]]>
+	</update>
+	
+	<!-- 파일리스트 삭제 -->
+	<update id="deleteEventFileList" parameterType="hashmap">
+	<![CDATA[
+		UPDATE EVENT SET 
+			EVENT_IMG1 = #{EVENT_IMG1}
+			EVENT_IMG2 = #{EVENT_IMG2}
+			EVENT_IMG3 = #{EVENT_IMG3}
+			EVENT_IMG4 = #{EVENT_IMG4}
+		WHERE 
+			EVENT_NUM = #{EVENT_NUM}	
+		]]>
+</update>
+
+   <!-- 이벤트 이미지 등록 -->
+   <update id="insertEventImage" parameterType="hashmap">
+      <![CDATA[
+         UPDATE EVENT SET EVENT_IMG1= #{EVENT_IMG1, jdbcType=VARCHAR} WHERE EVENT_NUM=#{EVENT_NUM, jdbcType=INTEGER}
+      ]]>
+   </update>
+
+
 
 </mapper>
