@@ -105,7 +105,7 @@
 
 
 <!-- 주문 등록 후 장바구니 삭제 -->
-<insert id="addOrderToCart" resultType="hashmap">
+<insert id="addOrderToCart" parameterType="hashmap">
 <![CDATA[
 	INSERT INTO ORDERS(
 		ORDER_NUM_SEQ.NEXTVAL, 
