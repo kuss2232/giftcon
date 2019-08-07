@@ -12,6 +12,9 @@ public interface AdminOrderService {
 	//전체 주문 수 보기
 	public int allOrderNumList() throws Exception;
 	
+	//주문 해당번호 전체삭제
+	public void orderNumDelete(Map<String,Object> map) throws Exception;
+	
 	//주문 삭제
 	public void orderDelete(Map<String,Object> map) throws Exception;
 	

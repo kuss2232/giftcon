@@ -23,6 +23,11 @@ public class AdminOrderServiceImpl implements AdminOrderService{
 	public int allOrderNumList() throws Exception {
 		return adminOrderDAO.allOrderNumList();
 	}
+	
+	@Override
+	public void orderNumDelete(Map<String,Object> map) throws Exception{
+		adminOrderDAO.orderNumDelete(map);
+	}
 
 	@Override
 	public void orderDelete(Map<String,Object> map) throws Exception {

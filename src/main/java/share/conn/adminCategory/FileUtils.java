@@ -13,7 +13,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 @Component("fileUtils")
 public class FileUtils {
-	private static final String filePath = "D:\\sharecon\\giftcon\\src\\main\\webapp\\images\\category\\";
+	private static final String filePath = "D:\\giftcon\\giftcon\\src\\main\\webapp\\images\\category\\";
 
 	public Map<String, Object> parseInsertFileInfo(Map<String, Object> map, HttpServletRequest request)
 			throws Exception {

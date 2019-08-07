@@ -236,7 +236,6 @@ UPDATE GOODS SET GOODS_HITCOUNT = NVL(GOODS_HITCOUNT, 0) +1 WHERE GOODS_NUM = #{
 </select>
 <!-- 카테고리2 상품리스트 -->
 <select id="goodsSmallCategoryList" parameterType="hashmap" resultType="hashmap">
-<![CDATA[
 	SELECT 
 		A.GOODS_NUM, 
 		A.GOODS_NAME, 
@@ -255,19 +254,21 @@ UPDATE GOODS SET GOODS_HITCOUNT = NVL(GOODS_HITCOUNT, 0) +1 WHERE GOODS_NUM = #{
 		CATEGORY C
 	WHERE
 		A.GOODS_NUM = B.GOODS_NUM
-		AND C.CATEGORY_NUM = #{CATEGORY_NUM}
-		AND A.CATEGORY_NUM = C.CATEGORY_NUM 
-]]>
+		AND A.CATEGORY_NUM = C.CATEGORY_NUM
+		AND A.CATEGORY_NUM IN 
+	<foreach collection="category" item="Num" separator="," open="(" close=")">
+		#{Num}
+	</foreach>
+		
+		
 </select>
 
 <!--전체 상품 수 -->
 <select id="goodsCount" parameterType="String" resultType="int">
-<![CDATA[
 	SELECT 
 		COUNT(GOODS_NUM) 
 	FROM 
 		GOODS
-]]>
 </select>
 
 <!--인기 상품 리스트 -->

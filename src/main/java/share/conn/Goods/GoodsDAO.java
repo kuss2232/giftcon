@@ -1,5 +1,7 @@
 package share.conn.Goods;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -41,8 +43,10 @@ public class GoodsDAO extends AbstractDAO{
 		
 	//작은 카테고리 별 상품 리스트
 	@SuppressWarnings("unchecked")
-	public List<Map<String, Object>> smallCategorygoodsList() throws Exception{
-		return selectList("memberGoods.goodsSmallCategoryList");
+	public List<Map<String, Object>> smallCategorygoodsList(String[] category) throws Exception{
+		HashMap<String, Object> map = new HashMap<String, Object>();
+        map.put("category",category);
+		return selectList("memberGoods.goodsSmallCategoryList", map);
 	}
 	
 	//카테고리별 많이 본 순

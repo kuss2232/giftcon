@@ -28,7 +28,7 @@
 	FROM 
 		CATEGORY
 	WHERE 
-		CATEGORY_NUM=#{CATEGORY_NUM} 
+		SMALL_CATEGORY = #{SMALL_CATEGORY} 
 ]]>
 </delete>
 
@@ -48,11 +48,35 @@
 <![CDATA[
 	SELECT
 		SMALL_CATEGORY,
-		CATEGORY_IMG
+		CATEGORY_IMG,
+		CATEGORY_NUM,
+		BIG_CATEGORY
+		
 	FROM
 		CATEGORY
 	WHERE
 		BIG_CATEGORY = #{BIG_CATEGORY}
 ]]>
+</select>
+
+<!-- 전체 수량 -->
+<select id="categoryCount" parameterType="hashmap" resultType="hashmap">
+	<choose>
+   <when test="BIG_CATEGORY != null">
+   SELECT
+			COUNT(*)
+		FROM
+			CATEGORY
+      WHERE
+         BIG_CATEGORY = #{BIG_CATEGORY}
+   </when>
+     <when test="BIG_CATEGORY == null">
+     SELECT
+			COUNT(*)
+		FROM
+			CATEGORY
+   </when>      
+</choose>
+		
 </select>
 </mapper>

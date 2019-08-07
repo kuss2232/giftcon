@@ -32,9 +32,9 @@ public class AdminCategoryServiceImpl implements AdminCategoryService{
 	public void insertCategory(Map<String, Object> map, HttpServletRequest request) throws Exception{
 //		adminCategoryDAO.insertCategory(map);
 		Map<String,Object> listmap = fileUtils.parseInsertFileInfo(map, request);
-		System.out.println("big_category : " +listmap.get("BIG_CATEGORY"));
-		System.out.println("small_category : "+ listmap.get("SMALL_CATEGORY"));
-		System.out.println("img1 :" + listmap.get("CATEGORY_IMG"));
+//		System.out.println("big_category : " +listmap.get("BIG_CATEGORY"));
+//		System.out.println("small_category : "+ listmap.get("SMALL_CATEGORY"));
+//		System.out.println("img1 :" + listmap.get("CATEGORY_IMG"));
 		adminCategoryDAO.insertCategory(listmap);
 	}
 	
@@ -49,6 +49,12 @@ public class AdminCategoryServiceImpl implements AdminCategoryService{
 	@Override
 	public List<Map<String, Object>> bigCategoryList(Map<String, Object> map) throws Exception{
 		return adminCategoryDAO.bigCategoryList(map);
+	}
+	
+	//카테고리별 수량
+	@Override
+	public Map<String, Object> categoryCount(Map<String, Object> map) throws Exception{
+		return adminCategoryDAO.categoryCount(map);
 	}
 	
 
