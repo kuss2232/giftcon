@@ -57,6 +57,8 @@ public class AdminGoodsController {
 				adGoodsList = adminGoodsService.adGoodsNameSearch(isSearch);
 			else if(searchNum == 2) // 브랜드명
 				adGoodsList = adminGoodsService.adGoodsCategory2Search(isSearch);
+			else if(searchNum == 3) // 빅카테고리 리스트
+				adGoodsList = adminGoodsService.adCategory1GoodsList(isSearch);
 			
 			totalCount = adGoodsList.size();
 			page = new Paging(currentPage, totalCount, blockCount, blockPage, "adGoodsList", searchNum, isSearch);

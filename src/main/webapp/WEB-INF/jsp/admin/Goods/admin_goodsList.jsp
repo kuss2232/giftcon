@@ -109,11 +109,11 @@ function fn_goodsModify(goods_num){
 							<a href="/giftcon/goods/adminGoodsList.conn"><button type="button" >전체</button></a>
 							<select  name="select" onchange="window.open(value,'_self');">
 								<option value ="">--카테고리--</option>
-								<option value ="/giftcon/goods/adminGoodsList.conn?searchNum=3&isSearch=">치킨/피자/버거</option>
-								<option value ="/giftcon/goods/adminGoodsList.conn?searchNum=3&isSearch=1">커피/음료</option>
-								<option value ="/giftcon/goods/adminGoodsList.conn?searchNum=3&isSearch=2">아이스크림/빙수</option>
-								<option value ="/giftcon/goods/adminGoodsList.conn?searchNum=3&isSearch=3">떡/베이커리</option>
-								<option value ="/giftcon/goods/adminGoodsList.conn?searchNum=3&isSearch=4">편의점/마트</option>
+								<option value ="/giftcon/goods/adminGoodsList.conn?searchNum=3&isSearch=치킨/피자/버거">치킨/피자/버거</option>
+								<option value ="/giftcon/goods/adminGoodsList.conn?searchNum=3&isSearch=커피/음료">커피/음료</option>
+								<option value ="/giftcon/goods/adminGoodsList.conn?searchNum=3&isSearch=아이스크림/빙수">아이스크림/빙수</option>
+								<option value ="/giftcon/goods/adminGoodsList.conn?searchNum=3&isSearch=떡/베이커리">떡/베이커리</option>
+								<option value ="/giftcon/goods/adminGoodsList.conn?searchNum=3&isSearch=편의점/마트">편의점/마트</option>
 							</select>										
 						</div>
 						<div class="col-sm-6" style="text-align:right;">
