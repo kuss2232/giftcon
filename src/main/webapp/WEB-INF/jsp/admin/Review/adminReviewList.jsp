@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link href="/giftcon/css/jquery/bootstrapadmin.min.css" rel="stylesheet" type="text/css">
 <script src="/giftcon/css/jquery/jquery-1.12.4.min.js"></script>
 <script src="/giftcon/js/common.js"></script>
 <meta charset="UTF-8">
@@ -27,8 +28,8 @@
 					class="dataTables_wrapper form-inline dt-bootstrap no-footer">
 					<div class="row" style="margin-bottom:5px;">
 						<div class="col-sm-6">
-							<a href="/MODA/goods/goodsList"><button type="button" class="btn btn-outline btn-default">전체</button></a>
-							<select class="form-control" name="select" onchange="window.open(value,'_self');">
+							<a href="/giftcon/adminReviewList.conn"><button type="button" class="btn btn-outline btn-default">전체</button></a>
+<!-- 							<select class="form-control" name="select" onchange="window.open(value,'_self');">
 								<option value ="">--카테고리--</option>
 								<option value ="/MODA/goods/goodsList?searchNum=2&isSearch=OUTER">OUTER</option>
 								<option value ="/MODA/goods/goodsList?searchNum=2&isSearch=TOP">TOP</option>
@@ -46,7 +47,7 @@
 								<option value ="">--상품정렬--</option>
 								<option value ="/MODA/goods/goodsList?searchNum=5&isSearch=GOODS_AMOUNT">판매수량순</option>
 								<option value ="/MODA/goods/goodsList?searchNum=6&isSearch=GOODS_COUNT">조회순</option>
-							</select>											
+							</select> -->											
 						</div>
 						<div class="col-sm-6" style="text-align:right;">
 							<div class="dataTables_info" id="dataTables-example_info" role="status" aria-live="polite">총 상품수 : ${count}</div>
@@ -78,7 +79,7 @@
 								<c:forEach var="reviewList"  items="${reviewList}" varStatus="stat">								
 									<tr class="gradeA even" role="row">
 										<td style="text-align:center;vertical-align:middle;">${reviewList.GOODS_NUM}</td>										
-										<td style="text-align:center;vertical-align:middle;"><img src="/MODA/file/goodsFile/${reviewList.GOODS_THUMBNAIL}" width="60" height="60" alt=""  onerror="this.src='/giftcon/images/XBox.png'" /></td>
+										<td style="text-align:center;vertical-align:middle;"><img src="${reviewList.GOODS_IMG1}" width="60" height="60" alt=""  onerror="this.src='/giftcon/images/XBox.png'" /></td>
 										<td style="text-align:center;vertical-align:middle;">${reviewList.GOODS_NAME}</td>
 										
 										<c:if test="${reviewList.GOODS_DCPRICE != null}">
@@ -96,7 +97,7 @@
 										<td style="text-align:center;vertical-align:middle;">${reviewList.MEMBER_ID}</td>		
 										<td style="text-align:center;vertical-align:middle;"><fmt:formatDate value="${reviewList.REVIEW_REGDATE}" pattern="YY.MM.dd" /></td>										
 										<td style="text-align:center;vertical-align:middle;">
-										<a href="#" ><input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Cog_font_awesome.svg/32px-Cog_font_awesome.svg.png"></a>&nbsp;&nbsp;	
+										<!-- <a href="#" ><input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Cog_font_awesome.svg/32px-Cog_font_awesome.svg.png"></a>&nbsp;&nbsp; -->	
 										 <a href="#" onclick="reDelete('${reviewList.REVIEW_NUM}')"><input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Trash_font_awesome.svg/32px-Trash_font_awesome.svg.png" onclick="return delchk()"></a></td>									
 									</tr>
 								</c:forEach>
@@ -111,7 +112,7 @@
 					</div>
 					</form>
 					<div class="paging" align="center">
-						pagingHtml 보내기
+						${pagingHtml}
 					</div>
 					<div class="row">
 							<div style="text-align:center;">

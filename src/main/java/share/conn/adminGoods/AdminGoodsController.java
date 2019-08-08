@@ -1,8 +1,5 @@
 package share.conn.adminGoods;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -14,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import share.conn.giftcon.CommandMap;
+import share.conn.Paging.AdminQNAPaging;
 import share.conn.Paging.Paging;
 
 @Controller
@@ -31,7 +29,7 @@ public class AdminGoodsController {
 	private int blockCount = 20;
 	private int blockPage = 10;
 	private String pagingHtml;
-	private Paging page;
+	private AdminQNAPaging page;
 
 	// 상품 목록 불러오기
 	@RequestMapping(value = "/goods/adminGoodsList.conn")
@@ -59,7 +57,7 @@ public class AdminGoodsController {
 				adGoodsList = adminGoodsService.adGoodsCategory2Search(isSearch);
 			
 			totalCount = adGoodsList.size();
-			page = new Paging(currentPage, totalCount, blockCount, blockPage, "adGoodsList", searchNum, isSearch);
+			page = new AdminQNAPaging(currentPage, totalCount, blockCount, blockPage, "adGoodsList", searchNum, isSearch);
 			pagingHtml = page.getPagingHtml().toString();
 			
 			int lastCount = totalCount;
@@ -81,7 +79,7 @@ public class AdminGoodsController {
 		
 		totalCount = adGoodsList.size();
 		
-		page = new Paging(currentPage, totalCount, blockCount, blockPage, "adGoodsList");
+		page = new AdminQNAPaging(currentPage, totalCount, blockCount, blockPage, "adGoodsList");
 		pagingHtml = page.getPagingHtml().toString();
 		
 		int lastCount = totalCount;

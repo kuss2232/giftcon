@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@include file="../module/header.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
@@ -23,7 +24,17 @@
 						<ul class="eventList">
 							<c:forEach var="eventList" items="${eventList}" varStatus="stat">						
 							<li class="mbNone" style="margin-right: 5px;">
-								<a href="/giftcon/eventDetail.conn?EVENT_NUM=${eventList.EVENT_NUM}"><img src="/3N1DATA01/donutbook/contents/event/7fw41n4tcwsb867v2hf7.png" alt=""></a>
+								<c:if test="${not empty eventList.EVENT_IMG}">
+								<c:set var="i" value="0"/>
+								<c:set var="logo" value="${fn:split(eventList.EVENT_IMG,',')}"/>
+								<c:forEach var="logo" items="${logo}">
+								<c:if test="${i eq 0}">
+								<a href="/giftcon/eventDetail.conn?EVENT_NUM=${eventList.EVENT_NUM}"><img src="/giftcon/resources/file/Eventfile/${logo}" alt=""></a>
+								<c:set var="i" value="1"/>
+								</c:if>
+								</c:forEach>
+								</c:if>
+								
 								<span class="eventTit">${eventList.EVENT_TITLE} </span>
 								<span class="eventTxt">이벤트 기간 : <fmt:formatDate value="${eventList.EVENT_START}" pattern="yyyy.MM.dd"/>~
 										<fmt:formatDate value="${eventList.EVENT_END}" pattern ="yyyy.MM.dd"/></span>
@@ -34,8 +45,19 @@
 					<div id="divEndEventList" style="display:none;">
 						<ul class="eventList">
 							<c:forEach var="endEventList" items="${endEventList}" >
-							<li class=" ">
-								<span class="finishStamp"></span><img src="/3N1DATA01/donutbook/contents/event/hj2ftt90p8ae7ebgdkkf.jpg" alt="">
+							<li class="mbNone" style="margin-right: 5px;" >
+								<c:set var="i" value="0"/>
+								<c:if test="${not empty endEventList.EVENT_IMG}">
+								<c:set var="logo" value="${fn:split(endEventList.EVENT_IMG,',')}"/>
+								<c:forEach var="logo" items="${logo}">
+								<c:if test="${i eq 0}">
+								<span class="finishStamp"></span>
+								<a href="/giftcon/eventDetail.conn?EVENT_NUM=${endEventList.EVENT_NUM}"></a>
+								<img src="/giftcon/resources/file/Eventfile/${logo}" alt="">
+								<c:set var="i" value="1"/>
+								</c:if>
+								</c:forEach>
+								</c:if>
 								<span class="eventTit">${endEventList.EVENT_TITLE}</span>
 								<span class="eventTxt">이벤트 기간 : <fmt:formatDate value="${endEventList.EVENT_START}" pattern="yyyy.MM.dd"/>~
 										<fmt:formatDate value="${endEventList.EVENT_END}" pattern="yyyy.MM.dd"/></span>

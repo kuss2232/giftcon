@@ -51,14 +51,18 @@ public class GoodsDAO extends AbstractDAO{
 	
 	//카테고리별 많이 본 순
 	@SuppressWarnings("unchecked")
-	public List<Map<String, Object>> categoryGoodsBest() throws Exception{
-		return selectList("memberGoods.categoryGoodsBest");
+	public List<Map<String, Object>> categoryGoodsBest(String[] category) throws Exception{
+		HashMap<String, Object> map = new HashMap<String, Object>();
+        map.put("category",category);
+		return selectList("memberGoods.categoryGoodsBest", map);
 	}
 	
 	//카테고리별 평점순
 	@SuppressWarnings("unchecked")
-	public List<Map<String, Object>> categoryGoodsGrade() throws Exception{
-		return selectList("memberGoods.categoryGoodsGrade");
+	public List<Map<String, Object>> categoryGoodsGrade(String[] category) throws Exception{
+		HashMap<String, Object> map = new HashMap<String, Object>();
+        map.put("category",category);
+		return selectList("memberGoods.categoryGoodsGrade", map);
 	}
 	
 	//인기 상품 리스트
@@ -73,10 +77,32 @@ public class GoodsDAO extends AbstractDAO{
 		return selectList("memberGoods.goodsSaleList1");
 	}
 	
-	//할인 상품 리스트(카테고리 정렬)
+	//할인 상품 리스트(낮은가격순)
 	@SuppressWarnings("unchecked")
 	public List<Map<String, Object>> goodsSaleList2() throws Exception{
 		return selectList("memberGoods.goodsSaleList2");
+	}
+	
+	//평점순 상품
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> goodsGrade() throws Exception{
+		return selectList("memberGoods.goodsGrade");
+	}
+	
+	//할인 상품 리스트 카테고리별(높은가격순)
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> goodsSaleCategoryList1(String[] category) throws Exception{
+		HashMap<String, Object> map = new HashMap<String, Object>();
+        map.put("category",category);
+		return selectList("memberGoods.goodsSaleCategoryList1", map);
+	}
+		
+	//할인 상품 리스트 카테고리별(낮은가격순)
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> goodsSaleCategoryList2(String[] category) throws Exception{
+		HashMap<String, Object> map = new HashMap<String, Object>();
+        map.put("category",category);
+		return selectList("memberGoods.goodsSaleCategoryList2", map);
 	}
 	
 		

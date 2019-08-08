@@ -1,6 +1,5 @@
 package share.conn.Goods;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -52,13 +51,13 @@ public class GoodsServiceImpl implements GoodsService{
 
 	//카테고리별 많이 본 순
 	@Override
-	public List<Map<String, Object>> categoryGoodsBest() throws Exception {
-		return goodsDAO.categoryGoodsBest();
+	public List<Map<String, Object>> categoryGoodsBest(String[] category) throws Exception {
+		return goodsDAO.categoryGoodsBest(category);
 	}
 	//카테고리별 평점순
 	@Override
-	public List<Map<String, Object>> categoryGoodsGrade() throws Exception {
-		return goodsDAO.categoryGoodsGrade();
+	public List<Map<String, Object>> categoryGoodsGrade(String[] category) throws Exception {
+		return goodsDAO.categoryGoodsGrade(category);
 	}
 	//인기 상품 리스트
 	@Override
@@ -71,10 +70,28 @@ public class GoodsServiceImpl implements GoodsService{
 		return goodsDAO.goodsSaleList1();
 	}
 
-	//할인 상품 리스트(카테고리 정렬)
+	//할인 상품 리스트(낮은가격순)
 	@Override
 	public List<Map<String, Object>> goodsSaleList2() throws Exception {
 		return goodsDAO.goodsSaleList2();
+	}
+	
+	//할인 상품 리스트 카테고리별(높은가격순)
+	@Override
+	public List<Map<String, Object>> goodsSaleCategoryList1(String[] category) throws Exception {
+		return goodsDAO.goodsSaleCategoryList1(category);
+	}
+
+	//할인 상품 리스트 카테고리별(낮은가격순)
+	@Override
+	public List<Map<String, Object>> goodsSaleCategoryList2(String[] category) throws Exception {
+		return goodsDAO.goodsSaleCategoryList2(category);
+	}
+		
+	//평점 높은 순
+	@Override
+	public List<Map<String, Object>> goodsGrade() throws Exception{
+		return goodsDAO.goodsGrade();
 	}
 
 	// 상품 상세보기
