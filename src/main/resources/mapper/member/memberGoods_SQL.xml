@@ -455,4 +455,25 @@ ORDER BY
 		A.GOODS_DCPRICE ASC
 </select>
 
+<!-- 굿즈 정보 -->
+<select id="goodsInfo" parameterType="hashmap" resultType="hashmap">
+<![CDATA[
+	SELECT
+		A.GOODS_NUM, 
+		A.GOODS_NAME, 
+		A.GOODS_PRICE, 
+		A.GOODS_DCPRICE, 
+		A.GOODS_SIMPLE,
+		A.CATEGORY_NUM,
+		A.GOODS_SOLDOUT,
+		B.GOODS_IMG1,
+		C.SAMLL_CATEGORY
+	FROM
+		GOODS A, GOODS_IMG B, CATEGORY C
+	WHERE
+		A.GOODS_NUM=B.GOODS_NUM 
+		AND A.CATEGORY_NUM = C.CATEGORY_NUM
+]]>
+</select>
+
 </mapper>
