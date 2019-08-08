@@ -26,7 +26,7 @@
 				<div class="productImg">
 					<p class="icoFlag">
 					</p>
-					<img src="${goodsDetail.GOODS_IMG2}" alt="">
+					<img src="${goodsDetail.GOODS_IMG}" alt="">
 				</div>
 				<div class="infoBox">
 					<p class="prodName">[${goodsDetail.SMALL_CATEGORY}] ${goodsDetail.GOODS_NAME}</p>

@@ -25,18 +25,4 @@ public class MainServiceImpl implements MainService{
 		return mainDAO.GoodsSaleList1();
 	}//할인상품 (높은 가격순)
 	
-	@Override
-	public List<Map<String, Object>> eventList() throws Exception{
-		return mainDAO.eventList();
-	}
-	
-	@Override
-	public List<Map<String, Object>> endEventList() throws Exception{
-		return mainDAO.endEventList();
-	}
-	
-	@Override
-	public Map<String, Object> eventDetail(Map<String, Object> map) throws Exception{
-		return mainDAO.eventDetail(map);
-	}
 }

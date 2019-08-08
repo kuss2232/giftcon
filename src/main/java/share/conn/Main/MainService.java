@@ -8,10 +8,4 @@ public interface MainService {
 	public List<Map<String, Object>> GoodsBestList() throws Exception;
 	
 	public List<Map<String, Object>> GoodsSaleList1() throws Exception;
-
-	public List<Map<String, Object>> eventList() throws Exception;
-
-	public List<Map<String, Object>> endEventList() throws Exception;
-
-	public Map<String, Object> eventDetail(Map<String, Object> map) throws Exception;
 }

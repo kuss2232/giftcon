@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,60 +24,12 @@
 					<div class="brandBox">
 						<div class="frame" style= "height:200px;">
 							<ul class="brandList" style="margin-left: -163px;">
+							<c:forEach items="${smallcategoryList}" var="list">
 								<li>
-									<a href="/goods/mainShop.do?searchBrandNoList=34"><img src="/giftcon/images/banner-images/toreore.png" alt=""><span class="brandName">또래오래</span></a>
+									<a href="/giftcon/goods/list.conn?category=${list.CATEGORY_NUM}"><img src="${list.CATEGORY_IMG}" alt=""><span class="brandName">${list.SMALL_CATEGORY}</span></a>
 								</li>
-								<li>
-									<a href="/goods/mainShop.do?searchBrandNoList=15"><img src="/giftcon/images/banner-images/starbucks.png" alt=""><span class="brandName">스타벅스</span></a>
-								</li>
-								
-								<li>
-									<a href="/goods/mainShop.do?searchBrandNoList=4"><img src="/giftcon/images/banner-images/burgerking.png" alt=""><span class="brandName">버거킹</span></a>
-								</li>
-								<li>
-									<a href="/goods/mainShop.do?searchBrandNoList=27"><img src="/giftcon/images/banner-images/lotteria.png" alt=""><span class="brandName">롯데리아</span></a>
-								</li>
-								<li>
-									<a href="/goods/mainShop.do?searchBrandNoList=54"><img src="/giftcon/images/banner-images/vips.png" alt=""><span class="brandName">빕스</span></a>
-								</li>
-								<li>
-									<a href="/goods/mainShop.do?searchBrandNoList=14"><img src="/giftcon/images/banner-images/hollys.png" alt=""><span class="brandName">할리스커피</span></a>
-								</li>
-								<li>
-									<a href="/goods/mainShop.do?searchBrandNoList=113"><img src="/giftcon/images/banner-images/bbq.png" alt=""><span class="brandName">BBQ</span></a>
-								</li>
-								<li>
-									<a href="/goods/mainShop.do?searchBrandNoList=20"><img src="/giftcon/images/banner-images/kfc.png" alt=""><span class="brandName">KFC</span></a>
-								</li>
-								<li>
-									<a href="/goods/mainShop.do?searchBrandNoList=1"><img src="/giftcon/images/banner-images/br31.png" alt=""><span class="brandName">배스킨라빈스</span></a>
-								</li>
-								<li>
-									<a href="/goods/mainShop.do?searchBrandNoList=96"><img src="/giftcon/images/banner-images/kyochon.png" alt=""><span class="brandName">교촌치킨</span></a>
-								</li>
-								<li>
-									<a href="/goods/mainShop.do?searchBrandNoList=143"><img src="/giftcon/images/banner-images/dduck.png" alt=""><span class="brandName">떡보의하루</span></a>
-								</li>
-								<li>
-									<a href="/goods/mainShop.do?searchBrandNoList=85"><img src="/giftcon/images/banner-images/dduck2.png" alt=""><span class="brandName">빚은</span></a>
-								</li>
-								<li>
-									<a href="/goods/mainShop.do?searchBrandNoList=85"><img src="/giftcon/images/banner-images/dduck2.png" alt=""><span class="brandName">빚은</span></a>
-								</li>
-								<li>
-									<a href="/goods/mainShop.do?searchBrandNoList=85"><img src="/giftcon/images/banner-images/dduck2.png" alt=""><span class="brandName">빚은</span></a>
-								</li>
-								<li>
-									<a href="/goods/mainShop.do?searchBrandNoList=85"><img src="/giftcon/images/banner-images/dduck2.png" alt=""><span class="brandName">빚은</span></a>
-								</li>
-								<li>
-									<a href="/goods/mainShop.do?searchBrandNoList=85"><img src="/giftcon/images/banner-images/dduck2.png" alt=""><span class="brandName">빚은</span></a>
-								</li>
-								<li>
-									<a href="/goods/mainShop.do?searchBrandNoList=85"><img src="/giftcon/images/banner-images/dduck2.png" alt=""><span class="brandName">빚은</span></a>
-								</li>
-								
-								</ul>
+							</c:forEach>
+							</ul>
 						</div>
 					</div>
 				</div>
