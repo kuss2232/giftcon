@@ -17,7 +17,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 @Component("goodsImageUtils")
 public class GoodsImageUtils {
 	//filePath=굿즈 파일 경로
-   private static final String filePath = "C:\\java\\maven-app\\MODA\\src\\main\\webapp\\file\\goodsFile\\";
+   private static final String filePath = "C:\\프로젝트\\giftcon\\src\\main\\webapp\\resources\\file\\goodsFile\\";
    //filePath2= 공지사항 파일 경로
    private static final String filePath2 = "C:\\java\\maven-app\\MODA\\src\\main\\webapp\\file\\noticeFile\\";
    //filePath3= 이벤트 파일 경로
@@ -25,33 +25,57 @@ public class GoodsImageUtils {
    //filePath5= QNA 파일 경로
    private static final String filePath5 = "C:\\java\\maven-app\\MODA\\src\\main\\webapp\\file\\qnaFile\\";
    
-   // 상품 썸네일 이미지 등록
-   public Map<String, Object> goodsThumbnail(Map<String, Object> map, HttpServletRequest request) throws Exception {
+   public List<Map<String, Object>> goodsIMG(Map<String, Object> map, HttpServletRequest request) throws Exception {
+	      
+	   MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
+	   //받아온 이미지 파일 이름 iterator에 저장
+	   Iterator<String> iterator =  multipartHttpServletRequest.getFileNames();
 
-      MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
+	   MultipartFile multipartFile = null;
+	   String originalFileName = null;
+	   String originalFileExtension = null;
+	   String storedFileName = null;
 
-      if (multipartHttpServletRequest.getFile("GOODS_THUMBNAIL") != null) {
-         MultipartFile file = multipartHttpServletRequest.getFile("GOODS_THUMBNAIL");
-         String fileName = "Thumbnail_" + map.get("GOODS_NUMBER").toString();
+	   List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+	   Map<String, Object> listMap = null;
 
-         String IMAGEExtension = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
-         
-         File file2 = new File(filePath);
-         if (file2.exists() == false) {
-            file2.mkdirs(); // 폴더가 존재하지 않으면 폴더 생성
-         }
+	   /* String EVENT_NUM = map.get("EVENT_NUM").toString(); */
 
-         
-         File uploadFile = new File(filePath + fileName + IMAGEExtension);
+	   File goodsfile = new File(filePath);
+	   if (goodsfile.exists() == false) {
+		   goodsfile.mkdirs(); // 폴더가 존재하지 않으면 폴더 생성
+	   }         
+	   while(iterator.hasNext()){ 
+		   multipartFile = multipartHttpServletRequest.getFile(iterator.next());
+		   if(multipartFile.isEmpty() == false){ 
+			   //받아온 이미지 파일 이름을 originalFileName에 저장
+			   originalFileName = multipartFile.getOriginalFilename(); 
+			   originalFileExtension = originalFileName.substring(originalFileName.lastIndexOf(".")); 
+			   if(storedFileName == null)
+			   {
+				   storedFileName = CommonsUtils.getRandomString() + originalFileExtension; 
+				   goodsfile = new File(filePath + storedFileName); 
+			   }
+			   else
+			   {
+				   String str = CommonsUtils.getRandomString() + originalFileExtension; 
+				   storedFileName = storedFileName +","+ str;
+				   goodsfile = new File(filePath + str); 
+			   }
 
-         try {
-            file.transferTo(uploadFile);
-         } catch (Exception e) {
+			   multipartFile.transferTo(goodsfile); 
 
-         }
-         map.put("GOODS_THUMBNAIL", fileName + IMAGEExtension);
-      }
-      return map;
+		   } 
+	   } 
+	   listMap = new HashMap<String,Object>();
+	   /* listMap.put("EVENT_NUM", EVENT_NUM); */
+	   listMap.put("GOODS_IMG", storedFileName);
+	   listMap.put("GOODS_NAME",map.get("GOODS_NAME"));
+	   listMap.put("BIG_CATEGORY",map.get("BIG_CATEGORY"));
+	   listMap.put("SMALL_CATEGORY",map.get("SMALL_CATEGORY"));
+	   
+	   list.add(listMap);
+	   return list;
    }
 
    // 상품이미지 등록
@@ -97,36 +121,6 @@ public class GoodsImageUtils {
       } else {
          return list;
       }
-   }
-   
-   // 썸네일 이미지 수정
-   public Map<String, Object> parseUpdateThumbImage(Map<String, Object> map, HttpServletRequest request)
-         throws Exception {
-
-      MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
-      MultipartFile file = multipartHttpServletRequest.getFile("GOODS_THUMBNAIL");
-
-      String fileName = "Thumbnail_" + map.get("GOODS_NUMBER").toString();
-
-      String IMAGEExtension = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
-
-      File uploadFile = new File(filePath + fileName + IMAGEExtension);
-
-      if (map.get("ORIIGINAL_THUMBNAIL") != null) {
-         String orgFileName = (String) map.get("ORIGINAL_THUMBNAIL");
-         File removeFile = new File(filePath + orgFileName);
-         removeFile.delete();
-      }
-
-      try {
-         file.transferTo(uploadFile);
-      } catch (Exception e) {
-      }
-
-      map.put("GOODS_THUMBNAIL", fileName + IMAGEExtension);
-
-      System.out.println("썸네일이미지 수정완료");
-      return map;
    }
 
    // 이미지 수정
@@ -385,8 +379,4 @@ public class GoodsImageUtils {
       return map;
    }
 
-public void goodsIMG1(Map<String, Object> map, HttpServletRequest request) {
-	// TODO Auto-generated method stub
-	
-}
 } 

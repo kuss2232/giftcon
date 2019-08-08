@@ -9,13 +9,16 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>  
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  
 
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/ui.css'/>" />
 
 <!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="<c:url value='/js/common.js'/>" charset="utf-8"></script>
-
+<link href="/giftcon/css/jquery/bootstrapadmin.min.css" rel="stylesheet" type="text/css">
+<script src="/giftcon/js/common.js" charset="utf-8"></script>
+<script src="/giftcon/css/jquery/jquery-1.12.4.min.js"></script>
 <scRIPT language="Javascript">
 
 function BIG_CATEGORYChange() {
@@ -116,10 +119,6 @@ function BIG_CATEGORYChange() {
 					<th scope="row">상품명</th>
 					<td><input type="text" id="GOODS_NAME" name="GOODS_NAME" class="wdp_90" value="${goodsBasic.GOODS_NAME}"></input></td>
 				</tr>
-				<tr>
-					<th scope="row">가격</th>
-					<td ><input type="text" id="GOODS_PRICE" name="GOODS_PRICE" class="wdp_90" value="${goodsBasic.GOODS_PRICE}"></input></td>
-				</tr>
 				
 				<tr>
 					<th scope="row">카테고리</th>
@@ -180,6 +179,10 @@ function BIG_CATEGORYChange() {
 					</td>
 				</tr>
 				<tr>
+					<th scope="row">가격</th>
+					<td ><input type="text" id="GOODS_PRICE" name="GOODS_PRICE" class="wdp_90" value="${goodsBasic.GOODS_PRICE}"></input></td>
+				</tr>
+				<tr>
 					<th scope="row">할인 가격</th>
 					<td><input type="text" id="GOODS_DCPRICE" name="GOODS_DCPRICE" class="wdp_90" value="${goodsBasic.GOODS_DCPRICE}"></input></td>
 				</tr>
@@ -203,20 +206,21 @@ function BIG_CATEGORYChange() {
 				</tr>
 				<tr>
 				<td colspan="4">
-				<div id="fileDiv">
-					<c:forEach var="goodsImage"  items="${goodsImage}" varStatus="stat">
-						<input type="hidden" name="ORIGINAL_IMG1" value="${goodsImage.GOODS_IMG1}">
-						<input type="hidden" name="ORIGINAL_IMG2" value="${goodsImage.GOODS_IMG2}">
-						<p>
-						기존 이미지1 : <img src="/MODA/file/goodsFile/${goodsImage.GOODS_IMG1}" width="60" height="60" alt=""  onerror="this.src='/MODA/file/noimg_130.gif'" /> <br/>
-						<input type="file" id="file" name="MODIFY_IMG_${goodsImage.GOODS_IMG1}">
-						<input type="hidden" name="${goodsImage.GOODS_IMG1}" value="1">
-						기존 이미지2 : <img src="/MODA/file/goodsFile/${goodsImage.GOODS_IMG2}" width="60" height="60" alt=""  onerror="this.src='/MODA/file/noimg_130.gif'" /> <br/>
-						<input type="file" id="file" name="MODIFY_IMG_${goodsImage.GOODS_IMG2}">
-						<input type="hidden" name="${goodsImage.GOODS_IMG2}" value="2">
-						</p>
+				<c:forEach var="goodsImage"  items="${goodsImage}" varStatus="stat">
+					<input type="hidden" name="ORIGINAL_IMG" value="${goodsImage.GOODS_IMG}">
+					<p>
+					기존 이미지 : <c:set var="logo" value="${fn:split(goodsImage.GOODS_IMG,',')}"/>
+					<c:forEach var="logo" items="${logo}">
+					<c:if test="${i eq 0}">
+					<img src="/giftcon/resources/file/goodsFile/${logo}" width="60" height="60" alt="">
+					<c:set var="i" value="1"/>
+					</c:if>
 					</c:forEach>
-				</div>
+					<br/>
+					<input type="file" id="file" name="MODIFY_IMG_${goodsImage.GOODS_IMG}">
+					<input type="hidden" name="${goodsImage.GOODS_IMG}" value="1">
+					</p>
+				</c:forEach>
 				</td>
 				</tr>
 			</tbody>
@@ -255,10 +259,7 @@ function BIG_CATEGORYChange() {
 					 alert("상품 소분류를 선택해 주세요.");
 						return false;
 				 } else if($('#GOODS_IMG1').val()==""){
-					 alert("이미지1을 등록해 주세요.");
-						return false;
-				 } else if($('#GOODS_IMG2').val()==""){
-					 alert("이미지2를 등록해 주세요.");
+					 alert("이미지를 등록해 주세요.");
 						return false;
 				 } else if($('#GOODS_SIMPLE').val()==""){
 					 alert("상품 간략설명을 입력해 주세요.");
@@ -268,9 +269,6 @@ function BIG_CATEGORYChange() {
 						return false;
 				 } else if($('#GOODS_AMOUNT').val()==""){
 					 alert("상품 수량을 입력해 주세요.");
-						return false;
-				 } else if($('#GOODS_IMG3').val()==""){
-					 alert("이미지3을 등록해 주세요.");
 						return false;
 				 }
 				 else{

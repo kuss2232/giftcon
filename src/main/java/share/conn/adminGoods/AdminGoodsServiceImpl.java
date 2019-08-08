@@ -48,10 +48,17 @@ public class AdminGoodsServiceImpl implements AdminGoodsService {
 
       adminGoodsDAO.adGoodsinsert(map);
       
-      goodsImageUtils.goodsIMG1(map, request);
+      List<Map<String, Object>> list = goodsImageUtils.goodsIMG(map, request);
       int num = adminGoodsDAO.selectGoodsNum(map);
-      map.put("GOODS_NUM", num);
-      adminGoodsDAO.insertGoodsIMG1(map);
+      System.out.println("aaaaaa  "+num);
+      //map.put("GOODS_NUM", num);
+      
+      for(int i=0, size=list.size(); i<size; i++) {
+    	System.out.println(list.get(i));  
+    	Map<String, Object> mapp = (Map<String, Object>)list.get(i);
+    	mapp.put("GOODS_NUM", num);
+    	adminGoodsDAO.insertGoodsIMG1(mapp);
+      }
    }
    
    //카테고리 불러오기 (빅카테고리, 스몰카테고리로 카테고리넘 찾기)
@@ -80,44 +87,16 @@ public class AdminGoodsServiceImpl implements AdminGoodsService {
       // 상품 기본정보 수정
       adminGoodsDAO.adGoodsModify(map);
 
-      MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
+      List<Map<String, Object>> list = goodsImageUtils.goodsIMG(map, request);
+      int num = adminGoodsDAO.selectGoodsNum(map);
+      System.out.println("aaaaaa  "+num);
+      //map.put("GOODS_NUM", num);
       
-      //이미지 1 수정
-      if (multipartHttpServletRequest.getFile("GOODS_IMG1").getSize() > 0) {
-       //   map = goodsImageUtils.parseUpdateIMG(map, request);
-          adminGoodsDAO.insertGoodsIMG1(map);
-      }
-      
-      // 상품 이미지 수정, 삭제
-      System.out.println("이미지 : " + map.get("ORIGINAL_IMAGE"));
-
-      if (map.get("ORIGINAL_IMAGE") != null) {
-         List<Map<String, Object>> goodsImageList = goodsImageUtils.parseUpdateImages(map, request);
-
-         if (goodsImageList.size() > 0) {
-            for (int i = 0; i < goodsImageList.size(); i++) {
-               adminGoodsDAO.adGoodsImgModify(goodsImageList.get(i));
-            }
-         }
-
-      }
-
-      // 새로 입력된 이미지 등록
-      List<MultipartFile> IMAGES = multipartHttpServletRequest.getFiles("IMAGE");
-
-      System.out.println("MAP이미지1 : " + multipartHttpServletRequest.getFile("IMAGE"));
-      System.out.println("MAP이미지 : " + multipartHttpServletRequest.getFiles("IMAGE"));
-      System.out.println("SIZE : " + IMAGES.size());
-
-      if (IMAGES.size() > 0) {
-         List<Map<String, Object>> goodsImageList = goodsImageUtils.parseInsertFileInfo(map, request);
-
-         System.out.println("goodsImageList : " + goodsImageList);
-         System.out.println("mapImage : " + map.get("IMAGE"));
-
-         for (int i = 0; i < goodsImageList.size(); i++) {
-            adminGoodsDAO.adinsertGoodsImg(goodsImageList.get(i));
-         }
+      for(int i=0, size=list.size(); i<size; i++) {
+    	System.out.println(list.get(i));  
+    	Map<String, Object> mapp = (Map<String, Object>)list.get(i);
+    	mapp.put("GOODS_NUM", num);
+    	adminGoodsDAO.adGoodsImgModify(mapp);
       }
       
    }
@@ -149,29 +128,25 @@ public class AdminGoodsServiceImpl implements AdminGoodsService {
       return adGoodsList;
    }
    
-   public void adGoodsDc(Map<String, Object> map) throws Exception {
-	   adminGoodsDAO.adGoodsDc(map);
-   }
-   
-   public void adCategoryDc(Map<String, Object> map) throws Exception {
-	   adminGoodsDAO.adCategoryDc(map);
-   }
-   
-   public void adGoodsDcCancel(Map<String, Object> map) throws Exception {
-	   adminGoodsDAO.adGoodsDcCancel(map);
-   }
-   
-   public void adCategoryDcCancel(Map<String, Object> map) throws Exception {
-	   adminGoodsDAO.adCategoryDcCancel(map);
-   }
-   
-   public List<Map<String, Object>> adDcGoodsListPriceSort(Map<String, Object> map) throws Exception {
-	   List<Map<String, Object>> adGoodsList = adminGoodsDAO.adDcGoodsListPriceSort(map);
-	   return adGoodsList;
-   }
-   
-   public List<Map<String, Object>> adDcGoodsListAllCategory(Map<String, Object> map) throws Exception {
-	   List<Map<String, Object>> adGoodsList = adminGoodsDAO.adDcGoodsListAllCategory(map);
-	   return adGoodsList;
-   }
+	/*
+	 * public void adGoodsDc(Map<String, Object> map) throws Exception {
+	 * adminGoodsDAO.adGoodsDc(map); }
+	 * 
+	 * public void adCategoryDc(Map<String, Object> map) throws Exception {
+	 * adminGoodsDAO.adCategoryDc(map); }
+	 * 
+	 * public void adGoodsDcCancel(Map<String, Object> map) throws Exception {
+	 * adminGoodsDAO.adGoodsDcCancel(map); }
+	 * 
+	 * public void adCategoryDcCancel(Map<String, Object> map) throws Exception {
+	 * adminGoodsDAO.adCategoryDcCancel(map); }
+	 * 
+	 * public List<Map<String, Object>> adDcGoodsListPriceSort(Map<String, Object>
+	 * map) throws Exception { List<Map<String, Object>> adGoodsList =
+	 * adminGoodsDAO.adDcGoodsListPriceSort(map); return adGoodsList; }
+	 * 
+	 * public List<Map<String, Object>> adDcGoodsListAllCategory(Map<String, Object>
+	 * map) throws Exception { List<Map<String, Object>> adGoodsList =
+	 * adminGoodsDAO.adDcGoodsListAllCategory(map); return adGoodsList; }
+	 */
 }

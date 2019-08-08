@@ -103,35 +103,31 @@ public class AdminGoodsDAO extends AbstractDAO {
       return (List<Map<String, Object>>) selectList("adminGoods.adGoodsCategory2Search", isSearch);
    }
    
-   //상품 할인적용 (상품번호 1개만)
-   public void adGoodsDc(Map<String, Object> map) throws Exception {
-	   update("adminGoods.adGoodsDc", map);
-   }
-   
-   //상품 할인적용 (카테고리)
-   public void adCategoryDc(Map<String, Object> map) throws Exception {
-	   update("adminGoods.adCategoryDc", map);
-   }
-   
-   //상품 할인취소 (상품번호 1개만)
-   public void adGoodsDcCancel(Map<String, Object> map) throws Exception {
-	   update("adminGoods.adGoodsDcCalcel", map);
-   }
-   
-   //상품 할인취소 (카테고리)
-   public void adCategoryDcCancel(Map<String, Object> map) throws Exception {
-	   update("adminGoods.adCategoryDcCancel", map);
-   }
-   
-   //할인 중인 상품리스트 (가격순 정렬)
-   @SuppressWarnings("unchecked")
-   public List<Map<String, Object>> adDcGoodsListPriceSort(Map<String, Object> map) throws Exception {
-	   return (List<Map<String, Object>>) selectList("adminGoods.adDcGoodsListPriceSort", map);
-   }
-   
-   //할인 중인 상품리스트 (카테고리 정렬)
-   @SuppressWarnings("unchecked")
-   public List<Map<String, Object>> adDcGoodsListAllCategory(Map<String, Object> map) throws Exception {
-	   return (List<Map<String, Object>>) selectList("adminGoods.adDcGoodsListPriceSort", map);
-   }
+	/*
+	 * //상품 할인적용 (상품번호 1개만) public void adGoodsDc(Map<String, Object> map) throws
+	 * Exception { update("adminGoods.adGoodsDc", map); }
+	 * 
+	 * //상품 할인적용 (카테고리) public void adCategoryDc(Map<String, Object> map) throws
+	 * Exception { update("adminGoods.adCategoryDc", map); }
+	 * 
+	 * //상품 할인취소 (상품번호 1개만) public void adGoodsDcCancel(Map<String, Object> map)
+	 * throws Exception { update("adminGoods.adGoodsDcCalcel", map); }
+	 * 
+	 * //상품 할인취소 (카테고리) public void adCategoryDcCancel(Map<String, Object> map)
+	 * throws Exception { update("adminGoods.adCategoryDcCancel", map); }
+	 * 
+	 * //할인 중인 상품리스트 (가격순 정렬)
+	 * 
+	 * @SuppressWarnings("unchecked") public List<Map<String, Object>>
+	 * adDcGoodsListPriceSort(Map<String, Object> map) throws Exception { return
+	 * (List<Map<String, Object>>) selectList("adminGoods.adDcGoodsListPriceSort",
+	 * map); }
+	 * 
+	 * //할인 중인 상품리스트 (카테고리 정렬)
+	 * 
+	 * @SuppressWarnings("unchecked") public List<Map<String, Object>>
+	 * adDcGoodsListAllCategory(Map<String, Object> map) throws Exception { return
+	 * (List<Map<String, Object>>) selectList("adminGoods.adDcGoodsListPriceSort",
+	 * map); }
+	 */
 }

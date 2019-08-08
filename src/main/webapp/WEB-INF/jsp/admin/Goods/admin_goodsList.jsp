@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  
 
 <head>
 <link href="/giftcon/css/jquery/bootstrapadmin.min.css" rel="stylesheet" type="text/css">
@@ -145,8 +145,17 @@ function fn_goodsModify(goods_num){
 								<tbody>
 								<c:forEach var="adGoodsList"  items="${adGoodsList}" varStatus="stat">									
 									<tr class="gradeA even" role="row">
+										<c:set var="i" value="0"/>
 										<td style="text-align:center;vertical-align:middle;">${adGoodsList.GOODS_NUM}<div style='display:none;'>${adGoodsList.GOODS_NUM}</div></td>										
-										<td style="text-align:center;vertical-align:middle;"><img src="/giftcon/images/email.png"<%-- /giftcon/resources/file/goodsFile/${adGoodsList.GOODS_IMG1} --%> width="60" height="60" alt=""  onerror="this.src='/giftcon/file/noimg_130.gif'" /><div style='display:none;'>${adGoodsList.GOODS_NUM}</div></td>
+										<td style="text-align:center;vertical-align:middle;">
+										<c:set var="logo" value="${fn:split(adGoodsList.GOODS_IMG,',')}"/>
+										<c:forEach var="logo" items="${logo}">
+										<c:if test="${i eq 0}">
+										<img src="/giftcon/resources/file/goodsFile/${logo}" width="60" height="60" alt="">
+										<c:set var="i" value="1"/>
+										</c:if>
+										</c:forEach>
+										<div style='display:none;'>${adGoodsList.GOODS_NUM}</div></td>
 										<td style="text-align:center;vertical-align:middle;">${adGoodsList.BIG_CATEGORY}<br/>${adGoodsList.GOODS_SMALLCATEGORY }<div style='display:none;'>${adGoodsList.GOODS_NUM}</div></td>
 										<td style="text-align:center;vertical-align:middle;">${adGoodsList.SMALL_CATEGORY}<div style='display:none;'>${adGoodsList.GOODS_NUM}</div></td>
 										<td style="text-align:center;vertical-align:middle;">${adGoodsList.GOODS_NAME}<div style='display:none;'>${adGoodsList.GOODS_NUM}</div></td>												

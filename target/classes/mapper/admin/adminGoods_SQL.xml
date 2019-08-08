@@ -14,7 +14,7 @@
 		C.SMALL_CATEGORY,
 		A.GOODS_HITCOUNT,
 		A.GOODS_AMOUNT,
-		B.GOODS_IMG1
+		B.GOODS_IMG
 		FROM
 		GOODS A, GOODS_IMG B, CATEGORY C
 		WHERE
@@ -37,7 +37,7 @@
 		C.SMALL_CATEGORY,
 		A.GOODS_HITCOUNT,
 		A.GOODS_AMOUNT,
-		B.GOODS_IMG1
+		B.GOODS_IMG
 		FROM
 		GOODS A, GOODS_IMG B, CATEGORY C
 		WHERE
@@ -62,7 +62,7 @@
 		A.GOODS_SOLDOUT,
 		A.GOODS_HITCOUNT,
 		A.GOODS_AMOUNT,
-		B.GOODS_IMG1
+		B.GOODS_IMG
 		FROM
 		GOODS A, GOODS_IMG B, CATEGORY C
 		WHERE
@@ -93,9 +93,7 @@
 		A.GOODS_SOLDOUT,
 		A.GOODS_HITCOUNT,
 		A.GOODS_AMOUNT,
-		B.GOODS_IMG1,
-		B.GOODS_IMG2,
-		B.GOODS_IMG3
+		B.GOODS_IMG
 		FROM
 		GOODS A, GOODS_IMG B, CATEGORY C
 		WHERE
@@ -135,11 +133,11 @@
 		WHERE GOODS_NAME = #{GOODS_NAME}
 	</select>
 	
-	<!-- 상품 썸네일 이미지 등록 -->
+	<!-- 상품 이미지 등록 -->
 	<update id="insertGoodsIMG1" parameterType="hashmap">
 		<![CDATA[
-			INSERT INTO GOODS_IMG (GOODS_NUM, GOODS_IMG1, GOODS_IMG2)
-			VALUES(#{GOODS_NUM}, #{GOODS_IMG1}, #{GOODS_IMG2})
+			INSERT INTO GOODS_IMG (GOODS_NUM, GOODS_IMG)
+			VALUES(#{GOODS_NUM}, #{GOODS_IMG})
 		]]>
 	</update>
 	
@@ -156,23 +154,6 @@
 	]]>
 	</select>
 	
-	<!-- 상품 이미지 등록 -->
-	<insert id="adinsertGoodsImg" parameterType="hashmap">
-	<![CDATA[
-		INSERT INTO GOODS_IMG(
-		GOODS_NUM,
-		GOODS_IMG1,
-		GOODS_IMG2,
-		GOODS_IMG3
-		) VALUES(
-		GOODS_NUM_SEQ.CURRVAL,
-		#{GOODS_IMG1},
-		#{GOODS_IMG2},
-		#{GOODS_IMG3}
-		)
-	]]>
-	</insert>
-	
 	<!-- 상품 수정 폼으로 이동 -->
 	<select id="selectOneGoods" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
@@ -188,10 +169,9 @@
 	<!-- 상품 이미지 정보 -->
 	<select id="selectOneGoodsImage" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			SELECT GOODS_IMG1, GOODS_IMG2
+			SELECT GOODS_IMG
 			FROM GOODS_IMG
 			WHERE GOODS_NUM=#{GOODS_NUM}
-			ORDER BY GOODS_NUM ASC
 		]]>
 	</select>
 	
@@ -216,8 +196,7 @@
 	<update id="adGoodsImgModify" parameterType="hashmap">
 	<![CDATA[
 		UPDATE GOODS_IMG
-		SET GOODS_IMG1=#{GOODS_IMG1},
-		GOODS_IMG2=#{GOODS_IMG2}
+		SET GOODS_IMG=#{GOODS_IMG}
 		WHERE
 		GOODS_NUM = #{GOODS_NUM}
 	]]>
@@ -235,7 +214,7 @@
 		C.SMALL_CATEGORY,
 		A.GOODS_HITCOUNT,
 		A.GOODS_AMOUNT,
-		B.GOODS_IMG1
+		B.GOODS_IMG
 		FROM
 		GOODS A, GOODS_IMG B, CATEGORY C
 		WHERE
@@ -258,7 +237,7 @@
 		C.SMALL_CATEGORY,
 		A.GOODS_HITCOUNT,
 		A.GOODS_AMOUNT,
-		B.GOODS_IMG1
+		B.GOODS_IMG
 		FROM
 		GOODS A, GOODS_IMG B, CATEGORY C
 		WHERE
@@ -281,7 +260,7 @@
 		C.SMALL_CATEGORY,
 		A.GOODS_HITCOUNT,
 		A.GOODS_AMOUNT,
-		B.GOODS_IMG1
+		B.GOODS_IMG
 		FROM
 		GOODS A, GOODS_IMG B, CATEGORY C
 		WHERE
@@ -356,7 +335,7 @@
 		A.GOODS_SOLDOUT,
 		A.GOODS_HITCOUNT,
 		A.GOODS_AMOUNT,
-		B.GOODS_IMG1
+		B.GOODS_IMG
 		FROM
 		GOODS A, GOODS_IMG B
 		WHERE
@@ -379,7 +358,7 @@
 		A.GOODS_SOLDOUT,
 		A.GOODS_HITCOUNT,
 		A.GOODS_AMOUNT,
-		B.GOODS_IMG1
+		B.GOODS_IMG
 		FROM
 		GOODS A, GOODS_IMG B, CATEGORY C
 		WHERE

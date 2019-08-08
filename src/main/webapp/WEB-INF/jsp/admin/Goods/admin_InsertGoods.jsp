@@ -7,13 +7,16 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>  
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/ui.css'/>" />
 
 <!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="<c:url value='/js/common.js'/>" charset="utf-8"></script>
-
+<link href="/giftcon/css/jquery/bootstrapadmin.min.css" rel="stylesheet" type="text/css">
+<script src="/giftcon/js/common.js" charset="utf-8"></script>
+<script src="/giftcon/css/jquery/jquery-1.12.4.min.js"></script>
 <scRIPT language="Javascript">
 
 function BIG_CATEGORYChange(frm) {
@@ -152,12 +155,8 @@ function BIG_CATEGORYChange(frm) {
 					<td><input type="text" id="GOODS_AMOUNT" name="GOODS_AMOUNT" class="wdp_90"></input></td>
 				</tr>
 				<tr>
-					<th scope="row">이미지1</th>
-					<td><input type="file" id="GOODS_IMG1" name="GOODS_IMG1"></td>
-				</tr>
-				<tr>
-					<th scope="row">이미지2</th>
-					<td><input type="file" id="GOODS_IMG2" name="GOODS_IMG2"></td>
+					<th scope="row">이미지</th>
+					<td><input type="file" id="GOODS_IMG" name="GOODS_IMG"></td>
 				</tr>
 			</tbody>
 		</table>
@@ -204,10 +203,7 @@ function BIG_CATEGORYChange(frm) {
 					 alert("상품 수량을 입력해 주세요.");
 						return false;
 				 } else if($('#GOODS_IMG1').val()==""){
-					 alert("이미지1을 등록해 주세요.");
-						return false;
-				 } else if($('#GOODS_IMG2').val()==""){
-					 alert("이미지2를 등록해 주세요.");
+					 alert("이미지를 등록해 주세요.");
 						return false;
 				 }
 				 else{
