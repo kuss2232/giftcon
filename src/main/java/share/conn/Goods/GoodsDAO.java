@@ -1,6 +1,5 @@
 package share.conn.Goods;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,8 +24,8 @@ public class GoodsDAO extends AbstractDAO{
 	
 	//상품 이름이나 브랜드로 검색
 	@SuppressWarnings("unchecked")
-	public List<Map<String, Object>> searchGoods() throws Exception{
-		return selectList("memberGoods.searchGoods");
+	public List<Map<String, Object>> searchGoods(Map<String, Object> map) throws Exception{
+		return selectList("memberGoods.searchGoods", map);
 	}
 	
 	//브랜드리스트

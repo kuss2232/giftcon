@@ -27,8 +27,8 @@ public class GoodsServiceImpl implements GoodsService{
 	
 	//상품 이름이나 브랜드로 검색
 	@Override
-	public List<Map<String, Object>> searchGoods() throws Exception {
-		return goodsDAO.searchGoods();
+	public List<Map<String, Object>> searchGoods(Map<String, Object> map) throws Exception {
+		return goodsDAO.searchGoods(map);
 	}
 	
 	//브랜드 리스트

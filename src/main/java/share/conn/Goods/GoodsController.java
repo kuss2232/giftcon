@@ -19,7 +19,7 @@ import share.conn.Review.ReviewService;
 @Controller
 public class GoodsController {
 	
-	private int SearchNum;
+	private int SearchNum = 1;
 	private String SearchKeyword;
 	
 	private int currentPage;
@@ -77,6 +77,44 @@ public class GoodsController {
 			lastCount = page.getEndCount() + 1;
 		goodsList = goodsList.subList(page.getStartCount(), lastCount);
 
+		mv.addObject("pagingHtml", pagingHtml);
+		mv.addObject("currentPage", currentPage);
+		mv.addObject("goodsCount", goodsCount);
+		mv.addObject("smallcategoryList", smallcategoryList);
+		mv.addObject("category", category);
+		mv.addObject("goodsList", goodsList);
+		mv.setViewName("goods/list");
+		return mv;
+	}
+	
+	@RequestMapping("/goods/searchList.conn")
+	public ModelAndView searchList(CommandMap map, HttpServletRequest request 
+			)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		List<Map<String, Object>> goodsList;
+		String[] category = request.getParameterValues("category");
+		List<Map<String, Object>> smallcategoryList = goodsService.smallCategoryList();
+		
+		if (request.getParameter("currentPage") == null || request.getParameter("currentPage").trim().isEmpty()
+				|| request.getParameter("currentPage").equals("0")) {
+			currentPage = 1;
+		} else {
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		}
+		
+		SearchKeyword = request.getParameter("SearchKeyword");
+		goodsList = goodsService.searchGoods(map.getMap());
+
+		int goodsCount = goodsList.size();
+		page = new Paging(currentPage, goodsCount, blockCount, blockPage, "searchList.conn", SearchNum, SearchKeyword);
+		pagingHtml = page.getPagingHtml().toString();
+
+		int lastCount = goodsCount;
+		if (page.getEndCount() < goodsCount)
+			lastCount = page.getEndCount() + 1;
+		goodsList = goodsList.subList(page.getStartCount(), lastCount);
+
+		mv.addObject("SearchKeyword", SearchKeyword);
 		mv.addObject("pagingHtml", pagingHtml);
 		mv.addObject("currentPage", currentPage);
 		mv.addObject("goodsCount", goodsCount);
