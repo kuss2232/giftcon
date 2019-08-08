@@ -50,4 +50,40 @@ public class MainController {
 		mv.setViewName("/main/main");
 		return mv;
 	}
+	
+	@RequestMapping("eventList.conn")
+	public ModelAndView eventList(CommandMap commandMap)throws Exception{
+		ModelAndView mv = new ModelAndView("/event/eventList");
+		
+		List<Map<String, Object>> eventList = mainService.eventList();
+		List<Map<String, Object>> endEventList = mainService.endEventList();
+		mv.addObject("eventList",eventList);
+		mv.addObject("endEventList", endEventList);
+		
+		return mv;
+	}
+	
+	@RequestMapping("eventDetail.conn")
+	public ModelAndView eventDetail(CommandMap commandMap)throws Exception{
+		ModelAndView mv = new ModelAndView("/event/eventDetail");
+		System.out.println(commandMap.get("EVENT_NUM"));
+		Map<String, Object> map = mainService.eventDetail(commandMap.getMap());
+		mv.addObject("map",map);
+		
+		return mv;
+	}
+	
+	@RequestMapping("Terms of service.conn")
+	public ModelAndView Service() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("/main/Termsofservice");
+		return mv;
+	}
+	
+	@RequestMapping("privacy.conn")
+	public ModelAndView Privacy() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("/main/privacy");
+		return mv;
+	}
 }
