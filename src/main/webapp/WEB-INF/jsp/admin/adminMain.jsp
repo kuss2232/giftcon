@@ -102,6 +102,7 @@
 								<li><a href="/giftcon/faq/adminFaqList.conn">- FAQ</a></li>
 								<li><a href="/giftcon/adminQnaList.conn">- Q&A</a></li>
 								<li><a href="/giftcon/adminCategory1.conn">- 카테고리추가</a></li>
+								<li><a href="/giftcon/adminReviewList.conn">- 리뷰관리</a>
 							</ul>
 						</li>
 					</ul>
