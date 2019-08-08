@@ -110,7 +110,7 @@
 						</div>
 					</div>
 					</form>
-					<div class="paging">
+					<div class="paging" align="center">
 						pagingHtml 보내기
 					</div>
 					<div class="row">

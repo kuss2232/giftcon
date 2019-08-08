@@ -14,10 +14,12 @@ import org.springframework.web.servlet.ModelAndView;
 import share.conn.giftcon.CommandMap;
 
 @Controller
+
 public class OrderController {
-	
+	private int totalPrice;
 	@Resource(name="orderService")
 	private OrderService orderService;
+	
 	
 	
 	//상세보기에서 주문
@@ -32,10 +34,15 @@ public class OrderController {
 		//멤버 정보
 		Map<String, Object> member = orderService.memberInfo(commandMap.getMap());
 		//상품정보
+		
 		Map<String, Object> goods = orderService.goodsInfo(commandMap.getMap());
 		System.out.println("바바" + goods.get("GOODS_IMG1"));
 		mv.addObject("member",member);
 		mv.addObject("goods",goods);
+		
+		
+		
+		
 		//상품 수량 받아와야함
 		
 		return mv;
