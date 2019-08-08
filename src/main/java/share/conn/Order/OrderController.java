@@ -107,4 +107,15 @@ public class OrderController {
 	public void insertOrder(CommandMap commandMap,HttpServletResponse response)throws Exception{
 		orderService.inserOrder(commandMap.getMap());
 	}
+	
+	@RequestMapping("/orderList.conn")
+	public ModelAndView orderList(CommandMap commandMap)throws Exception{
+		ModelAndView mv = new ModelAndView("/order/orderList");
+		List<Map<String, Object>> list = orderService.orderList(commandMap.getMap());
+		
+		mv.addObject("list",list);
+		
+		return mv;
+		
+	}
 }

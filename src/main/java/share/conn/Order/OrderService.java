@@ -13,4 +13,6 @@ public interface OrderService {
 
 	public List<Map<String, Object>> cartOrderList(Map<String, Object> map) throws Exception;
 
+	public List<Map<String, Object>> orderList(Map<String, Object> map)throws Exception;
+
 }
