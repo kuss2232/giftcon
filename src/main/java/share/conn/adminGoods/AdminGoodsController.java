@@ -150,7 +150,10 @@ public class AdminGoodsController {
 	public ModelAndView adGoodsModify(CommandMap commandMap, HttpServletRequest request) throws Exception {
 
 		ModelAndView mv = new ModelAndView("redirect:/goods/adminGoodsList.conn");
-
+		System.out.println(commandMap.get("BIG_CATEGORY")+"BIG_CATEGORY ---- : " + commandMap.get("SMALL_CATEGORY") + "SMALL_CATEGORY --- -");
+		Map<String,Object> category = adminGoodsService.adGoodsSelectCategory(commandMap.getMap());
+		commandMap.put("CATEGORY_NUM", Integer.parseInt(category.get("CATEGORY_NUM").toString()));
+		
 		adminGoodsService.adGoodsModify(commandMap.getMap(), request);
 
 		return mv;
