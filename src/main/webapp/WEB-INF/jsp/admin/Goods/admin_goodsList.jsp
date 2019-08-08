@@ -67,6 +67,12 @@ function fn_goodsDelete(goods_num){
 	 }
 }
 
+function fn_goodsModify(goods_num){ 
+	var comSubmit = new ComSubmit(); 
+	comSubmit.setUrl("<c:url value='/goods/goodsModifyForm.conn' />");
+	comSubmit.addParam("GOODS_NUM", goods_num);
+	comSubmit.submit(); 
+}
 </script>
 <style type="text/css">
 
@@ -137,13 +143,10 @@ function fn_goodsDelete(goods_num){
 								</thead>
 								<form id="commonForm" name="commonForm"></form>
 								<tbody>
-								<c:forEach var="adGoodsList"  items="${adGoodsList}" varStatus="stat">
-								<c:url var="viewURL" value="/goods/goodsModifyForm.conn" >
-									<c:param name="GOODS_NUM" value="${adGoodsList.GOODS_NUM}" />
-								</c:url>									
+								<c:forEach var="adGoodsList"  items="${adGoodsList}" varStatus="stat">									
 									<tr class="gradeA even" role="row">
 										<td style="text-align:center;vertical-align:middle;">${adGoodsList.GOODS_NUM}<div style='display:none;'>${adGoodsList.GOODS_NUM}</div></td>										
-										<td style="text-align:center;vertical-align:middle;"><img src="/giftcon/images/email.png"<%-- /giftcon/file/goodsFile/${adGoodsList.GOODS_IMG1} --%>" width="60" height="60" alt=""  onerror="this.src='/giftcon/file/noimg_130.gif'" /><div style='display:none;'>${adGoodsList.GOODS_NUM}</div></td>
+										<td style="text-align:center;vertical-align:middle;"><img src="/giftcon/images/email.png"<%-- /giftcon/resources/file/goodsFile/${adGoodsList.GOODS_IMG1} --%> width="60" height="60" alt=""  onerror="this.src='/giftcon/file/noimg_130.gif'" /><div style='display:none;'>${adGoodsList.GOODS_NUM}</div></td>
 										<td style="text-align:center;vertical-align:middle;">${adGoodsList.BIG_CATEGORY}<br/>${adGoodsList.GOODS_SMALLCATEGORY }<div style='display:none;'>${adGoodsList.GOODS_NUM}</div></td>
 										<td style="text-align:center;vertical-align:middle;">${adGoodsList.SMALL_CATEGORY}<div style='display:none;'>${adGoodsList.GOODS_NUM}</div></td>
 										<td style="text-align:center;vertical-align:middle;">${adGoodsList.GOODS_NAME}<div style='display:none;'>${adGoodsList.GOODS_NUM}</div></td>												
@@ -151,8 +154,9 @@ function fn_goodsDelete(goods_num){
 										<td style="text-align:center;vertical-align:middle;">${adGoodsList.GOODS_DCPRICE}<div style='display:none;'>${adGoodsList.GOODS_NUM}</div></td>
 										<td style="text-align:center;vertical-align:middle;">${adGoodsList.GOODS_AMOUNT}개<div style='display:none;'>${adGoodsList.GOODS_NUM}</div></td>
 										<td style="text-align:center;vertical-align:middle;">${adGoodsList.GOODS_HITCOUNT}<div style='display:none;'>${adGoodsList.GOODS_NUM}</div></td>									
-										<td style="text-align:center;vertical-align:middle;">										
-										<input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Cog_font_awesome.svg/32px-Cog_font_awesome.svg.png" onclick="location.href='${viewURL}'">&nbsp;&nbsp;	
+										<td style="text-align:center;vertical-align:middle;">
+										<a onclick="fn_goodsModify(${adGoodsList.GOODS_NUM})">										
+										<input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Cog_font_awesome.svg/32px-Cog_font_awesome.svg.png"></a>&nbsp;&nbsp;	
 										<a onclick="fn_goodsDelete(${adGoodsList.GOODS_NUM})">
 										<input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Trash_font_awesome.svg/32px-Trash_font_awesome.svg.png"></a>
 										<div style='display:none;'>${adGoodsList.GOODS_NUM}</div></td>									

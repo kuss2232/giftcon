@@ -17,7 +17,7 @@
                          });
 
 
-				function fn_notifyDelete(notice_num){ 
+				function fn_eventDelete(event_num){ 
 						if(confirm("정말 삭제하시겠습니까 ?") == true){
 								var comSubmit = new ComSubmit(); 
 								alert("삭제되었습니다");
@@ -29,7 +29,7 @@
 							return ;}}
 
 				function onWrite(){
-					location.href="/giftcon/event/adminEventModifyForm.conn";
+					location.href="/giftcon/event/adminEventForm.conn";
 					}
 				
 				function goDetail(event_num) {
@@ -71,8 +71,8 @@
 								<thead>
 									<tr role="row">
 										<th style="width: 10%; text-align: center;">번호</th>
-										<th style="width: 12%; text-align: center;">이미지</th>
-										<th style="width: 38%; text-align: center;">제목</th>
+										<th style="width: 5%;   text-align: center;">이미지</th>
+										<th style="width: 10%; text-align: center;">제목</th>
 										<th style="width: 10%; text-align: center;">작성자</th>
 										<th style="width: 10%; text-align: center;">등록일자</th>
 										<th style="width: 10%; text-align: center;">이벤트 기간</th>
@@ -83,22 +83,31 @@
 								<tbody>
 									<c:forEach var="eventList"  items="${eventList}" varStatus="stat">
 									<tr class="gradeA even" role="row">
-										<td style="text-align: center; vertical-align: middle;">1</td>
-										<td><img src="/giftcon/resources/images/kyochon.png"></td>
+										<c:set var="i" value="0"/>
 										<td style="text-align: center; vertical-align: middle;">${eventList.EVENT_NUM}</td>
+										<c:set var="logo" value="${fn:split(eventList.EVENT_IMG,',')}"/>
+										<c:forEach var="logo" items="${logo}">
+										<c:if test="${i eq 0}">
+										<td><img src="/giftcon/resources/file/Eventfile/${logo}" width="150" height="90" ></td>
+										<c:set var="i" value="1"/>
+										</c:if>
+										</c:forEach>
+										<td style="text-align: center; vertical-align: middle;">
+										<a href=" #" onclick="goDetail(${eventList.EVENT_NUM});">${eventList.EVENT_TITLE}</a></td>
 										<td style="text-align: center; vertical-align: middle;">관리자</td>
 										<td style="text-align: center; vertical-align: middle;">
-										<fmt:formatDate value="${noticeList.NOTICE_REGDATE}"pattern="YYYY.MM.dd" />~</td>
+										<fmt:formatDate value="${eventList.EVENT_REGDATE}" pattern="YYYY.MM.dd" /></td>
 										<td style="text-align: center; vertical-align: middle;">
-										<fmt:formatDate value="${eventList.EVENT_START}" pattern="YY.MM.dd"/>~<fmt:formatDate value="${eventList.EVENT_END}" patter="YY.MM.dd"/></td>
+										<fmt:formatDate value="${eventList.EVENT_START}" pattern="YY.MM.dd"/>~<fmt:formatDate value="${eventList.EVENT_END}" pattern="YY.MM.dd"/></td>
 										<td style="text-align: center; vertical-align: middle;">
 										<c:url var="viewURL"  value="/event/adminEventModifyForm.conn">
 										<c:param name="EVENT_NUM"
-														value="${eventList.EVENT_NUM }" />
+														value="${eventList.EVENT_NUM }" /> 
 												</c:url>
-					<a href="${viewURL}">
-					<input type="image"
-					src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Cog_font_awesome.svg/32px-Cog_font_awesome.svg.png">
+						<a href="${viewURL}" > 
+						<input type="image"
+	src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Cog_font_awesome.svg/32px-Cog_font_awesome.svg.png"
+						>
 					</a>&nbsp;&nbsp;
 					<a onclick="fn_eventDelete(${eventList.EVENT_NUM})">  
 				<input type="image"
@@ -119,9 +128,7 @@
 						</div>
 					</div>
 					<div class="paging">${pagingHtml}</div>
-					<button type="submit" class="btn btn-default">등록</button>
-
-					<div class="row">
+									<div class="row">
 						<div style="text-align: center;">
 							<div id="dataTables-example_filter" class="dataTables_filter">
 						</div>

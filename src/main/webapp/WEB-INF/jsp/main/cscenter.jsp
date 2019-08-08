@@ -21,13 +21,13 @@
 						</div>
 					</div>
 					<p class="goBox mr23">
-						<a href="/bbs/qnaList.do">
+						<a href="/giftcon/adminQnaList.conn">
 							<span class="icoOneAsk"></span>
 							<span class="tit">1:1문의<br>바로가기</span>
 						</a>
 					</p>
 					<p class="goBox">
-						<a href="/bbs/faqList.do">
+						<a href="/giftcon/faq.conn">
 							<span class="icoFaq"></span>
 							<span class="tit tit2">FAQ<br>바로가기</span>
 						</a>
