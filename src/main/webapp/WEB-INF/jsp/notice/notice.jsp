@@ -11,7 +11,6 @@
 <style>
 div.paging > div > a.disabled:hover {border: 1px solid #ddd;}
 </style>
-
 <script type="text/javascript" src="/giftcon/css/jquery/swiper.min.js"></script>
 </head>
 <body>
@@ -87,7 +86,7 @@ div.paging > div > a.disabled:hover {border: 1px solid #ddd;}
 					</table>
 					<!-- /end:contents -->
 					<div>
-					<div class="paginate"><ul class="numList">${pagingHtml}</ul></div>
+					<div class="paginate" align="center"><ul class="numList">${pagingHtml}</ul></div>
 					</div>
 				</div>
 			</div>

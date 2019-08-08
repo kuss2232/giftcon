@@ -14,6 +14,7 @@ div.paginate > div > a.disabled:hover {border: 1px solid #ddd;}
 <!-- jQuery -->
 <script src="/giftcon/css/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="/giftcon/css/common.js"></script>
+<script type="text/javascript" src="/giftcon/css/jquery/swiper.min.js"></script>
 <script type="text/javascript" src="/giftcon/css/gnb.js"></script>
 <script>
 function refreshFAQ(){
@@ -101,13 +102,12 @@ function FAQCategory(num){
 							<a href="#" id="FAQ_CATEGORY4" onClick="FAQCategory(4)">환불</a>
 							<a href="#" id="FAQ_CATEGORY5" onClick="FAQCategory(5)">기타</a>
 						</div>
-					<div class="faqSearch" align="right">
-							<font size="4">제목 검색 &nbsp;</font>
-							<input class="ipt4 w220" type="text" name="searchkeyword" id="searchkeyword" />
-							<input class="ipt3" type="submit" value="검색" />
-						</div>
+					
 					<!-- /end:askCategory -->
 					<!-- start:ask_list -->
+					<div class="askList">
+						<p>조회내역 총 1건</p>			
+					</div>
 					<div class="askList">
 						<ul class="myAskList">
 							<c:forEach items="${faqlist}" var="row">
@@ -148,6 +148,27 @@ $(".askList .myAskList .faqTit").click(function(){
 	$(this).next().slideDown(200);
 });
 
+/* $(".askList .myAskList .qnaTit").click(function(){
+ $(".askList .myAskList .View").slideUp(200);
+ if ($(this).next().css("display")=="block") return;
+ $(this).next().slideDown(200);
+
+ }); */
+
+function goDetail(index) {
+	var listId = "#list_" + index;
+	var viewId = "#view_" + index;
+	var objId = "#obj_" + index;
+
+	if ($(listId).attr('class') == 'on') {
+		$(listId).attr('class', '');
+		$(viewId).hide();
+	} else {
+		$(listId).attr('class', 'on');
+		$(viewId).show();
+	}
+}
+</script>
 </script>
 </body>
 </html>

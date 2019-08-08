@@ -84,7 +84,7 @@ public class AdminGoodsServiceImpl implements AdminGoodsService {
       
       //이미지 1 수정
       if (multipartHttpServletRequest.getFile("GOODS_IMG1").getSize() > 0) {
-          map = goodsImageUtils.parseUpdateIMG(map, request);
+       //   map = goodsImageUtils.parseUpdateIMG(map, request);
           adminGoodsDAO.insertGoodsIMG1(map);
       }
       

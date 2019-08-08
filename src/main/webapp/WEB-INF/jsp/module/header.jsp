@@ -151,7 +151,7 @@ $(function () {
 				<ul class="menu">
 					<li>
 						<a href="/giftcon/goods/list.conn" title="모바일쿠폰샵 바로가기" class="">모바일쿠폰샵</a>
-						<ul class="smenu s01" style="display: none;">
+						<!-- <ul class="smenu s01" style="display: none;">
 							<li>
 								<a href="/goods/mainShop.do" class="first">전체상품보기</a>
 							</li>
@@ -167,11 +167,11 @@ $(function () {
 							<li>
 								<a href="/goods/goodsNotice.do">상품문의</a>
 							</li>
-						</ul>
+						</ul> -->
 					</li>
 					<li>
 						<a href="/giftcon/eventList.conn" title="기획전/이벤트 바로가기" class="">이벤트</a>
-						<ul class="smenu s02" style="display: none;">
+						<!-- <ul class="smenu s02" style="display: none;">
 							<li>
 								<a href="/contents/promotionList.do" class="first">기획/테마전</a>
 							</li>
@@ -181,7 +181,7 @@ $(function () {
 							<li>
 								<a href="/contents/eventNoticeList.do">당첨자발표</a>
 							</li>
-						</ul>
+						</ul> -->
 					</li>
 					<li>
 						<a href="/mypage/myDonut.do" title="마이도넛북 바로가기">마이도넛북</a>
@@ -224,21 +224,23 @@ $(function () {
 						</ul>
 					</li>
 				</ul>
+				
+				
 				 <!-- 띠 배너  -->
-	<!-- 				
-						<span id="img0" class="rightBanner" style="display: block;">
-							<a href="http://ppurio.com/mgr/DFLanding.qri?page=CouponEvent&amp;type=cross2&amp;key=donut" target="_blank"><img src="/3N1DATA01/donutbook/contents/banner/88ra54jdupp7fv05d03c.png" alt="" width="201"></a>
-						</span>
 					
-						<span id="img1" class="rightBanner" style="display: none;">
-							<a href="/contents/promotionList.do?tab=0"><img src="/3N1DATA01/donutbook/contents/banner/549g83zea3od2kbhhwhf.jpg" alt="" width="201"></a>
-						</span>
-					 -->
+					<span id="img0" class="rightBanner" style="display: block;">
+						<a href="http://ppurio.com/mgr/DFLanding.qri?page=CouponEvent&amp;type=cross2&amp;key=donut" target="_blank"><img src="/giftcon/images/mini-banner2.png" alt="" width="201"></a>
+					</span>
+				
+					<span id="img1" class="rightBanner" style="display: none;">
+						<a href="/contents/promotionList.do?tab=0"><img src="/giftcon/images/mini-banner2.jpg" alt="" width="201"></a>
+					</span>
+					 
 				
 			</div>
-			 <!-- 상단 사각 배너 -->
+			<!--  <!-- 상단 사각 배너 -->
 			<div class="sub_bg" style="display: none;"><p class="subBanner"><a href="https://www.donutbook.co.kr/intro/donutExchange.do"><img src="/3N1DATA01/donutbook/contents/banner/m151qtoe63a94d043b5x.jpg" alt="" width="201"></a></p></div>
-			
+			 -->
 		</nav>
 	</header>
 </body>
