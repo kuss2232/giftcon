@@ -22,7 +22,7 @@ div.paginate>div>a.disabled:hover {
 				<li><a href="/giftcon/mypage.conn">회원정보수정</a></li>
 				<li><a href="/giftcon/userPwChgForm.conn">비밀번호변경</a></li>
 				<li><a href="/giftcon/myQnalist.conn" class="on">나의 문의 이력</a></li>
-				<li><a href="/mypage/sendPhoneAuth.do">발신번호사전등록</a></li>
+				<li><a href="/giftcon/orderList.conn">주문 내역</a></li>
 				<li><a href="/mypage/addrGroupList.do">주소록 관리</a></li>
 			</ul>
 			<!-- /end:csTab -->

@@ -41,7 +41,7 @@ function checkemailaddy(){
 					<li><a href="/giftcon/mypage.conn" class="on">회원정보수정</a></li>
 					<li><a href="/giftcon/userPwChgForm.conn">비밀번호변경</a></li>
 					<li><a href="/mypage/qnaList.do">나의 문의 이력</a></li>
-					<li><a href="/giftcon/myQnalist.conn">발신번호사전등록</a></li>
+					<li><a href="/giftcon/orderList.conn">주문내역</a></li>
 					<li><a href="/mypage/addrGroupList.do">주소록 관리</a></li>
 				</ul>
 				<!-- /end:Tab -->
