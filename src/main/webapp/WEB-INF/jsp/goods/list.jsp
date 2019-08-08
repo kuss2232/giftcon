@@ -73,8 +73,10 @@
 			<li>
 				<div class="prodBox">
 					<p class="icoFlag">
+						<c:if test="${list.GOODS_HITCOUNT>100}"><span class="bestF"><em>Best</em></span></c:if>
+						<c:if test="${!empty list.GOODS_DCPRICE}"><span class="downF"><em>SALE</em></span></c:if>
 					</p>
-					<span class="prodImg"><a href="${viewURL}"><img src="${list.GOODS_IMG}"></a></span>
+					<span class="prodImg"><a href="${viewURL}"><img src="/giftcon/resources/file/goodsFile/${list.GOODS_IMG}"></a></span>
 					<span class="brand">[${list.SMALL_CATEGORY}]</span>
 					<span class="prodName">${list.GOODS_NAME}</span>
 					<input type="hidden" id="GOOODS_NUM" value="${list.GOODS_NUM}"/>

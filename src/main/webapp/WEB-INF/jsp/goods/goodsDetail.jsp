@@ -26,7 +26,7 @@
 				<div class="productImg">
 					<p class="icoFlag">
 					</p>
-					<img src="${goodsDetail.GOODS_IMG}" alt="">
+					<img src="/giftcon/resources/file/goodsFile/${goodsDetail.GOODS_IMG}" alt="">
 				</div>
 				<div class="infoBox">
 					<p class="prodName">[${goodsDetail.SMALL_CATEGORY}] ${goodsDetail.GOODS_NAME}</p>
@@ -73,11 +73,12 @@
 					<p class="txt">${goodsDetail.GOODS_NAME}</p>
 				</div>
 				<div class="expBox mb40">
+					<span class="tit">[간단설명]</span>
+					<p class="txt">${goodsDetail.GOODS_SIMPLE}</p>
+				</div>
+				<div class="expBox mb40">
 					<span class="tit">[상품설명]</span>
 					<p class="txt">${goodsDetail.GOODS_DETAIL}</p>
-					<c:if test="${!empty goodsDetail.GOODS_IMG3}">
-					<img src="${goodsDetail.GOODS_IMG3}" alt="">
-					</c:if>
 				</div>
 				<table class="tbG">
 					<colgroup>
