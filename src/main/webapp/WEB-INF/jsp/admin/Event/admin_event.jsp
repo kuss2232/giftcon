@@ -83,8 +83,15 @@
 								<tbody>
 									<c:forEach var="eventList"  items="${eventList}" varStatus="stat">
 									<tr class="gradeA even" role="row">
+										<c:set var="i" value="0"/>
 										<td style="text-align: center; vertical-align: middle;">${eventList.EVENT_NUM}</td>
-										<td><img src="/giftcon/resources/file/Eventfile/${eventList.EVENT_IMG1}" width="150" height="70" ></td>
+										<c:set var="logo" value="${fn:split(eventList.EVENT_IMG,',')}"/>
+										<c:forEach var="logo" items="${logo}">
+										<c:if test="${i eq 0}">
+										<td><img src="/giftcon/resources/file/Eventfile/${logo}" width="150" height="90" ></td>
+										<c:set var="i" value="1"/>
+										</c:if>
+										</c:forEach>
 										<td style="text-align: center; vertical-align: middle;">
 										<a href=" #" onclick="goDetail(${eventList.EVENT_NUM});">${eventList.EVENT_TITLE}</a></td>
 										<td style="text-align: center; vertical-align: middle;">관리자</td>

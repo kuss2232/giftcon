@@ -27,7 +27,6 @@ public class AdminEventController {
 	private int blockPage = 5;
 	private String pagingHtml;
 	private Paging page;
-	private String filePath3 = "D:\\java\\Git\\giftcon\\src\\main\\webapp\\file\\Eventfile\\";
 		
 	@Resource(name = "AdminEventService")
 	private AdminEventService adminEventService;

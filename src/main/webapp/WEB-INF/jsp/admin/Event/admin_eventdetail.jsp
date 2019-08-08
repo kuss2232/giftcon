@@ -28,10 +28,13 @@
 						<div class="titTop">
 							<span class="tit"> ${eventDetail.EVENT_TITLE}</span>
 						</div>
-						<div class="notiCont">${eventDetail.EVENT_IMG1}</div>
-						<div class="notiCont">${eventDetail.EVENT_IMG2}</div>
-						<div class="notiCont">${eventDetail.EVENT_IMG3}</div>
-						<div class="notiCont">${eventDetail.EVENT_IMG4}</div>
+						<div class="notiCont" align="center">
+						<c:forEach var="IMG" items="${IMGLIST}">
+							<img src="/giftcon/resources/file/Eventfile/${IMG}" width="1100" height="700"  >
+							<br/>
+						</c:forEach>
+						</div>
+					
 					</div>
 					<!-- /end:contents -->
 					<!-- start:btm -->

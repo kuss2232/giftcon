@@ -9,7 +9,7 @@
 			EVENT_TITLE,
 			EVENT_NUM,
 			EVENT_REGDATE,
-			EVENT_IMG1,
+			EVENT_IMG,
 			EVENT_START,
 			EVENT_END
 		FROM
@@ -25,7 +25,7 @@
 			EVENT_TITLE
 			EVENT_NUM,
 			EVENT_REGDATE,
-			EVENT_IMG1,
+			EVENT_IMG,
 			EVENT_START,
 			EVENT_END
 		FROM
@@ -42,8 +42,7 @@
 			EVENT_TITLE,
 			EVENT_START,
 			EVENT_END,
-			EVENT_IMG1,
-			EVENT_IMG2
+			EVENT_IMG
 			)
 		VALUES
 			(EVENT_NUM_SEQ.NEXTVAL,
@@ -51,8 +50,7 @@
 			#{EVENT_TITLE},		 
 			#{EVENT_START},
 			#{EVENT_END},
-			#{EVENT_IMG1},
-			#{EVENT_IMG2}
+			#{EVENT_IMG}
 			)
 	]]>
 </insert>
@@ -66,10 +64,7 @@
 			EVENT_TITLE,
 			EVENT_START,
 			EVENT_END,
-			EVENT_IMG1,
-			EVENT_IMG2,
-			EVENT_IMG3,
-			EVENT_IMG4
+			EVENT_IMG
 		FROM
 			EVENT
 		WHERE
@@ -85,10 +80,7 @@
 			EVENT_TITLE = #{EVENT_TITLE},
 			EVENT_START = #{EVENT_START},
 			EVENT_END = #{EVENT_END},
-			EVENT_IMG1 = #{EVENT_IMG1},
-			EVENT_IMG2 = #{EVENT_IMG2},
-			EVENT_IMG3 = #{EVENT_IMG3},
-			EVENT_IMG4 = #{EVENT_IMG4}
+			EVENT_IMG1 = #{EVENT_IMG}
 		WHERE
 			EVENT_NUM = #{EVENT_NUM}	
 	]]>
@@ -108,11 +100,8 @@
 		<![CDATA[
 			UPDATE EVENT 
 			SET 
-				EVENT_IMG1 = #{EVENT_IMG1}
-				EVENT_IMG2 = #{EVENT_IMG2}
-				EVENT_IMG3 = #{EVENT_IMG3}
-				EVENT_IMG4 = #{EVENT_IMG4}
-			WHERE 
+				EVENT_IMG = #{EVENT_IMG}
+		WHERE 
 				EVENT_NUM = #{EVENT_NUM}
 		]]>
 	</update>
@@ -121,11 +110,8 @@
 	<update id="deleteEventFileList" parameterType="hashmap">
 	<![CDATA[
 		UPDATE EVENT SET 
-			EVENT_IMG1 = #{EVENT_IMG1}
-			EVENT_IMG2 = #{EVENT_IMG2}
-			EVENT_IMG3 = #{EVENT_IMG3}
-			EVENT_IMG4 = #{EVENT_IMG4}
-		WHERE 
+			EVENT_IMG = #{EVENT_IMG}
+	WHERE 
 			EVENT_NUM = #{EVENT_NUM}	
 		]]>
 </update>
@@ -133,7 +119,7 @@
    <!-- 이벤트 이미지 등록 -->
    <update id="insertEventImage" parameterType="hashmap">
       <![CDATA[
-         UPDATE EVENT SET EVENT_IMG1= #{EVENT_IMG1, jdbcType=VARCHAR} WHERE EVENT_NUM=#{EVENT_NUM, jdbcType=INTEGER}
+         UPDATE EVENT SET EVENT_IMG= #{EVENT_IMG, jdbcType=VARCHAR} WHERE EVENT_NUM=#{EVENT_NUM, jdbcType=INTEGER}
       ]]>
    </update>
 

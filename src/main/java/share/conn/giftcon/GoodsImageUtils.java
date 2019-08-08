@@ -21,7 +21,7 @@ public class GoodsImageUtils {
    //filePath2= 공지사항 파일 경로
    private static final String filePath2 = "C:\\java\\maven-app\\MODA\\src\\main\\webapp\\file\\noticeFile\\";
    //filePath3= 이벤트 파일 경로
-   private static final String filePath3 = "D:\\java\\Git\\giftcon\\src\\main\\webapp\\resources\\file\\Eventfile\\";
+   private static final String filePath3 = "D:\\java\\giftcon2\\src\\main\\webapp\\resources\\file\\Eventfile\\";
    //filePath5= QNA 파일 경로
    private static final String filePath5 = "C:\\java\\maven-app\\MODA\\src\\main\\webapp\\file\\qnaFile\\";
    
@@ -89,7 +89,7 @@ public class GoodsImageUtils {
                listMap = new HashMap<String, Object>();
                listMap.put("IMAGE", IMAGE);
 
-               listMap.put("GOODS_NUMBER", map.get("GOODS_NUMBER"));
+               listMap.put("GOODS_NUM", map.get("GOODS_NUM"));
                list.add(listMap);
             }
          }
@@ -293,20 +293,30 @@ public class GoodsImageUtils {
         		 //받아온 이미지 파일 이름을 originalFileName에 저장
         		 originalFileName = multipartFile.getOriginalFilename(); 
         		 originalFileExtension = originalFileName.substring(originalFileName.lastIndexOf(".")); 
-        		 storedFileName = CommonsUtils.getRandomString() + originalFileExtension; 
-        		 eventfile = new File(filePath3 + storedFileName); 
+        		 if(storedFileName == null)
+        		 {
+        			 storedFileName = CommonsUtils.getRandomString() + originalFileExtension; 
+        			 eventfile = new File(filePath3 + storedFileName); 
+        		 }
+        		 else
+        		 {
+        			 String str = CommonsUtils.getRandomString() + originalFileExtension; 
+        			 storedFileName = storedFileName +","+ str;
+        			 eventfile = new File(filePath3 + str); 
+        		 }
+        		 
         		 multipartFile.transferTo(eventfile); 
         	 
-        		 listMap = new HashMap<String,Object>();
-				/* listMap.put("EVENT_NUM", EVENT_NUM); */
-        		 listMap.put("EVENT_IMG1", storedFileName);
-        		 listMap.put("EVENT_IMG2", storedFileName);
-        		 listMap.put("EVENT_TITLE",map.get("EVENT_TITLE"));
-        		 listMap.put("EVENT_START",map.get("EVENT_START"));
-        		 listMap.put("EVENT_END",map.get("EVENT_END"));
-				
-        	 list.add(listMap);  } 
+        		   } 
         	 } 
+         listMap = new HashMap<String,Object>();
+			/* listMap.put("EVENT_NUM", EVENT_NUM); */
+ 		 listMap.put("EVENT_IMG", storedFileName);
+ 		 listMap.put("EVENT_TITLE",map.get("EVENT_TITLE"));
+ 		 listMap.put("EVENT_START",map.get("EVENT_START"));
+ 		 listMap.put("EVENT_END",map.get("EVENT_END"));
+			
+ 		 list.add(listMap);
          return list;
          }
 
@@ -321,9 +331,9 @@ public class GoodsImageUtils {
    public Map<String, Object> faqModifyImage(Map<String, Object> map, HttpServletRequest request) throws Exception {
 
       MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
-      MultipartFile file = multipartHttpServletRequest.getFile("EVENT_IMAGE*");
+      MultipartFile file = multipartHttpServletRequest.getFile("EVENT_IMG*");
 
-      String fileName = "EVENT_IMAGE_" + map.get("EVENT_NUM").toString();
+      String fileName = "EVENT_IMG_" + map.get("EVENT_NUM").toString();
       String IMAGEExtension = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
 
       File uploadFile = new File(filePath3 + fileName + IMAGEExtension);
@@ -340,7 +350,7 @@ public class GoodsImageUtils {
 
       }
 
-      map.put("EVENT_IMAGE*", fileName + IMAGEExtension);
+      map.put("EVENT_IMG", fileName + IMAGEExtension);
 
       System.out.println("EVENT 이미지 수정완료");
       return map;
