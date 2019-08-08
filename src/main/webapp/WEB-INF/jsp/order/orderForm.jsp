@@ -10,6 +10,23 @@
 <link rel="stylesheet" type="text/css" href="/giftcon/css/sub.css">
 <link rel="stylesheet" type="text/css" href="/giftcon/css/common.css">
 <link rel="stylesheet" type="text/css" href="/giftcon/css/main.css">
+<script type="text/javascript">
+		$(document).ready(function(){
+			$("#btnOrder").on("click", function(e){
+				e.preventDefault();
+				fn_order();
+			});
+
+		});
+		
+		function fn_order(){
+			var comSubmit = new ComSubmit("order");
+			alert("결졔되었습니다.");
+			comSubmit.setUrl("/giftcon/goods/list.conn");
+			comSubmit.submit();
+		}
+
+	</script>
 </head>
 <body>
 <div class="subWrap">
@@ -40,14 +57,14 @@
 							  <th class="alignC">상품</th>
 							  <th class="alignC">발송상품명</th>
 							  <th class="alignC">상품가격</th>
-							  <th class="alignC">수량</th>
+							  <th class="alignC">구매가격</th>
 							  <th class="alignC last">유효기간</th>
 							</tr>
 								<tr>						  
 								  <td class="alignC"><img src="${goods.GOODS_IMG1}" alt=""></td>
 								  <td>${goods.SMALL_CATEGORY} : ${goods.GOODS_NAME}</td>
 								  <td class="alignC" id="price">${goods.GOODS_PRICE}</td>
-								  <td class="alignC">수량 받아오기</td>
+								  <td class="alignC" id="price">${goods.GOODS_PRICE}</td>
 								  <td class="alignC last">90일</td>
 								</tr>
 						  </tbody>
@@ -61,7 +78,7 @@
 						<!-- start:step_title -->
 						<p class="stepBox">
 							<span class="stepTxt s2">Step 02</span>
-							<span class="stepTit">수신정보입력</span>
+							<span class="stepTit">수신정보</span>
 						</p>
 						<!-- /end:step_title -->
 						<!-- start:send_name -->
@@ -75,17 +92,9 @@
 							<p class="sendSetting">
 								<label for="sending_num">수신 E-mail</label>
 								<span class="writeBox">
-									<input type="text" name="sendPhone" id="sendPhone" class="ipt6 w206" value="${memeber.MEMBER_EMAIL }" maxlength="12" readonly="">
+									<input type="text" name="sendPhone" id="sendPhone" class="ipt6 w206" value="${member.MEMBER_EMAIL}" maxlength="12" readonly="">
 								</span>
-							</p>
-							<p class="sendSetting">
-								<label for="send_name">보낼 메시지</label>
-								<span class="writeBox">
-									<input type="text" id="orderName" name="orderName" class="ipt5 w972" placeholder="** 프로모션 관리용(수신자에게 전달되지 않는 메시지입니다 ex)12월 도넛북 리그램 이벤트) 최대40byte **">
-									<span class="byteNum">(<em id="orderNameByte">2</em>/40byte)</span>
-								</span>
-							</p>
-							
+							</p>					
 						</div>
 
 						<!-- /end:res_send -->
@@ -105,7 +114,7 @@
 							<ul class="payInfo">
 								<li>
 									<span class="tit mtNone">총 결제금액</span>
-									<span class="txt mtNone"><span id="totalPriceTxt">0</span>원</span>
+									<span class="txt mtNone"><span id="totalPriceTxt">${goods.GOODS_PRICE}</span>원</span>
 								</li>
 								<li>
 									<span class="tit">결제수단선택</span>
@@ -135,19 +144,20 @@
 									<div class="lastDetail">
 										<p class="contInfo">
 											<span class="tit">총 결제금액</span>
-											<span class="txt"><span id="totalAmtTxt">0</span>원</span>
+											<span class="txt"><span id="totalAmtTxt">${goods.GOODS_PRICE}</span>원</span>
 										</p>
 										<p class="contInfo">
 											<span class="tit">할인금액</span>
-											<span class="txt">(-)<span id="usePointAmtTxt">0</span>원</span>
+											<span class="txt">(-)<span id="usePointAmtTxt">${goods.GOODS_DCPRICE}</span>원</span>
 										</p>
 
 									</div>
+									
 									<div class="lastPayMoney">
-
+										
 										<p class="contInfo">
 											<span class="tit">결제금액</span>
-											<span class="txt"><span id="billAmtTxt">0</span>원</span>
+											<span class="txt"><span id="billAmtTxt">${totalPrice}</span>원</span>
 										</p>
 									</div>
 								</div>
@@ -157,8 +167,10 @@
 					</div>
 					<!-- /end:send_step03 -->
 					<!-- start:btn_more -->
+					<form id="order">
 					<div class="btn1"><a href="javascript:goOrder();" id="btnOrder" class="btnBigBgBlue4 w300">주문하기</a></div>
 					<!-- /end:btn_more -->
+					</form>
 				</div>
 			</div>
 </body>

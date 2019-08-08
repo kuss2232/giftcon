@@ -155,7 +155,7 @@ $(function () {
 			<div class="gnbBox">
 				<ul class="menu">
 					<li>
-						<a href="/goods/mainShop.do" title="모바일쿠폰샵 바로가기" class="">모바일쿠폰샵</a>
+						<a href="/giftcon/goods/list.conn" title="모바일쿠폰샵 바로가기" class="">모바일쿠폰샵</a>
 						<ul class="smenu s01" style="display: none;">
 							<li>
 								<a href="/goods/mainShop.do" class="first">전체상품보기</a>

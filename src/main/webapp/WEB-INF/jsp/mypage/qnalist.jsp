@@ -4,7 +4,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
-<head><style>
+<head>
+<style>
 div.paginate > div > a.disabled:hover {border: 1px solid #ddd;}
 </style>
 

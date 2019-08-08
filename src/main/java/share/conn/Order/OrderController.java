@@ -35,10 +35,24 @@ public class OrderController {
 		Map<String, Object> member = orderService.memberInfo(commandMap.getMap());
 		//상품정보
 		
+		
 		Map<String, Object> goods = orderService.goodsInfo(commandMap.getMap());
-		System.out.println("바바" + goods.get("GOODS_IMG1"));
 		mv.addObject("member",member);
 		mv.addObject("goods",goods);
+		
+		if(goods.get("GOODS_DCPRICE") == null) {
+			totalPrice = (Integer) Integer.parseInt(goods.get("GOODS_PRICE").toString());
+		}
+		if(goods.get("GOODS_DCPRICE") != null) {
+			if(Integer.parseInt(goods.get("GOODS_DCPRICE").toString()) > 0)
+				totalPrice = Integer.parseInt(goods.get("GOODS_DCPRICE").toString());
+			else
+				totalPrice = Integer.parseInt(goods.get("GOODS_PRICE").toString());
+		}
+		mv.addObject("totalPrice",totalPrice);
+		
+		
+		
 		
 		
 		
