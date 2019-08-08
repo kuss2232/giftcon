@@ -170,13 +170,13 @@ $(function () {
 						</ul>
 					</li>
 					<li>
-						<a href="/giftcon/eventList.conn" title="기획전/이벤트 바로가기" class="">이벤트</a>
+						<a href="/giftcon/adminEventList.conn" title="기획전/이벤트 바로가기" class="">이벤트</a>
 						<ul class="smenu s02" style="display: none;">
 							<li>
 								<a href="/contents/promotionList.do" class="first">기획/테마전</a>
 							</li>
 							<li>
-								<a href="/contents/eventList.do" class="first">이벤트</a>
+								<a href="/giftcon/adminEventList.conn" class="first">이벤트</a>
 							</li>
 							<li>
 								<a href="/contents/eventNoticeList.do">당첨자발표</a>
