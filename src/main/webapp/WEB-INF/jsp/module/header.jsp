@@ -114,12 +114,12 @@ $(function () {
 				<a href="/giftcon/main.conn">
 				<img src="/giftcon/css/main.png" alt="쉐어콘"></a></h1>
 				<div class="searchBox">
-					<form id="goodsHeaderForm" name="goodsHeaderForm" action="/goods/searchList.do" method="GET">
+					<form id="goodsHeaderForm" name="goodsHeaderForm" action="/giftcon/goods/searchList.conn" method="GET">
 						<fieldset>
 							<legend>검색 바</legend>
 							<label class="blind" for="search_txt">검색어 입력</label>
 							<div>
-								<input id="search_txt" name="searchKey" type="text" value="">
+								<input id="SearchKeyword" name="SearchKeyword" type="text" value="">
 								<button class="btnSearch" type="submit">검색</button>
 							</div>
 						</fieldset>
