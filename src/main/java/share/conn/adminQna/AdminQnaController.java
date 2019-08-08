@@ -63,7 +63,7 @@ public class AdminQnaController {
 				adQnaList = adminQnaService.qnaTitleSearch(commandMap.getMap());
 				totalCount = adQnaList.size();
 			}
-			page = new AdminQNAPaging(currentPage, totalCount, blockCount, blockPage, "adminQnaList0", searchNum, SearchKeyword);
+			page = new AdminQNAPaging(currentPage, totalCount, blockCount, blockPage, "adminQnaList.conn", searchNum, SearchKeyword);
 			pagingHtml = page.getPagingHtml().toString();
 			System.out.println("aaaaa"+pagingHtml);
 			int lastCount = totalCount;

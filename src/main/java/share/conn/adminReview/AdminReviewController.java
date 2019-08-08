@@ -22,7 +22,6 @@ public class AdminReviewController {
 	
 	private int totalCount;
 	private int searchNum;
-	
 	private Integer categoryNum;
 	private String SearchKeyword;
 	
@@ -44,37 +43,62 @@ public class AdminReviewController {
 		
 		SearchKeyword = request.getParameter("SearchKeyword");
 		String str = request.getParameter("searchNum");
-		if(str != null)
-			searchNum =  Integer.parseInt(str);
+		if(str != null)searchNum =  Integer.parseInt(str);
+		
+		if (request.getParameter("currentPage") == null || request.getParameter("currentPage").trim().isEmpty()
+				|| request.getParameter("currentPage").equals("0")) {
+			currentPage = 1;
+		} else {
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		}
+		totalCount = reviewList.size();
 		
 		if(SearchKeyword != null ) {
 			if(searchNum == 0) {// 아이디로검색
-//				System.out.println("검색번호:::::::::::::"+ commandMap.get("searchNum"));
-//				System.out.println("검색어 ::::::::::::::" + commandMap.get("SearchKeyword"));
 				reviewList = adminReviewService.searchReviewList(commandMap.getMap()); 
-//				count = adminReviewService.reviewCount(commandMap.getMap());
+				totalCount = reviewList.size();
 			
 			}else if(searchNum == 1) {//상품명으로 검색
-				System.out.println("검색번호:::::::::::::"+ commandMap.get("searchNum"));
-				System.out.println("검색어 ::::::::::::::" + commandMap.get("SearchKeyword"));
 				reviewList = adminReviewService.searchReviewList(commandMap.getMap()); 
-//				count = adminReviewService.reviewCount(commandMap.getMap());
+				totalCount = reviewList.size();
 			}
-			mv.addObject("reviewList",reviewList);
-			mv.addObject("count", count.get("CNT"));
-		}else {
-			reviewList = adminReviewService.reviewList(commandMap.getMap()); 
-			count = adminReviewService.reviewCount(commandMap.getMap());
 			
+			page = new AdminQNAPaging(currentPage, totalCount, blockCount, blockPage, "/giftcon/adminReviewList.conn", searchNum, SearchKeyword);
+			pagingHtml = page.getPagingHtml().toString();
+			int lastCount = totalCount;
+			
+			if(page.getEndCount() < totalCount)
+				lastCount = page.getEndCount()+1;
+			
+			reviewList = reviewList.subList(page.getStartCount(), lastCount);
+			
+			mv.addObject("Searchkeyword", SearchKeyword);
+			mv.addObject("pagingHtml",pagingHtml);
 			mv.addObject("reviewList",reviewList);
-			mv.addObject("count", count.get("CNT"));
+			mv.addObject("count", totalCount);
+		}else {
+			totalCount = reviewList.size();
+			
+			page = new AdminQNAPaging(currentPage, totalCount, blockCount, blockPage, "/giftcon/adminReviewList.conn");
+			pagingHtml = page.getPagingHtml().toString();
+			
+			int lastCount = totalCount;
+			
+			if(page.getEndCount() < totalCount)
+				lastCount = page.getEndCount()+1;
+			
+			reviewList =  reviewList.subList(page.getStartCount(), lastCount);
+			
+			mv.addObject("pagingHtml",pagingHtml);
+			mv.addObject("reviewList",reviewList);
+			mv.addObject("count", totalCount);
 		}
 
 		
-		mv.addObject("searchNum",searchNum);
-		mv.addObject("SearchKeyword",SearchKeyword);
-		 
-		
+		/*
+		 * mv.addObject("searchNum",searchNum);
+		 * mv.addObject("SearchKeyword",SearchKeyword);
+		 */
 //		System.out.println("reviewCount-------------"+ count.get("CNT"));
 		return mv;
 	}
