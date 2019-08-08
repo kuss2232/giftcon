@@ -4,6 +4,8 @@
 <!DOCTYPE html>
 <html>
 <link rel="stylesheet" type="text/css" href="/giftcon/css/jquery/bootstrapadmin.min.css">
+<script type="text/javascript" src="/giftcon/css/common.js"></script>
+<script src="/giftcon/css/jquery/jquery-1.12.4.min.js"></script>
 <body>
 <div class="row" style="padding-left:15px;width:900px;">    
 	<h1 class="page-header">장바구니목록</h1>
@@ -79,6 +81,7 @@
 									</c:if> 
 								</tbody>
 							</table>
+							<input type="hidden" value="${MEMBER_NUM}" id="MEMBER_NUM">
 							</form>
 						</div>
 						<div align="right">
@@ -118,20 +121,11 @@ function fn_AmountModify(num){
 		}
 	})
 }
-function fn_orderAll()
-{
-	$.ajax({
-		type : "POST",
-		url : "/giftcon/orderAll.conn",
-		data : {"MEMBER_NUM":num},
-		error : function(erromr) {
-			alert("서버가 응답하지 않습니다. \n다시 시도해주시기 바랍니다.");
-		},
-		success : function() {
-			alert("결제되었습니다.");
-			location.href="/giftcon/orderForm.conn";
-		}
-	})
+function fn_orderAll(member_num){
+	var comSubmit = new ComSubmit('frm');
+	comSubmit.setUrl("/giftcon/orderForm.conn");
+	comSubmit.addParam("MEMBER_NUM",$("#MEMBER_NUM").val());
+	comSubmit.submit();
 }
 
 function fn_delete(num)

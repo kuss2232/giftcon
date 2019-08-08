@@ -23,4 +23,14 @@ public class OrderServiceImpl implements OrderService{
 	public Map<String, Object> goodsInfo(Map<String, Object> map)throws Exception{
 		return orderDAO.goodsInfo(map);
 	}
+	
+	@Override
+	public void inserOrder(Map<String, Object> map) throws Exception{
+		orderDAO.insertOrder(map);
+	}
+	
+	
+	public List<Map<String, Object>> cartOrderList(Map<String, Object> map) throws Exception{
+		return orderDAO.cartOrderList(map);
+	}
 }

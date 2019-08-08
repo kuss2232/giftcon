@@ -38,8 +38,8 @@ public class CartDAO extends AbstractDAO{
 		return (Integer)selectOne("cart.cartCount");
 	}
 	
-	public Object addOrderToCart() throws Exception{
-		return insert("cart.addOrderToCart");
+	public Object addOrderToCart(Map<String,Object> map) throws Exception{
+		return insert("cart.addOrderToCart",map);
 	}
 
 }

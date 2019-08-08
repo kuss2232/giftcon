@@ -16,10 +16,21 @@ public class OrderDAO extends AbstractDAO{
 		return (Map<String, Object>)selectOne("memberInfo.selectMember", map);
 	}
 	
-	@SuppressWarnings("unchecked")
+	
 	public Map<String, Object> goodsInfo(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return (Map<String, Object>)selectOne("memberGoods.goodsInfo", map);
+		return selectOne1("memberGoods.goodsInfo", map);
+	}
+
+	public Object insertOrder(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return insert("memberGoods.createOrder", map);
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> cartOrderList(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return selectList("cart.cartList", map);
 	}
 
 }

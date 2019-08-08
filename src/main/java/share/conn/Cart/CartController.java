@@ -75,6 +75,7 @@ public class CartController {
 		mv.addObject("totalCount", totalCount);
 		mv.addObject("pagingHtml", pagingHtml);
 		mv.addObject("currentPage", currentPage);
+		mv.addObject("MEMBER_NUM", str);
 
 		mv.addObject("cartList", cartList);
 		mv.setViewName("mypage/cartList");

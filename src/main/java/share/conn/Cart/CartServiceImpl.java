@@ -53,7 +53,7 @@ public class CartServiceImpl implements CartService{
 
 	@Override
 	public void addOrderToCart(Map<String, Object> map) throws Exception {
-		cartDAO.addOrderToCart();
+		cartDAO.addOrderToCart(map);
 	}
 
 }
