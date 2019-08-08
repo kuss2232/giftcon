@@ -116,7 +116,7 @@ function BIG_CATEGORYChange(frm) {
 				<tr>
 					<th scope="row">카테고리</th>
 					<td>
-						<select id="BIG_CATEGORY" name="BIG_CATEGORY" onchange="BIG_CATEGORYChange(this.form);" size=1>
+						<select id="BIG_CATEGORY" name="BIG_CATEGORY" onchange="BIG_CATEGORYChange();" size=1>
 						<OPTION value=''>대분류</OPTION>
 						<OPTION value='치킨/피자/버거'>치킨/피자/버거</OPTION>
 						<OPTION value='커피/음료'>커피/음료</OPTION>
@@ -125,7 +125,7 @@ function BIG_CATEGORYChange(frm) {
 						<OPTION value='편의점/마트'>편의점/마트</OPTION>
 						 
 						</select>
-						<SELECT id="SMALL_CATEGORY" name="SMALL_CATEGORY" onchange="SMALL_CATEGORYChange(this.form);" size=1>
+						<SELECT id="SMALL_CATEGORY" name="SMALL_CATEGORY" size=1>
 						 <OPTION value=''>대분류를 먼저 선택하세요</OPTION>
 						</SELECT>
 					</td>
@@ -158,10 +158,6 @@ function BIG_CATEGORYChange(frm) {
 				<tr>
 					<th scope="row">이미지2</th>
 					<td><input type="file" id="GOODS_IMG2" name="GOODS_IMG2"></td>
-				</tr>
-				<tr>
-					<th scope="row">이미지3</th>
-					<td><input type="file" id="GOODS_IMG3" name="GOODS_IMG3"></td>
 				</tr>
 			</tbody>
 		</table>
