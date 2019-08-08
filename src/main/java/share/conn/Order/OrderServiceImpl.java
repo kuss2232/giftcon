@@ -33,4 +33,8 @@ public class OrderServiceImpl implements OrderService{
 	public List<Map<String, Object>> cartOrderList(Map<String, Object> map) throws Exception{
 		return orderDAO.cartOrderList(map);
 	}
+	
+	public List<Map<String, Object>> orderList(Map<String, Object> map)throws Exception{
+		return orderDAO.orderList();
+	}
 }

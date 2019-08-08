@@ -1,34 +1,35 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="../module/header.jsp"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="EUC-KR">
 <title>Insert title here</title>
 </head>
 <body>
 <div class="subWrap">
 				<div class="subLayout">
 					<!-- start:Tab -->
-					
-
-
-
 <ul class="subTab">
-	<li><a href="/mypage/orderList.do" class="on">주문상세내역</a></li>
-	<li><a href="/mypage/sendList.do">발송내역조회</a></li>
-</ul>
+				<li><a href="/giftcon/mypage.conn">회원정보수정</a></li>
+				<li><a href="/giftcon/userPwChgForm.conn">비밀번호변경</a></li>
+				<li><a href="/giftcon/myQnalist.conn" >나의 문의 이력</a></li>
+				<li><a href="/giftcon/myQnalist.conn"class="on">주문 내역</a></li>
+				<li><a href="/mypage/addrGroupList.do">주소록 관리</a></li>
+			</ul>
 					<!-- /end:Tab -->
 					<!-- start:searchBox -->
-					<form id="searchFrm" name="searchFrm" method="get">
+<!-- 					<form id="searchFrm" name="searchFrm" method="get">
 					<div class="mySearch1 mb30">
 						<div class="mr46 searchArea">
 							<div>
 								<label>조회기간</label>
 								<p>
-									<span class="iptCal"><input id="searchStYmd" name="searchStYmd" value="2019-07-05" type="text" class="ui-datepicker-trigger hasDatepicker" readonly=""><a href="#" class="btnCalendar">달력</a></span> ~ 
-									<span class="iptCal"><input id="searchEnYmd" name="searchEnYmd" value="2019-08-05" type="text" class="ui-datepicker-trigger hasDatepicker" readonly=""><a href="#" class="btnCalendar">달력</a></span>
+									<span class="iptCal"><input id="searchStYmd" name="searchStYmd" value="2019-07-08" type="text" class="ui-datepicker-trigger hasDatepicker" readonly=""><a href="#" class="btnCalendar">달력</a></span> ~ 
+									<span class="iptCal"><input id="searchEnYmd" name="searchEnYmd" value="2019-08-08" type="text" class="ui-datepicker-trigger hasDatepicker" readonly=""><a href="#" class="btnCalendar">달력</a></span>
 								</p>
 							</div>
 						</div>
@@ -49,7 +50,7 @@
 						* 발송완료 : 통신사로부터 발송결과가 모두 수신된 상태
 						</p>
 					</div>
-					</form>
+					</form> -->
 					<!-- /end:searchBox -->
 					
 						
@@ -64,7 +65,7 @@
 				  		<col width="5%">
 				  		<col width="8%">
 				  		<col width="7%">
-				  		<col width="7%">
+				  		
 				  		<col width="7%">
 				  		<col width="7%">
 				  		<col width="8%">
@@ -76,19 +77,20 @@
 						  <th>주문상품</th>
 						  <th>수량</th>
 						  <th>총 금액</th>
-						  <th>결제금액</th>
-						  <th>적립금</th>
-						  <th>도넛</th>
-						  <th>적립금 환급</th>
+						  <th>이미지</th>
 						  <th class="last">주문상태</th>
 						</tr>
-						 
-							
-							
+							<c:forEach var="list" items="${list}">
 								<tr>
-						 			<td class="last" colspan="10">주문상세내역이 없습니다.</td>						  
-								</tr>							
-							
+						 			<td ><fmt:formatDate value="${list.ORDER_DATE }" type="date"/></td>
+						 			<td >${list.MEMBER_ID }</td>
+						 			<td >${list.GOODS_NAME }</td>
+						 			<td >${list.ORDER_AMOUNT_SUM }</td>
+						 			<td >${list.ORDER_PAY_SUM }</td>
+						 			<td ><img alt="this.src='/giftcon/images/XBox.png'" src="${list.GOODS_IMG }"></td>
+						 			<td >${list.ORDER_PAYMENT }</td>
+								</tr>
+							</c:forEach>							
 						
 					  </tbody>
 					</table>
@@ -98,8 +100,6 @@
 						<ul class="numList"></ul>
 					</div>
 					<!-- /end:paginate -->						
-						
-					
 
 				</div>
 			</div>
