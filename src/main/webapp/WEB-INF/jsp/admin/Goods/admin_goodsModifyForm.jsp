@@ -194,25 +194,26 @@ function BIG_CATEGORYChange() {
 				<tr>
 					<th scope="row">물량 수정</th>
 					<td><input type="text" id="GOODS_AMOUNT" name="GOODS_AMOUNT" class="wdp_90" value="${goodsBasic.GOODS_AMOUNT}"></input></td>
+					<c:if test="${GOODS_AMOUNT == 0}">
+					<input type="hidden" id="GOODS_SOLDOUT" name="GOODS_SOLDOUT" value="Y">
+					</c:if>
+					<c:if test="${GOODS_AMOUNT != 0}">
+					<input type="hidden" id="GOODS_SOLDOUT" name="GOODS_SOLDOUT" value="N">
+					</c:if>
 				</tr>
 				<tr>
 				<td colspan="4">
 				<div id="fileDiv">
 					<c:forEach var="goodsImage"  items="${goodsImage}" varStatus="stat">
-						<input type="hidden" name="ORIGINAL_IMAGE1" value="${goodsImage.GOODS_IMG1}">
-						<input type="hidden" name="ORIGINAL_IMAGE2" value="${goodsImage.GOODS_IMG2}">
-						<input type="hidden" name="ORIGINAL_IMAGE3" value="${goodsImage.GOODS_IMG3}">
+						<input type="hidden" name="ORIGINAL_IMG1" value="${goodsImage.GOODS_IMG1}">
+						<input type="hidden" name="ORIGINAL_IMG2" value="${goodsImage.GOODS_IMG2}">
 						<p>
 						기존 이미지1 : <img src="/MODA/file/goodsFile/${goodsImage.GOODS_IMG1}" width="60" height="60" alt=""  onerror="this.src='/MODA/file/noimg_130.gif'" /> <br/>
-						<input type="file" id="file" name="MODIFY_IMAGE_${goodsImage.GOODS_IMG1}">
+						<input type="file" id="file" name="MODIFY_IMG_${goodsImage.GOODS_IMG1}">
 						<input type="hidden" name="${goodsImage.GOODS_IMG1}" value="1">
 						기존 이미지2 : <img src="/MODA/file/goodsFile/${goodsImage.GOODS_IMG2}" width="60" height="60" alt=""  onerror="this.src='/MODA/file/noimg_130.gif'" /> <br/>
-						<input type="file" id="file" name="MODIFY_IMAGE_${goodsImage.GOODS_IMG2}">
+						<input type="file" id="file" name="MODIFY_IMG_${goodsImage.GOODS_IMG2}">
 						<input type="hidden" name="${goodsImage.GOODS_IMG2}" value="2">
-						기존 이미지3 : <img src="/MODA/file/goodsFile/${goodsImage.GOODS_IMG3}" width="60" height="60" alt=""  onerror="this.src='/MODA/file/noimg_130.gif'" /> <br/>
-						<input type="file" id="file" name="MODIFY_IMAGE_${goodsImage.GOODS_IMG3}">
-						<input type="hidden" name="${goodsImage.GOODS_IMG3}" value="3">
-						※업로드시 기존 이미지는 삭제됩니다.
 						</p>
 					</c:forEach>
 				</div>

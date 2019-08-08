@@ -3,8 +3,10 @@ package share.conn.giftcon;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import share.conn.giftcon.CommonsUtils;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -19,18 +21,18 @@ public class GoodsImageUtils {
    //filePath2= 공지사항 파일 경로
    private static final String filePath2 = "C:\\java\\maven-app\\MODA\\src\\main\\webapp\\file\\noticeFile\\";
    //filePath3= 이벤트 파일 경로
-   private static final String filePath3 = "D:\\java\\Git\\giftcon\\src\\main\\webapp\\file\\Eventfile\\";
+   private static final String filePath3 = "D:\\java\\giftcon2\\src\\main\\webapp\\resources\\file\\Eventfile\\";
    //filePath5= QNA 파일 경로
    private static final String filePath5 = "C:\\java\\maven-app\\MODA\\src\\main\\webapp\\file\\qnaFile\\";
    
    // 상품 썸네일 이미지 등록
-   public Map<String, Object> goodsIMG1(Map<String, Object> map, HttpServletRequest request) throws Exception {
+   public Map<String, Object> goodsThumbnail(Map<String, Object> map, HttpServletRequest request) throws Exception {
 
       MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
 
-      if (multipartHttpServletRequest.getFile("GOODS_IMG1") != null) {
-         MultipartFile file = multipartHttpServletRequest.getFile("GOODS_IMG1");
-         String fileName = "GoodsIMG1_" + map.get("GOODS_NUM");
+      if (multipartHttpServletRequest.getFile("GOODS_THUMBNAIL") != null) {
+         MultipartFile file = multipartHttpServletRequest.getFile("GOODS_THUMBNAIL");
+         String fileName = "Thumbnail_" + map.get("GOODS_NUMBER").toString();
 
          String IMAGEExtension = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
          
@@ -47,32 +49,11 @@ public class GoodsImageUtils {
          } catch (Exception e) {
 
          }
-         map.put("GOODS_IMG1", fileName + IMAGEExtension);
+         map.put("GOODS_THUMBNAIL", fileName + IMAGEExtension);
       }
-      if (multipartHttpServletRequest.getFile("GOODS_IMG2") != null) {
-          MultipartFile file = multipartHttpServletRequest.getFile("GOODS_IMG2");
-          String fileName = "GoodsIMG2_" + map.get("GOODS_NUM");
-
-          String IMAGEExtension = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
-          
-          File file2 = new File(filePath);
-          if (file2.exists() == false) {
-             file2.mkdirs(); // 폴더가 존재하지 않으면 폴더 생성
-          }
-
-          
-          File uploadFile = new File(filePath + fileName + IMAGEExtension);
-
-          try {
-             file.transferTo(uploadFile);
-          } catch (Exception e) {
-
-          }
-          map.put("GOODS_IMG2", fileName + IMAGEExtension);
-       }
       return map;
    }
-   
+
    // 상품이미지 등록
    public List<Map<String, Object>> parseInsertFileInfo(Map<String, Object> map, HttpServletRequest request)
          throws Exception {
@@ -88,7 +69,7 @@ public class GoodsImageUtils {
          String IMAGE = null;
          String IMAGEExtension = null;
 
-         String GOODS_NUM = map.get("GOODS_NUM").toString();
+         String GOODS_NUMBER = map.get("GOODS_NUMBER").toString();
 
          File file = new File(filePath);
          if (file.exists() == false) {
@@ -100,7 +81,7 @@ public class GoodsImageUtils {
             if (multipartFile.isEmpty() == false) {
                IMAGEExtension = multipartFile.getOriginalFilename()
                      .substring(multipartFile.getOriginalFilename().lastIndexOf("."));
-               IMAGE = "IMAGE_" + GOODS_NUM + "_" + System.currentTimeMillis() + IMAGEExtension;
+               IMAGE = "IMAGE_" + GOODS_NUMBER + "_" + System.currentTimeMillis() + IMAGEExtension;
 
                file = new File(filePath + IMAGE);
                multipartFile.transferTo(file);
@@ -125,7 +106,7 @@ public class GoodsImageUtils {
       MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
       MultipartFile file = multipartHttpServletRequest.getFile("GOODS_THUMBNAIL");
 
-      String fileName = "Thumbnail_" + map.get("GOODS_NUM").toString();
+      String fileName = "Thumbnail_" + map.get("GOODS_NUMBER").toString();
 
       String IMAGEExtension = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
 
@@ -186,7 +167,7 @@ public class GoodsImageUtils {
                listMap.put("IMAGE", a.substring(0, a.lastIndexOf(".")) + IMAGEExtension);
                listMap.put("ORIGINAL_IMAGE", a);
 
-               listMap.put("GOODS_NUM", map.get("GOODS_NUM"));
+               listMap.put("GOODS_NUMBER", map.get("GOODS_NUMBER"));
                list.add(listMap);
             }
          }
@@ -285,57 +266,74 @@ public class GoodsImageUtils {
    }
    
    //Event 이미지 등록
-      public List<Map<String, Object>> eventImage(Map<String, Object> map, HttpServletRequest request)
+      public List<Map<String, Object>> InsertEventImage(Map<String, Object> map, HttpServletRequest request)
             throws Exception {
 
          MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
+         //받아온 이미지 파일 이름 iterator에 저장
+         Iterator<String> iterator =  multipartHttpServletRequest.getFileNames();
 
-         List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+         MultipartFile multipartFile = null;
+         String originalFileName = null;
+         String originalFileExtension = null;
+         String storedFileName = null;
+              
+          List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
          Map<String, Object> listMap = null;
-
-         if (multipartHttpServletRequest.getFiles("EVENT_IMAGE*") != null) {
-            List<MultipartFile> imageFile = multipartHttpServletRequest.getFiles("EVENT_IMG1");
-
-            String IMAGE = null;
-            String IMAGEExtension = null;
-
-            String EVENT_NUM = map.get("EVENT_NUM").toString();
-
-            File file = new File(filePath3);
-            if (file.exists() == false) {
-               file.mkdirs(); // 폴더가 존재하지 않으면 폴더 생성
-            }
-
-            for (MultipartFile multipartFile : imageFile) {
-
-               if (multipartFile.isEmpty() == false) {
-                  IMAGEExtension = multipartFile.getOriginalFilename()
-                        .substring(multipartFile.getOriginalFilename().lastIndexOf("."));
-                  IMAGE = "EVENT_IMG1" + EVENT_NUM + IMAGEExtension;
-
-                  file = new File(filePath3 + IMAGE);
-                  multipartFile.transferTo(file);
-
-                  listMap = new HashMap<String, Object>();
-                  listMap.put("EVENT_IMG1", IMAGE);
-
-                  listMap.put("EVENT_NUM", map.get("EVENT_NUM"));
-                  list.add(listMap);
-               }
-            }
-            return list;
-         } else {
-            return list;
+         
+		/* String EVENT_NUM = map.get("EVENT_NUM").toString(); */
+         
+         File eventfile = new File(filePath3);
+         if (eventfile.exists() == false) {
+            eventfile.mkdirs(); // 폴더가 존재하지 않으면 폴더 생성
+         }         
+         while(iterator.hasNext()){ 
+        	 multipartFile = multipartHttpServletRequest.getFile(iterator.next());
+        	 if(multipartFile.isEmpty() == false){ 
+        		 //받아온 이미지 파일 이름을 originalFileName에 저장
+        		 originalFileName = multipartFile.getOriginalFilename(); 
+        		 originalFileExtension = originalFileName.substring(originalFileName.lastIndexOf(".")); 
+        		 if(storedFileName == null)
+        		 {
+        			 storedFileName = CommonsUtils.getRandomString() + originalFileExtension; 
+        			 eventfile = new File(filePath3 + storedFileName); 
+        		 }
+        		 else
+        		 {
+        			 String str = CommonsUtils.getRandomString() + originalFileExtension; 
+        			 storedFileName = storedFileName +","+ str;
+        			 eventfile = new File(filePath3 + str); 
+        		 }
+        		 
+        		 multipartFile.transferTo(eventfile); 
+        	 
+        		   } 
+        	 } 
+         listMap = new HashMap<String,Object>();
+			/* listMap.put("EVENT_NUM", EVENT_NUM); */
+ 		 listMap.put("EVENT_IMG", storedFileName);
+ 		 listMap.put("EVENT_TITLE",map.get("EVENT_TITLE"));
+ 		 listMap.put("EVENT_START",map.get("EVENT_START"));
+ 		 listMap.put("EVENT_END",map.get("EVENT_END"));
+			
+ 		 list.add(listMap);
+         return list;
          }
-      }
+
+        
+
+        
+
+        
+         
 
    // EVENT 이미지 수정
    public Map<String, Object> faqModifyImage(Map<String, Object> map, HttpServletRequest request) throws Exception {
 
       MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
-      MultipartFile file = multipartHttpServletRequest.getFile("EVENT_IMAGE*");
+      MultipartFile file = multipartHttpServletRequest.getFile("EVENT_IMG*");
 
-      String fileName = "EVENT_IMAGE_" + map.get("EVENT_NUM").toString();
+      String fileName = "EVENT_IMG_" + map.get("EVENT_NUM").toString();
       String IMAGEExtension = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
 
       File uploadFile = new File(filePath3 + fileName + IMAGEExtension);
@@ -352,7 +350,7 @@ public class GoodsImageUtils {
 
       }
 
-      map.put("EVENT_IMAGE*", fileName + IMAGEExtension);
+      map.put("EVENT_IMG", fileName + IMAGEExtension);
 
       System.out.println("EVENT 이미지 수정완료");
       return map;
@@ -386,4 +384,9 @@ public class GoodsImageUtils {
       System.out.println("공지사항 이미지 수정완료");
       return map;
    }
+
+public void goodsIMG1(Map<String, Object> map, HttpServletRequest request) {
+	// TODO Auto-generated method stub
+	
+}
 } 

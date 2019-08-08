@@ -21,8 +21,8 @@
 		REVIEW R, MEMBER M, GOODS G, GOODS_IMG F
 	WHERE
 		M.MEMBER_NUM=R.MEMBER_NUM 
-		AND R.GOODS_NUM=G.GOODS_NUM
-		AND G.GOODS_NUM=F.GOODS_NUM
+		AND G.GOODS_NUM=R.GOODS_NUM
+		AND F.GOODS_NUM=R.GOODS_NUM
 	ORDER BY
 		REVIEW_NUM DESC
       ]]>
@@ -69,32 +69,31 @@
 	
 	<!-- 관리자 리뷰 수 -->
 	<select id="reviewCount" resultType="hashmap">
-		<choose>
-			
-			<when test="searchNum != null and searchNum.equals(0)">
+<!-- 		<choose>
+			<when test='searchNum.equals("0")'>
 			SELECT
-				COUNT(A.REVIEW_NUM)
+				COUNT(A.REVIEW_NUM) AS CNT
 			FROM
 				REVIEW A, GOODS B
 			WHERE
 				A.GOODS_NUM = B.GOODS_NUM
 				AND GOODS_NAME = LIKE '%' || #{SearchKeyword} || '%'
 			</when>
-			<when test="searchNum != null and searchNum.equals(1)">
+			<when test='searchNum.equals("1")'>
 			SELECT
-				COUNT(A.REVIEW_NUM)
+				COUNT(A.REVIEW_NUM) AS CNT
 			FROM
 				REVIEW A, MEMBER B
 			WHERE
 				A.MEMBER_NUM = B.MEMBER_NUM
 				AND MEMBER_ID = LIKE '%' || #{SearchKeyword} || '%'
 			</when>
-			<otherwise>
+			<otherwise> -->
 			SELECT
 				COUNT(A.REVIEW_NUM) AS CNT
 			FROM
 				REVIEW A
-			</otherwise>
-		</choose>
+<!-- 			</otherwise>
+		</choose> -->
 	</select>
 </mapper>

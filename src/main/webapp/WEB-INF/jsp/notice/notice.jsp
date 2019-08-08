@@ -11,9 +11,7 @@
 <style>
 div.paging > div > a.disabled:hover {border: 1px solid #ddd;}
 </style>
-<link rel="stylesheet" type="text/css" href="/giftcon/css/common.css">
-<link rel="stylesheet" type="text/css" href="/giftcon/css/jquery/swiper.min.css">
-<link rel="stylesheet" type="text/css" href="/giftcon/css/sub.css">
+
 <script type="text/javascript" src="/giftcon/css/jquery/swiper.min.js"></script>
 </head>
 <body>
