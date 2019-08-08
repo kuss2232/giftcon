@@ -28,7 +28,13 @@ public class AdminGoodsServiceImpl implements AdminGoodsService {
    public List<Map<String, Object>> adGoodsList() throws Exception {
       return adminGoodsDAO.adGoodsList();
    }
-
+   
+   //빅카테고리 리스트
+   public List<Map<String, Object>> adCategory1GoodsList(String isSearch) throws Exception {
+	   List<Map<String, Object>> goodsList = adminGoodsDAO.adCategory1GoodsList(isSearch);
+	   return goodsList;
+   }
+   
    // 전체 상품 수
    @Override
    public Integer adAllGoodsNum() throws Exception {

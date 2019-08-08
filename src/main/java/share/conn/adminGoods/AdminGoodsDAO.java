@@ -14,7 +14,12 @@ public class AdminGoodsDAO extends AbstractDAO {
    public List<Map<String, Object>> adGoodsList() throws Exception {
       return selectList("adminGoods.adGoodsList");
    }
-
+   
+   //빅카테고리 상품리스트
+   public List<Map<String, Object>> adCategory1GoodsList(String isSearch) throws Exception {
+	   return (List<Map<String, Object>>) selectList("adminGoods.adCategory1GoodsList", isSearch);
+   }
+   
    // 전체 상품수
    public Integer adAllGoodsNum() throws Exception {
       return (Integer) selectOne("adminGoods.adAllGoodsNum");

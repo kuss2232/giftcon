@@ -9,7 +9,10 @@ public interface AdminGoodsService {
 
 	// 상품 리스트
 	public List<Map<String, Object>> adGoodsList() throws Exception;
-
+	
+	//빅카테고리 리스트
+	public List<Map<String, Object>> adCategory1GoodsList(String isSearch) throws Exception;
+	
 	// 전체 상품 수
 	public Integer adAllGoodsNum() throws Exception;
 	
