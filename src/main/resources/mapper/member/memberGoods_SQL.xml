@@ -33,7 +33,6 @@
 
 <!-- 카테고리 별 많이 본 순 -->
 <select id="categoryGoodsBest" parameterType="hashmap" resultType="hashmap">
-<![CDATA[
 	SELECT
  		A.GOODS_NUM,
  		A.GOODS_NAME,
@@ -52,15 +51,16 @@
  WHERE
 		A.GOODS_NUM = B.GOODS_NUM
 		AND A.CATEGORY_NUM = C.CATEGORY_NUM
-		AND A.CATEGORY_NUM = #{CATEGORY_NUM}
+		AND A.CATEGORY_NUM IN 
+	<foreach collection="category" item="Num" separator="," open="(" close=")">
+		#{Num}
+	</foreach>
  ORDER BY 
  		A.GOODS_HITCOUNT DESC
-]]>
 </select>
 
 <!-- 카테고리별 평점순 -->
 <select id="categoryGoodsGrade" parameterType="hashmap" resultType="hashmap">
-<![CDATA[
 SELECT 
 	A.GOODS_NUM, A.GOODS_NAME, 
 	A.GOODS_PRICE, A.GOODS_DCPRICE, 
@@ -70,18 +70,20 @@ SELECT
 FROM 
 	GOODS A, GOODS_IMG B, REVIEW C, CATEGORY D
 WHERE 
-	A.CATEGORY_NUM = #{CATEGORY_NUM} 
-	AND A.GOODS_NUM = B.GOODS_NUM
+	A.GOODS_NUM = B.GOODS_NUM
 	AND A.GOODS_NUM = C.GOODS_NUM
 	AND A.CATEGORY_NUM = D.CATEGORY_NUM
+	AND A.CATEGORY_NUM IN 
+<foreach collection="category" item="Num" separator="," open="(" close=")">
+	#{Num}
+</foreach>    
 GROUP BY 
 	A.GOODS_NUM, A.GOODS_NAME, A.GOODS_PRICE, 
 	A.GOODS_DCPRICE, A.GOODS_SIMPLE, A.CATEGORY_NUM,
 	A.GOODS_SOLDOUT, A.GOODS_HITCOUNT, B.GOODS_IMG1,
 	D.BIG_CATEGORY, D.SMALL_CATEGORY
 ORDER BY 
-	GRADE DESC;
-]]>
+	GRADE DESC
 </select>
 
 
@@ -231,12 +233,11 @@ UPDATE GOODS SET GOODS_HITCOUNT = NVL(GOODS_HITCOUNT, 0) +1 WHERE GOODS_NUM = #{
 	WHERE
 		A.GOODS_NUM = B.GOODS_NUM 
 		AND A.CATEGORY_NUM = C.CATEGORY_NUM 
-		AND  C.BIG_CATEGORY = #{BIG_CATEGORY}
+		AND C.BIG_CATEGORY = #{BIG_CATEGORY}
 ]]>
 </select>
 <!-- 카테고리2 상품리스트 -->
 <select id="goodsSmallCategoryList" parameterType="hashmap" resultType="hashmap">
-<![CDATA[
 	SELECT 
 		A.GOODS_NUM, 
 		A.GOODS_NAME, 
@@ -255,25 +256,28 @@ UPDATE GOODS SET GOODS_HITCOUNT = NVL(GOODS_HITCOUNT, 0) +1 WHERE GOODS_NUM = #{
 		CATEGORY C
 	WHERE
 		A.GOODS_NUM = B.GOODS_NUM
-		AND C.CATEGORY_NUM = #{CATEGORY_NUM}
-		AND A.CATEGORY_NUM = C.CATEGORY_NUM 
-]]>
+		AND A.CATEGORY_NUM = C.CATEGORY_NUM
+		AND A.CATEGORY_NUM IN 
+	<foreach collection="category" item="Num" separator="," open="(" close=")">
+		#{Num}
+	</foreach>
+		
+		
 </select>
 
 <!--전체 상품 수 -->
 <select id="goodsCount" parameterType="String" resultType="int">
-<![CDATA[
 	SELECT 
 		COUNT(GOODS_NUM) 
 	FROM 
 		GOODS
-]]>
 </select>
 
 <!--인기 상품 리스트 -->
 <select id="goodsBestList" parameterType="hashmap" resultType="hashmap">
 <![CDATA[
-	SELECT 	
+	SELECT 
+		GOODS_NUM,
 		GOODS_NAME, 
 		GOODS_PRICE, 
 		GOODS_DCPRICE, 
@@ -281,7 +285,8 @@ UPDATE GOODS SET GOODS_HITCOUNT = NVL(GOODS_HITCOUNT, 0) +1 WHERE GOODS_NUM = #{
 		GOODS_HITCOUNT,
 		SMALL_CATEGORY
 	FROM(
-		SELECT 
+		SELECT
+			A.GOODS_NUM,
 			A.GOODS_NAME, 
 			A.GOODS_PRICE, 
 			A.GOODS_DCPRICE, 
@@ -296,7 +301,7 @@ UPDATE GOODS SET GOODS_HITCOUNT = NVL(GOODS_HITCOUNT, 0) +1 WHERE GOODS_NUM = #{
 			AND A.CATEGORY_NUM = C.CATEGORY_NUM
 		ORDER BY 
 			A.GOODS_HITCOUNT DESC
-	)WHERE ROWNUM <6
+	)
 ]]>
 </select>
 
@@ -327,7 +332,7 @@ UPDATE GOODS SET GOODS_HITCOUNT = NVL(GOODS_HITCOUNT, 0) +1 WHERE GOODS_NUM = #{
 ]]>
 </select>
 
-<!--할인중인 상품 리스트(카테고리 정렬) -->
+<!--할인중인 상품 리스트(낮은 가격순) -->
 <select id="goodsSaleList2" parameterType="hashmap" resultType="hashmap">
 <![CDATA[
 	SELECT 
@@ -350,7 +355,7 @@ UPDATE GOODS SET GOODS_HITCOUNT = NVL(GOODS_HITCOUNT, 0) +1 WHERE GOODS_NUM = #{
 		AND A.GOODS_PRICE > A.GOODS_DCPRICE
 		AND A.CATEGORY_NUM = C.CATEGORY_NUM
 	ORDER BY 
-		A.CATEGORY_NUM DESC
+		A.GOODS_DCPRICE ASC
 ]]>
 </select>
 
@@ -366,10 +371,35 @@ UPDATE GOODS SET GOODS_HITCOUNT = NVL(GOODS_HITCOUNT, 0) +1 WHERE GOODS_NUM = #{
 ]]>
 </select>
 
-<!-- 굿즈 정보 -->
-<select id="goodsInfo" parameterType="hashmap" resultType="hashmap">
+<!-- 상품 평점순 -->
+<select id="goodsGrade" parameterType="hashmap" resultType="hashmap">
 <![CDATA[
-	SELECT
+SELECT 
+	A.GOODS_NUM, A.GOODS_NAME, 
+	A.GOODS_PRICE, A.GOODS_DCPRICE, 
+	A.GOODS_SIMPLE, A.GOODS_SOLDOUT, A.CATEGORY_NUM,
+	A.GOODS_HITCOUNT, B.GOODS_IMG1, AVG(C.REVIEW_GRADE) AS GRADE,
+	D.BIG_CATEGORY, D.SMALL_CATEGORY
+FROM 
+	GOODS A, GOODS_IMG B, REVIEW C, CATEGORY D
+WHERE 
+	A.GOODS_NUM = B.GOODS_NUM
+	AND A.GOODS_NUM = C.GOODS_NUM
+	AND A.CATEGORY_NUM = D.CATEGORY_NUM 
+GROUP BY 
+	A.GOODS_NUM, A.GOODS_NAME, A.GOODS_PRICE, 
+	A.GOODS_DCPRICE, A.GOODS_SIMPLE, A.CATEGORY_NUM,
+	A.GOODS_SOLDOUT, A.GOODS_HITCOUNT, B.GOODS_IMG1,
+	D.BIG_CATEGORY, D.SMALL_CATEGORY
+ORDER BY 
+	GRADE DESC
+]]>
+</select>
+
+
+<!--회원 할인상품 리스트 카테고리별 보기(높은가격순) -->
+<select id="goodsSaleCategoryList1" parameterType="hashmap" resultType="hashmap">
+	SELECT 
 		A.GOODS_NUM, 
 		A.GOODS_NAME, 
 		A.GOODS_PRICE, 
@@ -377,15 +407,52 @@ UPDATE GOODS SET GOODS_HITCOUNT = NVL(GOODS_HITCOUNT, 0) +1 WHERE GOODS_NUM = #{
 		A.GOODS_SIMPLE,
 		A.CATEGORY_NUM,
 		A.GOODS_SOLDOUT,
+		A.GOODS_HITCOUNT,
+		A.GOODS_AMOUNT,
 		B.GOODS_IMG1,
+		C.BIG_CATEGORY,
 		C.SMALL_CATEGORY
-	FROM
+	FROM 
 		GOODS A, GOODS_IMG B, CATEGORY C
-	WHERE
+	WHERE 
 		A.GOODS_NUM=B.GOODS_NUM 
+		AND A.GOODS_PRICE > A.GOODS_DCPRICE
 		AND A.CATEGORY_NUM = C.CATEGORY_NUM
-		AND A.GOODS_NUM = #{GOODS_NUM}
-]]>
+		AND A.CATEGORY_NUM IN 
+	<foreach collection="category" item="Num" separator="," open="(" close=")">
+		#{Num}
+	</foreach>
+	ORDER BY 
+		A.GOODS_DCPRICE DESC
+</select>
+
+<!--할인중인 상품 리스트 카테고리별 (낮은 가격순) -->
+<select id="goodsSaleCategoryList2" parameterType="hashmap" resultType="hashmap">
+	SELECT 
+		A.GOODS_NUM, 
+		A.GOODS_NAME, 
+		A.GOODS_PRICE, 
+		A.GOODS_DCPRICE, 
+		A.GOODS_SIMPLE,
+		A.CATEGORY_NUM,
+		A.GOODS_SOLDOUT,
+		A.GOODS_HITCOUNT,
+		A.GOODS_AMOUNT,
+		B.GOODS_IMG1,
+		C.BIG_CATEGORY,
+		C.SMALL_CATEGORY
+	FROM 
+		GOODS A, GOODS_IMG B, CATEGORY C
+	WHERE 
+		A.GOODS_NUM=B.GOODS_NUM 
+		AND A.GOODS_PRICE > A.GOODS_DCPRICE
+		AND A.CATEGORY_NUM = C.CATEGORY_NUM
+		AND A.CATEGORY_NUM IN 
+	<foreach collection="category" item="Num" separator="," open="(" close=")">
+		#{Num}
+	</foreach>
+	ORDER BY 
+		A.GOODS_DCPRICE ASC
 </select>
 
 </mapper>
