@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,7 +27,13 @@
 					<!-- start:contents -->
 					<div class="viewBox">
 						<div class="titTop">
-							<span class="tit"> ${eventDetail.EVENT_TITLE}</span>
+							<span class="tit" ><h2> ${eventDetail.EVENT_TITLE}</h2></span>
+							</br>
+							<span class="infoTxt1">
+								<td>이벤트 기간 :
+				<fmt:formatDate value="${eventDetail.EVENT_START}" pattern="YY.MM.dd"/>~
+				<fmt:formatDate value="${eventDetail.EVENT_END}" pattern="YY.MM.dd"/></td>
+							</span>
 						</div>
 						<div class="notiCont" align="center">
 						<c:forEach var="IMG" items="${IMGLIST}">

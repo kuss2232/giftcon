@@ -27,6 +27,7 @@ public class AdminEventController {
 	private int blockPage = 5;
 	private String pagingHtml;
 	private Paging page;
+	private String filePath3 = "D:\\java\\Git\\giftcon\\src\\main\\webapp\\file\\Eventfile\\";
 		
 	@Resource(name = "AdminEventService")
 	private AdminEventService adminEventService;
@@ -44,9 +45,8 @@ public class AdminEventController {
 
 		ModelAndView mv = new ModelAndView();
 		List<Map<String, Object>> eventList = adminEventService.eventList(commandMap.getMap());
-
 		
-		 totalCount = eventList.size();
+		totalCount = eventList.size();
 			page = new Paging(currentPage, totalCount, blockCount, blockPage, "eventList");
 			pagingHtml = page.getPagingHtml().toString();
 
@@ -66,6 +66,42 @@ public class AdminEventController {
 			return mv;
 
 	}
+	
+	// 이벤트 목록(종료)
+		@RequestMapping(value =  "/event/adminEndEventList.conn")
+		public ModelAndView endEventList(CommandMap commandMap, HttpServletRequest request) throws Exception {
+
+			if (request.getParameter("currentPage") == null || request.getParameter("currentPage").trim().isEmpty()
+					|| request.getParameter("currentPage").equals("0")) {
+				currentPage = 1;
+			} else {
+				currentPage = Integer.parseInt(request.getParameter("currentPage"));
+			}
+
+			ModelAndView mv = new ModelAndView();
+			List<Map<String, Object>> endEventList = adminEventService.endEventList(commandMap.getMap());
+
+			
+			 totalCount = endEventList.size();
+				page = new Paging(currentPage, totalCount, blockCount, blockPage, "eventList");
+				pagingHtml = page.getPagingHtml().toString();
+
+				int lastCount = totalCount;
+
+				if (page.getEndCount() < totalCount)
+					lastCount = page.getEndCount() + 1;
+
+				endEventList = endEventList.subList(page.getStartCount(), lastCount);
+
+				mv.addObject("totalCount", totalCount);
+				mv.addObject("pagingHtml", pagingHtml);
+				mv.addObject("currentPage", currentPage);
+				mv.addObject("endEventList", endEventList);
+				mv.setViewName("admin/Event/admin_endevent");
+
+				return mv;
+
+		}
 	
 	// EVENT 등록 폼
 		@RequestMapping(value = "/event/adminEventForm.conn")
@@ -91,7 +127,8 @@ public class AdminEventController {
 			ModelAndView mv = new ModelAndView();
 			
 			Map<String, Object> eventDetail = adminEventService.eventDetail(commandMap.getMap());
-			
+			String str[] = (eventDetail.get("EVENT_IMG")).toString().split(",");
+			mv.addObject("IMGLIST",str);
 			mv.addObject("eventDetail", eventDetail);
 			mv.setViewName("/admin/Event/admin_eventdetail");		
 			

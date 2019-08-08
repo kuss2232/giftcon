@@ -32,6 +32,7 @@ a{text-decoration:none}
 
 }
 
+
 .tab-box ul{
 
          height:30px;
@@ -117,14 +118,13 @@ cursor: pointer;
 								role="status" aria-live="polite">총 게시물수 : ${totalCount}</div>
 						</div>
 					</div>
-					
-	
-		 <div class="tab-box" >
- 	<ul class="tabs"  style="list-style-type:square;">
+			 <div class="tab-box">
+ 	<ul class="tabs" >
 		<li><a href="/giftcon/event/adminEventList.conn" class="on">	진행중 이벤트</a></li>
 		<li><a href="/giftcon/event/adminEndEventList.conn" class="on">종료된 이벤트</a></li>
-	</ul>
-					<div class="col-sm-12">
+	</ul>		
+		 <div class="row">
+ 					<div class="col-sm-12">
 							<table
 								class="table table-striped table-bordered table-hover dataTable no-footer"
 								id="dataTables-example" role="grid"
@@ -142,11 +142,11 @@ cursor: pointer;
 								</thead>
 								<form id="commonForm" name="commonForm"></form>
 								<tbody>
-									<c:forEach var="eventList"  items="${eventList}" varStatus="stat">
+									<c:forEach var="endEventList"  items="${endEventList}" varStatus="stat">
 									<tr class="gradeA even" role="row">
 										<c:set var="i" value="0"/>
-										<td style="text-align: center; vertical-align: middle;">${eventList.EVENT_NUM}</td>
-										<c:set var="logo" value="${fn:split(eventList.EVENT_IMG,',')}"/>
+										<td style="text-align: center; vertical-align: middle;">${endEventList.EVENT_NUM}</td>
+										<c:set var="logo" value="${fn:split(endEventList.EVENT_IMG,',')}"/>
 										<c:forEach var="logo" items="${logo}">
 										<c:if test="${i eq 0}">
 										<td><img src="/giftcon/resources/file/Eventfile/${logo}" width="150" height="90" ></td>
@@ -154,21 +154,21 @@ cursor: pointer;
 										</c:if>
 										</c:forEach>
 										<td style="text-align: center; vertical-align: middle;">
-										<a href=" #" onclick="goDetail(${eventList.EVENT_NUM});">${eventList.EVENT_TITLE}</a></td>
+										<a href=" #" onclick="goDetail(${endEventList.EVENT_NUM});">${endEventList.EVENT_TITLE}</a></td>
 										<td style="text-align: center; vertical-align: middle;">관리자</td>
 										<td style="text-align: center; vertical-align: middle;">
-										<fmt:formatDate value="${eventList.EVENT_REGDATE}" pattern="YYYY.MM.dd" /></td>
+										<fmt:formatDate value="${endEventList.EVENT_REGDATE}" pattern="YYYY.MM.dd" /></td>
 										<td style="text-align: center; vertical-align: middle;">
-										<fmt:formatDate value="${eventList.EVENT_START}" pattern="YY.MM.dd"/>~<fmt:formatDate value="${eventList.EVENT_END}" pattern="YY.MM.dd"/></td>
+										<fmt:formatDate value="${endEventList.EVENT_START}" pattern="YY.MM.dd"/>~<fmt:formatDate value="${endEventList.EVENT_END}" pattern="YY.MM.dd"/></td>
 										<td style="text-align: center; vertical-align: middle;">
-										<c:url var="viewURL"  value="/event/adminEventForm.conn">
+													<c:url var="viewURL"  value="/event/adminEventForm.conn">
 										<c:param name="EVENT_NUM"
 														value="${eventList.EVENT_NUM }" /> 
 												</c:url>
 						<a href="${viewURL}">
-												<input type="image" src="/giftcon/resources/images/answer.png" >
+				<input type="image" src="/giftcon/resources/images/answer.png" >
 					</a>&nbsp;&nbsp;
-					<a onclick="fn_eventDelete(${eventList.EVENT_NUM})">  
+					<a onclick="fn_eventDelete(${endEventList.EVENT_NUM})">  
 				<input type="image"
 					src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Trash_font_awesome.svg/32px-Trash_font_awesome.svg.png" >
 					</a>
@@ -176,7 +176,7 @@ cursor: pointer;
 									</tr>
 										</c:forEach>
 									<!--  등록된 상품이 없을때 -->
-									<c:if test="${fn:length(eventList) le 0}">
+									<c:if test="${fn:length(endEventList) le 0}">
 										<tr>
 											<td colspan="9" style="text-align: center;">등록된 이벤트가
 												없습니다</td>
@@ -186,13 +186,17 @@ cursor: pointer;
 							</table>
 						</div>
 					</div>
-				</div>
-	  			<div class="paging">${pagingHtml}</div>
+					</div>
+
+				
+				
+				
+   			<div class="paging">${pagingHtml}</div>
 									<div class="row">
 						<div style="text-align: center;">
 							<div id="dataTables-example_filter" class="dataTables_filter">
-						</div>
 					</div>
+		</div>
 				</div>
 			</div>
 			<!-- /.table-responsive -->
