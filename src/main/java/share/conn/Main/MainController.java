@@ -53,4 +53,17 @@ public class MainController {
 		return mv;
 	}
 	
+	@RequestMapping("Terms of service.conn")
+	public ModelAndView Service() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("/main/Termsofservice");
+		return mv;
+	}
+	
+	@RequestMapping("privacy.conn")
+	public ModelAndView Privacy() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("/main/privacy");
+		return mv;
+	}
 }

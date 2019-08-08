@@ -14,10 +14,9 @@
 		<div class="snbBox">
 			<ul class="footerSnb">
 				<li><a href="http://www.daou.com/" target="_blank" class="line">회사소개</a></li>
-				<li><a href="/common/clause.do?version=last" class="line">이용약관</a></li>
-				<li><a href="/common/privacy.do?version=last" class="line"><strong>개인정보처리방침</strong></a></li>
-				<li><a href="/bbs/qnaReg.do" class="line">서비스 제휴문의</a></li>
-				<li><a href="/common/sitemap.do">사이트맵</a></li>
+				<li><a href="/giftcon/Terms of service.conn" class="line">이용약관</a></li>
+				<li><a href="/giftcon/privacy.conn" class="line"><strong>개인정보처리방침</strong></a></li>
+				
 			</ul>
 		</div>
 		<div class="fixBox">
@@ -25,15 +24,15 @@
 				<h3 class="logoDaou">다우기술</h3>
 				<div class="infoBox">
 					<ul class="infoList">
-						<li>㈜다우기술 경기도 용인시 수지구 디지털벨리로 81 다우디지털스퀘어 6층</li>
-						<li>대표이사: 김윤덕</li>
+						<li>㈜다우기술 서초동 1303-37 W타워 14층 1401호</li>
+						<li>대표이사: 김도훈</li>
 						<li>사업자등록번호: 220-81-02810</li>
 					</ul>
 					<ul class="infoList">
 						<li>Email: donutbook@daou.co.kr</li>
 						<li>Tel: 1599-3785</li>
 						<li>Fax: 031-5171-2500</li>
-						<li>통신판매업 신고 제2010-용인수지-114호</li>
+						<li>통신판매업 신고 제2010-W타워-114호</li>
 						<li><a href="http://www.ftc.go.kr/bizCommPop.do?wrkr_no=2208102810" target="_blank">사업자정보확인</a></li>
 					</ul>
 					<p class="copy">COPYRIGHT (C) DAOU Tech., INC. All right reserved.</p>
