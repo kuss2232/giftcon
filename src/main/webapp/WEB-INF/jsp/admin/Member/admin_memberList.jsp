@@ -8,6 +8,7 @@
 <script src="/giftcon/js/common.js" charset="utf-8"></script>
 <script src="/giftcon/css/jquery/jquery-1.12.4.min.js"></script>
 <link rel="stylesheet" type="text/css"  />
+<link href="/giftcon/css/jquery/bootstrapadmin.min.css" rel="stylesheet" type="text/css">
 <script type="text/javascript">
 function fn_memberDelete(member_num){ 
 	if(confirm("정말 삭제하시겠습니까 ?") == true){
@@ -81,7 +82,7 @@ function fn_memberDelete(member_num){
 							<div class="dataTables_info" id="dataTables-example_info" role="status" aria-live="polite">총 회원수 : ${totalCount}</div>
 						</div>
 					</div>
-					<div class="row">
+					<div class="row" align="center">
 						<div class="col-sm-12">
 							<table class="table table-striped table-bordered table-hover dataTable no-footer"
 								id="dataTables-example" role="grid" aria-describedby="dataTables-example_info">
@@ -128,20 +129,21 @@ function fn_memberDelete(member_num){
 								</tbody>
 							</table>
 						</div>
+						
 					</div>
-					<div class="paging">${pagingHtml}</div>
-					<div class="row">
+					
+					<div class="row" align="center">
 						<div style="text-align: center;">
 							<div id="dataTables-example_filter" class="dataTables_filter">
 								<form action="">
-									<select class="form-control" name="searchNum" id="searchNum">
+									<select  name="searchNum" id="searchNum">
 										<option value="0">아이디</option>
 										<option value="1">이름</option>
 										<option value="2">전화번호</option>
 										<option value="3">이메일</option>
 										<option value="4">상태</option>
 									</select> 
-									<input class="form-control" type="text" name="isSearch" id="isSearch" /> 
+									<input type="text" name="isSearch" id="isSearch" /> 
 									<span>
 										<button type="submit" class="btn btn-default">검색</button>
 									</span>
@@ -153,6 +155,7 @@ function fn_memberDelete(member_num){
 			</div>
 			<!-- /.table-responsive -->
 		</div>
+		<div align="center">${pagingHtml}</div>
 	</div>
 	<!-- /.panel -->
 </div>

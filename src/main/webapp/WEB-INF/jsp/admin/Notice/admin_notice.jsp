@@ -12,7 +12,9 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <head>
-<script src="/giftcon/css/common.js" charset="utf-8"></script>
+<link href="/giftcon/css/jquery/bootstrapadmin.min.css" rel="stylesheet" type="text/css">
+<script src="/giftcon/css/jquery/bootstrapadmin.min.css"></script>
+<script src="/giftcon/js/common.js" charset="utf-8"></script>
 <script src="/giftcon/css/jquery/jquery-1.12.4.min.js"></script>
 <link rel="stylesheet" type="text/css"  />
 		  <script>
@@ -65,7 +67,7 @@
 <div class="row" style="padding-left: 15px; width: 900px;">
 	<h1 class="page-header">공지사항</h1>
 </div>
-<div class="row">
+<div class="row" align="center">
 	<div class="panel panel-default">
 		<div class="panel-heading">공지사항 검색, 등록, 수정, 삭제 기능하는 페이지입니다.</div>
 		<div class="panel-body">
@@ -73,7 +75,9 @@
 				<div id="dataTables-example_wrapper"
 					class="dataTables_wrapper form-inline dt-bootstrap no-footer">
 					<div class="row" style="margin-bottom: 5px;">
-									</br></br>
+						<div class="col-sm-6">
+													</div>
+													</br></br>
 						<div class="col-sm-6" style="text-align: right;">
 							<div class="dataTables_info" id="dataTables-example_info"
 								role="status" aria-live="polite">총 게시글 수 : ${totalCount}</div>
@@ -86,7 +90,7 @@
 								id="dataTables-example" role="grid"
 								aria-describedby="dataTables-example_info">
 								<thead>
-									<tr role="row">
+									<tr role="row" align="center">
 										<th style="width: 12%; text-align: center;">번호</th>
 										<th style="width: 45%; text-align: center;">제목</th>
 										<th style="width: 12%; text-align: center;">작성자</th>
@@ -99,10 +103,10 @@
 								<tbody>
 									<c:forEach var="noticeList" items="${noticeList}"
 										varStatus="stat">
-										<%-- <c:url var="viewURL" value="/notify/adminNotifyList.conn">
+										<c:url var="viewURL" value="/notify/adminNotifyList.conn">
 											<c:param name="NOTICE_NUM"
 												value="${noticeList.NOTICE_NUM}" />
-										</c:url> --%>
+										</c:url>
 										<tr class="gradeA even" role="row">
 											<td style="text-align: center; vertical-align: middle;">${noticeList.NOTICE_NUM}</td>
 										<td style="text-align: center; vertical-align: middle;" >
@@ -112,7 +116,7 @@
 											<td style="text-align: center; vertical-align: middle;">관리자</td>
 											<td style="text-align: center; vertical-align: middle;">
 												<fmt:formatDate value="${noticeList.NOTICE_REGDATE}"
-													pattern="YYYY.MM.dd" />
+													pattern="YY.MM.dd" />
 											</td>
 											<td style="text-align: center; vertical-align: middle;">${noticeList.NOTICE_HITCOUNT}</td>
 											<td style="text-align: center; vertical-align: middle;">
@@ -126,8 +130,7 @@
 													>
 											</a>&nbsp;&nbsp; 
 												
-			<a onclick="fn_notifyDelete(${noticeList.NOTICE_NUM})">  
-			<input type="image"
+											<a onclick="fn_notifyDelete(${noticeList.NOTICE_NUM})"> <input type="image"
 													src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Trash_font_awesome.svg/32px-Trash_font_awesome.svg.png" >
 											</a>
 											</td>
@@ -145,21 +148,22 @@
 						</div>
 					</div>
 
-					<div class="paging">${pagingHtml}</div>
+					<div class="paging" align="center">${pagingHtml}</div>
 
 					<div class="row">
 						<div style="text-align: center;">
 							<div id="dataTables-example_filter" class="dataTables_filter">
 								<form action="">
-									<select class="form-control" name="SearchNum" id="SearchNum">
+									<select  name="searchNum" id="searchNum">
 										<option value="1">제목</option>
 										<option value="2">내용</option>
-									</select> <input class="form-control" type="text" name="SearchKeyword" id="SearchKeyword" /> <span>
-										<input type="submit" class="btn btn-default" value="검색">
+									</select> <input  type="text" name="isSearch"
+										id="isSearch" /> <span>
+										<button type="submit" class="btn btn-default">검색</button>
 									</span>
 								</form>
 							</div>
-							<div style="text-align: left;" class="col-sm-6">
+							<div style="text-align: left;">
 														<button id="noticeAdd"
 									class="btn btn-outline btn-default">공지사항 등록</button>
 									

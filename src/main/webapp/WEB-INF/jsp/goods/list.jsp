@@ -87,7 +87,7 @@
 				<div class="prodBox">
 					<p class="icoFlag">
 					</p>
-					<span class="prodImg"><a href="${viewURL}"><img src="${list.GOODS_IMG1}"></a></span>
+					<span class="prodImg"><a href="${viewURL}"><img src="/giftcon/images/email.png<%-- ${list.GOODS_IMG1} --%>"></a></span>
 					<span class="brand">[${list.SMALL_CATEGORY}]</span>
 					<span class="prodName">${list.GOODS_NAME}</span>
 					<input type="hidden" id="GOOODS_NUM" value="${list.GOODS_NUM}"/>

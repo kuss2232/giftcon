@@ -11,7 +11,6 @@ import share.conn.giftcon.AbstractDAO;
 public class AdminGoodsDAO extends AbstractDAO {
 
    // 상품 리스트
-   @SuppressWarnings("unchecked")
    public List<Map<String, Object>> adGoodsList() throws Exception {
       return selectList("adminGoods.adGoodsList");
    }
@@ -34,7 +33,7 @@ public class AdminGoodsDAO extends AbstractDAO {
    
    
    //카테고리 불러오기 (빅카테고리, 스몰카테고리로 카테고리넘 찾기)
-public Map<String,Object> adGoodsSelectCategory(Map<String, Object> map) throws Exception{
+   public Map<String,Object> adGoodsSelectCategory(Map<String, Object> map) throws Exception{
 	   return selectOne1("adminGoods.adGoodsSelectCategory", map);
    }
    

@@ -5,21 +5,19 @@
 	<insert id="insertReview" parameterType="hashmap">
 		<![CDATA[
 		INSERT INTO REVIEW
-			REVIEW_NUM,
+			(REVIEW_NUM,
 			GOODS_NUM,
 			MEMBER_NUM,
 			REVIEW_CNT,
 			REVIEW_REGDATE,
-			REVIEW_GRADE,
-			REVIEW_IMG
+			REVIEW_GRADE)
 		VALUES(
 			REVIEW_NUM_SEQ.NEXTVAL,
 			#{GOODS_NUM},
-			#{MEMBER_NUM},
+			(SELECT MEMBER_NUM FROM MEMBER WHERE MEMBER_ID = #{MEMBER_ID}) ,
 			#{REVIEW_CNT},
 			SYSDATE,
-			#{REVIEW_GRADE},
-			#{REVIEW_IMG}
+			#{REVIEW_GRADE}
 )
 		]]>
 	</insert>
@@ -65,4 +63,6 @@ ORDER BY REVIEW_REGDATE DESC
 		 REIVEW_NUM  = #{REVIEW_NUM}
 		]]>
 	</delete>
+	
+
 </mapper>

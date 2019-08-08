@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>   
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  
+
 <head>
+<link href="/giftcon/css/jquery/bootstrapadmin.min.css" rel="stylesheet" type="text/css">
 <script src="/giftcon/js/common.js" charset="utf-8"></script>
 <script src="/giftcon/css/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
@@ -65,8 +67,15 @@ function fn_goodsDelete(goods_num){
 	 }
 }
 
+function fn_goodsModify(goods_num){ 
+	var comSubmit = new ComSubmit(); 
+	comSubmit.setUrl("<c:url value='/goods/goodsModifyForm.conn' />");
+	comSubmit.addParam("GOODS_NUM", goods_num);
+	comSubmit.submit(); 
+}
 </script>
 <style type="text/css">
+
 .paging{text-align:center;height:32px;margin-top:5px;margin-bottom:15px;}
 .paging a,
 .paging strong{display:inline-block;width:36px;height:32px;line-height:28px;font-size:14px;border:1px solid #e0e0e0;margin-left:5px;
@@ -97,8 +106,8 @@ function fn_goodsDelete(goods_num){
 					class="dataTables_wrapper form-inline dt-bootstrap no-footer">
 					<div class="row" style="margin-bottom:5px;">
 						<div class="col-sm-6">
-							<a href="/giftcon/goods/adminGoodsList.conn"><button type="button" class="btn btn-outline btn-default">전체</button></a>
-							<select class="form-control" name="select" onchange="window.open(value,'_self');">
+							<a href="/giftcon/goods/adminGoodsList.conn"><button type="button" >전체</button></a>
+							<select  name="select" onchange="window.open(value,'_self');">
 								<option value ="">--카테고리--</option>
 								<option value ="/giftcon/goods/adminGoodsList.conn?searchNum=3&isSearch=">치킨/피자/버거</option>
 								<option value ="/giftcon/goods/adminGoodsList.conn?searchNum=3&isSearch=1">커피/음료</option>
@@ -134,13 +143,10 @@ function fn_goodsDelete(goods_num){
 								</thead>
 								<form id="commonForm" name="commonForm"></form>
 								<tbody>
-								<c:forEach var="adGoodsList"  items="${adGoodsList}" varStatus="stat">
-								<c:url var="viewURL" value="/goods/goodsModifyForm.conn" >
-									<c:param name="GOODS_NUM" value="${adGoodsList.GOODS_NUM}" />
-								</c:url>									
+								<c:forEach var="adGoodsList"  items="${adGoodsList}" varStatus="stat">									
 									<tr class="gradeA even" role="row">
 										<td style="text-align:center;vertical-align:middle;">${adGoodsList.GOODS_NUM}<div style='display:none;'>${adGoodsList.GOODS_NUM}</div></td>										
-										<td style="text-align:center;vertical-align:middle;"><img src="/giftcon/file/goodsFile/${adGoodsList.GOODS_IMG1}" width="60" height="60" alt=""  onerror="this.src='/giftcon/file/noimg_130.gif'" /><div style='display:none;'>${adGoodsList.GOODS_NUM}</div></td>
+										<td style="text-align:center;vertical-align:middle;"><img src="/giftcon/images/email.png"<%-- /giftcon/resources/file/goodsFile/${adGoodsList.GOODS_IMG1} --%> width="60" height="60" alt=""  onerror="this.src='/giftcon/file/noimg_130.gif'" /><div style='display:none;'>${adGoodsList.GOODS_NUM}</div></td>
 										<td style="text-align:center;vertical-align:middle;">${adGoodsList.BIG_CATEGORY}<br/>${adGoodsList.GOODS_SMALLCATEGORY }<div style='display:none;'>${adGoodsList.GOODS_NUM}</div></td>
 										<td style="text-align:center;vertical-align:middle;">${adGoodsList.SMALL_CATEGORY}<div style='display:none;'>${adGoodsList.GOODS_NUM}</div></td>
 										<td style="text-align:center;vertical-align:middle;">${adGoodsList.GOODS_NAME}<div style='display:none;'>${adGoodsList.GOODS_NUM}</div></td>												
@@ -148,8 +154,9 @@ function fn_goodsDelete(goods_num){
 										<td style="text-align:center;vertical-align:middle;">${adGoodsList.GOODS_DCPRICE}<div style='display:none;'>${adGoodsList.GOODS_NUM}</div></td>
 										<td style="text-align:center;vertical-align:middle;">${adGoodsList.GOODS_AMOUNT}개<div style='display:none;'>${adGoodsList.GOODS_NUM}</div></td>
 										<td style="text-align:center;vertical-align:middle;">${adGoodsList.GOODS_HITCOUNT}<div style='display:none;'>${adGoodsList.GOODS_NUM}</div></td>									
-										<td style="text-align:center;vertical-align:middle;">										
-										<input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Cog_font_awesome.svg/32px-Cog_font_awesome.svg.png" onclick="location.href='${viewURL}'">&nbsp;&nbsp;	
+										<td style="text-align:center;vertical-align:middle;">
+										<a onclick="fn_goodsModify(${adGoodsList.GOODS_NUM})">										
+										<input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Cog_font_awesome.svg/32px-Cog_font_awesome.svg.png"></a>&nbsp;&nbsp;	
 										<a onclick="fn_goodsDelete(${adGoodsList.GOODS_NUM})">
 										<input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Trash_font_awesome.svg/32px-Trash_font_awesome.svg.png"></a>
 										<div style='display:none;'>${adGoodsList.GOODS_NUM}</div></td>									
@@ -170,12 +177,12 @@ function fn_goodsDelete(goods_num){
 							<div style="text-align:center;">
 								<div id="dataTables-example_filter" class="dataTables_filter">
 									<form action="">
-									<select class="form-control" name="searchNum" id="searchNum">
+									<select  name="searchNum" id="searchNum">
 										<option value="0">상품 번호</option>
 										<option value="1">상품명</option>
 										<option value="2">브랜드명</option>
 									</select>
-										<input class="form-control" type="text" name="isSearch" id="isSearch"/>
+										<input  type="text" name="isSearch" id="isSearch"/>
 										<span>
 										<button type="submit" class="btn btn-default">검색</button>
 										</span>

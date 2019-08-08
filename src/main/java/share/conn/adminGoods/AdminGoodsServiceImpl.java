@@ -81,36 +81,25 @@ public class AdminGoodsServiceImpl implements AdminGoodsService {
       adminGoodsDAO.adGoodsModify(map);
 
       MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
-
+      
+      //이미지 1 수정
+      if (multipartHttpServletRequest.getFile("GOODS_IMG1").getSize() > 0) {
+          map = goodsImageUtils.parseUpdateIMG(map, request);
+          adminGoodsDAO.insertGoodsIMG1(map);
+      }
+      
       // 상품 이미지 수정, 삭제
       System.out.println("이미지 : " + map.get("ORIGINAL_IMAGE"));
 
-      if (map.get("ORIGINAL_IMAGE1") != null) {
-         List<Map<String, Object>> adGoodsImageList = goodsImageUtils.parseUpdateImages(map, request);
+      if (map.get("ORIGINAL_IMAGE") != null) {
+         List<Map<String, Object>> goodsImageList = goodsImageUtils.parseUpdateImages(map, request);
 
-         if (adGoodsImageList.size() > 0) {
-            for (int i = 0; i < adGoodsImageList.size(); i++) {
-               adminGoodsDAO.adGoodsImgModify(adGoodsImageList.get(i));
+         if (goodsImageList.size() > 0) {
+            for (int i = 0; i < goodsImageList.size(); i++) {
+               adminGoodsDAO.adGoodsImgModify(goodsImageList.get(i));
             }
-         }         
-      }
-      if (map.get("ORIGINAL_IMAGE2") != null) {
-          List<Map<String, Object>> adGoodsImageList = goodsImageUtils.parseUpdateImages(map, request);
+         }
 
-          if (adGoodsImageList.size() > 0) {
-             for (int i = 0; i < adGoodsImageList.size(); i++) {
-                adminGoodsDAO.adGoodsImgModify(adGoodsImageList.get(i));
-             }
-          }         
-      }
-      if (map.get("ORIGINAL_IMAGE3") != null) {
-          List<Map<String, Object>> adGoodsImageList = goodsImageUtils.parseUpdateImages(map, request);
-
-          if (adGoodsImageList.size() > 0) {
-             for (int i = 0; i < adGoodsImageList.size(); i++) {
-                adminGoodsDAO.adGoodsImgModify(adGoodsImageList.get(i));
-             }
-          }         
       }
 
       // 새로 입력된 이미지 등록
@@ -121,15 +110,16 @@ public class AdminGoodsServiceImpl implements AdminGoodsService {
       System.out.println("SIZE : " + IMAGES.size());
 
       if (IMAGES.size() > 0) {
-         List<Map<String, Object>> adGoodsImageList = goodsImageUtils.parseInsertFileInfo(map, request);
+         List<Map<String, Object>> goodsImageList = goodsImageUtils.parseInsertFileInfo(map, request);
 
-         System.out.println("goodsImageList : " + adGoodsImageList);
+         System.out.println("goodsImageList : " + goodsImageList);
          System.out.println("mapImage : " + map.get("IMAGE"));
 
-         for (int i = 0; i < adGoodsImageList.size(); i++) {
-            adminGoodsDAO.adinsertGoodsImg(adGoodsImageList.get(i));
+         for (int i = 0; i < goodsImageList.size(); i++) {
+            adminGoodsDAO.adinsertGoodsImg(goodsImageList.get(i));
          }
       }
+      
    }
 
    // 상품 삭제

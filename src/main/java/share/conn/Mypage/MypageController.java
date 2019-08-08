@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import share.conn.Qna.QnaService;
+import share.conn.Review.ReviewService;
 import share.conn.giftcon.CommandMap;
 
 @Controller
@@ -23,6 +25,9 @@ public class MypageController {
 	
 	@Resource(name="qnaService")
 	private QnaService qnaService;
+	
+	@Resource(name="reviewService")
+	private ReviewService reviewService;
 	
 	@RequestMapping("/mypage.conn")
 	public ModelAndView mypage() {
@@ -117,5 +122,12 @@ public class MypageController {
 		mv.addObject("qnaList", qnaList);
 		mv.setViewName("mypage/myQna");
 		return mv;
+	}
+	
+	//상품후기
+	@RequestMapping(value="/goods/reviewInsert.conn")
+	public void reviewInsert(CommandMap commandMap, HttpServletRequest request, HttpServletResponse response) throws Exception{
+		System.out.println(commandMap.get("MEMBER_ID"));
+		reviewService.insertReview(commandMap.getMap());
 	}
 }

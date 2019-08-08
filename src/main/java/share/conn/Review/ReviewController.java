@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,6 +29,17 @@ public class ReviewController {
 	@Resource(name = "reviewService")
 	private ReviewService reviewService;
 	
-	//현재 진행 불가
+	
+	//리뷰등록
+	@RequestMapping(value = "/reviewWrite")
+	public ModelAndView reviewWrite(CommandMap commandMap, HttpServletRequest request, HttpSession session) throws Exception{
+		ModelAndView mv = new ModelAndView("redirect:detail.conn?GOODS_NUM="+commandMap.get("GOODS_NUM"));
+		commandMap.getMap().put("MEMBER_NUM", session.getAttribute("MEMBER_NUM").toString());
+		System.out.println("param:" + commandMap.getMap());
+		reviewService.insertReview(commandMap.getMap());
+		
+		return mv;
+	}
+	
 	
 }

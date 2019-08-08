@@ -55,7 +55,7 @@ public class AdminQnaController {
 			SearchKeyword = request.getParameter("SearchKeyword");
 			
 			if(searchNum == 0) {
-				commandMap.put("MEMBER_ID", SearchKeyword);
+				commandMap.put("SearchKeyword", SearchKeyword);
 				adQnaList = adminQnaService.qnaIdSearch(commandMap.getMap());
 				totalCount = adQnaList.size();
 			}else if(searchNum == 1) {
@@ -76,7 +76,7 @@ public class AdminQnaController {
 			mv.addObject("Searchkeyword", SearchKeyword);
 			mv.addObject("adQnaList",adQnaList);
 			mv.addObject("pagingHtml",pagingHtml);
-			mv.setViewName("admin/Qna/adminQnaList");
+			mv.setViewName("admin/qna/adminQnaList");
 			return mv;
 		} else {
 			
@@ -99,7 +99,7 @@ public class AdminQnaController {
 			mv.addObject("adQnaList",adQnaList);
 			mv.addObject("pagingHtml",pagingHtml);
 			
-			mv.setViewName("admin/Qna/adminQnaList");
+			mv.setViewName("admin/qna/adminQnaList");
 			
 			return mv;
 		}
@@ -112,7 +112,7 @@ public class AdminQnaController {
 		Map<String, Object> qnaDetail = adminQnaService.qnaDetail(commandMap.getMap());
 		
 		mv.addObject("qnaDetail", qnaDetail);
-		mv.setViewName("/admin/Qna/adminQnaDetail");
+		mv.setViewName("/admin/qna/adminQnaDetail");
 		
 		return mv;
 	}
@@ -129,7 +129,7 @@ public class AdminQnaController {
 			Map<String, Object> qnaDetail = adminQnaService.qnaDetail(commandMap.getMap());
 			mv.addObject("qnaDetail", qnaDetail);
 		}
-		mv.setViewName("admin/Qna/adminQnaWrite");
+		mv.setViewName("admin/qna/adminQnaWrite");
 		return mv;
 	}
 	

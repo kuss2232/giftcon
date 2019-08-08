@@ -65,8 +65,8 @@
 								<span class="fa arrow">▼</span>
 							</a>
 							<ul class="nav nav-second-level">
-								<li><a href="/giftcon/admin_goodsList.conn">- 상품목록</a></li>
-								<li><a href="/giftcon/admin_InsertGoods.conn">- 상품등록</a></li>
+								<li><a href="/giftcon/goods/adminGoodsList.conn">- 상품목록</a></li>
+								<li><a href="/giftcon/goods/goodsInsertForm.conn">- 상품등록</a></li>
 							</ul>
 						</li>
 						<li class="active">
@@ -76,7 +76,7 @@
 							</a>
 							<ul class="nav nav-second-level">
 								<li><a href="/giftcon/member/adminMemberList.conn">- 회원목록</a></li>
-								<li><a href="/giftcon/admin-memberModify.conn">- 회원수정</a></li>
+								<li><a href="/giftcon/member/adminModifyMember.conn"></a></li>
 							</ul> <!-- /.nav-second-level -->
 						</li>
 
@@ -98,10 +98,11 @@
 							</a>
 							<ul class="nav nav-second-level">
 								<li><a href="/giftcon/notify/adminNotifyList.conn">- 공지사항</a></li>
-								<li><a href="/giftcon/admin_event.conn">- 이벤트</a></li>
+								<li><a href="/giftcon/event/adminEventList.conn">- 이벤트</a></li>
 								<li><a href="/giftcon/faq/adminFaqList.conn">- FAQ</a></li>
 								<li><a href="/giftcon/adminQnaList.conn">- Q&A</a></li>
 								<li><a href="/giftcon/adminCategory1.conn">- 카테고리추가</a></li>
+								<li><a href="/giftcon/adminReviewList.conn">- 리뷰관리</a>
 							</ul>
 						</li>
 					</ul>
