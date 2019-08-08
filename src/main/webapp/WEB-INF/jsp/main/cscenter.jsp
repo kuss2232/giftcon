@@ -20,12 +20,21 @@
 							<p><span class="num">1599-3785</span><span class="subTxt">콜센터 운영시간 : 오전9시~오후 6시<br>점심시간: 오후 12시~ 오후 1시</span></p>
 						</div>
 					</div>
+					<% if (session.getAttribute("MEMBER_ID") != null){%>
 					<p class="goBox mr23">
-						<a href="/giftcon/adminQnaList.conn">
+						<a href="/giftcon/mypage/qna/insertform.conn">
 							<span class="icoOneAsk"></span>
 							<span class="tit">1:1문의<br>바로가기</span>
 						</a>
 					</p>
+					<%} else{ %>
+					<p class="goBox mr23">
+						<a href="/giftcon/loginForm.conn">
+							<span class="icoOneAsk"></span>
+							<span class="tit">1:1문의<br>바로가기</span>
+						</a>
+					</p>
+					<%} %>
 					<p class="goBox">
 						<a href="/giftcon/faq.conn">
 							<span class="icoFaq"></span>
