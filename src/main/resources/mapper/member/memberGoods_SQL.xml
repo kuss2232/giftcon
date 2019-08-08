@@ -76,7 +76,7 @@ WHERE
 	AND A.CATEGORY_NUM IN 
 <foreach collection="category" item="Num" separator="," open="(" close=")">
 	#{Num}
-</foreach>    
+</foreach>
 GROUP BY 
 	A.GOODS_NUM, A.GOODS_NAME, A.GOODS_PRICE, 
 	A.GOODS_DCPRICE, A.GOODS_SIMPLE, A.CATEGORY_NUM,
@@ -121,25 +121,22 @@ UPDATE GOODS SET GOODS_HITCOUNT = NVL(GOODS_HITCOUNT, 0) +1 WHERE GOODS_NUM = #{
 <!--주문 내역 생성 -->
 <insert id="createOrder" parameterType="hashmap" >
 <![CDATA[
-	INSERT INTO 
-		ORDERS(
+	INSERT INTO ORDERS(
 		ORDER_NUM,
 		ORDER_AMOUNT,
 		MEMBER_NUM,
 		GOODS_NUM,
 		ORDER_DATE,
 		ORDER_PRICE,
-		ORDER_PAYMENT,
-		ORDER_ECHECK
+		ORDER_PAYMENT
 	) VALUES (
 		ORDER_NUM_SEQ.NEXTVAL,
 		#{ORDER_AMOUNT},
-		#{MEMBER_NUM},
+		(SELECT MEMBER_NUM FROM MEMBER WHERE MEMBER_ID = #{MEMBER_ID}),
 		#{GOODS_NUM},
-		#{ORDER_DATE},
+		SYSDATE,
 		#{ORDER_PRICE},
-		#{ORDER_PAYMENT},
-		#{ORDER_ECHECK} 
+		#{ORDER_PAYMENT}
 	)
 ]]>
 </insert>
