@@ -70,6 +70,8 @@ public class MainController {
 		ModelAndView mv = new ModelAndView("/event/eventDetail");
 		System.out.println(commandMap.get("EVENT_NUM"));
 		Map<String, Object> map = mainService.eventDetail(commandMap.getMap());
+	    String str[] = (map.get("EVENT_IMG")).toString().split(",");
+	      mv.addObject("IMGLIST",str);
 		mv.addObject("map",map);
 		
 		return mv;
