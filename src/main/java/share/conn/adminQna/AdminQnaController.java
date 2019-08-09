@@ -82,7 +82,7 @@ public class AdminQnaController {
 			
 			totalCount = adQnaList.size();
 			
-			page = new AdminQNAPaging(currentPage, totalCount, blockCount, blockPage, "/giftcon/adminQnaList.conn");
+			page = new AdminQNAPaging(currentPage, totalCount, blockCount, blockPage, "adminQnaList.conn");
 			pagingHtml = page.getPagingHtml().toString();
 			
 			int lastCount = totalCount;

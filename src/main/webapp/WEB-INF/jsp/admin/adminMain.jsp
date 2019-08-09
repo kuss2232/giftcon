@@ -113,6 +113,7 @@
 		<div id="page-wrapper">
 			<!-- 메인container-->
 			<%@include file="./adminMainLayout.jsp"%>
+			
 			<!-- // container -->
 		</div>
 		<!-- /#page-wrapper -->
