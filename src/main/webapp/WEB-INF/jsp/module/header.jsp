@@ -150,7 +150,7 @@ $(function () {
 			<div class="gnbBox">
 				<ul class="menu">
 					<li>
-						<a href="/giftcon/goods/list.conn" title="모바일쿠폰샵 바로가기" class="">모바일쿠폰샵</a>
+						<a href="/giftcon/goods/list.conn" title="모바일쿠폰샵 바로가기" class="">전체 상품</a>
 						<!-- <ul class="smenu s01" style="display: none;">
 							<li>
 								<a href="/goods/mainShop.do" class="first">전체상품보기</a>
@@ -183,7 +183,7 @@ $(function () {
 							</li>
 						</ul> -->
 					</li>
-					<li>
+					<!-- <li>
 						<a href="/mypage/myDonut.do" title="마이도넛북 바로가기">마이도넛북</a>
 						<ul class="smenu s03" style="display: none;">
 							<li>
@@ -205,8 +205,8 @@ $(function () {
 								<a href="/mypage/userPwdCheck.do">회원정보 관리</a>
 							</li>
 						</ul>
-					</li>
-					<li class="last">
+					</li> -->
+					<!-- <li class="last">
 						<a href="/intro/serviceIntroduce.do" title="도넛북소개 바로가기">도넛북소개</a>
 						<ul class="smenu s04" style="display: none;">
 							<li>
@@ -222,7 +222,7 @@ $(function () {
 								<a href="/bbs/noticeList.do" class="last">고객센터</a>
 							</li>
 						</ul>
-					</li>
+					</li> -->
 				</ul>
 				
 				

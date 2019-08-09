@@ -16,7 +16,7 @@
 		
 		function fn_login(){
 			var comSubmit = new ComSubmit("userInfo");
-			comSubmit.setUrl("/giftcon/main.conn");
+			comSubmit.setUrl("/giftcon/login.conn");
 			comSubmit.addParam("#saveId");
 			comSubmit.submit();
 		}

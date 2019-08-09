@@ -50,12 +50,12 @@
 				<div class="sidebar-nav navbar-collapse">
 					<ul class="nav" id="side-menu">
 						<li>
-							<a href="/giftcon/admin/adminMain.conn" style="background: #e7e7e7; border-bottom: 1px solid #F8F8F8;">
+							<a href="/giftcon/adminMain.conn" style="background: #e7e7e7; border-bottom: 1px solid #F8F8F8;">
 								<b class="fa fa-dashboard fa-fw">관리자홈</b>
 							</a>
 						</li>
 						<li>
-							<a href="/giftcon/admin/Main.conn" style="background: #e7e7e7; border-bottom: 1px solid #F8F8F8;">
+							<a href="/giftcon/main.conn" style="background: #e7e7e7; border-bottom: 1px solid #F8F8F8;">
 								<b class="fa fa-dashboard fa-fw">홈으로 이동</b>
 							</a>
 						</li>
@@ -86,7 +86,7 @@
 								<span class="fa arrow">▼</span>
 							</a>
 							<ul class="nav nav-second-level">
-								<li><a href="/giftcon/orderList.conn">- 주문목록</a></li>
+								<li><a href="/giftcon/adminOrderDetail.conn">- 주문목록</a></li>
 								<li><a href="/giftcon/orderModify.conn">- 주문수정</a></li>
 								<li><a href="/giftcon/orderDetail.conn">- 상세주문목록</a></li>
 							</ul>
