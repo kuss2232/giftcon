@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="../module/header.jsp"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
@@ -61,7 +61,7 @@
 				  	<colgroup>
 				  		<col width="9%">
 				  		<col width="8%">
-				  		<col width="34%">
+				  		<col width="28%">
 				  		<col width="5%">
 				  		<col width="8%">
 				  		<col width="7%">
@@ -69,6 +69,7 @@
 				  		<col width="7%">
 				  		<col width="7%">
 				  		<col width="8%">
+				  		<col width="13%">
 				  	</colgroup>
 					  <tbody>
 						<tr>
@@ -79,16 +80,21 @@
 						  <th>총 금액</th>
 						  <th>이미지</th>
 						  <th class="last">주문상태</th>
+						  <th>전송 / 취소</th>
 						</tr>
 							<c:forEach var="list" items="${list}">
 								<tr>
 						 			<td ><fmt:formatDate value="${list.ORDER_DATE }" type="date"/></td>
-						 			<td >${list.MEMBER_ID }</td>
-						 			<td >${list.GOODS_NAME }</td>
+						 			<td >${list.ORDER_NUM}</td>
+						 			<td >${list.GOODS_NAME}</td>
 						 			<td >${list.ORDER_AMOUNT_SUM }</td>
 						 			<td >${list.ORDER_PAY_SUM }</td>
 						 			<td ><img alt="this.src='/giftcon/images/XBox.png'" src="${list.GOODS_IMG }"></td>
 						 			<td >${list.ORDER_PAYMENT }</td>
+						 			<td><c:if test="${list.ORDER_PAYMENT eq 'N' }"><input style="width:60pt;height:20pt; color: BLACK;"  type="button" value="주문 취소"/></c:if>
+						 				<c:if test="${list.ORDER_PAYMENT eq 'Y' }"><input style="width:60pt;height:20pt; color: BLACK;"  type="button" value="결제 취소"/> <input style="width:60pt;height:20pt; color:BLACK"  type="button" value="이메일 전송"/></c:if>
+						 				<c:if test="${list.ORDER_PAYMENT eq 'E' }"><input style="width:60pt;height:20pt; color: BLACK;"  type="button" value="이메일 전송"/></c:if>
+						 			</td>
 								</tr>
 							</c:forEach>							
 						
