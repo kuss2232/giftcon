@@ -44,7 +44,7 @@
 					<span class="icoPhoneCertify"></span>
 				</div>
 				<div class="btnsExc1">
-					<a href="/giftcon/joinStep2-1.conn" id="btnCert" class="btnBigLineBlue3 w227">이메일 본인인증</a>
+					<a href="" onclick="openPop()" id="btnCert" class="btnBigLineBlue3 w227">이메일 본인인증</a>
 																			
 				</div>
 				<ul class="centerList">
@@ -53,6 +53,11 @@
 					<li>- 입력하신 정보는 본인확인을 위해 한국인터넷진흥원㈜에 제공되며, 본인확인 용도 외에 사용되거나 저장되지 않습니다.</li>
 				</ul>
 				</div></div>
+<script type="text/javascript">
+function openPop(){
+	window.open('/giftcon/joinStep2-1.conn',"top=100px, right=100px left=100px, height=500px, width=500px");
+}
+</script>
 </body>
 </html>
 <%@include file="../module/footer.jsp"%>

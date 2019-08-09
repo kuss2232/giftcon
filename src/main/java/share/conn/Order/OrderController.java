@@ -110,7 +110,7 @@ public class OrderController {
 	
 	@RequestMapping("/orderList.conn")
 	public ModelAndView orderList(CommandMap commandMap)throws Exception{
-		ModelAndView mv = new ModelAndView("/order/orderList");
+		ModelAndView mv = new ModelAndView("/mypage/userOrderList");
 		List<Map<String, Object>> list = orderService.orderList(commandMap.getMap());
 		
 		mv.addObject("list",list);
