@@ -205,11 +205,12 @@ function BIG_CATEGORYChange() {
 					</c:if>
 				</tr>
 				<tr>
-				<td colspan="4">
-				<c:forEach var="goodsImage"  items="${goodsImage}" varStatus="stat">
-					<input type="hidden" name="ORIGINAL_IMG" value="${goodsImage.GOODS_IMG}">
+				<th scope="row">기존 이미지</th><td colspan="3">
+				
+					<input type="hidden" name="ORIGINAL_IMG" value="${goodsBasic.GOODS_IMG}">
 					<p>
-					기존 이미지 : <c:set var="logo" value="${fn:split(goodsImage.GOODS_IMG,',')}"/>
+					<c:set var="i" value="0"/>
+					<c:set var="logo" value="${fn:split(goodsBasic.GOODS_IMG,',')}"/>
 					<c:forEach var="logo" items="${logo}">
 					<c:if test="${i eq 0}">
 					<img src="/giftcon/resources/file/goodsFile/${logo}" width="60" height="60" alt="">
@@ -217,10 +218,10 @@ function BIG_CATEGORYChange() {
 					</c:if>
 					</c:forEach>
 					<br/>
-					<input type="file" id="file" name="MODIFY_IMG_${goodsImage.GOODS_IMG}">
-					<input type="hidden" name="${goodsImage.GOODS_IMG}" value="1">
+					<input type="file" id="file" name="MODIFY_IMG_${goodsBasic.GOODS_IMG}">
+					<input type="hidden" name="${goodsBasic.GOODS_IMG}" value="1">
 					</p>
-				</c:forEach>
+				
 				</td>
 				</tr>
 			</tbody>

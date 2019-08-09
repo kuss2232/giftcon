@@ -79,13 +79,6 @@ public class AdminGoodsServiceImpl implements AdminGoodsService {
       return goodsDetail;
    }
 
-   // 수정 폼 이동할때 상품 이미지 같이 가져오기
-   @Override
-   public List<Map<String, Object>> modifyGoodsFormImage(Map<String, Object> map) throws Exception {
-      List<Map<String, Object>> goodsImage = adminGoodsDAO.modifyGoodsFormImage(map);
-      return goodsImage;
-   }
-   
    // 상품 수정
    @Override
    public void adGoodsModify(Map<String, Object> map, HttpServletRequest request) throws Exception {
