@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import share.conn.giftcon.CommandMap;
 import share.conn.Paging.Paging;
 
+@Controller
 public class ReviewController {
 	
 	//페이징
@@ -41,5 +43,9 @@ public class ReviewController {
 		return mv;
 	}
 	
+	@RequestMapping("/deleteReivew.conn")
+	public void deleteReview(CommandMap commandMap,HttpServletResponse response,HttpServletRequest request)throws Exception{
+		reviewService.reviewDelete(commandMap.getMap());
+	}
 	
 }

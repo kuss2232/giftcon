@@ -36,5 +36,5 @@ public class ReviewServiceImpl implements ReviewService{
 	public void reviewDelete(Map<String, Object> map) throws Exception {
 		reviewDAO.reviewDelete(map);
 	}
-
+	
 }

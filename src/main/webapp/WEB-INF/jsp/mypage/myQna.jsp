@@ -55,7 +55,7 @@ div.paginate>div>a.disabled:hover {
 
 									<div class="answerBox">
 										<span class="icoAnswer">답변</span>
-										<p>${list.QNA_COMMENT}</p>
+										<p>[답변] : ${list.QNA_COMMENT}</p>
 									</div>
 
 								</div></li>

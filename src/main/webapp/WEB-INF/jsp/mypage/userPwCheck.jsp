@@ -43,8 +43,15 @@
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$("#btnPwdCheck").on("click", function(e){
+				
+				var userPwd = document.userPwdCheckFrm.userPwd;
+				if( userPwd.value == ""){
+					alert("비밀번호를 입력하세요");
+				}else{
+					
 				e.preventDefault();
 				fn_login();
+				}
 			});
 
 		});
