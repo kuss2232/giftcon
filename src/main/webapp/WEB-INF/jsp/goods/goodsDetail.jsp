@@ -14,7 +14,7 @@
 <link rel="stylesheet" type="text/css" href="/giftcon/css/main.css">
 <link rel="stylesheet" type="text/css" href="/giftcon/css/bootstrapadmin.min.css">
 <script src="/giftcon/css/jquery/jquery-1.12.4.min.js"></script>
-
+<script src="/giftcon/js/common.js"></script>
 </head>
 <body>
 <div id="container">
@@ -128,7 +128,6 @@
 			<!-- /end:product_detail -->
 
 			<div class="subTit">상품 후기</div>
-			
 			<div class="askList">
 				<form name="frm">
 					<input type="hidden" id="goodsNum" name="goodsNum" value="${goodsDetail.GOODS_NUM}" />
@@ -140,6 +139,7 @@
 				</div>
 				</form>
 			</div>
+			
 			<table class="table table-striped table-bordered table-hover dataTable no-footer" id="dataTables-example" role="grid" aria-describedby="dataTables-example_info">
 								<thead>
 									<tr role="row">
@@ -152,6 +152,8 @@
 									</tr>
 								</thead>
 								<tbody>
+								<tr><td colspan="6">
+					<form id="f1" >
 									<c:forEach var="review" items="${reviewDetail}">
 										<tr class="gradeA even" role="row">
 											<td style="text-align: center; vertical-align: middle;">${review.REVIEW_NUM}</td>
@@ -161,10 +163,12 @@
 													<fmt:formatDate	value="${review.REVIEW_REGDATE}" pattern="YY.MM.dd HH:mm" /></td>
 											<td style="text-align: center; vertical-align: middle;">${review.REVIEW_GRADE }</td>
 											<td style="text-align: center; vertical-align: middle;">
-												</td>
-											</tr>
+												<input type="button" value="삭제" onclick="fn_deleteReview(${review.REVIEW_NUM})"/>
+											</td>
+										</tr>
 										</c:forEach>
-
+					</form>
+					</td></tr>
 										<!-- Q&A가 없을때 -->
 								 
 								</tbody>
@@ -184,6 +188,7 @@ $(document).ready(function() {
 		fn_insertReview();
 	});
 });
+
 function fn_insertReview(){
 	var cnt = $("#content").val();
 	$.ajax({
@@ -201,7 +206,21 @@ function fn_insertReview(){
 			location.reload();
 		}
 	});
-
+}
+function fn_deleteReview(num){
+	$.ajax({
+		type:"POST",
+		data:{"REVIEW_NUM": num},
+        url:"/giftcon/deleteReivew.conn",
+        error:function(request,status,error){
+        	alert("서버오류");
+            //alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+           },
+		success : function() {
+			alert("삭제완료");
+			location.reload();
+		}
+	});
 }
 </script>
 </body>

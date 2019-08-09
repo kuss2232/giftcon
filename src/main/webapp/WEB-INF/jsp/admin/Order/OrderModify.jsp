@@ -60,7 +60,7 @@ function validateForm() {
                         </div>
                         <div style="border:1px;" class="form-group">
                            <label>상품이미지</label>
-                           <p><img src="/giftcon/resources/images/don.jpg" width="100" height="100" alt="" />                                                     
+                           <p><img src="/giftcon/resources/images/처갓집.jpg" width="100" height="100" alt="" />                                                     
                         </div>	
                         <div class="form-group">
                             <label>상품수량</label>
