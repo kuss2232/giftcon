@@ -144,9 +144,6 @@ public class AdminGoodsController {
 		Map<String, Object> goodsBasic = goodsDetail.get(0);
 
 		mv.addObject("goodsBasic", goodsBasic);
-	
-		List<Map<String, Object>> goodsImage = adminGoodsService.modifyGoodsFormImage(commandMap.getMap());
-		mv.addObject("goodsImage", goodsImage);
 
 		return mv;
 	}

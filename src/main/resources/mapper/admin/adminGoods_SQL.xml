@@ -159,21 +159,13 @@
 		<![CDATA[
 			SELECT A.GOODS_NUM, A.GOODS_NAME,A.GOODS_PRICE,A.GOODS_DCPRICE,A.GOODS_SIMPLE,
 			A.GOODS_DETAIL,A.CATEGORY_NUM, A.GOODS_AMOUNT,
-			C.BIG_CATEGORY, C.SMALL_CATEGORY
-     		FROM GOODS A, CATEGORY C 
-			WHERE A.CATEGORY_NUM = C.CATEGORY_NUM  
+			C.BIG_CATEGORY, C.SMALL_CATEGORY, B.GOODS_IMG
+     		FROM GOODS A, GOODS_IMG B, CATEGORY C
+			WHERE A.CATEGORY_NUM = C.CATEGORY_NUM AND A.GOODS_NUM = B.GOODS_NUM
 			AND A.GOODS_NUM= #{GOODS_NUM}
 		]]>
 	</select>
 
-	<!-- 상품 이미지 정보 -->
-	<select id="selectOneGoodsImage" parameterType="hashmap" resultType="hashmap">
-		<![CDATA[
-			SELECT GOODS_IMG
-			FROM GOODS_IMG
-			WHERE GOODS_NUM=#{GOODS_NUM}
-		]]>
-	</select>
 	
 	<!--상품 수정 -->
 	<update id="adGoodsModify" parameterType="hashmap">

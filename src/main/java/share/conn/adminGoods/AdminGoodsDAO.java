@@ -51,22 +51,11 @@ public class AdminGoodsDAO extends AbstractDAO {
    public int selectGoodsNum(Map<String,Object> map) throws Exception{
 	   return (Integer) selectOne("adminGoods.selectGoodsNum",map);
    }
-   
-   // 이미지 등록
-   public void adinsertGoodsImg(Map<String, Object> map) throws Exception {
-      insert("adminGoods.adinsertGoodsImg", map);
-   }
-   
+
    // 상품 수정 폼으로 이동(데이터 들고감)
    @SuppressWarnings("unchecked")
    public List<Map<String, Object>> modifyGoodsForm(Map<String, Object> map) throws Exception {
       return (List<Map<String, Object>>) selectList("adminGoods.selectOneGoods", map);
-   }
-
-   // 상품 이미지 정보
-   @SuppressWarnings("unchecked")
-   public List<Map<String, Object>> modifyGoodsFormImage(Map<String, Object> map) throws Exception {
-      return (List<Map<String, Object>>) selectList("adminGoods.selectOneGoodsImage", map);
    }
    
    // 상품 수정
