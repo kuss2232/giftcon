@@ -57,7 +57,7 @@
 	<div class="subTit1">
 		<span class="resultTxt">All<em>(${goodsCount}건)</em></span>
 		<ul class="txtTab">
-			<li><a href="/giftcon/goods/hotList.conn" >인기순</a></li>
+			<li><a href="/giftcon/goods/hotList.conn" >인기순<input type="hidden" id="memberNum" value="${MEMBER_NUM}"/></a></li>
 			<li><a href="/giftcon/goods/gradeList.conn" >평점순</a></li>
 			<li><a href="/giftcon/goods/lowList.conn" >할인상품(낮은가격순)</a></li>
 			<li class="last"><a href="/giftcon/goods/highList.conn" class="lineNone">할인상품(높은가격순)</a></li>
@@ -92,8 +92,8 @@
 					<ul class="sendList">
 						<li><a href="/order/order.do?goodsNo=13557" class="first"><span class="nowSend"></span>
 						<span class="sendTxt">바로발송</span></a></li>
-						<li><a href="javascript:insertCart(13557);"><span class="cartPut"></span>
-						<span class="sendTxt">장바구니</span></a></li>
+						<li><a href="#"><span class="cartPut"></span>
+						<span onclick="addCart(${list.GOODS_NUM})" class="sendTxt">장바구니</span></a></li>
 					</ul>
 				</div>
 			</li>
@@ -101,7 +101,7 @@
 		</ul>					
 		</div>
 		<div>
-			<div class="paginate"><ul class="numList">${pagingHtml}</ul></div>
+			<div class="paginate"><ul class="numList">${pagingHtml} </ul></div>
 		</div>
 	</div>
 </div>
@@ -145,6 +145,25 @@ $(document).ready(function(){
 function formSubmit()
 {
 document.getElementById("categoryform").submit();
+}
+
+function addCart(num)
+{
+	$.ajax({
+		type:"POST",
+		data:{"CART_AMOUNT": 1,
+				"GOODS_NUM": num,
+				"MEMBER_NUM": $("#memberNum").val()
+		},
+        url:"/giftcon/cart/addCart.conn",
+       	error : function(erromr) {
+			alert("서버가 응답하지 않습니다. \n다시 시도해주시기 바랍니다.");
+		},
+		success : function() {
+			alert("장바구니에 등록되었습니다.");
+			location.href="/giftcon/main.conn";
+		}
+	});
 }
 
 </script>

@@ -38,14 +38,34 @@
 								</c:if>
 								<ul class="sendList">
 									<li><a href="/order/order.do?goodsNo=13557" class="first"><span class="nowSend"></span><span class="sendTxt">바로발송</span></a></li>
-									<li><a href="javascript:insertCart(13557);"><span class="cartPut"></span><span class="sendTxt">장바구니</span></a></li>
+									<li><a href="javascript:addCart(${list.GOODS_NUM});"><span class="cartPut"></span><span onclickclass="sendTxt">장바구니</span></a></li>
 								</ul>
 							</div>
 						</li>
 						</c:forEach>
-
+						<input type="hidden" id="memberNum" value="${MEMBER_NUM}"/>
 					</ul>					
 				</div>
 			</div>
 </body>
+<script>
+function addCart(num)
+{
+	$.ajax({
+		type:"POST",
+		data:{"CART_AMOUNT": 1,
+				"GOODS_NUM": num,
+				"MEMBER_NUM": $("#memberNum").val()
+		},
+        url:"/giftcon/cart/addCart.conn",
+       	error : function(erromr) {
+			alert("서버가 응답하지 않습니다. \n다시 시도해주시기 바랍니다.");
+		},
+		success : function() {
+			alert("장바구니에 등록되었습니다.");
+			location.href="/giftcon/main.conn";
+		}
+	});
+}
+</script>
 </html>

@@ -59,7 +59,7 @@
 
 						<a href="javascript:insertCart(10091);"
 							class="btnBigLineBlack2 w213 mr10"
-							onmousedown="_AceTM.AddCart(1);">장바구니 담기</a>
+							onclick="addCart(${goodsDetail.GOODS_NUM})">장바구니 담기</a>
 							<a href="/giftcon/orderForm.conn?GOODS_NUM=${goodsDetail.GOODS_NUM}" 
 							class="btnBigBgBlue8 w213" onmousedown="_AceTM.BuyNow(1);">주문하기</a>
 
@@ -132,6 +132,7 @@
 				<form name="frm">
 					<input type="hidden" id="goodsNum" name="goodsNum" value="${goodsDetail.GOODS_NUM}" />
 					<input type="hidden" id="memberId" name="memberNum" value="${MEMBER_ID}" />
+					<input type="hidden" id="memberNum" value="${MEMBER_NUM}"/>
 				<div>					
 					<textarea id="content" name="content" rows="10" cols="100" style="height:100px;width:980px; resize: none;" class="commentForm"></textarea>
 
@@ -219,6 +220,24 @@ function fn_deleteReview(num){
 		success : function() {
 			alert("삭제완료");
 			location.reload();
+		}
+	});
+}
+function addCart(num)
+{
+	$.ajax({
+		type:"POST",
+		data:{"CART_AMOUNT": 1,
+				"GOODS_NUM": num,
+				"MEMBER_NUM": $("#memberNum").val()
+		},
+        url:"/giftcon/cart/addCart.conn",
+       	error : function(erromr) {
+			alert("서버가 응답하지 않습니다. \n다시 시도해주시기 바랍니다.");
+		},
+		success : function() {
+			alert("장바구니에 등록되었습니다.");
+			location.href="/giftcon/main.conn";
 		}
 	});
 }

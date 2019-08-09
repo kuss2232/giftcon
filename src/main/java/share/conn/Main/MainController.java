@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,7 +29,7 @@ public class MainController {
 	private Paging page;
 	
 	@RequestMapping("/main.conn")
-	public ModelAndView mainList(CommandMap commandMap)throws Exception{
+	public ModelAndView mainList(CommandMap commandMap, HttpSession session)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		
 		List<Map<String, Object>> bestList = mainService.GoodsBestList();
@@ -42,7 +43,8 @@ public class MainController {
 			lastCount = page.getEndCount() + 1;
 		bestList = bestList.subList(page.getStartCount(), lastCount);
 		saleList = saleList.subList(page.getStartCount(), lastCount);
-
+		
+		mv.addObject("MEMBER_NUM", session.getAttribute("MEMBER_NUM"));
 		mv.addObject("smallcategoryList", smallcategoryList);
 		mv.addObject("bestList", bestList);
 		mv.addObject("saleList", saleList);

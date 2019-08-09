@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -48,7 +49,7 @@ public class GoodsController {
 	}
 	
 	@RequestMapping("/goods/list.conn")
-	public ModelAndView goodsList(CommandMap map, HttpServletRequest request 
+	public ModelAndView goodsList(CommandMap map, HttpServletRequest request ,HttpSession session
 			)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		List<Map<String, Object>> goodsList;
@@ -76,10 +77,10 @@ public class GoodsController {
 		if (page.getEndCount() < goodsCount)
 			lastCount = page.getEndCount() + 1;
 		goodsList = goodsList.subList(page.getStartCount(), lastCount);
-
 		mv.addObject("pagingHtml", pagingHtml);
 		mv.addObject("currentPage", currentPage);
 		mv.addObject("goodsCount", goodsCount);
+		mv.addObject("MEMBER_NUM", session.getAttribute("MEMBER_NUM"));
 		mv.addObject("smallcategoryList", smallcategoryList);
 		mv.addObject("category", category);
 		mv.addObject("goodsList", goodsList);
@@ -126,7 +127,7 @@ public class GoodsController {
 	}
 	
 	@RequestMapping("/goods/hotList.conn") //인기순, 많이 본 순
-	public ModelAndView goodsHotList(CommandMap map, HttpServletRequest request 
+	public ModelAndView goodsHotList(CommandMap map, HttpServletRequest request ,HttpSession session
 			)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		List<Map<String, Object>> goodsList;
@@ -159,6 +160,7 @@ public class GoodsController {
 		mv.addObject("currentPage", currentPage);
 		mv.addObject("goodsCount", goodsCount);
 		mv.addObject("smallcategoryList", smallcategoryList);
+		mv.addObject("MEMBER_NUM", session.getAttribute("MEMBER_NUM"));
 		mv.addObject("category", category);
 		mv.addObject("goodsList", goodsList);
 		mv.setViewName("goods/list");
@@ -293,6 +295,7 @@ public class GoodsController {
 		
 		mv.addObject("reviewDetail", reviewDetail);
 		mv.addObject("MEMBER_ID",session.getAttribute("MEMBER_ID"));
+		mv.addObject("MEMBER_NUM",session.getAttribute("MEMBER_NUM"));
 		mv.addObject("goodsDetail", goodsDetail);
 		mv.setViewName("goods/goodsDetail");		
 		

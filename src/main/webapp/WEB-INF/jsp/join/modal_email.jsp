@@ -113,7 +113,7 @@ $(document).ready(function(){
 		<div class="form-group">
 			<label for="inputEmail3" class="col-sm-4 control-label">인증번호</label>
 			<div class="col-sm-20">
-				<input id="sing_code" class="form-control" type="password">
+				<input id="sing_code" type="password">
 
 			</div>
 		</div>

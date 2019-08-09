@@ -89,6 +89,12 @@ public class CartController {
 		cartService.cartAmountModify(commandMap.getMap());
 	}
 	
+	//장바구니에 추가
+	@RequestMapping(value="/cart/addCart.conn")
+	public void addCart(CommandMap commandMap, HttpServletResponse response, HttpServletRequest request) throws Exception{
+		cartService.addCart(commandMap.getMap());
+	}
+	
 	//장바구니 상품 전부 삭제
 	@RequestMapping(value = "/cart/cartDeleteAll.conn")
 	public void cartDeleteAll(CommandMap commandMap, HttpServletRequest request) throws Exception {
