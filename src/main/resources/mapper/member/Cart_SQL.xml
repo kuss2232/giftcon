@@ -15,8 +15,10 @@
 </select>
 
 <!-- 회원 장바구니 넣기-->
-<insert id="addCart" parameterType="hashmap">
-
+<insert id="addCart" parameterType="hashmap" useGeneratedKeys="true" keyProperty="CART_NUM">
+	<selectKey keyProperty="CART_NUM" resultType="integer" order="BEFORE">
+		SELECT CART_NUM_SEQ.NEXTVAL FROM DUAL
+	</selectKey>
 		<![CDATA[
 			INSERT INTO CART ( 
 				CART_NUM, 
@@ -25,7 +27,7 @@
 				CART_AMOUNT, 
 				CART_REGDATE
 			) VALUES ( 
-				CART_NUM_SEQ.NEXTVAL, 
+				#{CART_NUM}, 
 				#{MEMBER_NUM}, 
 				#{GOODS_NUM},
 				#{CART_AMOUNT}, 
@@ -38,21 +40,19 @@
 <!-- 회원 장바구니 조회 -->
 <select id="cartList" parameterType="hashmap" resultType="hashmap">
 <![CDATA[
-	SELECT 
+	SELECT DISTINCT 
 			A.GOODS_NUM, A.CART_NUM, A.MEMBER_NUM,
 			A.CART_REGDATE, A.CART_AMOUNT,
 			B.GOODS_NAME, B.GOODS_PRICE, B.GOODS_DCPRICE, B.GOODS_AMOUNT,
-			C.GOODS_IMG,
-			D.SMALL_CATEGORY
+			C.GOODS_IMG
 	FROM 
-		CART A, GOODS B, GOODS_IMG C, CATEGORY D
+		CART A, GOODS B, GOODS_IMG C 
 	WHERE 
 		A.MEMBER_NUM=${MEMBER_NUM}
 		AND A.GOODS_NUM=B.GOODS_NUM 
 		AND C.GOODS_NUM=A.GOODS_NUM
-		AND B.CATEGORY_NUM = D.CATEGORY_NUM
 	ORDER BY 
-		A.CART_NUM DESC
+		A.CART_REGDATE DESC
 ]]>
 </select>
 
@@ -86,7 +86,8 @@
 	FROM 
 		CART 
 	WHERE 
-		CART_NUM=#{CART_NUM} 
+		MEMBER_NUM=#{MEMBER_NUM}
+		AND CART_NUM=#{CART_NUM} 
 ]]>
 </delete>
 
@@ -101,13 +102,16 @@
 	FROM 
 		CART
 	WHERE 
-		MEMBER_NUM=#{MEMBER_NUM}
+		MEMBER_NUM=1
 ]]>	
 </select>
 
 
 <!-- 주문 등록 후 장바구니 삭제 -->
-<insert id="addOrderToCart" parameterType="hashmap">
+<insert id="addOrderToCart" useGeneratedKeys="true" keyProperty="ORDER_NUM">
+	<selectKey keyProperty="ORDER_NUM" resultType="integer" order="BEFORE">
+	SELECT ORDER_NUM_SEQ.NEXTVAL FROM DUAL
+	</selectKey>
 <![CDATA[
 	INSERT INTO ORDERS(
 		ORDER_NUM, 
@@ -119,7 +123,7 @@
 		ORDER_PAYMENT, 
 		ORDER_ECHECK,
 		CART_NUM) 
-	VALUES(ORDER_NUM_SEQ.NEXTVAL, 
+	VALUES(#{ORDER_NUM}, 
 		(SELECT CART_AMOUNT FROM CART WHERE CART_NUM = #{CART_NUM}),
       		(SELECT MEMBER_NUM FROM CART WHERE CART_NUM = #{CART_NUM}),
      	   	(SELECT GOODS_NUM FROM CART WHERE CART_NUM = #{CART_NUM}), 
@@ -128,7 +132,7 @@
 		'N', 
 		'N',
 		#{CART_NUM}
-	)
+	);
 ]]>
 </insert>
 
