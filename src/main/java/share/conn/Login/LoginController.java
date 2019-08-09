@@ -44,7 +44,7 @@ public class LoginController {
 			if((check.get("MEMBER_PASSWD")).equals(commandMap.get("MEMBER_PASSWD"))) 
 			{
 				
-				if(commandMap.get("saveId") == "true") { 
+				if(commandMap.get("saveId").equals("true")) { 
 					Cookie setCookie = new Cookie("userInputId", (String)commandMap.get("MEMBER_ID")); // 쿠키 이름을 name으로 생성 
 					setCookie.setMaxAge(60*60*24*7); // 기간을 하루로 지정
 					response.addCookie(setCookie); 

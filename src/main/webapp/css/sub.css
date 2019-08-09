@@ -703,9 +703,9 @@ ul.payInfo li div.payMethod {display: inline-block; margin: 15px 34px 0 0; float
 ul.payInfo li div.last {margin-right: 0;}
 ul.payInfo li div.payMethod input[type="radio"] {display: inline-block; margin-bottom: 5px;}
 ul.payInfo li div.payMethod > p {display: inline-block; margin-bottom: 8px; width: 112px; height: 76px; text-align: center; background: #f0f0f0;}
-ul.payInfo li div.payMethod span.icoPay1 {display: inline-block; margin-top: 14px; width: 66px; height: 46px; background: url(../images/sub/ico_mconpon.png) no-repeat 0 -828px;}
-ul.payInfo li div.payMethod span.icoPay2 {display: inline-block; margin-top: 9px; width: 36px; height: 59px; background: url(../images/sub/ico_mconpon.png) no-repeat 0 -924px;}
-ul.payInfo li div.payMethod span.icoPay3 {display: inline-block; margin-top: 17px; width: 74px; height: 44px; background: url(../images/sub/ico_mconpon.png) no-repeat 0 -1033px;}
+ul.payInfo li div.payMethod span.icoPay1 {display: inline-block; margin-top: 14px; width: 66px; height: 46px; background: url(/giftcon/images/ico_mconpon.png) no-repeat 0 -828px;}
+ul.payInfo li div.payMethod span.icoPay2 {display: inline-block; margin-top: 9px; width: 36px; height: 59px; background: url(/giftcon/images/ico_mconpon.png) no-repeat 0 -924px;}
+ul.payInfo li div.payMethod span.icoPay3 {display: inline-block; margin-top: 17px; width: 74px; height: 44px; background: url(/giftcon/images/ico_mconpon.png) no-repeat 0 -1033px;}
 span.txtMethod {width: 112px; font-size: 15px; font-weight: 600; color: #333; text-align: center;}
 
 div.payBox div.totalPay {float: left; width: 508px; height: 360px; border-top: 1px solid #7a7b7f; border-bottom: 1px solid #ccc;  background: #eff2f9;}

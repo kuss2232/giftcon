@@ -108,7 +108,7 @@
 									</td>
 									<td>[${goods.SMALL_CATEGORY}] ${goods.GOODS_NAME}</td>
 									<td class="alignC" id="price">${goods.CART_AMOUNT}</td>
-									<td class="alignC" id="price">${goods.GOODS_PRICE}</td>
+									<td class="alignC" id="price"><del>${goods.GOODS_PRICE}</del><br/>▶${goods.GOODS_DCPRICE}</td>
 									<td class="alignC last">90일</td>
 								</tr>
 							</c:forEach>
