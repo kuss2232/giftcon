@@ -26,7 +26,7 @@
 							<ul class="brandList" style="margin-left: -163px;">
 							<c:forEach items="${smallcategoryList}" var="list">
 								<li>
-									<a href="/giftcon/goods/list.conn?category=${list.CATEGORY_NUM}"><img src="${list.CATEGORY_IMG}" alt=""><span class="brandName">${list.SMALL_CATEGORY}</span></a>
+									<a href="/giftcon/goods/list.conn?category=${list.CATEGORY_NUM}"><img src="/gitfcon/images/category/${list.CATEGORY_IMG}" alt=""><span class="brandName">${list.SMALL_CATEGORY}</span></a>
 								</li>
 							</c:forEach>
 							</ul>
