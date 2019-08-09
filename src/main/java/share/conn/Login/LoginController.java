@@ -1,5 +1,6 @@
 package share.conn.Login;
 
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,29 +33,18 @@ public class LoginController {
 	}
 
 	@RequestMapping("/login.conn")
-	public ModelAndView loginComplete(CommandMap commandMap, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		ModelAndView mv = new ModelAndView();
-		
+	public void loginComplete(CommandMap commandMap, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
 		
-		
-		System.out.println("아이디"+ commandMap.get("MEMBER_ID"));
-		
 		Map<String, Object> check = loginService.loginGo(commandMap.getMap());
-						// 아이디로 멤버 정보 꺼내온값
-		if(check == null) { // 아이디에 일치하는 값이 없으면
-			mv.setViewName("/login/loginForm");
-			mv.addObject("message", "존재하지 않는 아이디입니다.");
-			return mv;
-		}else { //아이디에 맞는 값이 존재할경우
-			
-			System.out.println("사용자입력 비번 : "+ commandMap.get("MEMBER_PASSWD") +"\n DB에서 가져온 비번 :"+check.get("MEMBER_PASSWD"));
-			
-			//입력 비번과 DB비밀번호가 같으면
+		PrintWriter out = response.getWriter();
+		//입력 비번과 DB비밀번호가 같으면
+		if(check != null)
+		{
 			if((check.get("MEMBER_PASSWD")).equals(commandMap.get("MEMBER_PASSWD"))) 
 			{
 				
-				if(commandMap.get("saveId") != null) { 
+				if(commandMap.get("saveId") == "true") { 
 					Cookie setCookie = new Cookie("userInputId", (String)commandMap.get("MEMBER_ID")); // 쿠키 이름을 name으로 생성 
 					setCookie.setMaxAge(60*60*24*7); // 기간을 하루로 지정
 					response.addCookie(setCookie); 
@@ -63,22 +53,21 @@ public class LoginController {
 				{ 
 					Cookie delCookie = new Cookie("userInputId", null); // choiceCookieName(쿠키 이름)에 대한 값을 null로 지정
 					delCookie.setMaxAge(0); // 유효시간을 0으로 설정 response.addCookie(delCookie); // 응답 헤더에 추가해서 없어지도록 함 
+					response.addCookie(delCookie);
 				}
 				System.out.println("check : " + check.get("MEMBER_ADMIN"));
 				session.setAttribute("MEMBER_ID", commandMap.get("MEMBER_ID"));
 				session.setAttribute("MEMBER_NUM", check.get("MEMBER_NUM"));
 				session.setAttribute("MEMBER_ADMIN", check.get("MEMBER_ADMIN"));
+				session.setMaxInactiveInterval(60*60*4);
 				//세션에 멤버아이디 띄움
-				mv.addObject("MEMBER",check);//로그인한 member정보 main에 보내줌
-				mv.setViewName("/main/main");
-				return mv;
-			
-			}else { // 비밀번호가 일치하지않을 때
-				mv.setViewName("/login/loginForm");
-				mv.addObject("message", "비밀번호를 확인하시기 바랍니다.");
-				return mv;
+				request.setAttribute("MEMBER",check);//로그인한 member정보 main에 보내줌
+				
 			}
-		} 
+		}
+		out.print(check);
+		out.flush();
+		out.close();
 	}
 	
 	@RequestMapping("/logout.conn")
