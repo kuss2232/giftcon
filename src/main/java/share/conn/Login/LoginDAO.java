@@ -11,7 +11,7 @@ public class LoginDAO extends AbstractDAO{
 	
 	//로그인 정보 불러오기
 	public Map<String, Object> selectId(Map<String,Object> map)throws Exception{
-		return selectOne1("memberInfo.selectMember", map);
+		return selectOne1("memberInfo.loginMember", map);
 	}
 	
 	//아이디 찾기
