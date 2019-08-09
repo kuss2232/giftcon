@@ -3,9 +3,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
+
 <!DOCTYPE html>
 <html>
 <head>
+
 <style>
 div.paginate > div > a.disabled:hover {border: 1px solid #ddd;}
 </style>
@@ -13,7 +15,8 @@ div.paginate > div > a.disabled:hover {border: 1px solid #ddd;}
 	<link rel="stylesheet" type="text/css" href="/giftcon/css/bootstrapadmin.min.css">
 	<script src="/giftcon/css/common.js" charset="utf-8"></script>
 	<script src="/giftcon/css/jquery/jquery-1.12.4.min.js"></script>
-<title>관리자Q&A리스트</title>
+	<link href="/giftcon/css/jquery/bootstrapadmin.min.css" rel="stylesheet" type="text/css">
+<title>관리자Q&amp;A리스트</title>
 
 <script type="text/javascript">
 

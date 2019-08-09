@@ -64,10 +64,10 @@ function fn_memberDelete(member_num){
 }
 </style>
 </head>
-<div class="row" style="padding-left: 15px; width: 900px;">
+<div class="row" align="center">
 	<h1 class="page-header">회원목록</h1>
 </div>
-<div class="row">
+<div class="row" align="center">
 	<div class="panel panel-default">
 		<div class="panel-heading"> 회원목록페이지 검색, 수정, 삭제 기능하는 페이지입니다. <br/>
                          (※상태=0 : 이메일 미인증, 상태=1 : 이메일 인증완료, 상태=2 : 탈퇴한 회원) </div>

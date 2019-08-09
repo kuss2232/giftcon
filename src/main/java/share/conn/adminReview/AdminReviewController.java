@@ -63,7 +63,7 @@ public class AdminReviewController {
 				totalCount = reviewList.size();
 			}
 			
-			page = new AdminQNAPaging(currentPage, totalCount, blockCount, blockPage, "/giftcon/adminReviewList.conn", searchNum, SearchKeyword);
+			page = new AdminQNAPaging(currentPage, totalCount, blockCount, blockPage, "adminReviewList.conn", searchNum, SearchKeyword);
 			pagingHtml = page.getPagingHtml().toString();
 			int lastCount = totalCount;
 			
@@ -79,7 +79,7 @@ public class AdminReviewController {
 		}else {
 			totalCount = reviewList.size();
 			
-			page = new AdminQNAPaging(currentPage, totalCount, blockCount, blockPage, "/giftcon/adminReviewList.conn");
+			page = new AdminQNAPaging(currentPage, totalCount, blockCount, blockPage, "adminReviewList.conn");
 			pagingHtml = page.getPagingHtml().toString();
 			
 			int lastCount = totalCount;
