@@ -89,7 +89,7 @@
 						 			<td >${list.GOODS_NAME}</td>
 						 			<td >${list.ORDER_AMOUNT_SUM }</td>
 						 			<td >${list.ORDER_PAY_SUM }</td>
-						 			<td ><img alt="this.src='/giftcon/images/XBox.png'" src="/giftcon/resourses/file/goodsFile/${list.GOODS_IMG }"></td>
+						 			<td ><img alt="this.src='/giftcon/images/XBox.png'" src="${list.GOODS_IMG }"></td>
 						 			<td >${list.ORDER_PAYMENT }</td>
 						 			<td><c:if test="${list.ORDER_PAYMENT eq 'N' }"><input style="width:60pt;height:20pt; color: BLACK;"  type="button" value="주문 취소"/></c:if>
 						 				<c:if test="${list.ORDER_PAYMENT eq 'Y' }"><input style="width:60pt;height:20pt; color: BLACK;"  type="button" value="결제 취소"/> <input style="width:60pt;height:20pt; color:BLACK"  type="button" value="이메일 전송"/></c:if>
