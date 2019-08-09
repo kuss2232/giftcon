@@ -61,7 +61,7 @@ public class AdminGoodsController {
 				adGoodsList = adminGoodsService.adCategory1GoodsList(isSearch);
 			
 			totalCount = adGoodsList.size();
-			page = new Paging(currentPage, totalCount, blockCount, blockPage, "adGoodsList", searchNum, isSearch);
+			page = new Paging(currentPage, totalCount, blockCount, blockPage, "adminGoodsList.conn", searchNum, isSearch);
 			pagingHtml = page.getPagingHtml().toString();
 			
 			int lastCount = totalCount;
@@ -83,7 +83,7 @@ public class AdminGoodsController {
 		
 		totalCount = adGoodsList.size();
 		
-		page = new Paging(currentPage, totalCount, blockCount, blockPage, "adGoodsList");
+		page = new Paging(currentPage, totalCount, blockCount, blockPage, "adminGoodsList.conn");
 		pagingHtml = page.getPagingHtml().toString();
 		
 		int lastCount = totalCount;
