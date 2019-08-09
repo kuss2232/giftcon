@@ -240,7 +240,7 @@ $(function () {
 			</div>
 			<!--  <!-- 상단 사각 배너 -->
 			<div class="sub_bg" style="display: none;"><p class="subBanner"><a href="https://www.donutbook.co.kr/intro/donutExchange.do"><img src="/3N1DATA01/donutbook/contents/banner/m151qtoe63a94d043b5x.jpg" alt="" width="201"></a></p></div>
-			 -->
+			 
 		</nav>
 	</header>
 </body>
