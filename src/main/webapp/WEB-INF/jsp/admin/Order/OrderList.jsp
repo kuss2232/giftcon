@@ -64,7 +64,7 @@
 										<td style="text-align:center;vertical-align:middle;">
 											<input type="hidden" name="order_num" value="${orderList.ORDER_NUM}"/>
 										${orderList.ORDER_NUM}</td>	<!-- 주문번호 -->
-										<td style="text-align:center;vertical-align:middle;"><a href="${Detail}"><img src="/giftcon/resources/images/don.jpg"></a></td>	<!-- 상품이미지 -->
+										<td style="text-align:center;vertical-align:middle;"><a href="${Detail}"><img src="/giftcon/resources/images/처갓집.jpg"></a></td>	<!-- 상품이미지 -->
 										<td style="text-align:center;vertical-align:middle;"><a href="${Detail}">${orderList.GOODS_NAME}<c:if test="${orderList.COUNTS > 1}">외 ${orderList.COUNTS-1}개</c:if></a></td>	<!-- 상품이름 -->
 										<td style="text-align:center;vertical-align:middle;">${orderList.MEMBER_ID}</td>	<!-- 회원ID -->
 										<td style="text-align:center;vertical-align:middle;">${orderList.ORDER_AMOUNT_SUM}</td>	<!-- 수량 -->
