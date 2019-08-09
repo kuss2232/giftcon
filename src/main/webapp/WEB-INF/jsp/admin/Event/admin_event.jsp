@@ -100,10 +100,10 @@ cursor: pointer;
 
 </head>
 
-<div class="row" style="padding-left: 15px; width: 900px;">
+<div class="row" align="center" style="padding-left: 15px; width: 900px;">
 	<h1 class="page-header">EVENT</h1>
 </div>
-<div class="row">
+<div class="row" align="center">
 	<div class="panel panel-default">
 		<div class="panel-heading">EVENT 등록, 수정, 삭제 기능하는 페이지입니다.</div>
 		<div class="panel-body">
@@ -183,11 +183,12 @@ cursor: pointer;
 										</tr>
 									</c:if>
 								</tbody>
+								
 							</table>
 						</div>
 					</div>
 				</div>
-	  			<div class="paging">${pagingHtml}</div>
+	  			<div class="paging" align="center">${pagingHtml}</div>
 									<div class="row">
 						<div style="text-align: center;">
 							<div id="dataTables-example_filter" class="dataTables_filter">

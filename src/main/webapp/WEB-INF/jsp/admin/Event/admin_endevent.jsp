@@ -191,7 +191,7 @@ cursor: pointer;
 				
 				
 				
-   			<div class="paging">${pagingHtml}</div>
+   			<div class="paging" align="center">${pagingHtml}</div>
 									<div class="row">
 						<div style="text-align: center;">
 							<div id="dataTables-example_filter" class="dataTables_filter">

@@ -106,7 +106,7 @@ function FAQCategory(num){
 					<!-- /end:askCategory -->
 					<!-- start:ask_list -->
 					<div class="askList">
-						<p>조회내역 총 1건</p>			
+						<p>조회내역 총 ${totalCount}건</p>			
 					</div>
 					<div class="askList">
 						<ul class="myAskList">
@@ -168,7 +168,6 @@ function goDetail(index) {
 		$(viewId).show();
 	}
 }
-</script>
 </script>
 </body>
 </html>
