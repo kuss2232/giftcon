@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <%@include file="../module/header.jsp"%>
 <!DOCTYPE html>
 <html>
@@ -11,7 +12,9 @@
 <link rel="stylesheet" type="text/css" href="/giftcon/css/jquery/swiper.min.css">
 <link rel="stylesheet" type="text/css" href="/giftcon/css/jquery/jquery-ui.css">
 <link rel="stylesheet" type="text/css" href="/giftcon/css/main.css">
+	<link rel="stylesheet" type="text/css" href="/giftcon/css/bootstrapadmin.min.css">
 <script src="/giftcon/css/jquery/jquery-1.12.4.min.js"></script>
+
 </head>
 <body>
 <div id="container">
@@ -125,24 +128,48 @@
 			<!-- /end:product_detail -->
 
 			<div class="subTit">상품 후기</div>
-				<div>
-				<c:forEach var="review"  items="${reviewDetail}">	
-					<tr>
-						<td>작성자: ${review.MEMBER_NUM}</td>
-						<td>후기 : ${review.REVIEW_CNT}</td>
-					</tr>
-				</c:forEach>
-			</div>
-
+			
 			<div class="askList">
 				<form name="frm">
 					<input type="hidden" id="goodsNum" name="goodsNum" value="${goodsDetail.GOODS_NUM}" />
 					<input type="hidden" id="memberId" name="memberNum" value="${MEMBER_ID}" />
-					<textarea id="content" name="content" rows="10" cols="100" class="commentForm"></textarea>
-					
-					<input type=button style="width:45pt;height:30pt; color:BLACK" id="btn" value="댓글작성" class="commentBt" />
+				<div>					
+					<textarea id="content" name="content" rows="10" cols="100" style="height:100px;width:980px; resize: none;" class="commentForm"></textarea>
+
+					<input type=button style="margin-bottom:94.5px; width:70px;height:100px; color:BLACK" id="btn" value="댓글작성" class="commentBt" />
+				</div>
 				</form>
 			</div>
+			<table class="table table-striped table-bordered table-hover dataTable no-footer" id="dataTables-example" role="grid" aria-describedby="dataTables-example_info">
+								<thead>
+									<tr role="row">
+										<th style="width: 6%; text-align:center;">글번호</th>
+										<th style="width: 11%; text-align:center;">작성자</th>
+										<th style="width: 35%; text-align:center;">리뷰</th>
+										<th style="width: 10%; text-align:center;">작성일</th>
+										<th style="width: 10%; text-align:center;">평점</th>
+										<th style="width: 10%; text-align:center;">관리</th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach var="review" items="${reviewDetail}">
+										<tr class="gradeA even" role="row">
+											<td style="text-align: center; vertical-align: middle;">${review.REVIEW_NUM}</td>
+											<td style="text-align: center; vertical-align: middle;">${review.MEMBER_ID}</td>
+											<td style="text-align: center; vertical-align: middle;">${review.REVIEW_CNT}</td>
+											<td style="text-align: center; vertical-align: middle;">
+													<fmt:formatDate	value="${review.REVIEW_REGDATE}" pattern="YY.MM.dd HH:mm" /></td>
+											<td style="text-align: center; vertical-align: middle;">${review.REVIEW_GRADE }</td>
+											<td style="text-align: center; vertical-align: middle;">
+												</td>
+											</tr>
+										</c:forEach>
+
+										<!-- Q&A가 없을때 -->
+								 
+								</tbody>
+							</table>
+			
 			
 
 
@@ -171,6 +198,7 @@ function fn_insertReview(){
 		},
 		success : function() {
 			alert("등록");
+			location.reload();
 		}
 	});
 
