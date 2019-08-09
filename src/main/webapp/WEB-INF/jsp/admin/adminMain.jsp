@@ -85,7 +85,7 @@
 								<span class="fa arrow">▼</span>
 							</a>
 							<ul class="nav nav-second-level">
-								<li><a href="/giftcon/adminOrderDetail.conn">- 주문목록</a></li>
+								<li><a href="/giftcon/adminOrder.conn">- 주문목록</a></li>
 								<li><a href="/giftcon/orderModify.conn">- 주문수정</a></li>
 								<li><a href="/giftcon/orderDetail.conn">- 상세주문목록</a></li>
 							</ul>

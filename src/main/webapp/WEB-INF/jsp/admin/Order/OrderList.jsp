@@ -5,7 +5,7 @@
 <html>
 <link rel="stylesheet" type="text/css" href="/giftcon/css/jquery/bootstrapadmin.min.css">
 <body>
-<div class="row" style="padding-left:15px;width:900px;">    
+<div class="row" align="center">    
 	<h1 class="page-header">주문목록</h1>
 </div>
 <div class="row">

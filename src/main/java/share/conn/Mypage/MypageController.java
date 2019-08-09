@@ -16,6 +16,8 @@ import org.springframework.web.servlet.ModelAndView;
 import share.conn.Qna.QnaService;
 import share.conn.Review.ReviewService;
 import share.conn.giftcon.CommandMap;
+import share.conn.Paging.AdminQNAPaging;
+import share.conn.Paging.Paging;
 
 @Controller
 public class MypageController {
@@ -29,6 +31,15 @@ public class MypageController {
 	@Resource(name="reviewService")
 	private ReviewService reviewService;
 	
+	private int totalCount;
+	private int searchNum;
+	private String SearchKeyword;
+	
+	private int currentPage;
+	private int blockCount = 10;
+	private int blockPage = 5;
+	private String pagingHtml;
+	private Paging page;
 	@RequestMapping("/mypage.conn")
 	public ModelAndView mypage() {
 		ModelAndView mv = new ModelAndView("/mypage/userPwCheck");
@@ -111,14 +122,15 @@ public class MypageController {
 	
 	//Q&A리스트 
 	@RequestMapping("/myQnalist.conn")
-	public ModelAndView qnalist(CommandMap commandMap, HttpSession session) throws Exception{
+	public ModelAndView qnalist(CommandMap commandMap, HttpSession session,HttpServletRequest request) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		commandMap.getMap().put("MEMBER_NUM", session.getAttribute("MEMBER_NUM"));
+		
 		List<Map<String, Object>> qnaList = qnaService.qnaList(commandMap.getMap());
-		/*
-		 * Iterator it = qnaList.iterator(); if(it.hasNext()) {
-		 * System.out.println("QNA_NUM : " +((Map)it.next()).get("QNA_NUM")); }
-		 */
+			
+		totalCount = qnaList.size();
+		
+		mv.addObject("totalCount",totalCount);
 		mv.addObject("qnaList", qnaList);
 		mv.setViewName("mypage/myQna");
 		return mv;
