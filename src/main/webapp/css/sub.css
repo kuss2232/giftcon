@@ -303,9 +303,9 @@ ul.myAskList li.on div.view div.answerBox span.icoAnswer {display: inline-block;
 ul.myAskList li.on div.view div.answerBox > p {float: left; width: 864px; font-size: 13px; color: #666; line-height: 18px;}
 ul.myAskList li a span.icoQuestion {display: inline-block; float:left; margin: 13px 10px 0 30px; width: 22px; height: 22px; background: url(/giftcon/images/main/ico_csCenter.png) no-repeat 0 -1018px; text-indent: -9100em;}
 
-ul.myAskList li.on div.faqView {display: inline-block; padding: 30px; width: 1100px; background: #fff; box-sizing: border-box; border: 1px solid #2164bf; vertical-align: top;}
-ul.myAskList li.on div.faqView span.icoAnswer {display: inline-block; margin-right: 10px; float:left; width: 22px; height: 22px; background: url(/giftcon/images/main/ico_csCenter.png) no-repeat 0 -602px; text-indent: -9100em;}
-ul.myAskList li.on div.faqView > p {float: left; width: 1006px; font-size: 13px; color: #666; line-height: 18px;}
+ul.myAskList li div.faqView {display: inline-block; padding: 30px; width: 1100px; background: #fff; box-sizing: border-box; border: 1px solid #2164bf; vertical-align: top;}
+ul.myAskList li div.faqView span.icoAnswer {display: inline-block; margin-right: 10px; float:left; width: 22px; height: 22px; background: url(/giftcon/images/main/ico_csCenter.png) no-repeat 0 -602px; text-indent: -9100em;}
+ul.myAskList li div.faqView > p {float: left; width: 1006px; font-size: 13px; color: #666; line-height: 18px;}
 
 div.paginate {margin: 70px 0 0 0; width: 1100px; text-align: center;}
 div.paginate > div {display: inline-block; margin: 0 4px; width: 42px; height: 38px;}
@@ -605,9 +605,9 @@ ul.brandList li > a > span {display: inline-block; margin-top: 8px; width: 150px
 div.stepArea {display: inline-block; margin-bottom: 70px; width: 1100px;}
 div.stepArea p.stepBox {float: left; margin-bottom: 20px; width: 1100px; height: 54px; border: 1px solid #e9e9e9; position: relative;}
 div.stepArea p.stepBox span.stepTxt {width: 150px; height: 54px; text-indent: -8600em; position: absolute; top: -1px; left: -1px;}
-div.stepArea p.stepBox span.s1 { background: url(/giftcon/images/ico_mconpon.png) no-repeat 0 -437px;}
-div.stepArea p.stepBox span.s2 { background: url(/giftcon/images/ico_mconpon.png) no-repeat 0 -541px;}
-div.stepArea p.stepBox span.s3 { background: url(/giftcon/images/ico_mconpon.png) no-repeat 0 -645px;}
+div.stepArea p.stepBox span.s1 { background: url(../images/sub/ico_mconpon.png) no-repeat 0 -437px;}
+div.stepArea p.stepBox span.s2 { background: url(../images/sub/ico_mconpon.png) no-repeat 0 -541px;}
+div.stepArea p.stepBox span.s3 { background: url(../images/sub/ico_mconpon.png) no-repeat 0 -645px;}
 div.stepArea p.stepBox span.stepTit {float: left; padding: 11px 0 0 170px; font-size: 24px; font-weight: 600; color: #333;}
 div.stepArea p.stepBox a.benefitBox {position: absolute; top: 13px; right: 10px;}
 div.stepArea p.stepBox a.benefitBox span.txt {display: inline-block; margin: 3px 0 0 8px; font-size: 15px; font-weight: 600; color: #000; vertical-align: top}
@@ -703,9 +703,9 @@ ul.payInfo li div.payMethod {display: inline-block; margin: 15px 34px 0 0; float
 ul.payInfo li div.last {margin-right: 0;}
 ul.payInfo li div.payMethod input[type="radio"] {display: inline-block; margin-bottom: 5px;}
 ul.payInfo li div.payMethod > p {display: inline-block; margin-bottom: 8px; width: 112px; height: 76px; text-align: center; background: #f0f0f0;}
-ul.payInfo li div.payMethod span.icoPay1 {display: inline-block; margin-top: 14px; width: 66px; height: 46px; background: url(/giftcon/images/ico_mconpon.png) no-repeat 0 -828px;}
-ul.payInfo li div.payMethod span.icoPay2 {display: inline-block; margin-top: 9px; width: 36px; height: 59px; background: url(/giftcon/images/ico_mconpon.png) no-repeat 0 -924px;}
-ul.payInfo li div.payMethod span.icoPay3 {display: inline-block; margin-top: 17px; width: 74px; height: 44px; background: url(/giftcon/images/ico_mconpon.png) no-repeat 0 -1033px;}
+ul.payInfo li div.payMethod span.icoPay1 {display: inline-block; margin-top: 14px; width: 66px; height: 46px; background: url(../images/sub/ico_mconpon.png) no-repeat 0 -828px;}
+ul.payInfo li div.payMethod span.icoPay2 {display: inline-block; margin-top: 9px; width: 36px; height: 59px; background: url(../images/sub/ico_mconpon.png) no-repeat 0 -924px;}
+ul.payInfo li div.payMethod span.icoPay3 {display: inline-block; margin-top: 17px; width: 74px; height: 44px; background: url(../images/sub/ico_mconpon.png) no-repeat 0 -1033px;}
 span.txtMethod {width: 112px; font-size: 15px; font-weight: 600; color: #333; text-align: center;}
 
 div.payBox div.totalPay {float: left; width: 508px; height: 360px; border-top: 1px solid #7a7b7f; border-bottom: 1px solid #ccc;  background: #eff2f9;}
@@ -972,7 +972,7 @@ ul.eventList li > a > img {display: block; margin-bottom: 20px; width: 352px; he
 ul.eventList li span.eventTit {display: block; margin-bottom: 7px; width: 354px; font-size: 17px; font-weight: 600; color: #333;}
 ul.eventList li span.eventTxt {display: block; margin-bottom: 6px; width: 354px; font-size: 15px; padding-bottom: 10px; border-bottom: 1px solid #d5ddf2;}
 ul.eventList li > img {display: block; margin-bottom: 20px; width: 352px; height: 218px; border: 1px solid #ddd;}
-ul.eventList li span.finishStamp {display: inline-block; width: 354px; height: 218px; background: url(/giftcon/images/ico_event.png) no-repeat 0 -273px; position: absolute; top: 1px; left: 1px;}
+ul.eventList li span.finishStamp {display: inline-block; width: 354px; height: 218px; background: url(../images/sub/ico_event.png) no-repeat 0 -273px; position: absolute; top: 1px; left: 1px;}
 
 
 /* 사이트맵 */

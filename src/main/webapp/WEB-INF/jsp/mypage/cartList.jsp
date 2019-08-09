@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/include-header.jspf" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <link rel="stylesheet" type="text/css" href="/giftcon/css/jquery/bootstrapadmin.min.css">
@@ -46,14 +46,14 @@
 								<c:set var="price" value="0"/>
 								<c:forEach var="cartList"  items="${cartList}">	
 									<tr class="gradeA even" role="row" height="30px">
-										<c:url var="Detail" value="/goods/Detail.conn" >
+										<c:url var="Detail" value="/goods/detail.conn" >
 											<c:param name="GOODS_NUM" value="${cartList.GOODS_NUM}" />
 										</c:url>
 										
 										<td style="text-align:center;vertical-align:middle;">
 											<input type="hidden" name="order_num" value="${cartList.GOODS_NUM}"/>
 										${cartList.GOODS_NUM}</td>	<!-- 상품번호 -->
-										<td style="text-align:center;vertical-align:middle;"><a href="${Detail}"><img src="/giftcon/resources/images/don.jpg"></a></td>	<!-- 상품이미지 -->
+										<td style="text-align:center;vertical-align:middle;"><a href="${Detail}"><img src="/giftcon/resources/file/goodsFile/${cartList.GOODS_IMG}"></a></td>	<!-- 상품이미지 -->
 										<td style="text-align:center;vertical-align:middle;"><a href="${Detail}">${cartList.GOODS_NAME}</a></td>	<!-- 상품이름 -->
 										<td style="text-align:center;vertical-align:middle;">${cartList.CART_AMOUNT}개<c:set var="amount" value="${amount + cartList.CART_AMOUNT}"/>	<!-- 수량 -->
 											<select class="form-control" id="select${cartList.CART_NUM}" onchange="fn_AmountModify(${cartList.CART_NUM})">

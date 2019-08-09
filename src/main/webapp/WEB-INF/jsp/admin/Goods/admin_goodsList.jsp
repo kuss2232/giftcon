@@ -73,6 +73,12 @@ function fn_goodsModify(goods_num){
 	comSubmit.addParam("GOODS_NUM", goods_num);
 	comSubmit.submit(); 
 }
+
+function fn_goInsertForm(){ 
+	var comSubmit = new ComSubmit(); 
+	comSubmit.setUrl("<c:url value='/goods/goodsInsertForm.conn' />");
+	comSubmit.submit(); 
+}
 </script>
 <style type="text/css">
 
@@ -177,6 +183,7 @@ function fn_goodsModify(goods_num){
 									</c:if> 
 								</tbody>
 							</table>
+							<input type="button" id="go_insert" name="go_insert" value="상품등록" onclick="fn_goInsertForm()">
 						</div>
 					</div>
 					<div class="paging">
