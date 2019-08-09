@@ -81,7 +81,6 @@ public class OrderController {
 				}
 				price += Integer.parseInt(goods.get("GOODS_PRICE").toString()) * Integer.parseInt((goods.get("CART_AMOUNT").toString()));
 			}
-			System.out.println(totalPrice + "////////////**************************************************");
 			
 			mv.addObject("price", price);
 			mv.addObject("totalPrice",totalPrice);
@@ -90,8 +89,6 @@ public class OrderController {
 			mv.addObject("GOODS_NUM",request.getParameter("GOODS_NUM"));
 			mv.addObject("MEMBER_ID",MEMBER_ID);
 		}
-		
-		
 		
 		return mv;
 	}
