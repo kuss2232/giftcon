@@ -33,4 +33,10 @@ public class OrderDAO extends AbstractDAO{
 		return selectList("cart.cartList", map);
 	}
 
+
+	public List<Map<String, Object>> orderList() {
+		// TODO Auto-generated method stub
+		return selectList("adminOrderlist.allOrderList");
+	}
+
 }
