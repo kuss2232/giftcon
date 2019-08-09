@@ -149,7 +149,7 @@ cursor: pointer;
 										<c:set var="logo" value="${fn:split(eventList.EVENT_IMG,',')}"/>
 										<c:forEach var="logo" items="${logo}">
 										<c:if test="${i eq 0}">
-										<td><img src="/giftcon/resources/file/Eventfile/${logo}" width="150" height="90" ></td>
+										<td><img src="/giftcon/resources/file/event/${logo}" width="150" height="90" ></td>
 										<c:set var="i" value="1"/>
 										</c:if>
 										</c:forEach>

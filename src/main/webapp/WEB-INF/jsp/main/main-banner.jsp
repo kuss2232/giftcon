@@ -21,7 +21,7 @@ function changeImage(){
 		imageIndex=0;
 	}
 }
-setInterval(changeImage,1000);
+setInterval(changeImage,3000);
 </script>
 </body>
 </html>

@@ -37,7 +37,7 @@
 						</div>
 						<div class="notiCont" align="center">
 						<c:forEach var="IMG" items="${IMGLIST}">
-							<img src="/giftcon/resources/file/Eventfile/${IMG}" width="1100" height="700"  >
+							<img src="/giftcon/resources/file/event/${IMG}" width="1100" height="700"  >
 							<br/>
 						</c:forEach>
 						</div>

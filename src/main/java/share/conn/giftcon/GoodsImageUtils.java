@@ -21,7 +21,7 @@ public class GoodsImageUtils {
    //filePath2= 공지사항 파일 경로
    private static final String filePath2 = "C:\\java\\maven-app\\MODA\\src\\main\\webapp\\file\\noticeFile\\";
    //filePath3= 이벤트 파일 경로
-   private static final String filePath3 = "D:\\java\\giftcon\\src\\main\\webapp\\resources\\file\\Eventfile\\";
+   private static final String filePath3 = "D:\\giftcon\\giftcon\\src\\main\\webapp\\resources\\file\\event\\";
    
    
    public List<Map<String, Object>> goodsIMG(Map<String, Object> map, HttpServletRequest request) throws Exception {

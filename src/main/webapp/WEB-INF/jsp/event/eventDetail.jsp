@@ -26,7 +26,10 @@
 						</div>
 							<!-- 일반 이벤트 -->
 								<div class="notiCont">,<p style="text-align: center; ">
-								<img src="/giftcon/images/main-banner1.png" style="width: 847px;">							
+								<c:forEach var="IMG" items="${IMGLIST}">
+                     <img src="/giftcon/resources/file/event/${IMG}" width="1100" height="700"  >
+                     <br/>
+                  </c:forEach>						
 						</p>
 						</div>
 					</div>

@@ -29,7 +29,7 @@
 								<c:set var="logo" value="${fn:split(eventList.EVENT_IMG,',')}"/>
 								<c:forEach var="logo" items="${logo}">
 								<c:if test="${i eq 0}">
-								<a href="/giftcon/eventDetail.conn?EVENT_NUM=${eventList.EVENT_NUM}"><img src="/giftcon/resources/file/Eventfile/${logo}" alt=""></a>
+								<a href="/giftcon/eventDetail.conn?EVENT_NUM=${eventList.EVENT_NUM}"><img src="/giftcon/resources/file/event/${logo}" alt=""></a>
 								<c:set var="i" value="1"/>
 								</c:if>
 								</c:forEach>
@@ -51,9 +51,9 @@
 								<c:set var="logo" value="${fn:split(endEventList.EVENT_IMG,',')}"/>
 								<c:forEach var="logo" items="${logo}">
 								<c:if test="${i eq 0}">
-								<span class="finishStamp"></span>
+								<span class="finishStamp" style="display: inline-block; width: 354px; height: 218px; background: url(/giftcon/images/ico_event.png) no-repeat 0 -273px; position: absolute; top: 1px; left: 1px;"></span>
 								<a href="/giftcon/eventDetail.conn?EVENT_NUM=${endEventList.EVENT_NUM}"></a>
-								<img src="/giftcon/resources/file/Eventfile/${logo}" alt="">
+								<img src="/giftcon/resources/file/event/${logo}" alt="">
 								<c:set var="i" value="1"/>
 								</c:if>
 								</c:forEach>

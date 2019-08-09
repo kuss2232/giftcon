@@ -44,7 +44,7 @@
 			
 			<a href="/giftcon/main.conn" id = "btnNext" class="btnBigBgBlue2 w227">메인으로 가기</a>
 			
-			 <a href="/giftcon/goodsList.conn" id="btnNext" class="btnBigBgBlue2 w227">쇼핑하러 가기</a> 
+			 <a href="/giftcon/goods/list.conn" id="btnNext" class="btnBigBgBlue2 w227">쇼핑하러 가기</a> 
 		</div>
 </div>
 </div>

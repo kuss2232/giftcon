@@ -101,10 +101,10 @@ cursor: pointer;
 
 </head>
 
-<div class="row" style="padding-left: 15px; width: 900px;">
+<div class="row" align="center">
 	<h1 class="page-header">EVENT</h1>
 </div>
-<div class="row">
+<div class="row" align="center">
 	<div class="panel panel-default">
 		<div class="panel-heading">EVENT 등록, 수정, 삭제 기능하는 페이지입니다.</div>
 		<div class="panel-body">
@@ -149,7 +149,7 @@ cursor: pointer;
 										<c:set var="logo" value="${fn:split(endEventList.EVENT_IMG,',')}"/>
 										<c:forEach var="logo" items="${logo}">
 										<c:if test="${i eq 0}">
-										<td><img src="/giftcon/resources/file/Eventfile/${logo}" width="150" height="90" ></td>
+										<td><img src="/giftcon/resources/file/event/${logo}" width="150" height="90" ></td>
 										<c:set var="i" value="1"/>
 										</c:if>
 										</c:forEach>
