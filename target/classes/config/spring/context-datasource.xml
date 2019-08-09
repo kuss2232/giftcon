@@ -8,13 +8,8 @@
 
 	<bean id="dataSourceSpied" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
-<<<<<<< HEAD
-		<property name="url" value="jdbc:oracle:thin:@192.168.121.100:1521:ORCL"/>
-		<property name="username" value="conn"/>
-=======
-		<property name="url" value="jdbc:oracle:thin:@192.168.230.100:1521:ORCL"/>
-		<property name="username" value="aa"/>
->>>>>>> 8a0e141ce61b9d39ee8888bd41edd28d8db87166
+		<property name="url" value="jdbc:oracle:thin:@192.168.80.100:1521:ORCL"/>
+		<property name="username" value="EXSQL"/>
 		<property name="password" value="oracle"/>
 		
 	</bean>		

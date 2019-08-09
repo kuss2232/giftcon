@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/include-header.jspf" %>
 <%@ include file="/WEB-INF/include-body.jspf" %>
+<link href="/giftcon/css/jquery/bootstrapadmin.min.css" rel="stylesheet" type="text/css">
 <script>
 $(document).ready(function(){
 	$("#check").on("click", function(e) {
@@ -98,16 +99,14 @@ $(document).ready(function(){
 </script>
 <form name="frm" method="post" class="form-horizontal">
 
-
 	<input name="agreement" value="o" type="hidden">
 
 	<section style="padding: 30px 20px;">
 		<div class="form-group">
 			<label for="inputEmail3" class="col-xs-4 col-lg-4 control-label">이메일</label>
 			<div class="col-xs-20 col-lg-20 form-inline">
-				<input name="MEMBER_EMAIL" id="email_Id" class="from-control" size="25"
-					type="text"> <a href="#" id="check"
-					class="btn btn-default form-control">인증번호받기</a>
+				<input name="MEMBER_EMAIL" id="email_Id" class="form-control" size="25" type="text"> 
+				<a href="#" id="check"	class="btn btn-default form-control">인증번호받기</a>
 			</div>
 		</div>
 
