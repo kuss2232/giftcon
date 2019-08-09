@@ -13,6 +13,7 @@
 <head>
 <script src="/giftcon/js/common.js" charset="utf-8"></script>
 <script src="/giftcon/css/jquery/jquery-1.12.4.min.js"></script>
+<link href="/giftcon/css/jquery/bootstrapadmin.min.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css"  />
 <script>
 $(document).ready(function(){
@@ -48,10 +49,10 @@ $(document).ready(function(){
 				}  
 </script>
 </head>
-<div class="row" style="padding-left: 15px; width: 900px;">
+<div class="row" align="center">
 	<h1 class="page-header">자주묻는질문</h1>
 </div>
-<div class="row">
+<div class="row" align="center">
 	<div class="panel panel-default">
 		<div class="panel-heading">자주묻는질문 검색, 등록, 수정, 삭제 기능하는 페이지입니다.</div>
 		<div class="panel-body">
@@ -125,17 +126,17 @@ $(document).ready(function(){
 						</div>
 					</div>
 
-					<div class="paging">${pagingHtml}</div>
+					<div class="paging" align="center">${pagingHtml}</div>
 
 					<div class="row">
 						<div style="text-align: center;">
 							<div id="dataTables-example_filter" class="dataTables_filter">
 								<form action="">
-									<select class="form-control" name="searchNum" id="searchNum">
+									<select name="searchNum" id="searchNum">
 										<option value="0">제목</option>
 										<option value="1">내용</option>
 										
-									</select> <input class="form-control" type="text" name="isSearch"
+									</select> <input  type="text" name="isSearch"
 										id="isSearch" /> <span>
 										<button type="submit" class="btn btn-default">검색</button>
 									</span>
@@ -152,4 +153,4 @@ $(document).ready(function(){
 	</div>
 	<!-- /.panel -->
 </div>
-
+</div>
