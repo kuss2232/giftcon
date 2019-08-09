@@ -99,7 +99,7 @@
 							<c:forEach items="${list}" var="goods">
 								<tr>
 									<c:set var="i" value="${i+1}"/>
-									<td class="alignC"><img src="${goods.GOODS_IMG}" alt="">
+									<td class="alignC"><img src="/giftcon/resources/file/goodsFile/${goods.GOODS_IMG}" alt="">
 									<input type="hidden" value="${totalPrice}" id="totalPrice${i}">
 									<input type="hidden" value="${MEMBER_ID}" id="MEMBER_ID${i}">
 									<input type="hidden" value="${GOODS_NUM}" id="GOODS_NUM${i}">

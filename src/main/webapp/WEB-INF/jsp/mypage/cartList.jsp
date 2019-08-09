@@ -1,29 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@include file="../module/header.jsp"%>
 <!DOCTYPE html>
 <html>
 <link rel="stylesheet" type="text/css" href="/giftcon/css/jquery/bootstrapadmin.min.css">
 <script type="text/javascript" src="/giftcon/css/common.js"></script>
 <script src="/giftcon/css/jquery/jquery-1.12.4.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/giftcon/css/common.css">
+<link rel="stylesheet" type="text/css" href="/giftcon/css/jquery/swiper.min.css">
+<link rel="stylesheet" type="text/css" href="/giftcon/css/sub.css">
+<script type="text/javascript" src="/giftcon/css/jquery/swiper.min.js"></script>
+<style>
+input.form-control {display: inline-block; font-size: 14px; font-weight: 600; color: #fff; background: #5d5d5d; line-height: 30px; width: 200px;}
+input.form-control:hover {background: #333;}
+</style>
 <body>
-<div class="row" style="padding-left:15px;width:900px;">    
-	<h1 class="page-header">장바구니목록</h1>
-</div>
-<div class="row">
-	<div class="panel panel-default">
-		<div class="panel-heading">
-                         장바구니페이지 수정, 삭제 기능하는 페이지입니다.
-        </div>
-        <div class="panel-body">
-			<div class="dataTable_wrapper">
-				<div id="dataTables-example_wrapper"
-					class="dataTables_wrapper form-inline dt-bootstrap no-footer">
-					<div class="row" style="margin-bottom:5px;">
-						<div class="col-sm-6" style="text-align:right;">
-							<div class="dataTables_info" id="dataTables-example_info" role="status" aria-live="polite">총 상품수 : ${totalCount}</div>
-						</div>
-					</div>
+<div class="contents">
+<div class="subWrap">
+<div class="subLayout"> 
+	<div class="subTit">장바구니</div>
+	<div class="infoBtn"><span class="totalTxt">총 상품수 : ${totalCount} 건</span></div>
 					<div class="row">
 						<div class="col-sm-12">
 						<form id="frm" name="frm" method="POST">
@@ -96,12 +93,10 @@
 							<input type="button" class="form-control" id="btn" value="전체 계산하기" onclick="fn_orderAll()">
 						</div>
 					</div>
-				</div>
-			</div>
 			<!-- /.table-responsive -->							
-		</div>
-	</div>
         <!-- /.panel -->   
+</div>
+</div>
 </div>
 </body>
 <script type="text/javascript">
