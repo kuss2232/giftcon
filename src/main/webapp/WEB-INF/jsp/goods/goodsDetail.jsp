@@ -12,7 +12,7 @@
 <link rel="stylesheet" type="text/css" href="/giftcon/css/jquery/swiper.min.css">
 <link rel="stylesheet" type="text/css" href="/giftcon/css/jquery/jquery-ui.css">
 <link rel="stylesheet" type="text/css" href="/giftcon/css/main.css">
-	<link rel="stylesheet" type="text/css" href="/giftcon/css/bootstrapadmin.min.css">
+<link rel="stylesheet" type="text/css" href="/giftcon/css/bootstrapadmin.min.css">
 <script src="/giftcon/css/jquery/jquery-1.12.4.min.js"></script>
 
 </head>

@@ -80,8 +80,8 @@
 <div class="box box-primary">
     <div class="box-header with-border">           
         <h2 class="box-title" align="center">목록</h2>
-        <div align="right">
-        <a href="/giftcon/admincategoryInsertForm.conn"><input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Cog_font_awesome.svg/32px-Cog_font_awesome.svg.png">추가</a>
+        <div align="left">
+        <a href="/giftcon/admincategoryInsertForm.conn"><input type="image" src="/giftcon/resources/images/answer.png">추가</a>
     </div>
        
         
@@ -110,7 +110,7 @@
                            <tr class="gradeA even" role="row">
                               <td style="text-align:center;vertical-align:middle;">${list.CATEGORY_NUM}</td>
                               <td style="text-align:center;vertical-align:middle;">${list.BIG_CATEGORY}</td>
-                              <td align="center"><img src="/giftcon/images/category/${list.CATEGORY_IMG}"></td>
+                              <td align="center"><img width="80" height="80" src="/giftcon/images/category/${list.CATEGORY_IMG}"></td>
                               <td style="text-align:center;vertical-align:middle;">${list.SMALL_CATEGORY}</td>
                               <td style="text-align:center;vertical-align:middle;">   
                                <a href=""><input type="image"  onclick="fn_delete('${list.SMALL_CATEGORY}')"  src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Trash_font_awesome.svg/32px-Trash_font_awesome.svg.png"></a></td>  										                         

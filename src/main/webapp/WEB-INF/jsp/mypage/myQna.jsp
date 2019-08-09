@@ -23,21 +23,21 @@ div.paginate>div>a.disabled:hover {
 				<li><a href="/giftcon/userPwChgForm.conn">비밀번호변경</a></li>
 				<li><a href="/giftcon/myQnalist.conn" class="on">나의 문의 이력</a></li>
 				<li><a href="/giftcon/orderList.conn">주문 내역</a></li>
-				<li><a href="/mypage/addrGroupList.do">주소록 관리</a></li>
+				
 			</ul>
 			<!-- /end:csTab -->
 			<form id="qnaFrm" name="qnaFrm" action="/bbs/qnaList.do" method="GET">
 
 				<!-- start:ask_list -->
 				<div class="askList">
-					<p>조회내역 총 건</p>
+					<p>조회내역 총${totalCount} 건</p>
 
 
 					<ul class="myAskList">
 						<c:forEach items="${qnaList}" var="list">
 							<li id="list_${list.QNA_NUM}" class><a href="#"
 								onclick="javascript:goDetail(${list.QNA_NUM}); return false;"> 
-								<span class="txtCate">${list.QNA_CATEGORY}</span> 
+							<span class="txtCate">${list.QNA_CATEGORY}</span> 
 								<span class="tit">${list.QNA_TITLE}</span>
 									<span class="txtState"> 
 							<c:if test="${list.QNA_CHECK.equals('Y')}">
