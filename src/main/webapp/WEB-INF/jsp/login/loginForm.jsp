@@ -15,20 +15,38 @@
 		});
 		
 		function fn_login(){
-			var comSubmit = new ComSubmit("userInfo");
-			comSubmit.setUrl("/giftcon/login.conn");
-			comSubmit.addParam("#saveId");
-			comSubmit.submit();
+			var check = "false";
+			if(document.loginFrm.saveId.checked)
+			{
+				check = "true";
+			}
+			$.ajax({
+				type : "POST",
+				url : "/giftcon/login.conn",
+				data : {"MEMBER_ID":$(MEMBER_ID).val(),
+						"MEMBER_PASSWD":$(MEMBER_PASSWD).val(),
+						"saveId":check},
+				dataType : "text",
+				error : function(request,status,error) {
+					alert("서버가 응답하지 않습니다. \n다시 시도해주시기 바랍니다.");
+					//alert("code = "+ request.status + " message = " + request.responseText + " error = " + error);
+				},
+				success : function(result) {
+					if( result != "null")
+					{
+						location.href="/giftcon/main.conn";
+					}
+					else
+					{
+						alert("아이디나 비밀번호가 맞지 않습니다.");
+					}
+				}
+			})
 		}
+	
 
 	</script>
 	
-	<!-- 로그인시 알림메세지 -->
-	<script type="text/javascript">
-		if("${message}" != ""){
-			alert("${message}");
-		}
-	</script>
 	<!-- 아이디저장 -->
 	<script>
 		$(document).ready(function(){
@@ -64,7 +82,7 @@
 				<div class="subLayout">
 					<!-- start:login -->
 					<div class="loginArea">
-						<form id="userInfo" name="loginFrm" role="login" action="/giftcon/login.conn" method="post" autocomplete="off">
+						<form id="userInfo" name="loginFrm" role="login" action="" method="post" autocomplete="off">
 							<fieldset>
 								<legend></legend>
 								<div class="loginInput">

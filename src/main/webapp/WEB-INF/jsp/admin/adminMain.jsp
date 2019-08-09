@@ -43,7 +43,7 @@
 					<span class="icon-bar"></span> 
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" style="color: #fff;" href="/giftcon/admin/adminMain.conn"><strong>Giftcon 관리자페이지</strong></a>
+				<a class="navbar-brand" style="color: #fff;" href="/giftcon/adminMain.conn"><strong>Giftcon 관리자페이지</strong></a>
 			</div>
 			<!-- /.navbar-header -->
 			<div class="navbar-default sidebar" role="navigation">
@@ -76,7 +76,6 @@
 							</a>
 							<ul class="nav nav-second-level">
 								<li><a href="/giftcon/member/adminMemberList.conn">- 회원목록</a></li>
-								<li><a href="/giftcon/member/adminModifyMember.conn"></a></li>
 							</ul> <!-- /.nav-second-level -->
 						</li>
 

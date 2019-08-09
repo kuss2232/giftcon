@@ -3,11 +3,20 @@
 <mapper namespace="memberInfo">
 
 <!-- 회원 정보 꺼내기 -->
-<select id="selectMember" parameterType="hashmap" resultType="hashmap">
+<select id="loginMember" parameterType="hashmap" resultType="hashmap">
 	<![CDATA[	
 		SELECT * FROM
 		MEMBER
-		WHERE MEMBER_ID = #{MEMBER_ID}		
+		WHERE MEMBER_ID = #{MEMBER_ID}	AND MEMBER_PASSWD = #{MEMBER_PASSWD}	
+	]]>
+	</select>
+	
+<!-- 회원 정보 꺼내기 -->
+	<select id="selectMember" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[	
+		SELECT * FROM
+		MEMBER
+		WHERE MEMBER_ID = #{MEMBER_ID}
 	]]>
 	</select>
 	
@@ -231,12 +240,6 @@
 ]]>
 </select>
 
-<!-- 로그인 할 경우 인증한 회원 구분 변경 -->
-<update id="loginMember" parameterType="hashmap">
-	<![CDATA[
-		UPDATE MEMBER SET MEMBER_STATE = 1 WHERE MEMBER_NUM = #{MEMBER_NUM}
-	]]>
-</update>
 
 <select id="checkMember" parameterType="hashmap" resultType="integer">
 <![CDATA[

@@ -85,7 +85,7 @@
 										<c:if test="${reviewList.GOODS_DCPRICE != null}">
 										<td style="text-align:center;vertical-align:middle;">
 												<del><fmt:formatNumber value="${reviewList.GOODS_PRICE}" type="number"/>원<br/></del>
-												<fmt:formatNumber value="${reviewList.GOODS_DISPRICE}" type="number"/>원</td>
+												<fmt:formatNumber value="${reviewList.GOODS_DCPRICE}" type="number"/>원</td>
 										</c:if>
 										<c:if test="${reviewList.GOODS_DCPRICE == null}">
 										<td style="text-align:center;vertical-align:middle;">
