@@ -59,6 +59,7 @@ public class OrderController {
 					totalPrice = Integer.parseInt(goods.get("GOODS_PRICE").toString());
 			}
 			price = Integer.parseInt(goods.get("GOODS_PRICE").toString());
+			mv.addObject("price",price);
 			mv.addObject("totalPrice",totalPrice);
 			mv.addObject("MEMBER_ID",MEMBER_ID);
 			mv.addObject("GOODS_NUM",request.getParameter("GOODS_NUM"));
