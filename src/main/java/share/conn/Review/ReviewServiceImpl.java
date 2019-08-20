@@ -19,7 +19,7 @@ public class ReviewServiceImpl implements ReviewService{
 		reviewDAO.insertReview(map);
 	}
 
-	//리뷰 등록
+	//리뷰 검색
 	@Override
 	public List<Map<String, Object>> searchReview(Map<String, Object> map) throws Exception {
 		return reviewDAO.searchReview(map);
