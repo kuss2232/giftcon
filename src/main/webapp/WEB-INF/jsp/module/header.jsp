@@ -140,7 +140,7 @@ $(function () {
 						<li><a href="/giftcon/joinStep1.conn" class="join" title="회원가입"><span class="icojoin"></span><em class="logState">회원가입</em></a></li>
 					<%} %>
 					<li><a href="/giftcon/notice.conn" class="cs" title="고객센터"><span class="icoCs"></span><em class="logState">고객센터</em></a></li>
-					<li class="exc last"><a href="/giftcon/cart/cartlist.conn" class="cart" title="장바구니"><span class="icoCart"><em class="counting" id="headerCartCount"><b>0</b></em></span><em class="logState">장바구니</em></a></li>
+					<li class="exc last"><a href="/giftcon/cart/cartlist.conn" class="cart" title="장바구니"><span class="icoCart"><em class="counting" id="headerCartCount"><b><%=session.getAttribute("count") %></b></em></span><em class="logState">장바구니</em></a></li>
 				</ul>
 				<div>
 </div></form>

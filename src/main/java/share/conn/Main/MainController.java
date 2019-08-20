@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import share.conn.Cart.CartService;
 import share.conn.Goods.GoodsService;
 import share.conn.Paging.Paging;
 import share.conn.giftcon.CommandMap;
@@ -23,6 +24,9 @@ public class MainController {
 	@Resource(name="goodsService")
 	private GoodsService goodsService;
 	
+	@Resource(name="cartService")
+	private CartService cartService;
+	
 	private int currentPage = 1;
 	private int blockCount = 4;
 	private int blockPage = 1;
@@ -35,7 +39,15 @@ public class MainController {
 		List<Map<String, Object>> bestList = mainService.GoodsBestList();
 		List<Map<String, Object>> saleList = mainService.GoodsSaleList1();
 		List<Map<String, Object>> smallcategoryList = goodsService.smallCategoryList();
-
+		int count = 0;
+		
+		if(session.getAttribute("MEMBER_ID") != null)
+		{
+			commandMap.put("MEMBER_NUM", session.getAttribute("MEMBER_NUM")); 
+			count = cartService.cartList(commandMap.getMap()).size();
+			session.setAttribute("count", count);
+		}
+		
 		int totalCount = 8;
 		page = new Paging(currentPage, totalCount, blockCount, blockPage, "main.conn");
 		int lastCount = totalCount;
