@@ -131,6 +131,7 @@
 		SELECT GOODS_NUM
 		FROM GOODS
 		WHERE GOODS_NAME = #{GOODS_NAME}
+		AND CATEGORY_NUM = #{CATEGORY_NUM}
 	</select>
 	
 	<!-- 상품 이미지 등록 -->

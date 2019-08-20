@@ -17,9 +17,9 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 @Component("goodsImageUtils")
 public class GoodsImageUtils {
 	//filePath=굿즈 파일 경로
-   private static final String filePath = "C:\\프로젝트\\giftcon\\src\\main\\webapp\\resources\\file\\goodsFile\\";
+   private static final String filePath = "D:\\giftcon\\giftcon\\src\\main\\webapp\\resources\\file\\goodsFile\\";
    //filePath2= 공지사항 파일 경로
-   private static final String filePath2 = "C:\\java\\maven-app\\MODA\\src\\main\\webapp\\file\\noticeFile\\";
+   private static final String filePath2 = "D:\\giftcon\\giftcon\\src\\main\\webapp\\resources\\file\\noticeFile\\";
    //filePath3= 이벤트 파일 경로
    private static final String filePath3 = "D:\\giftcon\\giftcon\\src\\main\\webapp\\resources\\file\\event\\";
    

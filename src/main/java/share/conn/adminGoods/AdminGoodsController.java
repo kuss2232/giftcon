@@ -127,7 +127,6 @@ public class AdminGoodsController {
 		Map<String,Object> category = adminGoodsService.adGoodsSelectCategory(commandMap.getMap());
 		commandMap.put("CATEGORY_NUM", Integer.parseInt(category.get("CATEGORY_NUM").toString()));
 		
-		
 		adminGoodsService.adGoodsinsert(commandMap.getMap(), request);
 
 		return mv;
