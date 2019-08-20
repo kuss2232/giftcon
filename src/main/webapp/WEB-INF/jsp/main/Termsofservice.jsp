@@ -15,10 +15,10 @@
 <div class="subWrap">
 				<div class="subLayout">
 					<!-- start:sub_title -->
-					<div class="subTit">도넛북 이용약관[v1.6]</div>
+					<div class="subTit">쉐어콘 이용약관[v1.6]</div>
 					<!-- /end:sub_title -->
 					<!-- start:top_link -->
-					<p class="TopTxt">도넛북의 이용약관은 다음과 같은 내용을 담고 있습니다. </p>
+					<p class="TopTxt">쉐어콘의 이용약관은 다음과 같은 내용을 담고 있습니다. </p>
 					<div class="linkBox">
 						<ul class="clauseLink">
 							<li><a href="#cla1Big" class="bigTit1">제 1 장 총칙</a></li>

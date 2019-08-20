@@ -140,7 +140,7 @@ $(function () {
 						<li><a href="/giftcon/joinStep1.conn" class="join" title="회원가입"><span class="icojoin"></span><em class="logState">회원가입</em></a></li>
 					<%} %>
 					<li><a href="/giftcon/notice.conn" class="cs" title="고객센터"><span class="icoCs"></span><em class="logState">고객센터</em></a></li>
-					<li class="exc last"><a href="/giftcon/cart/cartlist.conn" class="cart" title="장바구니"><span class="icoCart"><em class="counting" id="headerCartCount"><b>0</b></em></span><em class="logState">장바구니</em></a></li>
+					<li class="exc last"><a href="/giftcon/cart/cartlist.conn" class="cart" title="장바구니"><span class="icoCart"><em class="counting" id="headerCartCount"><b><%=session.getAttribute("count") %></b></em></span><em class="logState">장바구니</em></a></li>
 				</ul>
 				<div>
 </div></form>
@@ -149,28 +149,12 @@ $(function () {
 		<nav class="gnb">
 			<div class="gnbBox">
 				<ul class="menu">
-					<li>
-						<a href="/giftcon/goods/list.conn" title="모바일쿠폰샵 바로가기" class="">전체 상품</a>
-						<!-- <ul class="smenu s01" style="display: none;">
-							<li>
-								<a href="/goods/mainShop.do" class="first">전체상품보기</a>
-							</li>
-							<li>
-								<a href="/goods/brandShop.do">브랜드샵</a>
-							</li>
-							<li>
-								<a href="/goods/bizShop.do">비즈전용상품관</a>
-							</li>
-							<li class="menuDelivery">
-								<a href="/goods/brandShop.do?categoryNo=12&amp;pageNo=1">배송상품<span class="icoDelivery"></span></a>
-							</li>
-							<li>
-								<a href="/goods/goodsNotice.do">상품문의</a>
-							</li>
-						</ul> -->
+					<li align="center">
+						<a href="/giftcon/goods/list.conn" title="모바일쿠폰샵 바로가기" class="" >전체 상품</a>
 					</li>
-					<li>
+					<li  align="center">
 						<a href="/giftcon/eventList.conn" title="기획전/이벤트 바로가기" class="">이벤트</a>
+						
 						<!-- <ul class="smenu s02" style="display: none;">
 							<li>
 								<a href="/contents/promotionList.do" class="first">기획/테마전</a>
@@ -183,6 +167,10 @@ $(function () {
 							</li>
 						</ul> -->
 					</li>
+						<li  align="center">
+								<a href="/giftcon/notice.conn" title="고객센터" class="">고객센터</a>
+						</li>
+							
 					<!-- <li>
 						<a href="/mypage/myDonut.do" title="마이도넛북 바로가기">마이도넛북</a>
 						<ul class="smenu s03" style="display: none;">
