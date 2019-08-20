@@ -36,7 +36,7 @@
 									<span class="price"><span class="prodPrice" >${list.GOODS_PRICE} 원</span></span>
 								</c:if>
 								<ul class="sendList">
-									<li><a href="/order/order.do?goodsNo=13557" class="first"><span class="nowSend"></span><span class="sendTxt">바로발송</span></a></li>
+									<li><a href="/giftcon/orderForm.conn?GOODS_NUM=${list.GOODS_NUM}" class="first"><span class="nowSend"></span><span class="sendTxt">바로발송</span></a></li>
 									<li><a href="javascript:addCart(${list.GOODS_NUM})"><span class="cartPut"></span><span class="sendTxt">장바구니</span></a></li>
 								</ul>
 							</div>
