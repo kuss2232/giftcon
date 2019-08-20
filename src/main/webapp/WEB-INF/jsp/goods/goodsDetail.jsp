@@ -120,7 +120,7 @@
 						</tr>
 						<tr>
 							<th>지급보증여부</th>
-							<td>본 도넛북 모바일 교환권은 지급보증 및 피해보상보험 계약없이 ㈜다우기술의 신용으로 발행합니다.</td>
+							<td>본 쉐어콘 모바일 교환권은 지급보증 및 피해보상보험 계약없이 ㈜다우기술의 신용으로 발행합니다.</td>
 						</tr>
 					</tbody>
 				</table>
@@ -140,7 +140,7 @@
 				</div>
 				</form>
 			</div>
-			
+			<c:if test="${MEMBER_ADMIN == 0}" >
 			<table class="table table-striped table-bordered table-hover dataTable no-footer" id="dataTables-example" role="grid" aria-describedby="dataTables-example_info">
 								<thead>
 									<tr role="row">
@@ -174,6 +174,38 @@
 								 
 								</tbody>
 							</table>
+			</c:if>
+			<c:if test="${MEMBER_ADMIN != 0}" >
+			<table class="table table-striped table-bordered table-hover dataTable no-footer" id="dataTables-example" role="grid" aria-describedby="dataTables-example_info">
+								<thead>
+									<tr role="row">
+										<th style="width: 6%; text-align:center;">글번호</th>
+										<th style="width: 13%; text-align:center;">작성자</th>
+										<th style="width: 50%; text-align:center;">리뷰</th>
+										<th style="width: 16%; text-align:center;">작성일</th>
+										<th style="width: 15%; text-align:center;">평점</th>
+									</tr>
+								</thead>
+								<tbody>
+								<tr><td colspan="6">
+					<form id="f1" >
+									<c:forEach var="review" items="${reviewDetail}">
+										<tr class="gradeA even" role="row">
+											<td style="text-align: center; vertical-align: middle;">${review.REVIEW_NUM}</td>
+											<td style="text-align: center; vertical-align: middle;">${review.MEMBER_ID}</td>
+											<td style="text-align: center; vertical-align: middle;">${review.REVIEW_CNT}</td>
+											<td style="text-align: center; vertical-align: middle;">
+													<fmt:formatDate	value="${review.REVIEW_REGDATE}" pattern="YY.MM.dd HH:mm" /></td>
+											<td style="text-align: center; vertical-align: middle;">${review.REVIEW_GRADE }</td>
+										</tr>
+										</c:forEach>
+					</form>
+					</td></tr>
+										<!-- Q&A가 없을때 -->
+								 
+								</tbody>
+							</table>
+			</c:if>
 			
 			
 
