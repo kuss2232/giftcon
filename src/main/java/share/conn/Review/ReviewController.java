@@ -39,7 +39,7 @@ public class ReviewController {
 		commandMap.getMap().put("MEMBER_NUM", session.getAttribute("MEMBER_NUM").toString());
 		System.out.println("param:" + commandMap.getMap());
 		reviewService.insertReview(commandMap.getMap());
-		
+			
 		return mv;
 	}
 	
@@ -47,5 +47,7 @@ public class ReviewController {
 	public void deleteReview(CommandMap commandMap,HttpServletResponse response,HttpServletRequest request)throws Exception{
 		reviewService.reviewDelete(commandMap.getMap());
 	}
+	
+	
 	
 }

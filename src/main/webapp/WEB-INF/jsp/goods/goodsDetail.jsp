@@ -3,6 +3,29 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <%@include file="../module/header.jsp"%>
+<style>
+.starR{
+  background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0;
+  background-size: auto 100%;
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  text-indent: -9999px;
+  cursor: pointer;
+}
+.starR.on{background-position:0 0;}
+
+.starL{
+  background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0;
+  background-size: auto 100%;
+  width: 15px;
+  height: 15px;
+ display: inline-block;
+ }
+ 
+ .starL.on{background-position:0 0;}
+</style>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +35,8 @@
 <link rel="stylesheet" type="text/css" href="/giftcon/css/jquery/swiper.min.css">
 <link rel="stylesheet" type="text/css" href="/giftcon/css/jquery/jquery-ui.css">
 <link rel="stylesheet" type="text/css" href="/giftcon/css/main.css">
-<link rel="stylesheet" type="text/css" href="/giftcon/css/bootstrapadmin.min.css">
+<link rel="stylesheet" type="text/css" href="/giftcon/css/jquery/bootstrapadmin.min.css">
+
 <script src="/giftcon/css/jquery/jquery-1.12.4.min.js"></script>
 <script src="/giftcon/js/common.js"></script>
 </head>
@@ -128,24 +152,33 @@
 			<!-- /end:product_detail -->
 
 			<div class="subTit">상품 후기</div>
-			<div class="askList">
-				<form name="frm">
-					<input type="hidden" id="goodsNum" name="goodsNum" value="${goodsDetail.GOODS_NUM}" />
-					<input type="hidden" id="memberId" name="memberNum" value="${MEMBER_ID}" />
-					<input type="hidden" id="memberNum" value="${MEMBER_NUM}"/>
-				<div>					
-					<textarea id="content" name="content" rows="10" cols="100" style="height:100px;width:980px; resize: none;" class="commentForm"></textarea>
+	  <form name="frm">
+	<div class="starRev"  onclick="Click()">
+  			<span class="starR " id="1" >1</span>
+  			<span class="starR" id="2">2</span>
+  			<span class="starR"  id="3">3</span>
+ 			<span class="starR"  id="4">4</span>
+  			<span class="starR"  id="5">5</span>
+		</br></br>
+		</div>
+      
+               <input type="hidden" id="goodsNum" name="goodsNum" value="${goodsDetail.GOODS_NUM}" />
+               <input type="hidden" id="memberId" name="memberNum" value="${MEMBER_ID}" />
+               <input type="hidden" id="memberNum" value="${MEMBER_NUM}"/>
+               
+            <div>               
+               <textarea id="content" name="content" rows="10" cols="100" style="height:100px;width:980px; resize: none;" class="commentForm"></textarea>
 
-					<input type=button style="margin-bottom:94.5px; width:70px;height:100px; color:BLACK" id="btn" value="댓글작성" class="commentBt" />
-				</div>
-				</form>
-			</div>
+               <input type=button style="margin-bottom:94.5px; width:70px;height:100px; color:BLACK" id="btn" value="댓글작성" class="commentBt" />
+            </div>
+            </form>
+        	
 			<c:if test="${MEMBER_ADMIN == 0}" >
 			<table class="table table-striped table-bordered table-hover dataTable no-footer" id="dataTables-example" role="grid" aria-describedby="dataTables-example_info">
 								<thead>
 									<tr role="row">
 										<th style="width: 6%; text-align:center;">글번호</th>
-										<th style="width: 11%; text-align:center;">작성자</th>
+										<th style="width: 11%; text-align:center;" >작성자</th>
 										<th style="width: 35%; text-align:center;">리뷰</th>
 										<th style="width: 10%; text-align:center;">작성일</th>
 										<th style="width: 10%; text-align:center;">평점</th>
@@ -161,7 +194,7 @@
 											<td style="text-align: center; vertical-align: middle;">${review.MEMBER_ID}</td>
 											<td style="text-align: center; vertical-align: middle;">${review.REVIEW_CNT}</td>
 											<td style="text-align: center; vertical-align: middle;">
-													<fmt:formatDate	value="${review.REVIEW_REGDATE}" pattern="YY.MM.dd HH:mm" /></td>
+													<fmt:formatDate	value="${review.REVIEW_REGDATE}" pattern="YY.MM.dd " /></td>
 											<td style="text-align: center; vertical-align: middle;">${review.REVIEW_GRADE }</td>
 											<td style="text-align: center; vertical-align: middle;">
 												<input type="button" value="삭제" onclick="fn_deleteReview(${review.REVIEW_NUM})"/>
@@ -177,36 +210,18 @@
 			</c:if>
 			<c:if test="${MEMBER_ADMIN != 0}" >
 			
-			<div class="form-group">
-					<label for="reply_star">별점</label>
-			<span class="star-input">
-					<span class="input">
-    			<input type="radio" name="reply_star" id="p1" value="1">
-    						<label for="p1">1</label>
-    			<input type="radio" name="reply_star" id="p2" value="2">
-    						<label for="p2">2</label>
-   				<input type="radio" name="reply_star" id="p3" value="3">
-   					 		<label for="p3">3</label>
-  				<input type="radio" name="reply_star" id="p4" value="4">
-  							<label for="p4">4</label>
-    			<input type="radio" name="reply_star" id="p5" value="5">
-    						<label for="p5">5</label>
-    			  		</span>
-  				<output for="star-input"><b>0</b>점</output>						
-	</span>
-</div>
 			<table class="table table-striped table-bordered table-hover dataTable no-footer" id="dataTables-example" role="grid" aria-describedby="dataTables-example_info">
 								<thead>
 									<tr role="row">
-										<th style="width: 6%; text-align:center;">글번호</th>
-										<th style="width: 13%; text-align:center;">작성자</th>
+										<th style="width: 10%; text-align:center;">글번호</th>
+										<th style="width: 15%; text-align:center;">작성자</th>
 										<th style="width: 50%; text-align:center;">리뷰</th>
-										<th style="width: 16%; text-align:center;">작성일</th>
-										<th style="width: 15%; text-align:center;">평점</th>
+										<th style="width: 10%; text-align:center;">작성일</th>
+										<th style="width: 20%; text-align:center;">평점</th>
 									</tr>
 								</thead>
 								<tbody>
-								<tr><td colspan="6">
+								
 					<form id="f1" >
 									<c:forEach var="review" items="${reviewDetail}">
 										<tr class="gradeA even" role="row">
@@ -214,8 +229,10 @@
 											<td style="text-align: center; vertical-align: middle;">${review.MEMBER_ID}</td>
 											<td style="text-align: center; vertical-align: middle;">${review.REVIEW_CNT}</td>
 											<td style="text-align: center; vertical-align: middle;">
-													<fmt:formatDate	value="${review.REVIEW_REGDATE}" pattern="YY.MM.dd HH:mm" /></td>
-											<td style="text-align: center; vertical-align: middle;">${review.REVIEW_GRADE }</td>
+													<fmt:formatDate	value="${review.REVIEW_REGDATE}" pattern="YY.MM.dd" /></td>
+											<td style="text-align: center; vertical-align: middle;">
+											<c:forEach begin="1"  end="${review.REVIEW_GRADE}" >
+											<span class="starL on" id="1" ></span></c:forEach></td>
 										</tr>
 										</c:forEach>
 					</form>
@@ -241,16 +258,31 @@ $(document).ready(function() {
 	});
 });
 
+var review = 0;
+
+$('.starRev span').click(function(){
+	
+	  $(this).parent().children('span').removeClass('on');
+	  $(this).addClass('on').prevAll('span').addClass('on');
+	  review = $(this).attr('id');
+	  	  return false;
+	
+	});
+
 function fn_insertReview(){
+
 	var cnt = $("#content").val();
 	$.ajax({
 		type:"POST",
 		data:{"REVIEW_CNT":cnt,
 				"GOODS_NUM": $("#goodsNum").val(),
 				"MEMBER_ID": $("#memberId").val(),
-				"REVIEW_GRADE":5},
+				"REVIEW_GRADE": review
+			},
+				
         url:"/giftcon/goods/reviewInsert.conn",
-       	error : function(erromr) {
+       	
+        error : function(erromr) {
 			alert("서버가 응답하지 않습니다. \n다시 시도해주시기 바랍니다.");
 		},
 		success : function() {
@@ -293,61 +325,9 @@ function addCart(num)
 	});
 }
 
-var starRating = function(){
-	  var $star = $(".star-input"),
-	      $result = $star.find("output>b");
-	  $(document)
-	    .on("focusin", ".star-input>.input", function(){
-	    $(this).addClass("focus");
-	  })
-	    .on("focusout", ".star-input>.input", function(){
-	    
-	    	var $this = $(this);
-	    
-	    	setTimeout(function(){
-	      
-	    		if($this.find(":focus").length === 0){
-	    			$this.removeClass("focus");
-	    		}
-	    }, 1000);
-	  })
-	    .on("change", ".star-input :radio", function(){
-	    $result.text($(this).next().text());
-	  })
-	    .on("mouseover", ".star-input label", function(){
-	    $result.text($(this).text());
-	  })
-	    .on("mouseleave", ".star-input>.input", function(){
-	    
-	    	var $checked = $star.find(":checked");
-	    
-	    	if($checked.length === 0){
-	    		$result.text("0");
-	    	} else {
-	    		$result.text($checked.next().text());
-	    	}
-	  });
-	};
-	starRating();
-	
-	
-	var innerHtml = "";
 
-	for(var i =0 ; i < 5; i ++ {  
 
-	  if( i < 2) {
 
-	   innerHtml  +=   "★" ;  
-
-	  }else{
-
-	     innerHtml  +=  "☆" ;
-
-	 }
-
-	} 
-
-	$('#mydiv').html(innerHtml);
 </script>
 </body>
 </html>
