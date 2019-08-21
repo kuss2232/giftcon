@@ -18,10 +18,8 @@
 		]]>
 	</select>
 	
+	<!-- 카테고리별 FAQ 리스트 -->
 	<select id="faqCategoryList" parameterType="hashmap" resultType="hashmap">
-<!-- 카테고리별 FAQ 리스트 -->
-
-		<![CDATA[
 		SELECT
 			FAQ_NUM, 
 			FAQ_TITLE, 
@@ -30,10 +28,23 @@
 			FAQ_CATEGORY 
 			FROM FAQ 
 	WHERE 
-			FAQ_CATEGORY=#{FAQ_CATEGORY} 
+	<if test='category.equals("1")'>
+			FAQ_CATEGORY='회원'
+	</if>
+	<if test='category.equals("2")'>
+			FAQ_CATEGORY='상품' 
+	</if>
+	<if test='category.equals("3")'>
+			FAQ_CATEGORY='주문'
+	</if>
+	<if test='category.equals("4")'>
+			FAQ_CATEGORY='환불' 
+	</if>
+	<if test='category.equals("5")'>
+			FAQ_CATEGORY='기타' 
+	</if>
 	ORDER BY 
 			FAQ_NUM DESC
-		]]>
 	</select>
 	
 	<!-- faq 글쓰기 -->
@@ -55,15 +66,7 @@
 			)
 		]]>
 	</insert>
-	<!-- FAQ 조회수 카운트 -->
-	<update id="faqHitcount" parameterType="hashmap">
-		UPDATE FAQ 
-	SET 
-		FAQ_HITCOUNT = NVL(FAQ_HITCOUNT, 0) + 1 
-	WHERE 
-		FAQ_NUM = #{FAQ_NUM}
-	</update>
-	
+
 	<!-- FAQ 수정하기 -->
 	<update id="faqModify" parameterType="hashmap">
 		UPDATE FAQ
@@ -85,7 +88,7 @@
 	</delete>
 	
 	
-	<!-- faq 제목 내용 검색 -->
+	<!-- faq 검색 -->
 	<select id="searchFaq" resultType="hashmap" parameterType="hashmap">
 			
 		SELECT 
@@ -94,30 +97,10 @@
 			FAQ_CNT,
 			FAQ_HITCOUNT
 		FROM 
-		FAQ
-		WHERE
-	<if test='SearchNum.equals("1")'>  <!-- 제목 검색 -->
-		 FAQ_TITLE like '%'||#{SearchKeyword}||'%'
-	</if>
-	<if test='SearchNum.equals("2")'> <!-- 내용 검색 -->
-			FAQ_CNT LIKE '%' || #{SearchKeyword} || '%'
-	</if>
-			ORDER BY FAQ_NUM DESC
-	
-	</select>
-	<!-- FAQ 상세보기 -->
-	<select id="faqDetail" resultType="hashmap" parameterType="hashmap">
-	<![CDATA[
-		SELECT
-			FAQ_NUM,
-			FAQ_TITLE,
-			FAQ_CNT,
-			FAQ_HITCOUNT,
-			FAQ_CATEGORY	
-	FROM
 			FAQ
-	WHERE
-			FAQ_NUM = #{FAQ_NUM}
-			]]>
+		WHERE
+			FAQ_TITLE like '%'||#{SearchKeyword}||'%' OR FAQ_CNT LIKE '%'||#{SearchKeyword}||'%'
+		ORDER BY FAQ_NUM DESC
+	
 	</select>
 </mapper>

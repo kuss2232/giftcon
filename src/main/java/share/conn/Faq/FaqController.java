@@ -20,8 +20,9 @@ import share.conn.giftcon.CommandMap;
 public class FaqController {
 
 	int totalCount;
-	private String searchkeyword;
-	private int searchNum;
+	private String SearchKeyword;
+	private int searchNum = 1;
+	private String category;
 
 	private int currentPage;
 	private int blockCount = 10;
@@ -45,13 +46,13 @@ public class FaqController {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
 
-		searchkeyword = request.getParameter("searchkeyword");
-
-		if (searchkeyword != null) {
-			faqlist = faqService.searchList(commandMap.getMap(), searchkeyword);
+		SearchKeyword = request.getParameter("SearchKeyword");
+		
+		if (SearchKeyword != null) {
+			faqlist = faqService.searchList(commandMap.getMap());
 
 			totalCount = faqlist.size();
-			page = new Paging(currentPage, totalCount, blockCount, blockPage, "/giftcon/FAQ.conn", searchNum, searchkeyword);
+			page = new Paging(currentPage, totalCount, blockCount, blockPage, "faq.conn", searchNum, SearchKeyword);
 			pagingHtml = page.getPagingHtml().toString();
 
 			int lastCount = totalCount;
@@ -61,8 +62,7 @@ public class FaqController {
 
 			faqlist = faqlist.subList(page.getStartCount(), lastCount);
 
-			mv.addObject("SearchKeyword", searchkeyword);
-			mv.addObject("SearchNum", searchNum);
+			mv.addObject("SearchKeyword", SearchKeyword);
 			mv.addObject("totalCount", totalCount);
 			mv.addObject("pagingHtml", pagingHtml);
 			mv.addObject("currentPage", currentPage);
@@ -71,9 +71,15 @@ public class FaqController {
 
 			return mv;
 		} else {
+			category = request.getParameter("category");
+			
+			if(category!=null) {
+				faqlist = faqService.faqCategoryList(category);
+			}
+			
 			totalCount = faqlist.size();
 
-			page = new Paging(currentPage, totalCount, blockCount, blockPage, "/giftcon/faq.conn");
+			page = new Paging(currentPage, totalCount, blockCount, blockPage, "faq.conn");
 			pagingHtml = page.getPagingHtml().toString();
 
 			int lastCount = totalCount;
@@ -86,6 +92,7 @@ public class FaqController {
 			mv.addObject("totalCount", totalCount);
 			mv.addObject("pagingHtml", pagingHtml);
 			mv.addObject("currentPage", currentPage);
+			mv.addObject("category", category);
 			mv.addObject("faqlist", faqlist);
 			mv.setViewName("faq/faq");
 
@@ -93,26 +100,5 @@ public class FaqController {
 		}
 
 	}
-	
-	@RequestMapping(value = "/FAQCategory.conn", method = RequestMethod.POST)
-	@ResponseBody
-	public ModelAndView FAQCatogory(@RequestBody CommandMap commandMap, HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView();
-		
-		
-		//String category = request.getParameter("FAQ_CATEGORY");
-		//System.out.println(" 값 확인0 +++++++++++" + request.getParameter("FAQ_CATEGORY"));
 
-		//commandMap.put("FAQ_CATEGORY", category);
-
-		System.out.println(" CommandMap값 확인  +++++++++++" + commandMap.get("FAQ_CATEGORY"));
-		
-		List<Map<String, Object>> faqlist = faqService.faqCategoryList(commandMap.getMap());
-		
-		mv.addObject("faqlist", faqlist);
-		mv.setViewName("jsonView");
-
-		return mv;
-	}
-	 
 }

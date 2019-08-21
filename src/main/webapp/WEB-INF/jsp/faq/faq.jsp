@@ -20,51 +20,6 @@ div.paginate > div > a.disabled:hover {border: 1px solid #ddd;}
 function refreshFAQ(){
 	location.href="/giftcon/faq.conn";
 }
-
-function FAQCategory(num){ 
-		
-	var num = num;
-	var faq_ca = null;
-
-	if (num == 1) {
-		faq_ca = $("#FAQ_CATEGORY1").val();
-	} else if (num == 2) {
-		faq_ca = $("#FAQ_CATEGORY2").val();
-	} else if (num == 3) {
-		faq_ca = $("#FAQ_CATEGORY3").val();
-	} else if (num == 4) {
-		faq_ca = $("#FAQ_CATEGORY4").val();
-	} else if (num == 5) {
-		faq_ca = $("#FAQ_CATEGORY5").val();
-	}
-	
-	
-	var data = {
-        		"FAQ_CATEGORY" :  faq_ca	
-        	}
-
-        	jQuery.ajaxSettings.traditional = true;
-        	
-        	$.ajax({
-        		type: "POST",
-        		url: "<c:url value='/FAQCategory.conn'/>",
-        		dateType:"json",
-        		data : data,
-        		contentType : "application/json;charset=UTF-8",
-        		
-        		success:function(data){
-        			alert("성공");
-        		},
-
-        		error : function(jqXHR, textStatus, errorThrown) {
-        			alert("오류가 발생하였습니다.");
-        		}
-        	});
-}
-
-
-
-
 </script>
 </head>
 <body>
@@ -81,7 +36,7 @@ function FAQCategory(num){
 
 <ul class="csTab mb70">
 	<li><a href="/giftcon/notice.conn"><span class="icoNotice"></span><em>공지사항</em></a></li>
-	<li><a href="/giftcon/FAQ.conn" class="on"><span class="icoFaq"></span><em>FAQ</em></a></li>
+	<li><a href="/giftcon/faq.conn" class="on"><span class="icoFaq"></span><em>FAQ</em></a></li>
 	<%if(session.getAttribute("MEMBER_ID") != null){ %>
 	<li><a href="/giftcon/mypage/qna/insertform.conn" class=""><span class="icoOneAsk"></span><em>1:1문의</em></a></li>
 	<%}else{ %>
@@ -90,19 +45,30 @@ function FAQCategory(num){
 </ul>
 					<!-- /end:csTab -->
 					
-					<form id="bbsFrm" name="bbsFrm" action="/giftcon/FAQ.conn" method="GET">
-						<input type="hidden" name="pageNum">
-						<input type="hidden" name="contentType" value="">
+					<form id="bbsFrm" name="bbsFrm" action="/giftcon/faq.conn" method="GET">
+						<input type="hidden" id="currentPage" name="currentPage">
 					<!-- start:askCategory -->
-						<div class="askCategory">
-							<a href="#" onClick="refreshFAQ()">전체</a>
-							<a href="#" id="FAQ_CATEGORY1" onClick="FAQCategory(1)">회원</a>
-							<a href="#" id="FAQ_CATEGORY2" onClick="FAQCategory(2)">상품</a>
-							<a href="#" id="FAQ_CATEGORY3" onClick="FAQCategory(3)">주문</a>
-							<a href="#" id="FAQ_CATEGORY4" onClick="FAQCategory(4)">환불</a>
-							<a href="#" id="FAQ_CATEGORY5" onClick="FAQCategory(5)">기타</a>
+					<c:url var="viewURL1" value="faq.conn"><c:param name="category" value="1" /></c:url>
+					<c:url var="viewURL2" value="faq.conn"><c:param name="category" value="2" /></c:url>
+					<c:url var="viewURL3" value="faq.conn"><c:param name="category" value="3" /></c:url>
+					<c:url var="viewURL4" value="faq.conn"><c:param name="category" value="4" /></c:url>
+					<c:url var="viewURL5" value="faq.conn"><c:param name="category" value="5" /></c:url>
+					<div class="askCategory">
+						<a href="#" onClick="refreshFAQ()">전체</a>
+						<a href="${viewURL1}" id="FAQ_CATEGORY1">회원</a>
+						<a href="${viewURL2}" id="FAQ_CATEGORY2">상품</a>
+						<a href="${viewURL3}" id="FAQ_CATEGORY3">주문</a>
+						<a href="${viewURL4}" id="FAQ_CATEGORY4">환불</a>
+						<a href="${viewURL5}" id="FAQ_CATEGORY5">기타</a>
+					</div>
+					<div class="subTit">
+						<div class="noticeSearch" align="right">
+							<input class="ipt4 w220" type="text" name="SearchKeyword" id="SearchKeyword" />
+							<input class="ipt3" type="submit" value="검색" />
 						</div>
-					
+					</div>
+					</form>
+				
 					<!-- /end:askCategory -->
 					<!-- start:ask_list -->
 					<div class="askList">
@@ -129,7 +95,7 @@ function FAQCategory(num){
 					</div>
 					<!-- /end:ask_list -->
 					<div>
-</div></form>
+					</div>
 					
 					<div class="paginate" align="center"><ul class="numList">${pagingHtml}</ul></div>
 				</div>
@@ -141,33 +107,11 @@ function FAQCategory(num){
 </div>
 <!--/end:wrap -->
 <script type="text/javascript">
-
 $(".askList .myAskList .faqTit").click(function(){
 	$(".askList .myAskList .faqView").slideUp(200);
 	if ($(this).next().css("display")=="block") return;
 	$(this).next().slideDown(200);
 });
-
-/* $(".askList .myAskList .qnaTit").click(function(){
- $(".askList .myAskList .View").slideUp(200);
- if ($(this).next().css("display")=="block") return;
- $(this).next().slideDown(200);
-
- }); */
-
-function goDetail(index) {
-	var listId = "#list_" + index;
-	var viewId = "#view_" + index;
-	var objId = "#obj_" + index;
-
-	if ($(listId).attr('class') == 'on') {
-		$(listId).attr('class', '');
-		$(viewId).hide();
-	} else {
-		$(listId).attr('class', 'on');
-		$(viewId).show();
-	}
-}
 </script>
 </body>
 </html>
