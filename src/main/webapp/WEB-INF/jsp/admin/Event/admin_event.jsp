@@ -3,7 +3,34 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<html>
 <head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>ShareCon 관리자페이지</title>
+<!-- Bootstrap Core CSS -->
+<link href="/giftcon/css/jquery/bootstrapadmin.min.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+@media ( min-width :768px) {
+	#page-wrapper {
+		margin: 0 0 0 250px !important;
+	}
+}
+</style>
+
+<!-- Custom CSS -->
+<link href="/giftcon/css/jquery/sb-admin-2.css" rel="stylesheet">
+<!-- jQuery -->
+
+<script src="/giftcon/css/jquery/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/giftcon/css/jquery/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/giftcon/css/jquery/sb-admin-2.js"></script>
 <script src="/giftcon/js/common.js" charset="utf-8"></script>
 <script src="/giftcon/css/jquery/jquery-1.12.4.min.js"></script>
 <link rel="stylesheet" type="text/css" />
@@ -11,9 +38,7 @@
  {
     margin:0; padding:0
 }
-body {
-    font-family: '맑은 고딕' 돋움; font-size:0.75em; color:#333
-}
+
 
 ul li{
          list-style-type: none;
@@ -99,8 +124,85 @@ cursor: pointer;
 </script>
 
 </head>
+<body>
+<div id="wrapper">
+		<!-- Navigation -->
+		<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0; background-color: #337AB7">
+			<div class="navbar-header" style="background-color: #337AB7">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span> 
+					<span class="icon-bar"></span> 
+					<span class="icon-bar"></span> 
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" style="color: #fff;" href="/giftcon/adminMain.conn"><strong>ShareCon 관리자페이지</strong></a>
+			</div>
+			<!-- /.navbar-header -->
+			<div class="navbar-default sidebar" role="navigation">
+				<div class="sidebar-nav navbar-collapse">
+					<ul class="nav" id="side-menu">
+						<li>
+							<a href="/giftcon/adminMain.conn" style="background: #e7e7e7; border-bottom: 1px solid #F8F8F8;">
+								<b class="fa fa-dashboard fa-fw">관리자홈</b>
+							</a>
+						</li>
+						<li>
+							<a href="/giftcon/main.conn" style="background: #e7e7e7; border-bottom: 1px solid #F8F8F8;">
+								<b class="fa fa-dashboard fa-fw">홈으로 이동</b>
+							</a>
+						</li>
+						<li class="active">
+							<a href="#" style="background: #e7e7e7;">
+								<b class="fa fa-bar-chart-o fa-fw">상품관리</b>
+								<span class="fa arrow">▼</span>
+							</a>
+							<ul class="nav nav-second-level">
+								<li><a href="/giftcon/goods/adminGoodsList.conn">- 상품목록</a></li>
+								<li><a href="/giftcon/goods/goodsInsertForm.conn">- 상품등록</a></li>
+							</ul>
+						</li>
+						<li class="active">
+							<a href="#" style="background: #e7e7e7;">
+								<b class="fa fa-dashboard fa-fw">회원관리</b>
+								<span class="fa arrow">▼</span>
+							</a>
+							<ul class="nav nav-second-level">
+								<li><a href="/giftcon/member/adminMemberList.conn">- 회원목록</a></li>
+							</ul> <!-- /.nav-second-level -->
+						</li>
 
-<div class="row" align="center" style="padding-left: 15px; width: 900px;">
+						<li class="active">
+							<a href="#" style="background: #e7e7e7;">
+								<b class="fa fa-bar-chart-o fa-fw">주문관리</b>
+								<span class="fa arrow">▼</span>
+							</a>
+							<ul class="nav nav-second-level">
+								<li><a href="/giftcon/adminOrder.conn">- 주문목록&수정</a></li>
+							</ul>
+						</li>
+						<li class="active">
+							<a href="#" style="background: #e7e7e7;">
+								<b class="fa fa-bar-chart-o fa-fw">게시판관리</b>
+								<span class="fa arrow">▼</span>
+							</a>
+							<ul class="nav nav-second-level">
+								<li><a href="/giftcon/notify/adminNotifyList.conn">- 공지사항</a></li>
+								<li><a href="/giftcon/event/adminEventList.conn">- 이벤트</a></li>
+								<li><a href="/giftcon/faq/adminFaqList.conn">- FAQ</a></li>
+								<li><a href="/giftcon/adminQnaList.conn">- Q&A</a></li>
+								<li><a href="/giftcon/adminCategory1.conn">- 카테고리추가</a></li>
+								<li><a href="/giftcon/adminReviewList.conn">- 리뷰관리</a>
+							</ul>
+						</li>
+					</ul>
+				</div>
+				<!-- /.sidebar-collapse -->
+			</div>
+			<!-- /.navbar-static-side -->
+		</nav>
+		<div id="page-wrapper" align="center">
+			<!-- 메인container-->
+			<div class="row" align="center" style="padding-left: 15px; width: 900px;">
 	<h1 class="page-header">EVENT</h1>
 </div>
 <div class="row" align="center">
@@ -114,14 +216,14 @@ cursor: pointer;
 						</br></br>
 						<div class="col-sm-6" style="text-align: right;">
 							<div class="dataTables_info" id="dataTables-example_info"
-								role="status" aria-live="polite">총 게시물수 : ${totalCount}</div>
+								role="status" aria-live="polite" align="left" style="margin-left:235px">총 게시물수 : ${totalCount}</div>
 						</div>
 					</div>
 					
 	
 		 <div class="tab-box" >
  	<ul class="tabs"  style="list-style-type:square;">
-		<li><a href="/giftcon/event/adminEventList.conn" class="on">	진행중 이벤트</a></li>
+		<li><a href="/giftcon/event/adminEventList.conn" class="on">진행중 이벤트</a></li>
 		<li><a href="/giftcon/event/adminEndEventList.conn" class="on">종료된 이벤트</a></li>
 	</ul>
 					<div class="col-sm-12">
@@ -188,7 +290,7 @@ cursor: pointer;
 						</div>
 					</div>
 				</div>
-	  			<div class="paging" align="center">${pagingHtml}</div>
+	  			
 									<div class="row">
 						<div style="text-align: center;">
 							<div id="dataTables-example_filter" class="dataTables_filter">
@@ -201,3 +303,12 @@ cursor: pointer;
 	</div>
 	<!-- /.panel -->
 </div>
+<div class="paging" align="center">${pagingHtml}</div>
+			
+			<!-- // container -->
+		</div>
+		<!-- /#page-wrapper -->
+	</div>
+	<!-- /#wrapper -->
+</body>
+</html>

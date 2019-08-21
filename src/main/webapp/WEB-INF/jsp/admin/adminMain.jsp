@@ -1,6 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <html>
 <head>
@@ -9,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>Giftcon 관리자페이지</title>
+<title>ShareCon 관리자페이지</title>
 <!-- Bootstrap Core CSS -->
 <link href="/giftcon/css/jquery/bootstrapadmin.min.css" rel="stylesheet" type="text/css">
 <style type="text/css">
@@ -43,7 +41,7 @@
 					<span class="icon-bar"></span> 
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" style="color: #fff;" href="/giftcon/adminMain.conn"><strong>Giftcon 관리자페이지</strong></a>
+				<a class="navbar-brand" style="color: #fff;" href="/giftcon/adminMain.conn"><strong>ShareCon 관리자페이지</strong></a>
 			</div>
 			<!-- /.navbar-header -->
 			<div class="navbar-default sidebar" role="navigation">
@@ -85,9 +83,7 @@
 								<span class="fa arrow">▼</span>
 							</a>
 							<ul class="nav nav-second-level">
-								<li><a href="/giftcon/adminOrder.conn">- 주문목록</a></li>
-								<li><a href="/giftcon/orderModify.conn">- 주문수정</a></li>
-								<li><a href="/giftcon/orderDetail.conn">- 상세주문목록</a></li>
+								<li><a href="/giftcon/adminOrder.conn">- 주문목록&수정</a></li>
 							</ul>
 						</li>
 						<li class="active">

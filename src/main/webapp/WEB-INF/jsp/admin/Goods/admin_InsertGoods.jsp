@@ -1,4 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>  
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -6,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>Share Conn 관리자페이지</title>
+<title>ShareCon 관리자페이지</title>
 <!-- Bootstrap Core CSS -->
 <link href="/giftcon/css/jquery/bootstrapadmin.min.css" rel="stylesheet" type="text/css">
 <style type="text/css">
@@ -30,18 +33,12 @@
 <script src="/giftcon/css/jquery/sb-admin-2.js"></script>
 
 
-<title>상품입력</title>
-
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>  
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/ui.css'/>" />
 
 <!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="<c:url value='/js/common.js'/>" charset="utf-8"></script>
-<link href="/giftcon/css/jquery/bootstrapadmin.min.css" rel="stylesheet" type="text/css">
 <script src="/giftcon/js/common.js" charset="utf-8"></script>
 <script src="/giftcon/css/jquery/jquery-1.12.4.min.js"></script>
 <script language="Javascript">
@@ -125,7 +122,7 @@ function BIG_CATEGORYChange(frm) {
 
 </head>
 <body>
-	<div id="wrapper" align="center">
+	<div id="wrapper" >
 		<!-- Navigation -->
 		<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0; background-color: #337AB7">
 			<div class="navbar-header" style="background-color: #337AB7">
@@ -135,7 +132,7 @@ function BIG_CATEGORYChange(frm) {
 					<span class="icon-bar"></span> 
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" style="color: #fff;" href="/giftcon/adminMain.conn"><strong>Share Conn 관리자페이지</strong></a>
+				<a class="navbar-brand" style="color: #fff;" href="/giftcon/adminMain.conn"><strong>ShareCon 관리자페이지</strong></a>
 			</div>
 			<!-- /.navbar-header -->
 			<div class="navbar-default sidebar" role="navigation">
@@ -177,9 +174,7 @@ function BIG_CATEGORYChange(frm) {
 								<span class="fa arrow">▼</span>
 							</a>
 							<ul class="nav nav-second-level">
-								<li><a href="/giftcon/adminOrder.conn">- 주문목록</a></li>
-								<li><a href="/giftcon/orderModify.conn">- 주문수정</a></li>
-								<li><a href="/giftcon/orderDetail.conn">- 상세주문목록</a></li>
+								<li><a href="/giftcon/adminOrder.conn">- 주문목록&수정</a></li>
 							</ul>
 						</li>
 						<li class="active">
@@ -202,7 +197,7 @@ function BIG_CATEGORYChange(frm) {
 			</div>
 			<!-- /.navbar-static-side -->
 		</nav>
-		<div id="page-wrapper">
+		<div id="page-wrapper" align="center">
 			<!-- 메인container-->
 			
 			<div class="row" style="padding-left:15px;width:900px;">    
@@ -268,9 +263,9 @@ function BIG_CATEGORYChange(frm) {
 		</table>
 		
 		<br/><br/>
-		<!-- <input type="button" class="btn" id="write" value="작성하기">-->
-		<a href="#this" class="btn" id="write">작성하기</a>
-		<a href="#this" class="btn" id="list">목록으로</a>
+		<input type="button" class="btn" id="write" value="작성하기">
+		<!-- <a href="#this" class="btn" id="write">작성하기</a>-->
+		<input type="button" class="btn" id="list" value="목록으로">
 	</form>
 	<br/>
 	<br/>
