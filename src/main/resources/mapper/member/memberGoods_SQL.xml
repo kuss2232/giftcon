@@ -471,5 +471,15 @@ ORDER BY
 		AND A.GOODS_NUM = #{GOODS_NUM}
 ]]>
 </select>
+<select id="goodsAmount" parameterType="hashmap" resultType="int">
+<![CDATA[
+	SELECT
+		GOODS_AMOUNT
+	FROM
+		GOODS
+	WHERE
+		GOODS_NUM = #{GOODS_NUM}
+]]>
+</select>
 
 </mapper>

@@ -19,13 +19,13 @@ public class FaqServiceImpl implements FaqService{
 	}
 
 	@Override
-	public List<Map<String, Object>> searchList(Map<String, Object> map, String isSearch) throws Exception {
+	public List<Map<String, Object>> searchList(Map<String, Object> map) throws Exception {
 		return faqDAO.searchTitleList(map);
 	}
 
 	@Override
-	public List<Map<String, Object>> faqCategoryList(Map<String, Object> map) throws Exception {
-		return faqDAO.faqCategoryList(map);
+	public List<Map<String, Object>> faqCategoryList(String category) throws Exception {
+		return faqDAO.faqCategoryList(category);
 	}
 
 }
