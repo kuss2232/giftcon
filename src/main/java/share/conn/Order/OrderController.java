@@ -1,10 +1,29 @@
 package share.conn.Order;
 
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
+import javax.activation.DataHandler;
+import javax.activation.FileDataSource;
 import javax.annotation.Resource;
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Multipart;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
+import javax.mail.internet.MimeUtility;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -118,7 +137,7 @@ public class OrderController {
 	
 	@RequestMapping("/insertOrder.conn")
 	public void insertOrder(CommandMap commandMap,HttpServletResponse response)throws Exception{
-		orderService.inserOrder(commandMap.getMap());
+		orderService.insertOrder(commandMap.getMap());
 	}
 	
 	@RequestMapping("/orderList.conn")
@@ -130,5 +149,71 @@ public class OrderController {
 		
 		return mv;
 		
+	}
+	
+	@RequestMapping("/send_email.conn")
+	public void sendEmail(HttpServletResponse response, HttpServletRequest request, CommandMap commandMap, HttpSession session) throws Exception{
+
+		String host = "smtp.gmail.com";//이메일 호스트
+		String subject = "giftcon 기프티콘 바코드 전달";
+		String fromName = "giftcon 관리자";
+		String from = "ezenyoon2@gmail.com"; //보내는 사람
+		commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
+		String to1 = orderService.memberInfo(commandMap.getMap()).get("MEMBER_EMAIL").toString();
+		File file = new File(request.getSession().getServletContext().getRealPath("/images/barcode/barcode.jpg"));
+
+		Multipart mp = new MimeMultipart();
+
+		MimeBodyPart attachFile = new MimeBodyPart(); //String content = "인증번호[" + authNum + "]";
+		attachFile.setFileName("barcode.jpg");
+
+		FileDataSource filedata = new FileDataSource(file);
+		DataHandler dataHandler = new DataHandler(filedata);
+		attachFile.setDataHandler(dataHandler);
+
+		Path path = Paths.get(file.getCanonicalPath());
+		String type = Files.probeContentType(path);
+		attachFile.setHeader("Content-Type", type);
+		
+		attachFile.setDescription(file.getName().split("\\.")[0], "UTF-8");
+		mp.addBodyPart(attachFile);
+
+		try { 
+			Properties props = new Properties();
+
+			props.put("mail.smtp.user", "ezenyoon2@gmail.com");
+			props.put("mail.smtp.host", "smtp.gmail.com"); 
+			props.put("mail.smtp.port", "465"); 
+			props.put("mail.smtp.starttls.enable","true"); 
+			props.put("mail.smtp.auth", "true"); 
+			props.put("mail.smtp.debug", "true");
+			props.put("mail.smtp.socketFactory.port", "465");
+			props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+			props.put("mail.smtp.socketFactory.fallback", "false");
+
+
+			Authenticator auth = new javax.mail.Authenticator() {
+					@Override 
+					protected PasswordAuthentication getPasswordAuthentication() {
+						return new PasswordAuthentication("ezenyoon2@gmail.com", "ezenacademy@"); 
+					}
+			};
+
+			Session session_E = Session.getInstance(props, auth);
+
+			Message msg = new MimeMessage(session_E); msg.setFrom(new
+					InternetAddress(from,MimeUtility.encodeText(fromName,"UTF-8","B")));//보내는사람설정
+
+			InternetAddress[] address1 = {new InternetAddress(to1)};
+			msg.setRecipients(Message.RecipientType.TO, address1);//받는사람설정1
+			msg.setSubject(subject);//제목설정 
+			msg.setSentDate(new java.util.Date());//보내는 날짜설정 
+			msg.setContent(mp);//내용설정
+
+			Transport.send(msg); 
+			}catch(MessagingException e) { e.printStackTrace();
+			}catch(Exception e) { e.printStackTrace(); 
+		}
+
 	}
 }

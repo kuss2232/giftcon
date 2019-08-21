@@ -30,7 +30,7 @@ public class OrderServiceImpl implements OrderService{
 	}
 	
 	@Override
-	public void inserOrder(Map<String, Object> map) throws Exception{
+	public void insertOrder(Map<String, Object> map) throws Exception{
 		orderDAO.insertOrder(map);
 	}
 	
