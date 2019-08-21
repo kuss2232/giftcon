@@ -92,8 +92,8 @@
 						 			<td ><img alt="this.src='/giftcon/images/XBox.png'" src="/giftcon/resources/file/goodsFile/${list.GOODS_IMG }" width="80" height="80" ></td>
 						 			<td >${list.ORDER_PAYMENT }</td>
 						 			<td><c:if test="${list.ORDER_PAYMENT eq 'N' }"><input style="width:60pt;height:20pt; color: BLACK;"  type="button" value="주문 취소"/></c:if>
-						 				<c:if test="${list.ORDER_PAYMENT eq 'Y' }"><input style="width:60pt;height:20pt; color: BLACK;"  type="button" value="결제 취소"/> <input style="width:60pt;height:20pt; color:BLACK"  type="button" value="이메일 전송"/></c:if>
-						 				<c:if test="${list.ORDER_PAYMENT eq 'E' }"><input style="width:60pt;height:20pt; color: BLACK;"  type="button" value="이메일 전송"/></c:if>
+						 				<c:if test="${list.ORDER_PAYMENT eq 'Y' }"><input style="width:60pt;height:20pt; color: BLACK;"  type="button" value="결제 취소"/> <input style="width:60pt;height:20pt; color:BLACK"  type="button" value="이메일 전송" onclick="fn_emailSend(${ORDER_NUM})"/></c:if>
+						 				<c:if test="${list.ORDER_PAYMENT eq 'E' }"><input style="width:60pt;height:20pt; color: BLACK;"  type="button" value="이메일 전송" onclick="fn_emailSend(${ORDER_NUM})"/></c:if>
 						 			</td>
 								</tr>
 							</c:forEach>							
@@ -110,5 +110,27 @@
 				</div>
 			</div>
 </body>
+<script>
+function fn_emailSend(num)
+{
+	$.ajax({
+		type : "POST",
+		url : "/giftcon/send_email.conn",
+		data :  {"ORDER_NUM":num},
+		//data :  email,
+		/* ({
+			mode : "email_code",
+			email : email
+		}) */
+
+		success : function() {
+			alert("adad");
+		},
+		error : function(e) {
+			alert('error' + e);
+		}
+	});
+}
+</script>
 </html>
 <%@include file="../module/footer.jsp"%>
