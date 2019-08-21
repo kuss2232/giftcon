@@ -42,4 +42,9 @@ public class OrderServiceImpl implements OrderService{
 	public List<Map<String, Object>> orderList(Map<String, Object> map)throws Exception{
 		return orderDAO.orderList();
 	}
+
+	@Override
+	public List<Map<String, Object>> findmemberOrderList(Map<String, Object> map) throws Exception {
+		return orderDAO.findmemberOrderList(map);
+	}
 }

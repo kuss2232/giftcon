@@ -141,9 +141,10 @@ public class OrderController {
 	}
 	
 	@RequestMapping("/orderList.conn")
-	public ModelAndView orderList(CommandMap commandMap)throws Exception{
+	public ModelAndView orderList(CommandMap commandMap, HttpServletRequest request)throws Exception{
 		ModelAndView mv = new ModelAndView("/mypage/userOrderList");
-		List<Map<String, Object>> list = orderService.orderList(commandMap.getMap());
+		commandMap.put("MEMBER_NUM", request.getSession().getAttribute("MEMBER_NUM"));
+		List<Map<String, Object>> list = orderService.findmemberOrderList(commandMap.getMap());
 		
 		mv.addObject("list",list);
 		

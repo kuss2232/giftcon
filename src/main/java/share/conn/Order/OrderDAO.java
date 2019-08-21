@@ -41,5 +41,9 @@ public class OrderDAO extends AbstractDAO{
 		// TODO Auto-generated method stub
 		return selectList("adminOrderlist.allOrderList");
 	}
+	
+	public List<Map<String, Object>> findmemberOrderList(Map<String,Object> map){
+		return selectList("memberInfo.findmemberOrderList", map);
+	}
 
 }

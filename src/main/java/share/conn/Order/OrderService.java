@@ -17,4 +17,6 @@ public interface OrderService {
 
 	public List<Map<String, Object>> orderList(Map<String, Object> map)throws Exception;
 	
+	public List<Map<String, Object>> findmemberOrderList(Map<String, Object> map) throws Exception;
+	
 }
