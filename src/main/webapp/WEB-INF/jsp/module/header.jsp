@@ -231,5 +231,8 @@ $(function () {
 			 
 		</nav>
 	</header>
+	<div>
+		${soldOut}
+	</div>
 </body>
 </html>

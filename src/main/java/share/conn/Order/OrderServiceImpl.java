@@ -20,6 +20,11 @@ public class OrderServiceImpl implements OrderService{
 	}
 	
 	@Override
+	public int goodsAmount(Map<String, Object> map) throws Exception{
+		return orderDAO.goodsAmount(map);
+	}
+	
+	@Override
 	public Map<String, Object> goodsInfo(Map<String, Object> map)throws Exception{
 		return orderDAO.goodsInfo(map);
 	}
