@@ -64,6 +64,7 @@ public class OrderController {
 
 		if(qq > 1) {
 			if(commandMap.get("MEMBER_NUM") == null) {
+				System.out.println("MEMBER_NUM NULL ****************************************");
 				//멤버 정보
 				Map<String, Object> member = orderService.memberInfo(commandMap.getMap());
 				//상품정보
@@ -87,9 +88,10 @@ public class OrderController {
 				mv.addObject("totalPrice",totalPrice);
 				mv.addObject("MEMBER_ID",MEMBER_ID);
 				mv.addObject("GOODS_NUM",request.getParameter("GOODS_NUM"));
-				//상품 수량 받아와야함
+				mv.addObject("AMOUNT", 1);		 //****상품 수량 받아와야함
 
 			}else {
+				System.out.println("MEMBER_NUM NOT NULL ****************************************");
 				List<Map<String, Object>> list = orderService.cartOrderList(commandMap.getMap());
 				Map<String, Object> member = orderService.memberInfo(commandMap.getMap());
 

@@ -107,7 +107,7 @@
 									<c:if test="${not empty goods.CART_AMOUNT}"><input type="hidden" value="${goods.CART_AMOUNT}" id="CART_AMOUNT${i}"></c:if><c:if test="${empty goods.CART_AMOUNT}"><input type="hidden" value="1" id="CART_AMOUNT${i}"></c:if>
 									</td>
 									<td>[${goods.SMALL_CATEGORY}] ${goods.GOODS_NAME}</td>
-									<td class="alignC" id="price">${goods.CART_AMOUNT}</td>
+									<td class="alignC" id="price">${AMOUNT}${goods.CART_AMOUNT}개</td>
 									<td class="alignC" id="price"><del>${goods.GOODS_PRICE}</del><br/>▶${goods.GOODS_DCPRICE}</td>
 									<td class="alignC last">90일</td>
 								</tr>
