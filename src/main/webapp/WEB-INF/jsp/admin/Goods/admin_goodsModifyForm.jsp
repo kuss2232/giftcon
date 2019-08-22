@@ -64,7 +64,7 @@
 		group[3][0] = new Option("아이스크림/빙수 브랜드 선택", "");
 		group[3][1] = new Option("베스킨라벤스31", "베스킨라벤스31");
 		group[3][2] = new Option("설빙", "설빙");
-		group[4][0] = new Option("떡/베이커리 브랜드 선택", "");
+		group[4][0] = new Option("이커리/도넛 브랜드 선택", "");
 		group[4][1] = new Option("파리바게트", "파리바게트");
 		group[4][2] = new Option("뚜레주르", "뚜레주르");
 		group[5][0] = new Option("편의점/마트 브랜드 선택", "");
@@ -228,42 +228,42 @@
 											<OPTION value='치킨/피자/버거' selected>치킨/피자/버거</OPTION>
 											<OPTION value='커피/음료'>커피/음료</OPTION>
 											<OPTION value='아이스크림/빙수'>아이스크림/빙수</OPTION>
-											<OPTION value='떡/베이커리'>떡/베이커리</OPTION>
+											<OPTION value='베이커리/도넛'>베이커리/도넛</OPTION>
 											<OPTION value='편의점/마트'>편의점/마트</OPTION>
 										</c:when>
 										<c:when test="${goodsBasic.BIG_CATEGORY eq '커피/음료'  }">
 											<OPTION value='치킨/피자/버거'>치킨/피자/버거</OPTION>
 											<OPTION value='커피/음료' selected>커피/음료</OPTION>
 											<OPTION value='아이스크림/빙수'>아이스크림/빙수</OPTION>
-											<OPTION value='떡/베이커리'>떡/베이커리</OPTION>
+											<OPTION value='베이커리/도넛'>베이커리/도넛</OPTION>
 											<OPTION value='편의점/마트'>편의점/마트</OPTION>
 										</c:when>
 										<c:when test="${goodsBasic.BIG_CATEGORY eq '아이스크림/빙수'  }">
 											<OPTION value='치킨/피자/버거'>치킨/피자/버거</OPTION>
 											<OPTION value='커피/음료'>커피/음료</OPTION>
 											<OPTION value='아이스크림/빙수' selected>아이스크림/빙수</OPTION>
-											<OPTION value='떡/베이커리'>떡/베이커리</OPTION>
+											<OPTION value='베이커리/도넛'>베이커리/도넛</OPTION>
 											<OPTION value='편의점/마트'>편의점/마트</OPTION>
 										</c:when>
-										<c:when test="${goodsBasic.BIG_CATEGORY eq '떡/베이커리'  }">
+										<c:when test="${goodsBasic.BIG_CATEGORY eq '베이커리/도넛'  }">
 											<OPTION value='치킨/피자/버거'>치킨/피자/버거</OPTION>
 											<OPTION value='커피/음료'>커피/음료</OPTION>
 											<OPTION value='아이스크림/빙수'>아이스크림/빙수</OPTION>
-											<OPTION value='떡/베이커리' selected>떡/베이커리</OPTION>
+											<OPTION value='베이커리/도넛' selected>베이커리/도넛</OPTION>
 											<OPTION value='편의점/마트'>편의점/마트</OPTION>
 										</c:when>
 										<c:when test="${goodsBasic.BIG_CATEGORY eq '편의점/마트'  }">
 											<OPTION value='치킨/피자/버거'>치킨/피자/버거</OPTION>
 											<OPTION value='커피/음료'>커피/음료</OPTION>
 											<OPTION value='아이스크림/빙수'>아이스크림/빙수</OPTION>
-											<OPTION value='떡/베이커리'>떡/베이커리</OPTION>
+											<OPTION value='베이커리/도넛'>베이커리/도넛</OPTION>
 											<OPTION value='편의점/마트' selected>편의점/마트</OPTION>
 										</c:when>
 										<c:otherwise>
 											<OPTION value='치킨/피자/버거'>치킨/피자/버거</OPTION>
 											<OPTION value='커피/음료'>커피/음료</OPTION>
 											<OPTION value='아이스크림/빙수'>아이스크림/빙수</OPTION>
-											<OPTION value='떡/베이커리'>떡/베이커리</OPTION>
+											<OPTION value='베이커리/도넛'>베이커리/도넛</OPTION>
 											<OPTION value='편의점/마트'>편의점/마트</OPTION>
 										</c:otherwise>
 									</c:choose>

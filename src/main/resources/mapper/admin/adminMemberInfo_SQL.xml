@@ -70,7 +70,7 @@
 			MEMBER_EMAIL,
 			MEMBER_STATE
 		FROM MEMBER
-		WHERE MEMBER_ID like '%' || #{isSearch} || '%'
+		WHERE MEMBER_ID like '%' || #{SearchKeyword} || '%'
 		ORDER BY MEMBER_NUM DESC
 	]]>
 </select>
@@ -86,7 +86,7 @@
 			MEMBER_EMAIL,
 			MEMBER_STATE
 		FROM MEMBER
-		WHERE MEMBER_NAME like '%' || #{isSearch} || '%'
+		WHERE MEMBER_NAME like '%' || #{SearchKeyword} || '%'
 		ORDER BY MEMBER_NUM DESC
 	]]>
 </select>
@@ -103,7 +103,7 @@
 			MEMBER_EMAIL,
 			MEMBER_STATE
 		FROM MEMBER
-		WHERE MEMBER_PHONE like '%' || #{isSearch} || '%'
+		WHERE MEMBER_PHONE like '%' || #{SearchKeyword} || '%'
 		ORDER BY MEMBER_NUM DESC
 	]]>
 </select>
@@ -120,7 +120,7 @@
 			MEMBER_EMAIL,
 			MEMBER_STATE
 		FROM MEMBER
-		WHERE MEMBER_EMAIL like '%' || #{isSearch} || '%'
+		WHERE MEMBER_EMAIL like '%' || #{SearchKeyword} || '%'
 		ORDER BY MEMBER_NUM DESC
 	]]>
 </select>
@@ -138,7 +138,7 @@
 			MEMBER_EMAIL,
 			MEMBER_STATE
 		FROM MEMBER
-		WHERE MEMBER_STATE = #{isSearch}
+		WHERE MEMBER_STATE = #{SearchKeyword}
 		ORDER BY MEMBER_NUM DESC
 	]]>
 </select>

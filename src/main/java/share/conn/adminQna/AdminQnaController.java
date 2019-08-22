@@ -22,8 +22,6 @@ public class AdminQnaController {
 	
 	private int totalCount;
 	private int searchNum;
-	private Integer categoryNum;
-	private Integer repState;
 	
 	private String SearchKeyword;
 	private int currentPage = 1;

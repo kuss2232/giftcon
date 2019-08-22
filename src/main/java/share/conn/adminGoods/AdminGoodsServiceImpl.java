@@ -30,8 +30,8 @@ public class AdminGoodsServiceImpl implements AdminGoodsService {
    }
    
    //빅카테고리 리스트
-   public List<Map<String, Object>> adCategory1GoodsList(String isSearch) throws Exception {
-	   List<Map<String, Object>> goodsList = adminGoodsDAO.adCategory1GoodsList(isSearch);
+   public List<Map<String, Object>> adCategory1GoodsList(Map<String,Object> map) throws Exception {
+	   List<Map<String, Object>> goodsList = adminGoodsDAO.adCategory1GoodsList(map);
 	   return goodsList;
    }
    
@@ -108,22 +108,21 @@ public class AdminGoodsServiceImpl implements AdminGoodsService {
 
    // 상품 검색(상품 번호)
    @Override
-   public List<Map<String, Object>> adGoodsNumSearch(String isSearch) throws Exception {
-      List<Map<String, Object>> adGoodsList = adminGoodsDAO.adGoodsNumSearch(isSearch);
+   public List<Map<String, Object>> adGoodsNumSearch(Map<String,Object> map) throws Exception {
+      List<Map<String, Object>> adGoodsList = adminGoodsDAO.adGoodsNumSearch(map);
       return adGoodsList;
    }
 
    // 상품 검색(상품명)
    @Override
-   public List<Map<String, Object>> adGoodsNameSearch(String isSearch) throws Exception {
-      List<Map<String, Object>> adGoodsList = adminGoodsDAO.adGoodsNameSearch(isSearch);
-      return adGoodsList;
+   public List<Map<String, Object>> adGoodsNameSearch(Map<String,Object> map) throws Exception {
+      return adminGoodsDAO.adGoodsNameSearch(map);
    }
 
    // 상품 검색(브랜드명)
    @Override
-   public List<Map<String, Object>> adGoodsCategory2Search(String isSearch) throws Exception {
-      List<Map<String, Object>> adGoodsList = adminGoodsDAO.adGoodsCategory2Search(isSearch);
+   public List<Map<String, Object>> adGoodsCategory2Search(Map<String,Object> map) throws Exception {
+      List<Map<String, Object>> adGoodsList = adminGoodsDAO.adGoodsCategory2Search(map);
       return adGoodsList;
    }
    

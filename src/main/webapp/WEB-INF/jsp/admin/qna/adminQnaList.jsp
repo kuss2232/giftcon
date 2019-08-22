@@ -40,8 +40,6 @@ div.paginate>div>a.disabled:hover {
 }
 </style>
 
-<link rel="stylesheet" type="text/css"
-	href="/giftcon/css/bootstrapadmin.min.css">
 <script src="/giftcon/css/common.js" charset="utf-8"></script>
 <script src="/giftcon/css/jquery/jquery-1.12.4.min.js"></script>
 <title>관리자Q&amp;A리스트</title>

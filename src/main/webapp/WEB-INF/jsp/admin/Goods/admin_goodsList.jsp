@@ -30,9 +30,9 @@
 
 <!-- Custom Theme JavaScript -->
 <script src="/giftcon/css/jquery/sb-admin-2.js"></script>
-
 <script src="/giftcon/js/common.js" charset="utf-8"></script>
 <script src="/giftcon/css/jquery/jquery-1.12.4.min.js"></script>
+<link rel="stylesheet" type="text/css"  />
 <script type="text/javascript">
 //주문번호 같은 열 합치는 Jquery
 $( document ).ready(function() {
@@ -117,6 +117,7 @@ function fn_goInsertForm(){
 -webkit-box-shadow:1px 1px 1px 0px rgba(235,235,235,1);
 	-moz-box-shadow:1px 1px 1px 0px rgba(235,235,235,1);
 		  box-shadow:1px 1px 1px 0px rgba(235,235,235,1);
+		  
 }
 .paging a:first-child{margin-left:0;}
 .paging strong{color:#fff;background:#337AB7;border:1px solid #337AB7;}
@@ -221,7 +222,7 @@ function fn_goInsertForm(){
 								<option value ="/giftcon/goods/adminGoodsList.conn?searchNum=3&isSearch=치킨/피자/버거">치킨/피자/버거</option>
 								<option value ="/giftcon/goods/adminGoodsList.conn?searchNum=3&isSearch=커피/음료">커피/음료</option>
 								<option value ="/giftcon/goods/adminGoodsList.conn?searchNum=3&isSearch=아이스크림/빙수">아이스크림/빙수</option>
-								<option value ="/giftcon/goods/adminGoodsList.conn?searchNum=3&isSearch=떡/베이커리">떡/베이커리</option>
+								<option value ="/giftcon/goods/adminGoodsList.conn?searchNum=3&isSearch=베이커리/도넛">베이커리/도넛</option>
 								<option value ="/giftcon/goods/adminGoodsList.conn?searchNum=3&isSearch=편의점/마트">편의점/마트</option>
 							</select>										
 						</div>
@@ -301,7 +302,7 @@ function fn_goInsertForm(){
 										<option value="1">상품명</option>
 										<option value="2">브랜드명</option>
 									</select>
-										<input  type="text" name="isSearch" id="isSearch"/>
+										<input  type="text" name="SearchKeyword" id="SearchKeyword"/>
 										<span>
 										<button type="submit" class="btn btn-default">검색</button>
 										</span>
