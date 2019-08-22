@@ -186,7 +186,7 @@
 									</tr>
 								</thead>
 								<tbody>
-								<tr><td colspan="6">
+							
 					<form id="f1" >
 									<c:forEach var="review" items="${reviewDetail}">
 										<tr class="gradeA even" role="row">
@@ -195,7 +195,9 @@
 											<td style="text-align: center; vertical-align: middle;">${review.REVIEW_CNT}</td>
 											<td style="text-align: center; vertical-align: middle;">
 													<fmt:formatDate	value="${review.REVIEW_REGDATE}" pattern="YY.MM.dd " /></td>
-											<td style="text-align: center; vertical-align: middle;">${review.REVIEW_GRADE }</td>
+											<td style="text-align: center; vertical-align: middle;">
+											<c:forEach begin="1"  end="${review.REVIEW_GRADE}" >
+											<span class="starL on" id="1" ></span></c:forEach></td>
 											<td style="text-align: center; vertical-align: middle;">
 												<input type="button" value="삭제" onclick="fn_deleteReview(${review.REVIEW_NUM})"/>
 											</td>
@@ -242,11 +244,7 @@
 								</tbody>
 							</table>
 			</c:if>
-			
-			
-
-
-		</div>
+			</div>
 	</div>
 </div>
 </div>

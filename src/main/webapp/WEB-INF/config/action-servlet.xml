@@ -15,13 +15,42 @@
 	
 
 	<!-- 인터셉터 설정 -->
-
+		
 	<mvc:interceptors>
+
 		<mvc:interceptor>
 			<mvc:mapping path="/**" />
 			<bean class="share.conn.giftcon.LoggerInterceptor"
 				id="loggerInterceptor" />
 		</mvc:interceptor>
+		
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+ 			<mvc:exclude-mapping path="/main.conn"/>
+ 			<mvc:exclude-mapping path="/login.conn"/>
+ 			<mvc:exclude-mapping path="/joinStep1.conn"/>
+ 			<mvc:exclude-mapping path="/joinStep2.conn"/>
+ 			<mvc:exclude-mapping path="/joinStep2-1.conn"/>
+ 			<mvc:exclude-mapping path="/joinStepComplete.conn"/>
+ 			<mvc:exclude-mapping path="/joinComplete.conn"/>
+ 			<mvc:exclude-mapping path="/joinStep3.conn"/>
+ 			<mvc:exclude-mapping path="/joinStep1/modal_email_auth.conn"/>
+ 			<mvc:exclude-mapping path="/checkId.conn"/>
+ 			<mvc:exclude-mapping path="/joinStep1/modal_email_auth_success.conn"/>
+ 			<mvc:exclude-mapping path="/eventList.conn"/>
+ 			<mvc:exclude-mapping path="/eventDetail.conn"/>
+			<mvc:exclude-mapping path="/loginForm.conn"/>
+			<mvc:exclude-mapping path="/goods/list.conn"/>
+			<mvc:exclude-mapping path="/goods/detail.conn"/>
+			<mvc:exclude-mapping path="/notice.conn"/>
+			<mvc:exclude-mapping path="/noticeDetail.conn"/>
+			<mvc:exclude-mapping path="/faq.conn"/>
+			<mvc:exclude-mapping path="/Terms of service.conn"/>
+			<mvc:exclude-mapping path="/privacy.conn"/>
+			<bean class="share.conn.giftcon.AuthenticationInterceptor"
+				id="authenticationInterceptor" />
+		</mvc:interceptor>
+		
 	</mvc:interceptors>
 
 	<!-- Map을 이용해 데이터를 주고 받을 수 있도록 -->

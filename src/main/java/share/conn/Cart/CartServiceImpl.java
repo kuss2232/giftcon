@@ -19,6 +19,10 @@ public class CartServiceImpl implements CartService{
 	public int cartCheck(Map<String, Object> map) throws Exception {
 		return cartDAO.cartCheck(map);
 	}
+	
+	public void cartCheckAmountModify(Map<String,Object> map) throws Exception{
+		cartDAO.cartCheckAmountModify(map);
+	}
 
 	@Override
 	public void addCart(Map<String, Object> map) throws Exception {

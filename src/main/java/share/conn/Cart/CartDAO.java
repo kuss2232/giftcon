@@ -14,6 +14,10 @@ public class CartDAO extends AbstractDAO{
 		return (Integer)selectOne("cart.cartCheck", map);
 	}
 	
+	public void cartCheckAmountModify(Map<String,Object> map) throws Exception{
+		update("cart.cartCheckAmountModify", map);
+	}
+	
 	public void addCart(Map<String,Object> map) throws Exception{
 		insert("cart.addCart", map);
 	}

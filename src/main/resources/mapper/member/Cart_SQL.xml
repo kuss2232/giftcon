@@ -5,7 +5,7 @@
 <!-- 장바구니 넣기전 같은 상품 있는지 확인 -->
 <select id="cartCheck" parameterType="hashmap" resultType="Integer">
 <![CDATA[
-	SELECT COUNT(*) 
+	SELECT COUNT(CART_NUM) 
 	FROM 
 		CART 
 	WHERE 
@@ -13,6 +13,19 @@
 		AND MEMBER_NUM=#{MEMBER_NUM}
 ]]>
 </select>
+
+<!-- 장바구니 중복시 수량 수정 -->
+<update id="cartCheckAmountModify" parameterType="hashmap">
+<![CDATA[
+	UPDATE 
+		CART 
+	SET 
+		CART_AMOUNT = CART_AMOUNT+#{CART_AMOUNT}
+	WHERE 
+		GOODS_NUM=#{GOODS_NUM}
+		AND MEMBER_NUM=#{MEMBER_NUM}
+]]>
+</update>
 
 <!-- 회원 장바구니 넣기-->
 <insert id="addCart" parameterType="hashmap" >
