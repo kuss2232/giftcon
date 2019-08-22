@@ -24,16 +24,21 @@
 		<div class="searchCate searchCate3">
 			<p class="tit">카테고리</p>
 			<ul>
-				<li><a href="javascript:setCategory(0);" id="BIG_CATEGORY" class="">
+					<c:url var="viewURL1" value=""><c:param name="big" value="1" /></c:url>
+					<c:url var="viewURL2" value=""><c:param name="big" value="2" /></c:url>
+					<c:url var="viewURL3" value=""><c:param name="big" value="3" /></c:url>
+					<c:url var="viewURL4" value=""><c:param name="big" value="4" /></c:url>
+					<c:url var="viewURL5" value=""><c:param name="big" value="5" /></c:url>
+				<li><a href="${viewURL1}" id="BIG_CATEGORY" class="">
 				<img src="/giftcon/images/big/aajjw8f85icn.jpg" alt="치킨/피자/버거"></a></li>
-				<li><a href="javascript:setCategory(1);" id="BIG_CATEGORY" class="">
+				<li><a href="${viewURL2}" id="BIG_CATEGORY" class="">
 				<img src="/giftcon/images/big/gjjl0p6cze8h.jpg" alt="커피/음료"></a></li>
-				<li><a href="javascript:setCategory(2);" id="BIG_CATEGORY" class="">
+				<li><a href="${viewURL3}" id="BIG_CATEGORY" class="">
 				<img src="/giftcon/images/big/gtdp4l4fvwl9.jpg" alt="아이스크림/빙수"></a></li>
-				<li><a href="javascript:setCategory(3);" id="BIG_CATEGORY" class="">
-				<img src="/giftcon/images/big/ako37p8p00i0.jpg" alt="상품권"></a></li>
-				<li><a href="javascript:setCategory(4);" id="BIG_CATEGORY" class="">
-				<img src="/giftcon/images/big/gnn08t6enp04.jpg" alt="베이커리/도넛"></a></li>
+				<li><a href="${viewURL4}" id="BIG_CATEGORY" class="">
+				<img src="/giftcon/images/big/ban.png" alt="베이커리/도넛"></a></li>
+				<li><a href="${viewURL5}" id="BIG_CATEGORY" class="">
+				<img src="/giftcon/images/big/he4t8c1h5kyy.jpg" alt="편의점/마트"></a></li>
 			</ul>
 		</div>
 		<div class="searchCate">

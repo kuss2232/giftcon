@@ -488,7 +488,7 @@ div.prodSearchArea {display: inline-block; margin-bottom: 40px; width: 1100px;}
 div.searchCate {display: table; float: left; padding-bottom: 30px; margin-bottom: 30px; width: 1100px; border-bottom: 1px dashed #a6c1e5;}
 div.searchCate p.tit {display: table-cell; width: 130px; font-size: 20px; font-weight: 600; color: #333; text-align: center; background: #ecf5ff; vertical-align: middle;}
 div.searchCate ul {float: left; margin-left: 20px; width: 950px;}
-div.searchCate ul li {float: left; margin: 0 10px 25px 0; width: 150px; height: 95px;}
+div.searchCate ul li {float: left; margin: 0 10px 0 0; width: 150px; height: 95px;}
 div.searchCate ul li.last {margin-right: 0;}
 div.searchCate ul li a,
 div.searchCate ul li a > img {display: inline-block; width: 150px; height: 95px;}

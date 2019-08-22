@@ -36,8 +36,10 @@ public class GoodsDAO extends AbstractDAO{
 		
 	//큰 카테고리 별 상품 리스트
 	@SuppressWarnings("unchecked")
-	public List<Map<String, Object>> bigCategorygoodsList() throws Exception{
-		return selectList("memberGoods.goodsBigCategoryList");
+	public List<Map<String, Object>> bigCategorygoodsList(String big) throws Exception{
+		HashMap<String, Object> map = new HashMap<String, Object>();
+        map.put("big",big);
+		return selectList("memberGoods.goodsBigCategoryList", map);
 	}
 		
 	//작은 카테고리 별 상품 리스트

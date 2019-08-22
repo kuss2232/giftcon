@@ -39,8 +39,8 @@ public class GoodsServiceImpl implements GoodsService{
 		
 	//큰 카테고리 별 상품 리스트
 	@Override
-	public List<Map<String, Object>> bigCategorygoodsList() throws Exception {
-		return goodsDAO.bigCategorygoodsList();
+	public List<Map<String, Object>> bigCategorygoodsList(String big) throws Exception {
+		return goodsDAO.bigCategorygoodsList(big);
 	}
 
 	//작은 카테고리 별 상품 리스트

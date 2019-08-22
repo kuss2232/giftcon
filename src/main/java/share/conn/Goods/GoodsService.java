@@ -9,7 +9,7 @@ public interface GoodsService {
 	int goodsCount() throws Exception;
 	public List<Map<String, Object>> searchGoods(Map<String, Object> map) throws Exception;
 	public List<Map<String, Object>> smallCategoryList() throws Exception;
-	public List<Map<String, Object>> bigCategorygoodsList() throws Exception;
+	public List<Map<String, Object>> bigCategorygoodsList(String big) throws Exception;
 	public List<Map<String, Object>> smallCategorygoodsList(String[] category) throws Exception;
 	public List<Map<String, Object>> categoryGoodsBest(String[] category) throws Exception;
 	public List<Map<String, Object>> categoryGoodsGrade(String[] category) throws Exception;

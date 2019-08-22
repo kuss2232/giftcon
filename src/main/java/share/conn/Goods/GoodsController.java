@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
-import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -22,6 +21,7 @@ public class GoodsController {
 	
 	private int SearchNum = 1;
 	private String SearchKeyword;
+	private String big;
 	
 	private int currentPage;
 	private int blockCount = 20;
@@ -54,6 +54,8 @@ public class GoodsController {
 		ModelAndView mv = new ModelAndView();
 		List<Map<String, Object>> goodsList;
 		String[] category = request.getParameterValues("category");
+		big = request.getParameter("big");
+		
 		List<Map<String, Object>> smallcategoryList = goodsService.smallCategoryList();
 		
 		if (request.getParameter("currentPage") == null || request.getParameter("currentPage").trim().isEmpty()
@@ -63,9 +65,11 @@ public class GoodsController {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
 		
-		if (category != null) { //카테고리별
+		if(big != null) {
+			goodsList = goodsService.bigCategorygoodsList(big);
+		}else if(category != null) {
 			goodsList = goodsService.smallCategorygoodsList(category);
-		} else { //전체
+		}else {
 			goodsList = goodsService.goodsList();
 		}
 		
