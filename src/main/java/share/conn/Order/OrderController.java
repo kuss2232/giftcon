@@ -58,65 +58,9 @@ public class OrderController {
 		//멤버id, 굿즈넘
 		String MEMBER_ID = (String) session.getAttribute("MEMBER_ID");
 		commandMap.put("MEMBER_ID",MEMBER_ID );
-//		System.out.println("굿즈넘:::::::::::" + commandMap.get("GOODS_NUM"));
 		int qq = orderService.goodsAmount(commandMap.getMap());
-//		System.out.println("수량 체크:::::::::::::" + qq);
 
-		if(qq > 1) {
-			if(commandMap.get("MEMBER_NUM") == null) {
-				System.out.println("MEMBER_NUM NULL ****************************************");
-				//멤버 정보
-				Map<String, Object> member = orderService.memberInfo(commandMap.getMap());
-				//상품정보
-				Map<String, Object> goods = orderService.goodsInfo(commandMap.getMap());
-				List<Map<String, Object>> list = new ArrayList<Map<String,Object>>();
-				list.add(goods);
-				mv.addObject("member",member);
-				mv.addObject("list",list);
-
-				if(goods.get("GOODS_DCPRICE") == null) {
-					totalPrice = (Integer) Integer.parseInt(goods.get("GOODS_PRICE").toString());
-				}
-				if(goods.get("GOODS_DCPRICE") != null) {
-					if(Integer.parseInt(goods.get("GOODS_DCPRICE").toString()) > 0)
-						totalPrice = Integer.parseInt(goods.get("GOODS_DCPRICE").toString());
-					else
-						totalPrice = Integer.parseInt(goods.get("GOODS_PRICE").toString());
-				}
-				price = Integer.parseInt(goods.get("GOODS_PRICE").toString());
-				mv.addObject("price",price);
-				mv.addObject("totalPrice",totalPrice);
-				mv.addObject("MEMBER_ID",MEMBER_ID);
-				mv.addObject("GOODS_NUM",request.getParameter("GOODS_NUM"));
-				mv.addObject("AMOUNT", 1);		 //****상품 수량 받아와야함
-
-			}else {
-				System.out.println("MEMBER_NUM NOT NULL ****************************************");
-				List<Map<String, Object>> list = orderService.cartOrderList(commandMap.getMap());
-				Map<String, Object> member = orderService.memberInfo(commandMap.getMap());
-
-				for(int i=0; i <list.size(); i++) {
-					Map<String, Object> goods = list.get(i);
-					if(goods.get("GOODS_DCPRICE") == null) {
-						totalPrice += (Integer) Integer.parseInt(goods.get("GOODS_PRICE").toString()) * Integer.parseInt((goods.get("CART_AMOUNT").toString()));
-					}
-					if(goods.get("GOODS_DCPRICE") != null) {
-						if(Integer.parseInt(goods.get("GOODS_DCPRICE").toString()) > 0)
-							totalPrice += Integer.parseInt(goods.get("GOODS_DCPRICE").toString()) * Integer.parseInt((goods.get("CART_AMOUNT").toString()));
-						else
-							totalPrice += Integer.parseInt(goods.get("GOODS_PRICE").toString()) * Integer.parseInt((goods.get("CART_AMOUNT").toString()));
-					}
-					price += Integer.parseInt(goods.get("GOODS_PRICE").toString()) * Integer.parseInt((goods.get("CART_AMOUNT").toString()));
-				}
-
-				mv.addObject("price", price);
-				mv.addObject("totalPrice",totalPrice);
-				mv.addObject("member",member);
-				mv.addObject("list",list);
-				mv.addObject("GOODS_NUM",request.getParameter("GOODS_NUM"));
-				mv.addObject("MEMBER_ID",MEMBER_ID);
-			}
-		}else {
+		if(qq < 1) {
 			//상품수량이 1개보다 작으면 이전페이지로 돌아옴
 			String viewName ="redirect:" + request.getHeader("Referer");
 			StringBuffer soldOut = new StringBuffer();
@@ -125,7 +69,62 @@ public class OrderController {
 			soldOut.append("</script>");
 			redirectAttribute.addFlashAttribute("soldOut", soldOut);
 			mv.setViewName(viewName);
+			return mv;
 		}
+		if(commandMap.get("MEMBER_NUM") == null) {
+			System.out.println("MEMBER_NUM NULL ****************************************");
+			//멤버 정보
+			Map<String, Object> member = orderService.memberInfo(commandMap.getMap());
+			//상품정보
+			Map<String, Object> goods = orderService.goodsInfo(commandMap.getMap());
+			List<Map<String, Object>> list = new ArrayList<Map<String,Object>>();
+			list.add(goods);
+			mv.addObject("member",member);
+			mv.addObject("list",list);
+
+			if(goods.get("GOODS_DCPRICE") == null) {
+				totalPrice = (Integer) Integer.parseInt(goods.get("GOODS_PRICE").toString());
+			}
+			if(goods.get("GOODS_DCPRICE") != null) {
+				if(Integer.parseInt(goods.get("GOODS_DCPRICE").toString()) > 0)
+					totalPrice = Integer.parseInt(goods.get("GOODS_DCPRICE").toString());
+				else
+					totalPrice = Integer.parseInt(goods.get("GOODS_PRICE").toString());
+			}
+			price = Integer.parseInt(goods.get("GOODS_PRICE").toString());
+			mv.addObject("price",price);
+			mv.addObject("totalPrice",totalPrice);
+			mv.addObject("MEMBER_ID",MEMBER_ID);
+			mv.addObject("GOODS_NUM",request.getParameter("GOODS_NUM"));
+			mv.addObject("AMOUNT", 1);		 //****상품 수량 받아와야함
+
+		}else {
+			System.out.println("MEMBER_NUM NOT NULL ****************************************");
+			List<Map<String, Object>> list = orderService.cartOrderList(commandMap.getMap());
+			Map<String, Object> member = orderService.memberInfo(commandMap.getMap());
+
+			for(int i=0; i <list.size(); i++) {
+				Map<String, Object> goods = list.get(i);
+				if(goods.get("GOODS_DCPRICE") == null) {
+					totalPrice += (Integer) Integer.parseInt(goods.get("GOODS_PRICE").toString()) * Integer.parseInt((goods.get("CART_AMOUNT").toString()));
+				}
+				if(goods.get("GOODS_DCPRICE") != null) {
+					if(Integer.parseInt(goods.get("GOODS_DCPRICE").toString()) > 0)
+						totalPrice += Integer.parseInt(goods.get("GOODS_DCPRICE").toString()) * Integer.parseInt((goods.get("CART_AMOUNT").toString()));
+					else
+						totalPrice += Integer.parseInt(goods.get("GOODS_PRICE").toString()) * Integer.parseInt((goods.get("CART_AMOUNT").toString()));
+				}
+				price += Integer.parseInt(goods.get("GOODS_PRICE").toString()) * Integer.parseInt((goods.get("CART_AMOUNT").toString()));
+			}
+
+			mv.addObject("price", price);
+			mv.addObject("totalPrice",totalPrice);
+			mv.addObject("member",member);
+			mv.addObject("list",list);
+			mv.addObject("GOODS_NUM",request.getParameter("GOODS_NUM"));
+			mv.addObject("MEMBER_ID",MEMBER_ID);
+		}
+		
 		
 		return mv;
 	}
