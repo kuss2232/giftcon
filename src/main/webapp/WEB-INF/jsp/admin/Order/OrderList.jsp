@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <%@ include file="/WEB-INF/include-header.jspf" %>
 <!DOCTYPE html>
 <html>
@@ -175,15 +176,20 @@
 										<td style="text-align:center;vertical-align:middle;">${orderList.MEMBER_ID}</td>	<!-- 회원ID -->
 										<td style="text-align:center;vertical-align:middle;">${orderList.ORDER_AMOUNT_SUM}</td>	<!-- 수량 -->
 										<td style="text-align:center;vertical-align:middle;">${orderList.ORDER_PAY_SUM}</td>	<!-- 주문금액합계 -->
-										<td style="text-align:center;vertical-align:middle;"><c:if test="${orderList.ORDER_PAYMENT eq 'N'}">입금 대기</c:if><c:if test="${orderList.ORDER_PAYMENT eq 'Y'}">결제 완료</c:if>
-											<select class="form-control" id="select${orderList.ORDER_NUM}" onchange="fn_PAY_Modify(${orderList.ORDER_NUM})">
+										<td style="text-align:center;vertical-align:middle;">
+										<c:if test="${orderList.ORDER_PAYMENT eq 'N'}">입금 대기</c:if>
+										<c:if test="${orderList.ORDER_PAYMENT eq 'Y'}">결제 완료</c:if>
+										<c:if test="${orderList.ORDER_PAYMENT eq 'E'}">사용 완료</c:if>
+											<select class="form-control" id="select${orderList.ORDER_NUM}" 
+											onchange="fn_PAY_Modify(${orderList.ORDER_NUM})">
 												<option value ="">상태 변경</option>
 												<option value ="N">입금대기</option>
 												<option value ="Y">결제완료</option>
-												<!-- <option value ="/giftcon/adminOrder.conn?isSearch=E">사용완료</option> -->
+												<option value ="E">사용완료</option><!-- "이메일 전송이 완료됐을 시" -->
 											</select>
 										</td>		<!-- 주문상태 -->
-										<td style="text-align:center;vertical-align:middle;">${orderList.ORDER_DATE}</td><!-- 주문일자 -->
+										<td style="text-align:center;vertical-align:middle;">
+										<fmt:formatDate value="${orderList.ORDER_DATE}" pattern="YY.MM.dd"/> </td><!-- 주문일자 -->
 										<td style="text-align:center;vertical-align:middle;">	<!-- 관리 -->
 										<c:url var="viewURL" value="/giftcon/orderNumDelete.conn" >
 										</c:url>
