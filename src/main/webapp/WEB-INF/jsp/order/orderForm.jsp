@@ -56,6 +56,10 @@
 			location.href="/giftcon/main.conn";
 			
 		}
+		function fn_Amount(num)
+		{
+			$("#CART_AMOUNT"+num).val($("#AMOUNT"+num).val());
+		}
 
 	</script>
 </head>
@@ -104,10 +108,19 @@
 									<input type="hidden" value="${MEMBER_ID}" id="MEMBER_ID${i}">
 									<input type="hidden" value="${GOODS_NUM}" id="GOODS_NUM${i}">
 									<input type="hidden" value="${goods.CART_NUM}" id="CART_NUM${i}">
-									<c:if test="${not empty goods.CART_AMOUNT}"><input type="hidden" value="${goods.CART_AMOUNT}" id="CART_AMOUNT${i}"></c:if><c:if test="${empty goods.CART_AMOUNT}"><input type="hidden" value="1" id="CART_AMOUNT${i}"></c:if>
+									<c:if test="${not empty goods.CART_AMOUNT}"><input type="hidden" value="${goods.CART_AMOUNT}" id="CART_AMOUNT${i}"></c:if>
+									<c:if test="${empty goods.CART_AMOUNT}"><input type="hidden" value="1" id="CART_AMOUNT${i}"></c:if>
 									</td>
 									<td>[${goods.SMALL_CATEGORY}] ${goods.GOODS_NAME}</td>
-									<td class="alignC" id="price">${AMOUNT}${goods.CART_AMOUNT}개</td>
+									<td class="alignC" id="price">
+									<c:if test="${not empty goods.CART_AMOUNT}">${goods.CART_AMOUNT}</c:if>
+									<c:if test="${empty goods.CART_AMOUNT}">
+										<select id="AMOUNT${i}" onchange="fn_Amount(${i})">
+											<c:forEach var="j" begin="1" end="${goods.GOODS_AMOUNT}">
+												<option value="${j}">${j}개</option>
+											</c:forEach>
+										</select>
+									</c:if>개</td>
 									<td class="alignC" id="price"><del>${goods.GOODS_PRICE}</del><br/>▶${goods.GOODS_DCPRICE}</td>
 									<td class="alignC last">90일</td>
 								</tr>
