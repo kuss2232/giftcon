@@ -73,5 +73,10 @@ public class AdminOrderServiceImpl implements AdminOrderService{
 	public void adCancelDelete(Map<String, Object> map) throws Exception {
 		adminOrderDAO.adCancelDelete(map);
 	}
-
+	
+	//상품 수량 조절
+	@Override
+	public void changeAmount(Map<String, Object> map) throws Exception {
+		adminOrderDAO.changeAmount(map);
+	}
 }
