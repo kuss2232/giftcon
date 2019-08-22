@@ -58,8 +58,9 @@ public class OrderController {
 		//멤버id, 굿즈넘
 		String MEMBER_ID = (String) session.getAttribute("MEMBER_ID");
 		commandMap.put("MEMBER_ID",MEMBER_ID );
-		int qq = orderService.goodsAmount(commandMap.getMap());
-
+		int qq = 10;
+		if(commandMap.get("GOODS_NUM") != null)
+			qq = orderService.goodsAmount(commandMap.getMap());
 		if(qq < 1) {
 			//상품수량이 1개보다 작으면 이전페이지로 돌아옴
 			String viewName ="redirect:" + request.getHeader("Referer");
@@ -72,7 +73,6 @@ public class OrderController {
 			return mv;
 		}
 		if(commandMap.get("MEMBER_NUM") == null) {
-			System.out.println("MEMBER_NUM NULL ****************************************");
 			//멤버 정보
 			Map<String, Object> member = orderService.memberInfo(commandMap.getMap());
 			//상품정보
@@ -99,7 +99,6 @@ public class OrderController {
 			mv.addObject("AMOUNT", 1);		 //****상품 수량 받아와야함
 
 		}else {
-			System.out.println("MEMBER_NUM NOT NULL ****************************************");
 			List<Map<String, Object>> list = orderService.cartOrderList(commandMap.getMap());
 			Map<String, Object> member = orderService.memberInfo(commandMap.getMap());
 
