@@ -12,29 +12,34 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import share.conn.giftcon.CommandMap;
-import share.conn.Paging.Paging;
+import share.conn.Paging.AdminQNAPaging;
+
 
 @Controller
 public class AdminMemberController {
+	@Resource(name = "adminMemberService")
+	private AdminMemberService adminMemberService;
+	
+	private int totalCount;
 	private int searchNum;
-
-	private String isSearch;
+	
 
 	// 페이징
+	private String SearchKeyword;
 	private int currentPage = 1;
-	private int totalCount;
 	private int blockCount = 10;
 	private int blockPage = 5;
 	private String pagingHtml;
-	private Paging page;
-
-	@Resource(name = "adminMemberService")
-	private AdminMemberService adminMemberService;
+	private AdminQNAPaging page;
+	
+	
 
 	// 전체 회원 목록
 	@RequestMapping(value = "/member/adminMemberList.conn")
 	public ModelAndView adminMemberList(CommandMap commandMap, HttpServletRequest request) throws Exception {
-
+		ModelAndView mv = new ModelAndView();
+		List<Map<String, Object>> memberList = null;
+		
 		if (request.getParameter("currentPage") == null || request.getParameter("currentPage").trim().isEmpty()
 				|| request.getParameter("currentPage").equals("0")) {
 			currentPage = 1;
@@ -42,33 +47,33 @@ public class AdminMemberController {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
 
-		ModelAndView mv = new ModelAndView();
 		
-		List<Map<String, Object>> memberList = adminMemberService.memberList(commandMap.getMap());
+		SearchKeyword = request.getParameter("SearchKeyword");
 
-		Map<String, Object> isSearchMap = new HashMap<String, Object>();
-		
-		isSearch = request.getParameter("isSearch");
-
-		if (isSearch != null) {
-			
+		if (SearchKeyword != null) {
 			searchNum = Integer.parseInt(request.getParameter("searchNum"));
-			isSearchMap.put("isSearch", isSearch);	
+			SearchKeyword = request.getParameter("SearchKeyword");
+			
 
 			if (searchNum == 0) { // 아이디
-				memberList = adminMemberService.searchMemberId(isSearchMap);
+				commandMap.put("SearchKeyword", SearchKeyword);
+				memberList = adminMemberService.searchMemberId(commandMap.getMap());
+				totalCount = memberList.size();
 			} else if (searchNum == 1) { // 이름
-				memberList = adminMemberService.searchMemberName(isSearchMap);
+				memberList = adminMemberService.searchMemberName(commandMap.getMap());
+				totalCount = memberList.size();
 			} else if (searchNum == 2) { // 전화번호
-				memberList = adminMemberService.searchMemberPhone(isSearchMap);
+				memberList = adminMemberService.searchMemberPhone(commandMap.getMap());
+				totalCount = memberList.size();
 			} else if (searchNum == 3) { // 이메일
-				memberList = adminMemberService.searchMemberEmail(isSearchMap);
+				memberList = adminMemberService.searchMemberEmail(commandMap.getMap());
+				totalCount = memberList.size();
 			} else if (searchNum == 4) { //상태
-				memberList = adminMemberService.searchMemberState(isSearchMap);
+				memberList = adminMemberService.searchMemberState(commandMap.getMap());
+				totalCount = memberList.size();
 			}
 
-			totalCount = memberList.size();
-			page = new Paging(currentPage, totalCount, blockCount, blockPage, "adminMemberList.conn", searchNum, isSearch);
+			page = new AdminQNAPaging(currentPage, totalCount, blockCount, blockPage, "adminMemberList.conn", searchNum, SearchKeyword);
 			pagingHtml = page.getPagingHtml().toString();
 
 			int lastCount = totalCount;
@@ -78,7 +83,7 @@ public class AdminMemberController {
 
 			memberList = memberList.subList(page.getStartCount(), lastCount);
 			
-			mv.addObject("isSearch", isSearch);
+			mv.addObject("SearchKeyword", SearchKeyword);
 			mv.addObject("searchNum", searchNum);
 			mv.addObject("totalCount", totalCount);
 			mv.addObject("pagingHtml", pagingHtml);
@@ -89,10 +94,10 @@ public class AdminMemberController {
 			return mv;
 
 		} else {
-
+			memberList = adminMemberService.memberList(commandMap.getMap());
 			totalCount = memberList.size();
 
-			page = new Paging(currentPage, totalCount, blockCount, blockPage, "adminMemberList.conn");
+			page = new AdminQNAPaging(currentPage, totalCount, blockCount, blockPage, "adminMemberList.conn");
 			pagingHtml = page.getPagingHtml().toString();
 
 			int lastCount = totalCount;

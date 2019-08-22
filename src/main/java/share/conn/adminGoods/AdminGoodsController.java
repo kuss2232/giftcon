@@ -14,7 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import share.conn.giftcon.CommandMap;
-import share.conn.Paging.Paging;
+import share.conn.Paging.AdminQNAPaging;
+
 
 @Controller
 public class AdminGoodsController {
@@ -23,45 +24,55 @@ public class AdminGoodsController {
 	private AdminGoodsService adminGoodsService;
 	
 	//페이징 변수
+	private int totalCount;
 	private int searchNum;
-	private String isSearch;
+	private String SearchKeyword;
 	
 	private int currentPage = 1;
-	private int totalCount;
-	private int blockCount = 20;
+	private int blockCount = 10;
 	private int blockPage = 10;
 	private String pagingHtml;
-	private Paging page;
+	private AdminQNAPaging page;
 
 	// 상품 목록 불러오기
 	@RequestMapping(value = "/goods/adminGoodsList.conn")
 	public ModelAndView adminGoodsList(CommandMap commandMap, HttpServletRequest request) throws Exception {
-
+		ModelAndView mv = new ModelAndView("adGoodsList");
+		List<Map<String, Object>> adGoodsList = adminGoodsService.adGoodsList();
+		
 		if(request.getParameter("currentPage") == null || request.getParameter("currentPage").trim().isEmpty()
 				|| request.getParameter("currentPage").equals("0")) {
 			currentPage = 1;
 		}else {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
-		ModelAndView mv = new ModelAndView("adGoodsList");
-
-		List<Map<String, Object>> adGoodsList = adminGoodsService.adGoodsList();
+		totalCount = adGoodsList.size();
+		SearchKeyword = request.getParameter("SearchKeyword");
 		
-		if(request.getParameter("isSearch") != null) {
-			isSearch = request.getParameter("isSearch");
+		if(SearchKeyword != null) {
 			searchNum = Integer.parseInt(request.getParameter("searchNum"));
+			SearchKeyword = request.getParameter("SearchKeyword");
 			
-			if(searchNum == 0) //상품 번호
-				adGoodsList = adminGoodsService.adGoodsNumSearch(isSearch);
-			else if(searchNum == 1) // 상품명
-				adGoodsList = adminGoodsService.adGoodsNameSearch(isSearch);
-			else if(searchNum == 2) // 브랜드명
-				adGoodsList = adminGoodsService.adGoodsCategory2Search(isSearch);
-			else if(searchNum == 3) // 빅카테고리 리스트
-				adGoodsList = adminGoodsService.adCategory1GoodsList(isSearch);
 			
-			totalCount = adGoodsList.size();
-			page = new Paging(currentPage, totalCount, blockCount, blockPage, "adminGoodsList.conn", searchNum, isSearch);
+			if(searchNum == 0) { //상품 번호
+				commandMap.put("SearchKeyword", SearchKeyword);
+				adGoodsList = adminGoodsService.adGoodsNumSearch(commandMap.getMap());
+				totalCount = adGoodsList.size();
+			}else if(searchNum == 1) { // 상품명
+				commandMap.put("SearchKeyword", SearchKeyword);
+				adGoodsList = adminGoodsService.adGoodsNameSearch(commandMap.getMap());
+				totalCount = adGoodsList.size();
+			}else if(searchNum == 2) { // 브랜드명
+				commandMap.put("SearchKeyword", SearchKeyword);
+				adGoodsList = adminGoodsService.adGoodsCategory2Search(commandMap.getMap());
+				totalCount = adGoodsList.size();
+			}else if(searchNum == 3) { // 빅카테고리 리스트
+				commandMap.put("SearchKeyword", SearchKeyword);
+				adGoodsList = adminGoodsService.adCategory1GoodsList(commandMap.getMap());
+				totalCount = adGoodsList.size();
+			}
+			
+			page = new AdminQNAPaging(currentPage, totalCount, blockCount, blockPage, "adminGoodsList.conn", searchNum, SearchKeyword);
 			pagingHtml = page.getPagingHtml().toString();
 			
 			int lastCount = totalCount;
@@ -71,7 +82,7 @@ public class AdminGoodsController {
 			
 			adGoodsList = adGoodsList.subList(page.getStartCount(), lastCount);
 			
-			mv.addObject("isSearch", isSearch);
+			mv.addObject("SearchKeyword", SearchKeyword);
 			mv.addObject("searchNum", searchNum);
 			mv.addObject("totalCount", totalCount);
 			mv.addObject("pagingHtml", pagingHtml);
@@ -79,11 +90,11 @@ public class AdminGoodsController {
 			mv.addObject("adGoodsList", adGoodsList);
 			mv.setViewName("admin/Goods/admin_goodsList");
 			return mv;
-		}
+		} else {
 		
 		totalCount = adGoodsList.size();
 		
-		page = new Paging(currentPage, totalCount, blockCount, blockPage, "adminGoodsList.conn");
+		page = new AdminQNAPaging(currentPage, totalCount, blockCount, blockPage, "adminGoodsList.conn");
 		pagingHtml = page.getPagingHtml().toString();
 		
 		int lastCount = totalCount;
@@ -96,15 +107,15 @@ public class AdminGoodsController {
 		mv.addObject("totalCount", totalCount);
 		mv.addObject("pagingHtml", pagingHtml);
 		mv.addObject("currentPage", currentPage);
-		
-
 		mv.addObject("adGoodsList", adGoodsList);
+		
 		Integer count = adminGoodsService.adAllGoodsNum();
 		int a = (int) count;
 		mv.addObject("count", a);
 		mv.setViewName("admin/Goods/admin_goodsList");
 
 		return mv;
+		}
 	}
 	
 	// 상품 등록폼으로 이동

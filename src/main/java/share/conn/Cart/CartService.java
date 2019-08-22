@@ -8,6 +8,8 @@ public interface CartService {
 	
 	public int cartCheck(Map<String, Object> map) throws Exception;
 	
+	public void cartCheckAmountModify(Map<String,Object> map) throws Exception;
+	
 	public void addCart(Map<String, Object> map) throws Exception;
 	
 	public List<Map<String,Object>> cartList(Map<String, Object> map) throws Exception;

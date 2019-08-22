@@ -7,6 +7,22 @@
 
 <html>
 <head>
+<style type="text/css">
+
+.paging{text-align:center;height:32px;margin-top:5px;margin-bottom:15px;}
+.paging a,
+.paging strong{display:inline-block;width:36px;height:32px;line-height:28px;font-size:14px;border:1px solid #e0e0e0;margin-left:5px;
+-webkit-border-radius:3px;
+   -moz-border-radius:3px;
+		border-radius:3px;
+-webkit-box-shadow:1px 1px 1px 0px rgba(235,235,235,1);
+	-moz-box-shadow:1px 1px 1px 0px rgba(235,235,235,1);
+		  box-shadow:1px 1px 1px 0px rgba(235,235,235,1);
+}
+.paging a:first-child{margin-left:0;}
+.paging strong{color:#fff;background:#337AB7;border:1px solid #337AB7;}
+.paging .page_arw{font-size:11px;line-height:30px;}
+</style>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
@@ -33,6 +49,7 @@
 
 <!-- Custom Theme JavaScript -->
 <script src="/giftcon/css/jquery/sb-admin-2.js"></script>
+
 <script src="/giftcon/js/common.js" charset="utf-8"></script>
 <script src="/giftcon/css/jquery/jquery-1.12.4.min.js"></script>
 <link rel="stylesheet" type="text/css"  />
@@ -240,7 +257,7 @@ function fn_memberDelete(member_num){
 					<div class="row" align="center">
 						<div style="text-align: center;">
 							<div id="dataTables-example_filter" class="dataTables_filter">
-								<form action="">
+								<form action="" method="POST">
 									<select  name="searchNum" id="searchNum">
 										<option value="0">아이디</option>
 										<option value="1">이름</option>
@@ -248,7 +265,7 @@ function fn_memberDelete(member_num){
 										<option value="3">이메일</option>
 										<option value="4">상태</option>
 									</select> 
-									<input type="text" name="isSearch" id="isSearch" /> 
+									<input type="text" name="SearchKeyword" id="SearchKeyword" /> 
 									<span>
 										<button type="submit" class="btn btn-default">검색</button>
 									</span>
@@ -260,7 +277,7 @@ function fn_memberDelete(member_num){
 			</div>
 			<!-- /.table-responsive -->
 		</div>
-		<div align="center">${pagingHtml}</div>
+		<div class="paging" align="center">${pagingHtml}</div>
 	</div>
 	<!-- /.panel -->
 </div>

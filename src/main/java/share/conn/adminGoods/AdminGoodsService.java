@@ -11,7 +11,7 @@ public interface AdminGoodsService {
 	public List<Map<String, Object>> adGoodsList() throws Exception;
 	
 	//빅카테고리 리스트
-	public List<Map<String, Object>> adCategory1GoodsList(String isSearch) throws Exception;
+	public List<Map<String, Object>> adCategory1GoodsList(Map<String,Object> map) throws Exception;
 	
 	// 전체 상품 수
 	public Integer adAllGoodsNum() throws Exception;
@@ -35,13 +35,13 @@ public interface AdminGoodsService {
 	public void adGoodsDelete(Map<String, Object> map) throws Exception;
 
 	//상품 검색(상품 번호)
-	public List<Map<String, Object>> adGoodsNumSearch(String isSearch) throws Exception;
+	public List<Map<String, Object>> adGoodsNumSearch(Map<String,Object> map) throws Exception;
 
 	//상품 검색(상품명)
-	public List<Map<String, Object>> adGoodsNameSearch(String isSearch) throws Exception;
+	public List<Map<String, Object>> adGoodsNameSearch(Map<String,Object> map) throws Exception;
 
 	//상품 검색(브랜드명)
-	public List<Map<String, Object>> adGoodsCategory2Search(String isSearch) throws Exception;
+	public List<Map<String, Object>> adGoodsCategory2Search(Map<String,Object> map) throws Exception;
 	
 	/*
 	 * //상품 할인적용 (상품번호 1개만) public void adGoodsDc(Map<String, Object> map) throws

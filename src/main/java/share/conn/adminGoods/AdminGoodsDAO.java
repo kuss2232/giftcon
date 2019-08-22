@@ -16,8 +16,8 @@ public class AdminGoodsDAO extends AbstractDAO {
    }
    
    //빅카테고리 상품리스트
-   public List<Map<String, Object>> adCategory1GoodsList(String isSearch) throws Exception {
-	   return (List<Map<String, Object>>) selectList("adminGoods.adCategory1GoodsList", isSearch);
+   public List<Map<String, Object>> adCategory1GoodsList(Map<String,Object> map) throws Exception {
+	   return (List<Map<String, Object>>) selectList("adminGoods.adCategory1GoodsList", map);
    }
    
    // 전체 상품수
@@ -81,20 +81,20 @@ public class AdminGoodsDAO extends AbstractDAO {
 
    // 상품 검색(상품 번호)
    @SuppressWarnings("unchecked")
-   public List<Map<String, Object>> adGoodsNumSearch(String isSearch) throws Exception {
-      return (List<Map<String, Object>>) selectList("adminGoods.adGoodsNumSearch", isSearch);
+   public List<Map<String, Object>> adGoodsNumSearch(Map<String,Object> map) throws Exception {
+      return (List<Map<String, Object>>) selectList("adminGoods.adGoodsNumSearch", map);
    }
 
    // 상품 검색(상품명)
    @SuppressWarnings("unchecked")
-   public List<Map<String, Object>> adGoodsNameSearch(String isSearch) throws Exception {
-      return (List<Map<String, Object>>) selectList("adminGoods.adGoodsNameSearch", isSearch);
+   public List<Map<String, Object>> adGoodsNameSearch(Map<String,Object> map) throws Exception {
+      return (List<Map<String, Object>>) selectList("adminGoods.adGoodsNameSearch", map);
    }
 
    // 상품 검색(브랜드명)
    @SuppressWarnings("unchecked")
-   public List<Map<String, Object>> adGoodsCategory2Search(String isSearch) throws Exception {
-      return (List<Map<String, Object>>) selectList("adminGoods.adGoodsCategory2Search", isSearch);
+   public List<Map<String, Object>> adGoodsCategory2Search(Map<String,Object> map) throws Exception {
+      return (List<Map<String, Object>>) selectList("adminGoods.adGoodsCategory2Search", map);
    }
    
 	/*

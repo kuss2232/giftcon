@@ -92,7 +92,10 @@ public class CartController {
 	//장바구니에 추가
 	@RequestMapping(value="/cart/addCart.conn")
 	public void addCart(CommandMap commandMap, HttpServletResponse response, HttpServletRequest request) throws Exception{
-		cartService.addCart(commandMap.getMap());
+		if(cartService.cartCheck(commandMap.getMap()) > 0)
+			cartService.cartCheckAmountModify(commandMap.getMap());
+		else 
+			cartService.addCart(commandMap.getMap());
 	}
 	
 	//장바구니 상품 전부 삭제
