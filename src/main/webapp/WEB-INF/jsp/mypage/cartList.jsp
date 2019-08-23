@@ -55,7 +55,7 @@ input.form-control:hover {background: #333;}
 										<td style="text-align:center;vertical-align:middle;">${cartList.CART_AMOUNT}개<c:set var="amount" value="${amount + cartList.CART_AMOUNT}"/>	<!-- 수량 -->
 											<select class="form-control" id="select${cartList.CART_NUM}" onchange="fn_AmountModify(${cartList.CART_NUM})">
 												<option value ="">수량 변경</option>
-												<c:forEach var="i" begin="0" end="${cartList.GOODS_AMOUNT}">
+												<c:forEach var="i" begin="1" end="${cartList.GOODS_AMOUNT}">
 													<option value="${i}">${i}개</option>
 												</c:forEach>
 											</select>
@@ -100,6 +100,7 @@ input.form-control:hover {background: #333;}
 </div>
 </body>
 <script type="text/javascript">
+
 function fn_AmountModify(num){
 	var amount = $("#select"+num).val();
 	$.ajax({

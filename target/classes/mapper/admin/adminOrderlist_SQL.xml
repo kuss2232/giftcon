@@ -3,9 +3,6 @@
 
 <mapper namespace="adminOrderlist">
 
-
-
-
 	<!-- 전체주문 리스트 보기 -->
 	<select id="allOrderList" resultType="hashmap">
 		<![CDATA[ 
@@ -87,7 +84,8 @@
 		ORDER BY A.ORDER_DATE DESC, A.ORDER_NUM DESC
 		]]>
 	</select>
-
+	
+		
 	<!-- 결제상태 변경 -->
 	<update id="updateOrderPayment" parameterType="hashmap">
 	
@@ -98,6 +96,28 @@
 	]]>
 	
 	</update>
+	
+	<!-- 상품 수량 조절 -->
+	<update id="changeAmount" parameterType="hashmap">
+			UPDATE	GOODS 
+			
+		SET 
+   				GOODS_AMOUNT = #{GOODS_AMOUNT} - (SELECT ORDER_AMOUNT FROM ORDERS WHERE GOODS_NUM = #{GOODS_NUM})
+			WHERE
+   					GOODS_NUM = #{GOODS_NUM}
+	</update>
+	
+	<!-- 상품 수량 조절 보조 -->
+	<select id="subChangeAmount" resultType="hashmap">
+			SELECT
+				 B.GOODS_NUM, B.GOODS_AMOUNT
+			FROM MEMBER A
+				INNER JOIN GOODS
+	
+	
+	
+	</select>
+	
 	<!-- 회원 주문상세보기 -->
 	<select id="orderDetail" resultType="hashmap">
 		<![CDATA[

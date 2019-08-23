@@ -41,4 +41,8 @@ public interface AdminOrderService {
 	
 	//주문 취소 삭제
 	public void adCancelDelete(Map<String, Object> map) throws Exception;
+	
+	//상품 수량 조절
+	public void changeAmount(Map<String, Object> map) throws Exception;
+	
 }

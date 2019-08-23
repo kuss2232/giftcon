@@ -64,4 +64,9 @@ public class AdminOrderDAO extends AbstractDAO{
 	public void adCancelDelete(Map<String,Object> map) throws Exception{
 		delete("adminOrderCancel.adCancelDelete", map);
 	}
+	
+	//상품수량 조절
+	public void changeAmount(Map<String,Object> map) throws Exception{
+		update("adminOrderlist.changeAmount", map);
+	}
 }
