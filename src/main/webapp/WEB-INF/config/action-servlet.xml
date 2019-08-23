@@ -41,6 +41,11 @@
  			<mvc:exclude-mapping path="/eventDetail.conn"/>
 			<mvc:exclude-mapping path="/loginForm.conn"/>
 			<mvc:exclude-mapping path="/goods/list.conn"/>
+			<mvc:exclude-mapping path="/goods/searchList.conn"/>
+			<mvc:exclude-mapping path="/goods/hotList.conn"/>
+			<mvc:exclude-mapping path="/goods/gradeList.conn"/>
+			<mvc:exclude-mapping path="/goods/lowList.conn"/>
+			<mvc:exclude-mapping path="/goods/highList.conn"/>
 			<mvc:exclude-mapping path="/goods/detail.conn"/>
 			<mvc:exclude-mapping path="/notice.conn"/>
 			<mvc:exclude-mapping path="/noticeDetail.conn"/>
