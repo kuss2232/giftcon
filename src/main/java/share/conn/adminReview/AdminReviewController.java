@@ -22,9 +22,8 @@ public class AdminReviewController {
 	
 	private int totalCount;
 	private int searchNum;
-	private Integer categoryNum;
-	private String SearchKeyword;
 	
+	private String SearchKeyword;
 	private int currentPage = 1;
 	private int blockCount = 10;
 	private int blockPage = 10;
@@ -37,14 +36,9 @@ public class AdminReviewController {
 	@RequestMapping("/adminReviewList.conn")
 	public ModelAndView adminReviewList(CommandMap commandMap, HttpServletRequest request)throws Exception{
 		
-		ModelAndView mv = new ModelAndView("/admin/Review/adminReviewList");
+		ModelAndView mv = new ModelAndView();
 		List<Map<String, Object>> reviewList = adminReviewService.reviewList(commandMap.getMap());
-		Map<String, Object> count = adminReviewService.reviewCount(commandMap.getMap());
-		
-		SearchKeyword = request.getParameter("SearchKeyword");
-		String str = request.getParameter("searchNum");
-		if(str != null)searchNum =  Integer.parseInt(str);
-		
+
 		if (request.getParameter("currentPage") == null || request.getParameter("currentPage").trim().isEmpty()
 				|| request.getParameter("currentPage").equals("0")) {
 			currentPage = 1;
@@ -52,13 +46,19 @@ public class AdminReviewController {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
 		totalCount = reviewList.size();
+		SearchKeyword = request.getParameter("SearchKeyword");
 		
 		if(SearchKeyword != null ) {
-			if(searchNum == 0) {// 아이디로검색
+			searchNum = Integer.parseInt(request.getParameter("searchNum"));
+			SearchKeyword = request.getParameter("SearchKeyword");
+			
+			if(searchNum == 0) {
+				commandMap.put("SearchKeyword", SearchKeyword);
 				reviewList = adminReviewService.searchReviewList(commandMap.getMap()); 
 				totalCount = reviewList.size();
 			
-			}else if(searchNum == 1) {//상품명으로 검색
+			}else if(searchNum == 1) {
+				commandMap.put("SearchKeyword", SearchKeyword);
 				reviewList = adminReviewService.searchReviewList(commandMap.getMap()); 
 				totalCount = reviewList.size();
 			}
@@ -75,7 +75,9 @@ public class AdminReviewController {
 			mv.addObject("Searchkeyword", SearchKeyword);
 			mv.addObject("pagingHtml",pagingHtml);
 			mv.addObject("reviewList",reviewList);
-			mv.addObject("count", totalCount);
+			mv.setViewName("admin/Review/adminReviewList");
+			return mv;
+			
 		}else {
 			totalCount = reviewList.size();
 			
@@ -89,9 +91,13 @@ public class AdminReviewController {
 			
 			reviewList =  reviewList.subList(page.getStartCount(), lastCount);
 			
+			mv.addObject("totalCount",totalCount);
 			mv.addObject("pagingHtml",pagingHtml);
 			mv.addObject("reviewList",reviewList);
-			mv.addObject("count", totalCount);
+			mv.addObject("currentPage",currentPage);
+			mv.setViewName("admin/Review/adminReviewList");
+			
+			return mv;
 		}
 
 		
@@ -100,7 +106,6 @@ public class AdminReviewController {
 		 * mv.addObject("SearchKeyword",SearchKeyword);
 		 */
 //		System.out.println("reviewCount-------------"+ count.get("CNT"));
-		return mv;
 	}
 	
 	@RequestMapping("/adminReviewDelete.conn")

@@ -17,26 +17,28 @@ import org.springframework.web.servlet.ModelAndView;
 
 import share.conn.adminFaq.AdminFaqService;
 import share.conn.giftcon.CommandMap;
-import share.conn.Paging.Paging;
+import share.conn.Paging.AdminQNAPaging;
+
 
 @Controller
 public class AdminFaqController {
+	@Resource(name = "AdminFaqService")
+	private AdminFaqService adminFaqService;
 	
-	private int SearchNum;
-
-	private String SearchKeyword;
+	private int searchNum;
+	private int totalCount;
+	
 	
 	//페이징 변수
+	private String SearchKeyword;
 	private int currentPage = 1;
-	private int totalCount;
 	private int blockCount = 10;
 	private int blockPage = 5;
 	private String pagingHtml;
-	private Paging page;
+	private AdminQNAPaging page;
 
 
-	@Resource(name = "AdminFaqService")
-	private AdminFaqService adminFaqService;
+	
 
 	/*
 	 * @RequestMapping(value = "/admin/adminPage") public String list() { return
@@ -46,7 +48,9 @@ public class AdminFaqController {
 	//FAQ 전체 리스트
 	@RequestMapping(value = "/faq/adminFaqList.conn")
 	public ModelAndView faqList(CommandMap commandMap, HttpServletRequest request) throws Exception {
-
+		ModelAndView mv = new ModelAndView();
+		List<Map<String, Object>> faqList = adminFaqService.adminfaqList(commandMap.getMap());
+		
 		if (request.getParameter("currentPage") == null || request.getParameter("currentPage").trim().isEmpty()
 				|| request.getParameter("currentPage").equals("0")) {
 			currentPage = 1;
@@ -54,28 +58,28 @@ public class AdminFaqController {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
 
-		ModelAndView mv = new ModelAndView();
-		List<Map<String, Object>> faqList = adminFaqService.adminfaqList(commandMap.getMap());
-
-		Map<String, Object> SearchKeywordMap = new HashMap<String, Object>();
+		
+		totalCount = faqList.size();
 		
 		SearchKeyword = request.getParameter("SearchKeyword");
 
 		if (SearchKeyword != null) {
 		
-			SearchNum = Integer.parseInt(request.getParameter("SearchNum"));
-			SearchKeywordMap.put("SearchKeyword", SearchKeyword);
+			searchNum = Integer.parseInt(request.getParameter("searchNum"));
+			SearchKeyword = request.getParameter("SearchKeyword");
 
-			if (SearchNum == 0) { // 제목검색
-				faqList = adminFaqService.faqSearch(SearchKeywordMap);
-			} else if (SearchNum == 1) { // 내용검색
-				faqList = adminFaqService.faqSearch(SearchKeywordMap);
+			if (searchNum == 0) { // 제목검색
+				commandMap.put("SearchKeyword", SearchKeyword);
+				faqList = adminFaqService.faqSearch(commandMap.getMap());
+				totalCount = faqList.size();
+			} else if (searchNum == 1) { // 내용검색
+				commandMap.put("SearchKeyword", SearchKeyword);
+				faqList = adminFaqService.faqSearch(commandMap.getMap());
+				totalCount = faqList.size();
 			}
-			
-			totalCount = faqList.size();
 
-			page = new Paging(currentPage, totalCount, blockCount, blockPage,
-					"faqList"); pagingHtml = page.getPagingHtml().toString();
+			page = new AdminQNAPaging(currentPage, totalCount, blockCount, blockPage,"faqList.conn",searchNum,SearchKeyword);
+			pagingHtml = page.getPagingHtml().toString();
 
 					int lastCount = totalCount;
 
@@ -85,7 +89,7 @@ public class AdminFaqController {
 					faqList = faqList.subList(page.getStartCount(), lastCount);
 					
 					mv.addObject("SearchKeyword", SearchKeyword);
-					mv.addObject("SearchNum", SearchNum);
+					mv.addObject("SearchNum", searchNum);
 					mv.addObject("totalCount", totalCount);
 					mv.addObject("pagingHtml",	pagingHtml); 
 					mv.addObject("currentPage", currentPage);
@@ -100,8 +104,8 @@ public class AdminFaqController {
 			
 		totalCount = faqList.size();
 
-		page = new Paging(currentPage, totalCount, blockCount, blockPage,
-				"faqList"); pagingHtml = page.getPagingHtml().toString();
+		page = new AdminQNAPaging(currentPage, totalCount, blockCount, blockPage,"faqList.conn");
+		pagingHtml = page.getPagingHtml().toString();
 
 				int lastCount = totalCount;
 

@@ -56,6 +56,18 @@ public class AdminCategoryServiceImpl implements AdminCategoryService{
 	public Map<String, Object> categoryCount(Map<String, Object> map) throws Exception{
 		return adminCategoryDAO.categoryCount(map);
 	}
+	//small category 검색
+	@Override
+	public List<Map<String,Object>> searchSmallCategory(Map<String, Object> map) throws Exception{
+		return adminCategoryDAO.searchSmallCategory(map);
+	}
+	
+	//bigcategory 검색
+	@Override
+	public List<Map<String,Object>> searchBigCategory(Map<String, Object> map) throws Exception{
+		return adminCategoryDAO.searchBigCategory(map);
+	}
+	
 	
 
 }

@@ -35,5 +35,15 @@ public class AdminCategoryDAO extends AbstractDAO {
 		return (Map<String, Object>)selectOne("adminCategory.categoryCount", map);
 	}
 	
-
+	//smallcategory 검색
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> searchSmallCategory(Map<String,Object> map) throws Exception{
+		return (List<Map<String, Object>>) selectList("adminCategory.searchSmallCategory",map);
+	}
+	
+	//bigcategory 검색
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> searchBigCategory(Map<String,Object> map) throws Exception{
+		return (List<Map<String, Object>>) selectList("adminCategory.searchBigCategory",map);
+	}
 }

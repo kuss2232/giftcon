@@ -7,6 +7,21 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style type="text/css">
+.paging{text-align:center;height:32px;margin-top:5px;margin-bottom:15px;}
+.paging a,
+.paging strong{display:inline-block;width:36px;height:32px;line-height:28px;font-size:14px;border:1px solid #e0e0e0;margin-left:5px;
+-webkit-border-radius:3px;
+   -moz-border-radius:3px;
+		border-radius:3px;
+-webkit-box-shadow:1px 1px 1px 0px rgba(235,235,235,1);
+	-moz-box-shadow:1px 1px 1px 0px rgba(235,235,235,1);
+		  box-shadow:1px 1px 1px 0px rgba(235,235,235,1);
+}
+.paging a:first-child{margin-left:0;}
+.paging strong{color:#fff;background:#337AB7;border:1px solid #337AB7;}
+.paging .page_arw{font-size:11px;line-height:30px;}
+</style>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
@@ -266,9 +281,7 @@ function fn_qnaDetail(qna_num){
 							</div>
 						</div>
 						<!-- /.table-responsive -->
-						<div class="paginate" align="center">
-							<ul class="numList" style="width: 58px;">${pagingHtml}</ul>
-						</div>
+						<div class="paging" align="center">${pagingHtml}</div>
 					</div>
 				</div>
 

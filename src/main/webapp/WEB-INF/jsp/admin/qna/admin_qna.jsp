@@ -102,9 +102,7 @@ function delchk(){
 							</table>
 						</div>
 					</div>
-					<div class="paging" align="center">
-						${pagingHtml}
-					</div>
+			
 					<div class="row">
 						<div style="text-align:center;">
 							<div id="dataTables-example_filter" class="dataTables_filter">
@@ -116,7 +114,9 @@ function delchk(){
 									<input class="form-control" type="text" name="isSearch" id="isSearch"/>
 									<span>
 									<button type="submit" class="btn btn-default">검색</button>
+									
 									</span>
+											<div class="paging" align="center">${pagingHtml}</div>
 								</form>
 							</div>							
 						</div>

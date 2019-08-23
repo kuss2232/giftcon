@@ -77,6 +77,36 @@
 			CATEGORY
    </when>      
 </choose>
-		
 </select>
+
+<select id="searchSmallCategory"  parameterType="hashmap" resultType="hashmap">
+<![CDATA[
+	SELECT
+		CATEGORY_NUM,
+		BIG_CATEGORY,
+		SMALL_CATEGORY,
+		CATEGORY_IMG
+	FROM	
+		CATEGORY
+	WHERE
+		SMALL_CATEGORY = #{SearchKeyword}
+
+]]>
+</select>
+
+<select id="searchBigCategory"  parameterType="hashmap" resultType="hashmap">
+<![CDATA[
+	SELECT
+		CATEGORY_NUM,
+		BIG_CATEGORY,
+		SMALL_CATEGORY,
+		CATEGORY_IMG
+	FROM	
+		CATEGORY
+	WHERE
+		BIG_CATEGORY = #{SearchKeyword}
+
+]]>
+</select>
+
 </mapper>

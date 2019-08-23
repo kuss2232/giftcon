@@ -18,4 +18,9 @@ public interface AdminCategoryService {
 	public List<Map<String, Object>> bigCategoryList(Map<String, Object> map) throws Exception;
 
 	public Map<String, Object> categoryCount(Map<String, Object> map) throws Exception;
+	//small category 검색
+	public List<Map<String, Object>> searchSmallCategory(Map<String, Object> map) throws Exception;
+	
+	//big category 검색
+	public List<Map<String, Object>> searchBigCategory(Map<String, Object> map) throws Exception;
 }

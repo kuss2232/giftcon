@@ -4,6 +4,21 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style type="text/css">
+.paging{text-align:center;height:32px;margin-top:5px;margin-bottom:15px;}
+.paging a,
+.paging strong{display:inline-block;width:36px;height:32px;line-height:28px;font-size:14px;border:1px solid #e0e0e0;margin-left:5px;
+-webkit-border-radius:3px;
+   -moz-border-radius:3px;
+		border-radius:3px;
+-webkit-box-shadow:1px 1px 1px 0px rgba(235,235,235,1);
+	-moz-box-shadow:1px 1px 1px 0px rgba(235,235,235,1);
+		  box-shadow:1px 1px 1px 0px rgba(235,235,235,1);
+}
+.paging a:first-child{margin-left:0;}
+.paging strong{color:#fff;background:#337AB7;border:1px solid #337AB7;}
+.paging .page_arw{font-size:11px;line-height:30px;}
+</style>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
@@ -159,7 +174,7 @@
 						</div>
 						<!-- /end:product_search -->
 						<div class="subTit1 mt44">
-							<span class="resultTxt"><em>상품: ${count}</em></span>
+							<span class="resultTxt"><em>상품: ${totalCount}</em></span>
 						</div>
 						<!-- start:search_product -->
 						<div class="brandLogo">
@@ -230,13 +245,15 @@
 				<div style="text-align: center;">
 					<div id="dataTables-example_filter" class="dataTables_filter">
 						<form action="">
-							<select class="form-control" name="searchNum" id="searchNum">
-								<option value="0">카테고리</option>
-								<option value="1">브랜드 명</option>
-							</select> <input class="form-control" type="text" name="isSearch"
-								id="isSearch" /> <span>
-								<button type="submit" class="btn btn-default">검색</button>
+							<select  name="searchNum" id="searchNum">
+								<option value="0">브랜드 명</option>
+								<option value="1">카테고리</option>
+								
+							</select> <input  type="text" name="SearchKeyword"
+								id="SearchKeyword" /> <span>
+								<button type="submit" >검색</button>
 							</span>
+							<div class="paging" align="center">${pagingHtml}</div>
 						</form>
 					</div>
 				</div>

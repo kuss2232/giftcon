@@ -47,7 +47,7 @@ public class AdminEventController {
 		List<Map<String, Object>> eventList = adminEventService.eventList(commandMap.getMap());
 		
 		totalCount = eventList.size();
-			page = new Paging(currentPage, totalCount, blockCount, blockPage, "eventList");
+			page = new Paging(currentPage, totalCount, blockCount, blockPage, "adminEventList.conn");
 			pagingHtml = page.getPagingHtml().toString();
 
 			int lastCount = totalCount;
@@ -83,7 +83,7 @@ public class AdminEventController {
 
 			
 			 totalCount = endEventList.size();
-				page = new Paging(currentPage, totalCount, blockCount, blockPage, "eventList");
+				page = new Paging(currentPage, totalCount, blockCount, blockPage, "adminEventList.conn");
 				pagingHtml = page.getPagingHtml().toString();
 
 				int lastCount = totalCount;
