@@ -12,7 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import share.conn.Paging.Paging;
+import share.conn.Paging.Paginate;
 import share.conn.giftcon.CommandMap;
 import share.conn.Review.ReviewService;
 
@@ -27,7 +27,7 @@ public class GoodsController {
 	private int blockCount = 20;
 	private int blockPage = 5;
 	private String pagingHtml;
-	private Paging page;
+	private Paginate page;
 	//페이징 숫자
 	
 	@Resource(name="goodsService")
@@ -74,7 +74,7 @@ public class GoodsController {
 		}
 		
 		int goodsCount = goodsList.size();
-		page = new Paging(currentPage, goodsCount, blockCount, blockPage, "list.conn");
+		page = new Paginate(currentPage, goodsCount, blockCount, blockPage, "list.conn");
 		pagingHtml = page.getPagingHtml().toString();
 
 		int lastCount = goodsCount;
@@ -98,6 +98,8 @@ public class GoodsController {
 		ModelAndView mv = new ModelAndView();
 		List<Map<String, Object>> goodsList;
 		String[] category = request.getParameterValues("category");
+		big = request.getParameter("big");
+
 		List<Map<String, Object>> smallcategoryList = goodsService.smallCategoryList();
 		
 		if (request.getParameter("currentPage") == null || request.getParameter("currentPage").trim().isEmpty()
@@ -108,10 +110,15 @@ public class GoodsController {
 		}
 		
 		SearchKeyword = request.getParameter("SearchKeyword");
-		goodsList = goodsService.searchGoods(map.getMap());
+		
+		if(big != null) {
+			goodsList = goodsService.bigCategorygoodsList(big);
+		}else {
+			goodsList = goodsService.searchGoods(map.getMap());
+		}
 
 		int goodsCount = goodsList.size();
-		page = new Paging(currentPage, goodsCount, blockCount, blockPage, "searchList.conn", SearchNum, SearchKeyword);
+		page = new Paginate(currentPage, goodsCount, blockCount, blockPage, "searchList.conn", SearchNum, SearchKeyword);
 		pagingHtml = page.getPagingHtml().toString();
 
 		int lastCount = goodsCount;
@@ -136,6 +143,8 @@ public class GoodsController {
 		ModelAndView mv = new ModelAndView();
 		List<Map<String, Object>> goodsList;
 		String[] category = request.getParameterValues("category");
+		big = request.getParameter("big");
+
 		List<Map<String, Object>> smallcategoryList = goodsService.smallCategoryList();
 		
 		if (request.getParameter("currentPage") == null || request.getParameter("currentPage").trim().isEmpty()
@@ -145,14 +154,16 @@ public class GoodsController {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
 		
-		if (category != null) { //카테고리별
+		if(big != null) {
+			goodsList = goodsService.bigCategorygoodsList(big);
+		}else if(category != null) {
 			goodsList = goodsService.categoryGoodsBest(category);
-		} else { //전체
+		}else {
 			goodsList = goodsService.goodsBestList();
 		}
 		
 		int goodsCount = goodsList.size();
-		page = new Paging(currentPage, goodsCount, blockCount, blockPage, "hotList.conn");
+		page = new Paginate(currentPage, goodsCount, blockCount, blockPage, "hotList.conn");
 		pagingHtml = page.getPagingHtml().toString();
 
 		int lastCount = goodsCount;
@@ -177,6 +188,8 @@ public class GoodsController {
 		ModelAndView mv = new ModelAndView();
 		List<Map<String, Object>> goodsList;
 		String[] category = request.getParameterValues("category");
+		big = request.getParameter("big");
+
 		List<Map<String, Object>> smallcategoryList = goodsService.smallCategoryList();
 		
 		if (request.getParameter("currentPage") == null || request.getParameter("currentPage").trim().isEmpty()
@@ -186,13 +199,16 @@ public class GoodsController {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
 		
-		if (category != null) { //카테고리별
+		if(big != null) {
+			goodsList = goodsService.bigCategorygoodsList(big);
+		}else if(category != null) {
 			goodsList = goodsService.categoryGoodsGrade(category);
-		} else { //전체
+		}else {
 			goodsList = goodsService.goodsGrade();
 		}
+		
 		int goodsCount = goodsList.size();
-		page = new Paging(currentPage, goodsCount, blockCount, blockPage, "gradeList.conn");
+		page = new Paginate(currentPage, goodsCount, blockCount, blockPage, "gradeList.conn");
 		pagingHtml = page.getPagingHtml().toString();
 
 		int lastCount = goodsCount;
@@ -216,6 +232,8 @@ public class GoodsController {
 		ModelAndView mv = new ModelAndView();
 		List<Map<String, Object>> goodsList;
 		String[] category = request.getParameterValues("category");
+		big = request.getParameter("big");
+
 		List<Map<String, Object>> smallcategoryList = goodsService.smallCategoryList();
 		
 		if (request.getParameter("currentPage") == null || request.getParameter("currentPage").trim().isEmpty()
@@ -225,13 +243,16 @@ public class GoodsController {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
 		
-		if (category != null) { //카테고리별
+		if(big != null) {
+			goodsList = goodsService.bigCategorygoodsList(big);
+		}else if(category != null) {
 			goodsList = goodsService.goodsSaleCategoryList2(category);
-		} else { //전체
+		}else {
 			goodsList = goodsService.goodsSaleList2();
 		}
+		
 		int goodsCount = goodsList.size();
-		page = new Paging(currentPage, goodsCount, blockCount, blockPage, "lowList.conn");
+		page = new Paginate(currentPage, goodsCount, blockCount, blockPage, "lowList.conn");
 		pagingHtml = page.getPagingHtml().toString();
 
 		int lastCount = goodsCount;
@@ -255,6 +276,8 @@ public class GoodsController {
 		ModelAndView mv = new ModelAndView();
 		List<Map<String, Object>> goodsList;
 		String[] category = request.getParameterValues("category");
+		big = request.getParameter("big");
+
 		List<Map<String, Object>> smallcategoryList = goodsService.smallCategoryList();
 		
 		if (request.getParameter("currentPage") == null || request.getParameter("currentPage").trim().isEmpty()
@@ -264,13 +287,16 @@ public class GoodsController {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
 		
-		if (category != null) { //카테고리별
+		if(big != null) {
+			goodsList = goodsService.bigCategorygoodsList(big);
+		}else if(category != null) {
 			goodsList = goodsService.goodsSaleCategoryList1(category);
-		} else { //전체
+		}else {
 			goodsList = goodsService.goodsSaleList1();
 		}
+		
 		int goodsCount = goodsList.size();
-		page = new Paging(currentPage, goodsCount, blockCount, blockPage, "highList.conn");
+		page = new Paginate(currentPage, goodsCount, blockCount, blockPage, "highList.conn");
 		pagingHtml = page.getPagingHtml().toString();
 
 		int lastCount = goodsCount;

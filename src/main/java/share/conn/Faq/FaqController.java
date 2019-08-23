@@ -7,13 +7,10 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import share.conn.Paging.Paging;
+import share.conn.Paging.Paginate;
 import share.conn.giftcon.CommandMap;
 
 @Controller
@@ -28,7 +25,7 @@ public class FaqController {
 	private int blockCount = 10;
 	private int blockPage = 5;
 	private String pagingHtml;
-	private Paging page;
+	private Paginate page;
 
 	@Resource(name = "faqService")
 	private FaqService faqService;
@@ -52,7 +49,7 @@ public class FaqController {
 			faqlist = faqService.searchList(commandMap.getMap());
 
 			totalCount = faqlist.size();
-			page = new Paging(currentPage, totalCount, blockCount, blockPage, "faq.conn", searchNum, SearchKeyword);
+			page = new Paginate(currentPage, totalCount, blockCount, blockPage, "faq.conn", searchNum, SearchKeyword);
 			pagingHtml = page.getPagingHtml().toString();
 
 			int lastCount = totalCount;
@@ -79,7 +76,7 @@ public class FaqController {
 			
 			totalCount = faqlist.size();
 
-			page = new Paging(currentPage, totalCount, blockCount, blockPage, "faq.conn");
+			page = new Paginate(currentPage, totalCount, blockCount, blockPage, "faq.conn");
 			pagingHtml = page.getPagingHtml().toString();
 
 			int lastCount = totalCount;

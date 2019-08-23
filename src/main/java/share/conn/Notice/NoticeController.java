@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import share.conn.giftcon.CommandMap;
-import share.conn.Paging.Paging;
+import share.conn.Paging.Paginate;
 
 @Controller
 public class NoticeController {
@@ -24,7 +24,7 @@ public class NoticeController {
 	private int blockCount = 10;
 	private int blockPage = 5;
 	private String pagingHtml;
-	private Paging page;
+	private Paginate page;
 	
 	@Resource(name = "noticeService")
 	private NoticeService noticeService;
@@ -49,7 +49,7 @@ public class NoticeController {
 			noticeList = noticeService.noticeSearch(commandMap.getMap());
 			
 			totalCount = noticeList.size();
-			page = new Paging(currentPage, totalCount, blockCount, blockPage, "/giftcon/notice.conn", searchNum, SearchKeyword);
+			page = new Paginate(currentPage, totalCount, blockCount, blockPage, "/giftcon/notice.conn", searchNum, SearchKeyword);
 			pagingHtml = page.getPagingHtml().toString();
 			
 			int lastCount = totalCount;
@@ -72,7 +72,7 @@ public class NoticeController {
 			return mv;
 		} else {
 			totalCount = noticeList.size();
-			page = new Paging(currentPage, totalCount, blockCount, blockPage, "/giftcon/notice.conn");
+			page = new Paginate(currentPage, totalCount, blockCount, blockPage, "/giftcon/notice.conn");
 			pagingHtml = page.getPagingHtml().toString();
 
 			int lastCount = totalCount;
