@@ -172,7 +172,9 @@
 											<input type="hidden" name="order_num" value="${orderList.ORDER_NUM}"/>
 										${orderList.ORDER_NUM}</td>	<!-- 주문번호 -->
 										<td style="text-align:center;vertical-align:middle;"><a href="${Detail}"><img width="100" height="100" src="/giftcon/resources/images/처갓집.jpg"></a></td>	<!-- 상품이미지 -->
-										<td style="text-align:center;vertical-align:middle;"><a href="${Detail}">${orderList.GOODS_NAME}<c:if test="${orderList.COUNTS > 1}">외 ${orderList.COUNTS-1}개</c:if></a></td>	<!-- 상품이름 -->
+										<td style="text-align:center;vertical-align:middle;">
+										<a href="${Detail}">${orderList.GOODS_NAME}
+										<c:if test="${orderList.COUNTS > 1}">외 ${orderList.COUNTS-1}개</c:if></a></td>	<!-- 상품이름 -->
 										<td style="text-align:center;vertical-align:middle;">${orderList.MEMBER_ID}</td>	<!-- 회원ID -->
 										<td style="text-align:center;vertical-align:middle;">${orderList.ORDER_AMOUNT_SUM}</td>	<!-- 수량 -->
 										<td style="text-align:center;vertical-align:middle;">${orderList.ORDER_PAY_SUM}</td>	<!-- 주문금액합계 -->
@@ -265,7 +267,8 @@ function fn_PAY_Modify(num)
 		type : "POST",
 		url : "/giftcon/adminOrderPAY.conn",
 		data : {"ORDER_NUM":num,
-				"ORDER_PAYMENT": select},
+				"ORDER_PAYMENT": select,
+				"ORDER_AMOUNT_SUM": num},
 		error : function(erromr) {
 			alert("서버가 응답하지 않습니다. \n다시 시도해주시기 바랍니다.");
 		},

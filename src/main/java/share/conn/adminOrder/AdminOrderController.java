@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import share.conn.giftcon.CommandMap;
@@ -47,9 +48,12 @@ public class AdminOrderController {
 		mv.setViewName("/admin/Order/OrderList");
 		return mv;
 	}
+	
 	//결제 상태 수정
-	@RequestMapping(value="/adminOrderPAY.conn")
+	@RequestMapping(value="/adminOrderPAY.conn", method = RequestMethod.POST)
 	public void OrderPayModify(HttpServletRequest request, HttpServletResponse response, CommandMap commandMap) throws Exception{
+		
+		/* adminOrderService.changeAmount(commandMap.getMap()); */
 		adminOrderService.updateOrderPayment(commandMap.getMap());
 	}
 	
@@ -63,6 +67,7 @@ public class AdminOrderController {
 		mv.setViewName("/admin/Order/OrderDetail");
 		return mv;
 	}
+	 
 	
 	@RequestMapping(value="/orderNumDelete.conn") 
 	public void OrderNumDelete(HttpServletRequest request, CommandMap commandMap, HttpServletResponse response) throws Exception{

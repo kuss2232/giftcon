@@ -6,8 +6,8 @@
 	<!-- 전체주문 리스트 보기 -->
 	<select id="allOrderList" resultType="hashmap">
 		<![CDATA[ 
-			SELECT A.ORDER_NUM, D.GOODS_IMG,	B.GOODS_NAME, C.MEMBER_ID, F.ORDER_AMOUNT_SUM, 
-        			E.ORDER_PAY_SUM, A.ORDER_PAYMENT, A.ORDER_DATE, A.MEMBER_NUM, G.COUNTS
+			SELECT A.ORDER_NUM, D.GOODS_IMG, B.GOODS_NAME, C.MEMBER_ID, F.ORDER_AMOUNT_SUM, 
+        			E.ORDER_PAY_SUM, A.ORDER_PAYMENT, A.ORDER_DATE, A.MEMBER_NUM, G.COUNTS, B.GOODS_NUM
 			FROM ORDERS A, GOODS B, MEMBER C, GOODS_IMG D, 
         		(SELECT ORDER_NUM, SUM(ORDER_PRICE) AS ORDER_PAY_SUM FROM ORDERS GROUP BY ORDER_NUM) E,
         		(SELECT ORDER_NUM,SUM(ORDER_AMOUNT) AS ORDER_AMOUNT_SUM FROM ORDERS GROUP BY ORDER_NUM) F,
@@ -99,16 +99,16 @@
 	
 	<!-- 상품 수량 조절 -->
 	<update id="changeAmount" parameterType="hashmap">
-			UPDATE	GOODS 
-			
-		SET 
-   				GOODS_AMOUNT = #{GOODS_AMOUNT} - (SELECT ORDER_AMOUNT FROM ORDERS WHERE GOODS_NUM = #{GOODS_NUM})
-			WHERE
-   					GOODS_NUM = #{GOODS_NUM}
+		UPDATE 
+   GOODS 
+SET 
+   GOODS_AMOUNT = GOODS_AMOUNT - #{ORDER_AMOUNT}
+   WHERE
+   	GOODS_NUM = #{GOODS_NUM}
 	</update>
 	
 	<!-- 상품 수량 조절 보조 -->
-	<select id="subChangeAmount" resultType="hashmap">
+<!-- 	<select id="subChangeAmount" resultType="hashmap">
 			SELECT
 				 B.GOODS_NUM, B.GOODS_AMOUNT
 			FROM MEMBER A
@@ -116,7 +116,7 @@
 	
 	
 	
-	</select>
+	</select> -->
 	
 	<!-- 회원 주문상세보기 -->
 	<select id="orderDetail" resultType="hashmap">

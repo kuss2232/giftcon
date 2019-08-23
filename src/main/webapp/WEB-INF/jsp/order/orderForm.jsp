@@ -17,6 +17,7 @@
 			$("#btnOrder").on("click", function(e){
 				e.preventDefault();
 				fn_order();
+				fn_amount(num);
 			});
 
 		});
@@ -30,11 +31,14 @@
 			      alert("결제방식 선택 안됨");
 			      return;
 			}
+			
 			alert("결제되었습니다.");
 			if(i>=2)
 				url = "/giftcon/insertCartOrder.conn";
+			
 			else
 				url = "/giftcon/insertOrder.conn";
+			
 			for(var j=1;j<=i;j++)
 			{
 				$.ajax({
@@ -48,18 +52,32 @@
 						"ORDER_PAYMENT":$("#ORDER_PAYMENT").val()
 						},
 					//data : userData,
-					error : function(erromr) {
-						alert("서버가 응답하지 않습니다. \n다시 시도해주시기 바랍니다.");
+					error : function(erromr,e) {
+						alert("서버가 응답하지 않습니다. \n다시 시도해주시기 바랍니다."+ erromr + e);
 					}
 				})
 			}
 			location.href="/giftcon/main.conn";
 			
 		}
-		function fn_Amount(num)
-		{
-			$("#CART_AMOUNT"+num).val($("#AMOUNT"+num).val());
-		}
+		
+	      function fn_Amount(num) 
+	      {
+	         $("#CART_AMOUNT"+num).val($("#AMOUNT"+num).val());
+	         
+	         var price = $("#gp").text()*1;
+	         var amount = $("#AMOUNT"+num).val()*1;
+	         var disPrice = $("#gdp").text()*1;
+	         var q = price*amount;
+	         var w = disPrice*amount;
+	         var e = (price-disPrice)*amount;
+
+	         $("#priceOne1").text(q);
+	         $("#priceOne2").text(w);
+	         $("#priceOne2_1").text(w);
+	         $("#priceOne2_2").text(w);
+	         $("#disPrice").text(e)
+	      }
 
 	</script>
 </head>
@@ -68,6 +86,8 @@
 				<div class="subLayout">
 				<form id="order"></form>
 				<form id="orders">
+				 <span id="gp" style="display:none">${GOODS_PRICE}</span>
+           			 <span id="gdp" style="display:none" >${GOODS_DCPRICE}</span>
 				
 				
 					<!-- start:sub_title -->
@@ -107,6 +127,7 @@
 									<input type="hidden" value="${totalPrice}" id="totalPrice${i}">
 									<input type="hidden" value="${MEMBER_ID}" id="MEMBER_ID${i}">
 									<input type="hidden" value="${GOODS_NUM}" id="GOODS_NUM${i}">
+									<input type="hidden" value="${GOODS_NUM}" id="GOODS_NUM${i}">
 									<input type="hidden" value="${goods.CART_NUM}" id="CART_NUM${i}">
 									<c:if test="${not empty goods.CART_AMOUNT}"><input type="hidden" value="${goods.CART_AMOUNT}" id="CART_AMOUNT${i}"></c:if>
 									<c:if test="${empty goods.CART_AMOUNT}"><input type="hidden" value="1" id="CART_AMOUNT${i}"></c:if>
@@ -128,7 +149,7 @@
 						  </tbody>
 						</table>
 						<input type="hidden" value="${i}" id="number"/>
-						<p class="priceOne">1건당 발송금액 :${totalPrice}원</p>
+						<p class="priceOne"> 발송금액 :${totalPrice}원</p>
 						<!-- /end:product_list -->
 					</div>
 					<!-- /end:send_step01 -->
@@ -204,7 +225,7 @@
 									<div class="lastDetail">
 										<p class="contInfo">
 											<span class="tit">총 결제금액</span>
-											<span class="txt"><span id="totalAmtTxt">${price}</span>원</span>
+											<span class="txt"><span id="priceOne1">${price}</span>원</span>
 										</p>
 										<p class="contInfo">
 											<span class="tit">할인금액</span>
