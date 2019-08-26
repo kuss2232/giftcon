@@ -25,7 +25,6 @@ public class AdminFaqServiceImpl implements AdminFaqService {
 	// 상세보기
 	@Override
 	public Map<String, Object> faqDetail(Map<String, Object> map) throws Exception {
-		adminfaqDAO.updateHitCnt(map);
 		Map<String, Object> faqDetail = adminfaqDAO.faqDetail(map);
 		return faqDetail;
 	}
