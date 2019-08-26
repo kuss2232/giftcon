@@ -216,7 +216,7 @@ function fn_goInsertForm(){
 					class="dataTables_wrapper form-inline dt-bootstrap no-footer">
 					<div class="row" style="margin-bottom:5px;">
 						<div class="col-sm-6">
-							<a href="/giftcon/goods/adminGoodsList.conn"><button type="button" style="width:50px; height:50px;" >전체</button></a>
+							<a href="/giftcon/goods/adminGoodsList.conn"><button type="button" style="margin-left:-350px; width:50px; height:50px;" >전체</button></a>
 							<select  name="select" onchange="window.open(value,'_self');">
 								<option value ="">--카테고리--</option>
 								<option value ="/giftcon/goods/adminGoodsList.conn?searchNum=3&isSearch=치킨/피자/버거">치킨/피자/버거</option>

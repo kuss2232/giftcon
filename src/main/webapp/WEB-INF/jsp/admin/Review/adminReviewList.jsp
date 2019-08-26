@@ -182,16 +182,14 @@
 															style="width: 8%; text-align: center; vertical-align: middle;">상품
 															사진</th>
 														<th
-															style="width: 8%; text-align: center; vertical-align: middle;">상품명</th>
+															style="width: 12%; text-align: center; vertical-align: middle;">상품명</th>
 														<th
 															style="width: 8%; text-align: center; vertical-align: middle;">가격</th>
 														<th
 															style="width: 35%; text-align: center; vertical-align: middle;">리뷰</th>
+														
 														<th
-															style="width: 8%; text-align: center; vertical-align: middle;">리뷰
-															사진</th>
-														<th
-															style="width: 3%; text-align: center; vertical-align: middle;">평점</th>
+															style="width: 6%; text-align: center; vertical-align: middle;">평점</th>
 														<th
 															style="width: 8%; text-align: center; vertical-align: middle;">작성자</th>
 														<th
@@ -227,10 +225,6 @@
 																</td>
 															</c:if>
 															<td style="text-align: center; vertical-align: middle;">${reviewList.REVIEW_CNT}</td>
-															<td style="text-align: center; vertical-align: middle;"><img
-																src="/MODA/file/goodsFile/${reviewList.REVIEW_IMG}"
-																width="60" height="60" alt=""
-																onerror="this.src='/giftcon/images/XBox.png'" /></td>
 															<td style="text-align: center; vertical-align: middle;">${reviewList.REVIEW_GRADE}</td>
 															<td style="text-align: center; vertical-align: middle;">${reviewList.MEMBER_ID}</td>
 															<td style="text-align: center; vertical-align: middle;"><fmt:formatDate

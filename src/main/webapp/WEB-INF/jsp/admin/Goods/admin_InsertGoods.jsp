@@ -204,7 +204,7 @@ function BIG_CATEGORYChange(frm) {
 	<h1 class="page-header">상품등록</h1>
 </div>
 	<form id="frm" name="frm" enctype="multipart/form-data">
-		<table class="board_view">
+		<table class="board_view" >
 			<colgroup>
 				<col width="15%">
 				<col width="*"/>

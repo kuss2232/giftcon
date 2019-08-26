@@ -220,7 +220,7 @@ cursor: pointer;
 			<div class="row" align="center" style="padding-left: 15px; width: 900px;">
 	<h1 class="page-header">EVENT</h1>
 </div>
-<div class="row" align="center">
+<div class="row" align="center" >
 	<div class="panel panel-default">
 		<div class="panel-heading">EVENT 등록, 수정, 삭제 기능하는 페이지입니다.</div>
 		<div class="panel-body">
@@ -230,8 +230,7 @@ cursor: pointer;
 					<div class="row" style="margin-bottom: 5px;">
 						</br></br>
 						<div class="col-sm-6" style="text-align: right;">
-							<div class="dataTables_info" id="dataTables-example_info"
-								role="status" aria-live="polite" align="left" style="margin-left:235px">총 게시물수 : ${totalCount}</div>
+							
 						</div>
 					</div>
 					
@@ -240,7 +239,10 @@ cursor: pointer;
  	<ul class="tabs"  style="list-style-type:square;">
 		<li><a href="/giftcon/event/adminEventList.conn" class="on">진행중 이벤트</a></li>
 		<li><a href="/giftcon/event/adminEndEventList.conn" class="on">종료된 이벤트</a></li>
+		<li class="on" style="margin-left:738px;">총 게시물수 : ${totalCount}</li>
+		
 	</ul>
+	
 					<div class="col-sm-12">
 							<table
 								class="table table-striped table-bordered table-hover dataTable no-footer"

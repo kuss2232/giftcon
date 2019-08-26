@@ -190,10 +190,10 @@
 
 			<br>
 
-			<div class="box box-primary">
+			<div class="box box-primary" align="center">
 				<div class="box-header with-border">
 					<h2 class="box-title" align="center">목록</h2>
-					<div align="left">
+					<div align="right">
 						<a href="/giftcon/admincategoryInsertForm.conn"><input
 							type="image" src="/giftcon/resources/images/answer.png">추가</a>
 					</div>
