@@ -38,7 +38,7 @@
 <link rel="apple-touch-icon" href="/images/common/typeA.png">
 
 <!-- jQuery -->
-<script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script type="text/javascript" async="" src="https://www.googleadservices.com/pagead/conversion_async.js"></script><script src="https://atm.acecounter.com/ac.js?tid=128153CT-20-A&amp;hsn=www.donutbook.co.kr&amp;hrf=in&amp;dvp=0&amp;tgp=&amp;tn1=&amp;tn2=0&amp;tn3=0&amp;tw1=&amp;tw2=&amp;tw3=&amp;tw4=&amp;tw5=&amp;tw6=&amp;tw7=&amp;rnd=1563784092844&amp;py=0"></script><script src="/js/jquery/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="https://www.google-analytics.com/analytics.js"></script><script type="text/javascript" async="" src="https://www.googleadservices.com/pagead/conversion_async.js"></script><script src="https://atm.acecounter.com/ac.js?tid=128153CT-20-A&amp;hsn=www.donutbook.co.kr&amp;hrf=in&amp;dvp=0&amp;tgp=&amp;tn1=&amp;tn2=0&amp;tn3=0&amp;tw1=&amp;tw2=&amp;tw3=&amp;tw4=&amp;tw5=&amp;tw6=&amp;tw7=&amp;rnd=1563784092844&amp;py=0"></script><script src="/js/jquery/jquery-1.12.4.min.js"></script>
 <script src="/giftcon/css/jquery/jquery-migrate-1.4.1.min.js"></script>
 <script src="/giftcon/css/jquery/jquery.blockUI.js"></script>
 <script src="/giftcon/css/jquery/jquery.form.js"></script>
@@ -112,7 +112,7 @@ $(function () {
 			<div class="top">
 				<h1 class="logo">
 				<a href="/giftcon/main.conn">
-				<img src="/giftcon/css/main.png" alt="쉐어콘"></a></h1>
+				<img src="/giftcon/css/a.png" alt="쉐어콘"></a></h1>
 				<div class="searchBox">
 					<form id="goodsHeaderForm" name="goodsHeaderForm" action="/giftcon/goods/searchList.conn" method="GET">
 						<fieldset>
@@ -169,6 +169,9 @@ $(function () {
 					</li>
 						<li  align="center">
 								<a href="/giftcon/notice.conn" title="고객센터" class="">고객센터</a>
+						</li>
+						<li  align="center">
+						<a href="/giftcon/budget.conn" title="예산 계산기" class="">맞춤 계산기</a>
 						</li>
 							
 					<!-- <li>

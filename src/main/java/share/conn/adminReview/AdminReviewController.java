@@ -72,6 +72,7 @@ public class AdminReviewController {
 			
 			reviewList = reviewList.subList(page.getStartCount(), lastCount);
 			
+			mv.addObject("count",totalCount);
 			mv.addObject("Searchkeyword", SearchKeyword);
 			mv.addObject("pagingHtml",pagingHtml);
 			mv.addObject("reviewList",reviewList);
@@ -91,7 +92,7 @@ public class AdminReviewController {
 			
 			reviewList =  reviewList.subList(page.getStartCount(), lastCount);
 			
-			mv.addObject("totalCount",totalCount);
+			mv.addObject("count",totalCount);
 			mv.addObject("pagingHtml",pagingHtml);
 			mv.addObject("reviewList",reviewList);
 			mv.addObject("currentPage",currentPage);

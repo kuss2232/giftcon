@@ -142,3 +142,4 @@ function fn_delete(num)
 
 </script>
 </html>
+<%@include file="../module/footer.jsp"%>

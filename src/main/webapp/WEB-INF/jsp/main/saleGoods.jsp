@@ -37,7 +37,11 @@
 								</c:if>
 								<ul class="sendList">
 									<li><a href="/giftcon/orderForm.conn?GOODS_NUM=${list.GOODS_NUM}" class="first"><span class="nowSend"></span><span class="sendTxt">바로발송</span></a></li>
+									<%if(session.getAttribute("MEMBER_ID") != null){ %>
 									<li><a href="javascript:addCart(${list.GOODS_NUM})"><span class="cartPut"></span><span class="sendTxt">장바구니</span></a></li>
+									<%} else{ %>
+									<li><a href="/giftcon/loginForm.conn"><span class="cartPut"></span><span class="sendTxt">장바구니</span></a></li>
+									<%} %>
 								</ul>
 							</div>
 						</li>

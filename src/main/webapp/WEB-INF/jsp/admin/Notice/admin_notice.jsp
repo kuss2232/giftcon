@@ -197,7 +197,7 @@
 						<div class="col-sm-6">
 													</div>
 													</br></br>
-						<div class="col-sm-6" style="text-align: right;">
+						<div class="col-sm-6" style="text-align: right; margin-left:550px;">
 							<div class="dataTables_info" id="dataTables-example_info"
 								role="status" aria-live="polite">총 게시글 수 : ${totalCount}</div>
 						</div>
@@ -273,11 +273,11 @@
 						<div style="text-align: center;">
 							<div id="dataTables-example_filter" class="dataTables_filter">
 								<form action="">
-									<select  name="searchNum" id="searchNum">
+									<select  name="SearchNum" id="SearchNum">
 										<option value="1">제목</option>
 										<option value="2">내용</option>
-									</select> <input  type="text" name="isSearch"
-										id="isSearch" /> <span>
+									</select> <input  type="text" name="SearchKeyword"
+										id="SearchKeyword" /> <span>
 										<button type="submit" class="btn btn-default">검색</button>
 									</span>
 								</form>
