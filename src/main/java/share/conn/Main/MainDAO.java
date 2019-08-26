@@ -37,5 +37,9 @@ public class MainDAO extends AbstractDAO{
 		// TODO Auto-generated method stub
 		return (Map<String, Object>)selectOne("event.adEventDetail", map);
 	}
-
+	
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> goodsbudget(Map<String, Object> map){
+		return (List<Map<String, Object>>) selectList("memberGoods.goodsBudget", map);
+	}
 }

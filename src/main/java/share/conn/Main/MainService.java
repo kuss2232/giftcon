@@ -14,4 +14,7 @@ public interface MainService {
 	public List<Map<String, Object>> endEventList() throws Exception;
 
 	public Map<String, Object> eventDetail(Map<String, Object> map) throws Exception;
+	
+	public List<Map<String, Object>> goodsBudget(Map<String, Object> map) throws Exception;
+	
 }
