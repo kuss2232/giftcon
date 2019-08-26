@@ -72,12 +72,13 @@
 	         var w = disPrice*amount;
 	         var e = (price-disPrice)*amount;
 
-	         $("#priceOne1").text(q);
-	         $("#priceOne2").text(w);
-	         $("#priceOne2_1").text(w);
-	         $("#priceOne2_2").text(w);
-	         $("#disPrice").text(e)
-	      }
+			$("#priceOne1").text(q);
+			$("#priceOne2").text(w);
+			$("#priceOne2_1").text(w);
+			$("#priceOne2_2").text(w);
+			$("#disPrice").text(e)
+			$(".totalP").val(w);
+		}
 
 	</script>
 </head>
@@ -124,7 +125,7 @@
 								<tr>
 									<c:set var="i" value="${i+1}"/>
 									<td class="alignC"><img src="/giftcon/resources/file/goodsFile/${goods.GOODS_IMG}" alt="">
-									<input type="hidden" value="${totalPrice}" id="totalPrice${i}">
+									<input type="hidden" value="${totalPrice}" id="totalPrice${i}" class="totalP">
 									<input type="hidden" value="${MEMBER_ID}" id="MEMBER_ID${i}">
 									<input type="hidden" value="${goods.GOODS_NUM}" id="GOODS_NUM${i}">
 									<input type="hidden" value="${goods.CART_NUM}" id="CART_NUM${i}">
@@ -148,7 +149,8 @@
 						  </tbody>
 						</table>
 						<input type="hidden" value="${i}" id="number"/>
-						<p class="priceOne"> 발송금액 :${totalPrice}원</p>
+						<p class="priceOne">발송금액 :<span id="priceOne2_1">${totalPrice}</span>원</p>
+						
 						<!-- /end:product_list -->
 					</div>
 					<!-- /end:send_step01 -->
@@ -193,7 +195,7 @@
 							<ul class="payInfo">
 								<li>
 									<span class="tit mtNone">총 결제금액</span>
-									<span class="txt mtNone"><span id="totalPriceTxt">${totalPrice}</span>원</span>
+									<span class="txt mtNone"><span id="priceOne2_2">${totalPrice}</span>원</span>
 								</li>
 								<li>
 									<span class="tit">결제수단선택</span>
@@ -228,7 +230,7 @@
 										</p>
 										<p class="contInfo">
 											<span class="tit">할인금액</span>
-											<span class="txt">(-)<span id="usePointAmtTxt">${price - totalPrice}</span>원</span>
+											<span class="txt">(-)<span id="disPrice">${price - totalPrice}</span>원</span>
 										</p>
 
 									</div>
@@ -237,7 +239,7 @@
 										
 										<p class="contInfo">
 											<span class="tit">결제금액</span>
-											<span class="txt"><span id="totalP">${totalPrice}</span>원</span>
+											<span class="txt"><span id="priceOne2">${totalPrice}</span>원</span>
 										</p>
 									</div>
 								</div>
