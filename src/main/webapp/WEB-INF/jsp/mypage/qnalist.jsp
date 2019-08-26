@@ -39,7 +39,7 @@ div.paginate > div > a.disabled:hover {border: 1px solid #ddd;}
 					<div class="askList">
 						<ul class="myAskList">
 							<c:forEach items="${qnaList}" var="list">
-							<li id="list_0" class>
+							<li id="list_0">
 								<input type="hidden" id="QNA_NUM" name="QNA_NUM" value="${list.QNA_NUM}">
 								<a class="qnaTit">
 									<span class="txtCate">${list.QNA_CATEGORY}</span>
@@ -55,12 +55,12 @@ div.paginate > div > a.disabled:hover {border: 1px solid #ddd;}
 									</c:if>
 									</span>
 								</a>
-								<div id="view_0" class="View" style="display: none;">
-									<p class="txtDate">[등록일] 2019.07.22</p>
+								<div id="view_0" class="view" style="display: none;">
+									<p class="txtDate">등록 [${list.QNA_DATE}]</p>
 									<p class="txtCont">${list.QNA_CNT}</p>
 									<c:if test="${list.QNA_CHECK.equals('Y')}">
 									<div class="answerBox">
-										<span class="icoAnswer">답변</span>
+										<span class="icoAnswer">답변 [${list.QNA_REDATE}]</span>
 										<p>${list.QNA_COMMENT}</p>
 									</div>
 									</c:if>
@@ -85,7 +85,7 @@ div.paginate > div > a.disabled:hover {border: 1px solid #ddd;}
 <script type="text/javascript">
 
 $(".askList .myAskList .qnaTit").click(function(){
-	$(".askList .myAskList .View").slideUp(200);
+	$(".askList .myAskList .view").slideUp(200);
 	if ($(this).next().css("display")=="block") return;
 	$(this).next().slideDown(200);
 });
