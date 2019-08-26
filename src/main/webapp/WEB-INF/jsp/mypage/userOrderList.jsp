@@ -18,8 +18,7 @@
 				<li><a href="/giftcon/userPwChgForm.conn">비밀번호변경</a></li>
 				<li><a href="/giftcon/myQnalist.conn" >나의 문의 이력</a></li>
 				<li><a href="/giftcon/orderList.conn"class="on">주문 내역</a></li>
-
-			</ul>
+</ul>
 					<!-- /end:Tab -->
 					<!-- start:searchBox -->
 <!-- 					<form id="searchFrm" name="searchFrm" method="get">
@@ -91,9 +90,10 @@
 						 			<td >${list.ORDER_PAY_SUM }</td>
 						 			<td ><img alt="this.src='/giftcon/images/XBox.png'" src="/giftcon/resources/file/goodsFile/${list.GOODS_IMG }" width="80" height="80" ></td>
 						 			<td >${list.ORDER_PAYMENT }</td>
-						 			<td><c:if test="${list.ORDER_PAYMENT eq 'N' }"><input style="width:60pt;height:20pt; color: BLACK;"  type="button" value="주문 취소"/></c:if>
-						 				<c:if test="${list.ORDER_PAYMENT eq 'Y' }"><input style="width:60pt;height:20pt; color: BLACK;"  type="button" value="결제 취소"/> <input style="width:60pt;height:20pt; color:BLACK"  type="button" value="이메일 전송" onclick="fn_emailSend(${ORDER_NUM})"/></c:if>
-						 				<c:if test="${list.ORDER_PAYMENT eq 'E' }"><input style="width:60pt;height:20pt; color: BLACK;"  type="button" value="이메일 전송" onclick="fn_emailSend(${ORDER_NUM})"/></c:if>
+						 	<td><c:if test="${list.ORDER_PAYMENT eq 'N' }"><input style="width:60pt;height:20pt; color: BLACK;"  type="button" value="주문 취소"/></c:if>
+						 	<c:if test="${list.ORDER_PAYMENT eq 'Y' }"><input style="width:60pt;height:20pt; color: BLACK;"  type="button" value="결제 취소"/> 
+						 	<input style="width:60pt;height:20pt; color:BLACK"  type="button" value="이메일 전송" onclick="fn_emailSend(${ORDER_NUM})"/></c:if>
+						 <c:if test="${list.ORDER_PAYMENT eq 'E' }"><input style="width:60pt;height:20pt; color: BLACK;"  type="button" value="이메일 전송" onclick="fn_emailSend(${ORDER_NUM})"/></c:if>
 						 			</td>
 								</tr>
 							</c:forEach>							
