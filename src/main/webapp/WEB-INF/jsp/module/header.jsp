@@ -171,50 +171,10 @@ $(function () {
 								<a href="/giftcon/notice.conn" title="고객센터" class="">고객센터</a>
 						</li>
 						<li  align="center">
-						<a href="/giftcon/budget.conn" title="예산 계산기" class="">맞춤 계산기</a>
+					<a href="/giftcon/budget.conn" onclick="window.open(this.href,'_blank', 'width=704, height=527'); return false;">
+					맞춤 계산기</a>
 						</li>
-							
-					<!-- <li>
-						<a href="/mypage/myDonut.do" title="마이도넛북 바로가기">마이도넛북</a>
-						<ul class="smenu s03" style="display: none;">
-							<li>
-								<a href="/mypage/orderList.do" class="first">주문내역보기</a>
-							</li>
-							<li>
-								<a href="/mypage/myDeposit.do" class="first">적립금/도넛내역</a>
-							</li>
-							<li>
-								<a href="/mypage/myTemplet.do" class="first">my배너관리</a>
-							</li>
-							<li>
-								<a href="/mypage/myCoupon.do" class="first">my쿠폰조회</a>
-							</li>
-							<li>
-								<a href="/mypage/addrGroupList.do" class="first">주소록관리</a>
-							</li>
-							<li>
-								<a href="/mypage/userPwdCheck.do">회원정보 관리</a>
-							</li>
-						</ul>
-					</li> -->
-					<!-- <li class="last">
-						<a href="/intro/serviceIntroduce.do" title="도넛북소개 바로가기">도넛북소개</a>
-						<ul class="smenu s04" style="display: none;">
-							<li>
-								<a href="/intro/donutExchange.do" class="first">도넛교환소</a>
-							</li>
-							<li>
-								<a href="/intro/gradeBenefit.do" class="first">등급별혜택소개</a>
-							</li>
-							<li>
-								<a href="/intro/serviceIntroduce.do" class="first">서비스소개</a>
-							</li>
-							<li>
-								<a href="/bbs/noticeList.do" class="last">고객센터</a>
-							</li>
-						</ul>
-					</li> -->
-				</ul>
+									</ul>
 				
 				
 				 <!-- 띠 배너  -->

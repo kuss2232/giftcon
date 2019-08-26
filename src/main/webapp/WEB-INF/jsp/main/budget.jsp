@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@include file="../module/header.jsp"%>
 <!DOCTYPE html>
 
 <html>
+
 <head>
 
 <link rel="stylesheet" type="text/css" href="/giftcon/css/main.css">
@@ -14,7 +14,9 @@
 
 
 <title>예산계산기</title>
+
 </head>
+
 <body>
 
 <div class="popupWrap w700" id="budgetSearch" style="cursor: default;" >
@@ -107,4 +109,3 @@
 </div>
 </body>
 </html>
-<%@include file="../module/footer.jsp"%>
