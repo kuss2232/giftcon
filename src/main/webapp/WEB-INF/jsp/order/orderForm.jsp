@@ -126,8 +126,7 @@
 									<td class="alignC"><img src="/giftcon/resources/file/goodsFile/${goods.GOODS_IMG}" alt="">
 									<input type="hidden" value="${totalPrice}" id="totalPrice${i}">
 									<input type="hidden" value="${MEMBER_ID}" id="MEMBER_ID${i}">
-									<input type="hidden" value="${GOODS_NUM}" id="GOODS_NUM${i}">
-									<input type="hidden" value="${GOODS_NUM}" id="GOODS_NUM${i}">
+									<input type="hidden" value="${goods.GOODS_NUM}" id="GOODS_NUM${i}">
 									<input type="hidden" value="${goods.CART_NUM}" id="CART_NUM${i}">
 									<c:if test="${not empty goods.CART_AMOUNT}"><input type="hidden" value="${goods.CART_AMOUNT}" id="CART_AMOUNT${i}"></c:if>
 									<c:if test="${empty goods.CART_AMOUNT}"><input type="hidden" value="1" id="CART_AMOUNT${i}"></c:if>
