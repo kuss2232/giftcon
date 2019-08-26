@@ -508,4 +508,21 @@ ORDER BY
 ]]>
 </select>
 
+<select id="goodsBudget" parameterType="hashmap" resultType="hashmap">
+<![CDATA[
+	SELECT
+	DISTINCT
+		A.BIG_CATEGORY,
+		A.SMALL_CATEGORY,
+		B.GOODS_NAME,
+		B.GOODS_PRICE
+	FROM
+		CATEGORY A, GOODS B
+	WHERE
+		A.CATEGORY_NUM = B.CATEGORY_NUM AND
+		B.GOODS_PRICE >= #{priceMin}
+		AND B. GOODS_PRICE <= #{priceMax}
+]]>
+</select>
+
 </mapper>

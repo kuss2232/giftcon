@@ -103,4 +103,21 @@
 		ORDER BY FAQ_NUM DESC
 	
 	</select>
+	
+	<!-- FAQ 상세보기 -->
+	<select id="faqDetail" resultType="hashmap" parameterType="hashmap">
+	<![CDATA[
+		SELECT
+			FAQ_NUM,
+			FAQ_TITLE,
+			FAQ_CNT,
+			FAQ_HITCOUNT,
+			FAQ_CATEGORY	
+	FROM
+			FAQ
+	WHERE
+			FAQ_NUM = #{FAQ_NUM}
+			]]>
+	</select>
+	
 </mapper>

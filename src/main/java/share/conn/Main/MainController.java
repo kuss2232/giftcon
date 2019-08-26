@@ -102,4 +102,11 @@ public class MainController {
 		mv.setViewName("/main/privacy");
 		return mv;
 	}
+	
+	@RequestMapping("budget.conn")
+	public ModelAndView Budget() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("/main/budget");
+		return mv;
+	}
 }

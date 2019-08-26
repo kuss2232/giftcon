@@ -34,6 +34,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import share.conn.Cart.CartService;
+import share.conn.adminOrder.AdminOrderService;
 import share.conn.giftcon.CommandMap;
 
 @Controller
@@ -45,6 +46,9 @@ public class OrderController {
 	
 	@Resource(name="cartService")
 	private CartService cartService;
+	
+	@Resource(name="adminOrderService")
+	private AdminOrderService adminOrderService;
 	
 	
 	
@@ -92,6 +96,9 @@ public class OrderController {
 					totalPrice = Integer.parseInt(goods.get("GOODS_PRICE").toString());
 			}
 			price = Integer.parseInt(goods.get("GOODS_PRICE").toString());
+			
+			mv.addObject("GOODS_PRICE",goods.get("GOODS_PRICE"));
+		    mv.addObject("GOODS_DCPRICE",goods.get("GOODS_DCPRICE"));
 			mv.addObject("price",price);
 			mv.addObject("totalPrice",totalPrice);
 			mv.addObject("MEMBER_ID",MEMBER_ID);
@@ -120,7 +127,6 @@ public class OrderController {
 			mv.addObject("totalPrice",totalPrice);
 			mv.addObject("member",member);
 			mv.addObject("list",list);
-			mv.addObject("GOODS_NUM",request.getParameter("GOODS_NUM"));
 			mv.addObject("MEMBER_ID",MEMBER_ID);
 		}
 		
@@ -128,15 +134,20 @@ public class OrderController {
 		return mv;
 	}
 	
+	//카트테이블에서 오더 테이블에서 넘기는거
 	@RequestMapping("/insertCartOrder.conn")
 	public void insertCartOrder(CommandMap commandMap,HttpServletResponse response) throws Exception{
-		System.out.println("-------------------------"+commandMap.get("CART_NUM")+"----------------------------"+commandMap.get("ORDER_PRICE"));
+		System.out.println(commandMap.get("ORDER_AMOUNT") + " ********* "+commandMap.get("GOODS_NUM"));
+		
+		 adminOrderService.changeAmount(commandMap.getMap());
 		cartService.addOrderToCart(commandMap.getMap());
 	}
 	
 	
 	@RequestMapping("/insertOrder.conn")
 	public void insertOrder(CommandMap commandMap,HttpServletResponse response)throws Exception{
+		System.out.println(commandMap.get("ORDER_AMOUNT") + " ********* "+commandMap.get("GOODS_NUM"));
+		adminOrderService.changeAmount(commandMap.getMap());
 		orderService.insertOrder(commandMap.getMap());
 	}
 	

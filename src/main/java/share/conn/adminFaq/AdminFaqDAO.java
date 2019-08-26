@@ -22,11 +22,7 @@ public class AdminFaqDAO  extends AbstractDAO {
 	public void adminfaqWrite(Map<String, Object> map, HttpServletRequest request) throws Exception {
 		insert("faq.faqWrite", map);
 	}
-	
-	//FAQ 조회수
-	public void updateHitCnt(Map<String, Object> map) throws Exception {
-		update("faq.faqHitcount", map);
-	}
+
 	
 	//FAQ 상세보기
 	@SuppressWarnings("unchecked")

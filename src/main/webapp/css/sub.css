@@ -287,24 +287,24 @@ ul.myAskList li > a span.txtCate {width: 132px; text-align: center; border-right
 ul.myAskList li > a span.tit {padding: 0 20px; width: 842px; border-right: 1px solid #e9e9e9;}
 ul.myAskList li > a span.faqTit {width: 1038px;}
 ul.myAskList li > a span.txtState {width: 124px; padding-left: 26px; font-weight: 600; position: relative;}
-ul.myAskList li > a span.txtState em {display: inline-block; width: 16px; height: 8px; background: url(/giftcon/images/main/ico_csCenter.png) no-repeat 0 -486px; text-indent: -9200em; position: absolute; top: 20px; right: 26px;}
-ul.myAskList li > a span.icoView {display: inline-block; width: 16px; height: 8px; background: url(/giftcon/images/main/ico_csCenter.png) no-repeat 0 -486px; text-indent: -9200em; position: absolute; top: 20px; right: 26px;}
-ul.myAskList li.on > a span.icoView {display: inline-block; width: 16px; height: 8px; background: url(/giftcon/images/main/ico_csCenter.png) no-repeat 0 -544px; text-indent: -9200em; position: absolute; top: 20px; right: 26px;}
+ul.myAskList li > a span.txtState em {display: inline-block; width: 16px; height: 8px; background: url(/giftcon/images/main/ico_csCenter2.png) no-repeat 0 -486px; text-indent: -9200em; position: absolute; top: 20px; right: 26px;}
+ul.myAskList li > a span.icoView {display: inline-block; width: 16px; height: 8px; background: url(/giftcon/images/main/ico_csCenter2.png) no-repeat 0 -486px; text-indent: -9200em; position: absolute; top: 20px; right: 26px;}
+ul.myAskList li > a span.icoView {display: inline-block; width: 16px; height: 8px; background: url(/giftcon/images/main/ico_csCenter2.png) no-repeat 0 -544px; text-indent: -9200em; position: absolute; top: 20px; right: 26px;}
 
 ul.myAskList li.on > a {background: #ecf3fb;}
 ul.myAskList li.on > a span.txtState {color: #2164bf;}
-ul.myAskList li.on > a span.txtState em {background: url(/giftcon/images/main/ico_csCenter.png) no-repeat 0 -544px;}
+ul.myAskList li > a span.txtState em {background: url(/giftcon/images/main/ico_csCenter2.png) no-repeat 0 -544px;}
 
-ul.myAskList li.on div.view {display: block; padding: 30px 20px; width: 1100px; background: #fff; box-sizing: border-box; border: 1px solid #2164bf;}
-ul.myAskList li.on div.view p.txtDate {padding: 0 0 10px 133px; font-size: 13px; font-weight: 600; color: #2164bf;}
-ul.myAskList li.on div.view p.txtCont {padding: 0 0 30px 133px; font-size: 13px; color: #666; border-bottom: 1px dashed #a6c1e5;}
-ul.myAskList li.on div.view div.answerBox {display: inline-block; padding: 30px 0 0 133px;}
-ul.myAskList li.on div.view div.answerBox span.icoAnswer {display: inline-block; margin-right: 10px; float:left; width: 22px; height: 22px; background: url(/giftcon/images/main/ico_csCenter.png) no-repeat 0 -602px; text-indent: -9100em;}
-ul.myAskList li.on div.view div.answerBox > p {float: left; width: 864px; font-size: 13px; color: #666; line-height: 18px;}
-ul.myAskList li a span.icoQuestion {display: inline-block; float:left; margin: 13px 10px 0 30px; width: 22px; height: 22px; background: url(/giftcon/images/main/ico_csCenter.png) no-repeat 0 -1018px; text-indent: -9100em;}
+ul.myAskList li div.view {display: block; padding: 30px 20px; width: 1100px; background: #fff; box-sizing: border-box; border: 1px solid #2164bf;}
+ul.myAskList li div.view p.txtDate {padding: 0 0 10px 133px; font-size: 13px; font-weight: 600; color: #2164bf;}
+ul.myAskList li div.view p.txtCont {padding: 0 0 30px 133px; font-size: 13px; color: #666; border-bottom: 1px dashed #a6c1e5;}
+ul.myAskList li div.view div.answerBox {display: inline-block; padding: 30px 0 0 133px;}
+ul.myAskList li div.view div.answerBox span.icoAnswer {display: inline-block; margin-right: 10px; float:left; width: 22px; height: 22px; background: url(/giftcon/images/main/ico_csCenter2.png) no-repeat 0 -602px; text-indent: -9100em;}
+ul.myAskList li div.view div.answerBox > p {float: left; width: 864px; font-size: 13px; color: #666; line-height: 18px;}
+ul.myAskList li a span.icoQuestion {display: inline-block; float:left; margin: 13px 10px 0 30px; width: 22px; height: 22px; background: url(/giftcon/images/main/ico_csCenter2.png) no-repeat 0 -1018px; text-indent: -9100em;}
 
 ul.myAskList li div.faqView {display: inline-block; padding: 30px; width: 1100px; background: #fff; box-sizing: border-box; border: 1px solid #2164bf; vertical-align: top;}
-ul.myAskList li div.faqView span.icoAnswer {display: inline-block; margin-right: 10px; float:left; width: 22px; height: 22px; background: url(/giftcon/images/main/ico_csCenter.png) no-repeat 0 -602px; text-indent: -9100em;}
+ul.myAskList li div.faqView span.icoAnswer {display: inline-block; margin-right: 10px; float:left; width: 22px; height: 22px; background: url(/giftcon/images/main/ico_csCenter2.png) no-repeat 0 -602px; text-indent: -9100em;}
 ul.myAskList li div.faqView > p {float: left; width: 1006px; font-size: 13px; color: #666; line-height: 18px;}
 
 div.paginate {margin: 70px 0 0 0; width: 1100px; text-align: center;}

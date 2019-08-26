@@ -39,4 +39,11 @@ public class MainServiceImpl implements MainService{
 	public Map<String, Object> eventDetail(Map<String, Object> map) throws Exception{
 		return mainDAO.eventDetail(map);
 	}
+
+	@Override
+	public List<Map<String, Object>> goodsBudget(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return mainDAO.goodsbudget(map);
+	}
+	
 }

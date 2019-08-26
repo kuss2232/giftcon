@@ -57,36 +57,36 @@
 <link rel="stylesheet" type="text/css"  />
 <script>
 $(document).ready(function(){
-	
 	$("#faqAdd").on("click",function(e){
 			e.preventDefault();
-					onWrite();
-})
+			onWrite();
+	})
 });
 
-				function fn_faqDelete(faq_num){ 
-					if(confirm("정말 삭제하시겠습니까 ?") == true){
-						var comSubmit = new ComSubmit(); 
-								alert("삭제되었습니다");
-							comSubmit.setUrl("<c:url value='/faq/adminDeleteFaq.conn' />");
-							comSubmit.addParam("FAQ_NUM", faq_num);
-							comSubmit.submit(); 
-		}
-	 else{
-		return ;
-	 }
+function fn_faqDelete(faq_num){ 
+	if(confirm("정말 삭제하시겠습니까 ?") == true){
+		
+		var comSubmit = new ComSubmit(); 
+		
+		alert("삭제되었습니다");
+		comSubmit.setUrl("<c:url value='/faq/adminDeleteFaq.conn' />");
+		comSubmit.addParam("FAQ_NUM", faq_num);
+		comSubmit.submit(); 
 	}
-					function onWrite(){
-						location.href="/giftcon/faq/adminFaqForm.conn";
-				}
+	else{
+		return;
+	}
+}
+function onWrite(){
+	location.href="/giftcon/faq/adminFaqForm.conn";
+}
 				
-				function goDetail(faq_num) {
-					var comSubmit = new ComSubmit(); 
-				comSubmit.setUrl("<c:url value='/faq/adminFaqDetail.conn' />");
-				comSubmit.addParam("FAQ_NUM", faq_num);
-				comSubmit.submit(); 
-				
-				}  
+function goDetail(faq_num) {
+	var comSubmit = new ComSubmit(); 
+	comSubmit.setUrl("<c:url value='/faq/adminFaqDetail.conn' />");
+	comSubmit.addParam("FAQ_NUM", faq_num);
+	comSubmit.submit(); 	
+}  
 </script>
 </head>
 <body>
