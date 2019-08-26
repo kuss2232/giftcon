@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import share.conn.Paging.AdminQNAPaging;
-import share.conn.Paging.Paging;
+import share.conn.Paging.Paginate;
 import share.conn.giftcon.CommandMap;
 
 
@@ -34,7 +34,7 @@ public class QnaController {
 	private int blockCount = 15;
 	private int blockPage = 15;
 	private String pagingHtml;
-	private Paging page;
+	private Paginate page;
 
 	private int ref;
 
@@ -90,7 +90,7 @@ public class QnaController {
 				qnaList = qnaService.qnaTitleSearch(commandMap.getMap());
 				totalCount = qnaList.size();
 			}
-			page = new Paging(currentPage, totalCount, blockCount, blockPage, "/mypage/qnalist.conn", searchNum, SearchKeyword);
+			page = new Paginate(currentPage, totalCount, blockCount, blockPage, "/mypage/qnalist.conn", searchNum, SearchKeyword);
 			pagingHtml = page.getPagingHtml().toString();
 			System.out.println("aaaaa"+pagingHtml);
 			int lastCount = totalCount;
@@ -107,7 +107,7 @@ public class QnaController {
 		}else {
 			totalCount = qnaList.size();
 
-			page = new Paging(currentPage, totalCount, blockCount, blockPage, "/mypage/qnalist.conn");
+			page = new Paginate(currentPage, totalCount, blockCount, blockPage, "/mypage/qnalist.conn");
 			pagingHtml = page.getPagingHtml().toString();
 
 			int lastCount = totalCount;

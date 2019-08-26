@@ -39,7 +39,7 @@ div.paginate > div > a.disabled:hover {border: 1px solid #ddd;}
 					<div class="askList">
 						<ul class="myAskList">
 							<c:forEach items="${qnaList}" var="list">
-							<li id="list_0">
+							<li id="list_${list.QNA_NUM}">
 								<input type="hidden" id="QNA_NUM" name="QNA_NUM" value="${list.QNA_NUM}">
 								<a class="qnaTit">
 									<span class="txtCate">${list.QNA_CATEGORY}</span>
@@ -55,13 +55,13 @@ div.paginate > div > a.disabled:hover {border: 1px solid #ddd;}
 									</c:if>
 									</span>
 								</a>
-								<div id="view_0" class="view" style="display: none;">
+								<div id="view_${list.QNA_NUM}" class="view" style="display: none;">
 									<p class="txtDate">등록 [${list.QNA_DATE}]</p>
 									<p class="txtCont">${list.QNA_CNT}</p>
 									<c:if test="${list.QNA_CHECK.equals('Y')}">
 									<div class="answerBox">
 										<span class="icoAnswer">답변 [${list.QNA_REDATE}]</span>
-										<p>${list.QNA_COMMENT}</p>
+										<p>[답변] : ${list.QNA_COMMENT}</p>
 									</div>
 									</c:if>
 								</div>
