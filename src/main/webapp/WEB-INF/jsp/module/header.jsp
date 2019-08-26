@@ -170,6 +170,9 @@ $(function () {
 						<li  align="center">
 								<a href="/giftcon/notice.conn" title="고객센터" class="">고객센터</a>
 						</li>
+						<li  align="center">
+						<a href="/giftcon/budget.conn" title="예산 계산기" class="">맞춤 계산기</a>
+						</li>
 							
 					<!-- <li>
 						<a href="/mypage/myDonut.do" title="마이도넛북 바로가기">마이도넛북</a>
