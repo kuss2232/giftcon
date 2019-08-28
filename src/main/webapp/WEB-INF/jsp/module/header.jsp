@@ -112,7 +112,7 @@ $(function () {
 			<div class="top">
 				<h1 class="logo">
 				<a href="/giftcon/main.conn">
-				<img src="/giftcon/css/a.png" alt="쉐어콘"></a></h1>
+				<img src="/giftcon/css/main.png" alt="쉐어콘"></a></h1>
 				<div class="searchBox">
 					<form id="goodsHeaderForm" name="goodsHeaderForm" action="/giftcon/goods/searchList.conn" method="GET">
 						<fieldset>
