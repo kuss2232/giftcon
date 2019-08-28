@@ -276,6 +276,13 @@ $(document).ready(function() {
 
 });
 
+	function calcul() {
+		alert("ad");
+		$("#price").val($("#budget").val() /  $("#people").val()) ;
+	}
+	
+
+
 /*
 function quickMenuToggle() {
 	if( $('#quickMenuButton').hasClass("btnQuickClose") ) {

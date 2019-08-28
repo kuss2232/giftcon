@@ -52,8 +52,10 @@
 			<mvc:exclude-mapping path="/faq.conn"/>
 			<mvc:exclude-mapping path="/Terms of service.conn"/>
 			<mvc:exclude-mapping path="/privacy.conn"/>
+			<mvc:exclude-mapping path="/budget.conn"/>
 			<bean class="share.conn.giftcon.AuthenticationInterceptor"
 				id="authenticationInterceptor" />
+				
 		</mvc:interceptor>
 		
 	</mvc:interceptors>
