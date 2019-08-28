@@ -79,4 +79,10 @@ public class AdminOrderServiceImpl implements AdminOrderService{
 	public void changeAmount(Map<String, Object> map) throws Exception {
 		adminOrderDAO.changeAmount(map);
 	}
+	
+	//주문 취소시 상품 수량 복구
+	@Override
+	public void restoreAmount(Map<String, Object> map) throws Exception{
+		adminOrderDAO.restoreAmount(map);
+	}
 }

@@ -69,4 +69,9 @@ public class AdminOrderDAO extends AbstractDAO{
 	public void changeAmount(Map<String,Object> map) throws Exception{
 		update("adminOrderlist.changeAmount", map);
 	}
+	
+	//주문 취소시 상품수량 복구
+	public void restoreAmount(Map<String,Object> map) throws Exception{
+		update("adminOrderlist.restoreAmount", map);
+	}
 }

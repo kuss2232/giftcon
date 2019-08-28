@@ -163,6 +163,16 @@ public class OrderController {
 		
 	}
 	
+	//주문 취소시 수량 복구 & 삭제
+	@RequestMapping("/restoreAmount.conn")
+	public ModelAndView restoreAmount(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("redirect:/orderList.conn");
+
+		adminOrderService.restoreAmount(commandMap.getMap());
+		adminOrderService.orderDelete(commandMap.getMap());
+		return mv;
+	}
+	
 	@RequestMapping("/send_email.conn")
 	public void sendEmail(HttpServletResponse response, HttpServletRequest request, CommandMap commandMap, HttpSession session) throws Exception{
 		List<Map<String, Object>> order = orderService.orderMailSub(commandMap.getMap());

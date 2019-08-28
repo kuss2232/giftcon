@@ -45,4 +45,6 @@ public interface AdminOrderService {
 	//상품 수량 조절
 	public void changeAmount(Map<String, Object> map) throws Exception;
 	
+	//주문 취소시 상품 수량 복구
+	public void restoreAmount(Map<String, Object> map) throws Exception;
 }

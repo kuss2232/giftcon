@@ -90,7 +90,7 @@
 						 			<td >${list.ORDER_PAY_SUM }</td>
 						 			<td ><img alt="this.src='/giftcon/images/XBox.png'" src="/giftcon/resources/file/goodsFile/${list.GOODS_IMG }" width="80" height="80" ></td>
 						 			<td >${list.ORDER_PAYMENT }</td>
-						 	<td><c:if test="${list.ORDER_PAYMENT eq 'N' }"><input style="width:60pt;height:20pt; color: BLACK;"  type="button" value="주문 취소"/></c:if>
+						 	<td><c:if test="${list.ORDER_PAYMENT eq 'N' }"><input style="width:60pt;height:20pt; color: BLACK;"  type="button" value="주문 취소" onclick="fn_restoreAmount(${list.ORDER_NUM})"/></c:if>
 						 	<c:if test="${list.ORDER_PAYMENT eq 'Y' }"><input style="width:60pt;height:20pt; color: BLACK;"  type="button" value="결제 취소"/> 
 						 	<input style="width:60pt;height:20pt; color:BLACK"  type="button" value="이메일 전송" onclick="fn_emailSend(${list.ORDER_NUM})"/></c:if>
 						 <c:if test="${list.ORDER_PAYMENT eq 'E' }"><input style="width:60pt;height:20pt; color: BLACK;"  type="button" value="이메일 전송" onclick="fn_emailSend(${list.ORDER_NUM})"/></c:if>
@@ -116,12 +116,6 @@ function fn_emailSend(num)
 		type : "POST",
 		url : "/giftcon/send_email.conn",
 		data :  {"ORDER_NUM":num},
-		//data :  email,
-		/* ({
-			mode : "email_code",
-			email : email
-		}) */
-
 		success : function() {
 			alert("이메일이 발송되었습니다.");
 			location.href="/giftcon/orderList.conn";
@@ -130,6 +124,20 @@ function fn_emailSend(num)
 			alert('error' + e);
 		}
 	});
+}
+function fn_restoreAmount(num)
+{
+	$.ajax({
+		type : "POST",
+		url : "/giftcon/restoreAmount.conn",
+		data : {"ORDER_NUM":num},
+		success : function() {
+			alert("주문취소 성공");
+		},
+		error : function(e) {
+			alert('error' + e);
+		}
+	});	
 }
 </script>
 </html>
