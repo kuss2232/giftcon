@@ -133,6 +133,7 @@ function fn_restoreAmount(num)
 		data : {"ORDER_NUM":num},
 		success : function() {
 			alert("주문취소 성공");
+			location.href="/giftcon/orderList.conn";
 		},
 		error : function(e) {
 			alert('error' + e);
