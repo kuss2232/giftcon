@@ -30,7 +30,6 @@ public class OrderDAO extends AbstractDAO{
 		return insert("memberGoods.createOrder", map);
 	}
 
-	@SuppressWarnings("unchecked")
 	public List<Map<String, Object>> cartOrderList(Map<String, Object> map) {
 		// TODO Auto-generated method stub
 		return selectList("cart.cartList", map);
@@ -44,6 +43,10 @@ public class OrderDAO extends AbstractDAO{
 	
 	public List<Map<String, Object>> findmemberOrderList(Map<String,Object> map){
 		return selectList("memberInfo.findmemberOrderList", map);
+	}
+	
+	public List<Map<String, Object>> orderMailSub(Map<String, Object> map){
+		return selectList("adminOrderlist.orderMailSub", map);
 	}
 
 }
