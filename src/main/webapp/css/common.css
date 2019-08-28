@@ -606,7 +606,7 @@ ul.footerSnb li {float: left; padding-right: 11px;}
 ul.footerSnb li a {display:inline-block; font-size: 12px; color: #777;}
 ul.footerSnb li a.line:after{content: ""; display: inline-block; margin-left: 10px; background: #ddd; width: 1px; height: 10px;}
 div.footerBox {display: inline-block; margin-bottom: 22px; width: 1100px;}
-div.footerBox h3.logoDaou {float:left; margin: 10px 50px 0 0; width: 181px; height: 25px; background: url(../images/common/logo_daou.jpg) no-repeat left top; text-indent: -9930em;}
+div.footerBox h3.logoDaou {float:left; margin: 10px 50px 0 0; width: 181px; height: 32px; background: url(/giftcon/css/b.png); text-indent: -9930em;}
 div.footerBox div.infoBox {float: left; width: 838px;}
 div.infoBox ul.infoList {display: inline-block;}
 ul.infoList li {float: left; padding-right: 15px; font-size: 12px; color: #999;}
