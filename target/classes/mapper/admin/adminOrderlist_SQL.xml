@@ -118,6 +118,13 @@ SET
 	
 	</select> -->
 	
+	<select id="orderMailSub" parameterType="hashmap" resultType="hashmap">
+	SELECT B.GOODS_NAME, A.ORDER_AMOUNT 
+	FROM ORDERS A, GOODS B
+	WHERE A.ORDER_NUM = #{ORDER_NUM}
+		AND A.GOODS_NUM = B.GOODS_NUM
+	</select>
+	
 	<!-- 회원 주문상세보기 -->
 	<select id="orderDetail" resultType="hashmap">
 		<![CDATA[

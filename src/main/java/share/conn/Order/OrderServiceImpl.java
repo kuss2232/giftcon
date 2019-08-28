@@ -47,4 +47,11 @@ public class OrderServiceImpl implements OrderService{
 	public List<Map<String, Object>> findmemberOrderList(Map<String, Object> map) throws Exception {
 		return orderDAO.findmemberOrderList(map);
 	}
+
+	@Override
+	public List<Map<String, Object>> orderMailSub(Map<String, Object> map) throws Exception {
+		return orderDAO.orderMailSub(map);
+	}
+	
+	
 }

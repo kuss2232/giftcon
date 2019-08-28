@@ -92,12 +92,11 @@
 						 			<td >${list.ORDER_PAYMENT }</td>
 						 	<td><c:if test="${list.ORDER_PAYMENT eq 'N' }"><input style="width:60pt;height:20pt; color: BLACK;"  type="button" value="주문 취소"/></c:if>
 						 	<c:if test="${list.ORDER_PAYMENT eq 'Y' }"><input style="width:60pt;height:20pt; color: BLACK;"  type="button" value="결제 취소"/> 
-						 	<input style="width:60pt;height:20pt; color:BLACK"  type="button" value="이메일 전송" onclick="fn_emailSend(${ORDER_NUM})"/></c:if>
-						 <c:if test="${list.ORDER_PAYMENT eq 'E' }"><input style="width:60pt;height:20pt; color: BLACK;"  type="button" value="이메일 전송" onclick="fn_emailSend(${ORDER_NUM})"/></c:if>
+						 	<input style="width:60pt;height:20pt; color:BLACK"  type="button" value="이메일 전송" onclick="fn_emailSend(${list.ORDER_NUM})"/></c:if>
+						 <c:if test="${list.ORDER_PAYMENT eq 'E' }"><input style="width:60pt;height:20pt; color: BLACK;"  type="button" value="이메일 전송" onclick="fn_emailSend(${list.ORDER_NUM})"/></c:if>
 						 			</td>
 								</tr>
-							</c:forEach>							
-						
+							</c:forEach>
 					  </tbody>
 					</table>
 					<!-- /end:seld_list -->
@@ -124,7 +123,8 @@ function fn_emailSend(num)
 		}) */
 
 		success : function() {
-			alert("adad");
+			alert("이메일이 발송되었습니다.");
+			location.href="/giftcon/orderList.conn";
 		},
 		error : function(e) {
 			alert('error' + e);

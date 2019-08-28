@@ -165,31 +165,37 @@ public class OrderController {
 	
 	@RequestMapping("/send_email.conn")
 	public void sendEmail(HttpServletResponse response, HttpServletRequest request, CommandMap commandMap, HttpSession session) throws Exception{
-
-		String host = "smtp.gmail.com";//이메일 호스트
+		List<Map<String, Object>> order = orderService.orderMailSub(commandMap.getMap());
+		
 		String subject = "giftcon 기프티콘 바코드 전달";
 		String fromName = "giftcon 관리자";
 		String from = "ezenyoon2@gmail.com"; //보내는 사람
 		commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
 		String to1 = orderService.memberInfo(commandMap.getMap()).get("MEMBER_EMAIL").toString();
-		File file = new File(request.getSession().getServletContext().getRealPath("/images/barcode/barcode.jpg"));
-
 		Multipart mp = new MimeMultipart();
-
-		MimeBodyPart attachFile = new MimeBodyPart(); //String content = "인증번호[" + authNum + "]";
-		attachFile.setFileName("barcode.jpg");
-
-		FileDataSource filedata = new FileDataSource(file);
-		DataHandler dataHandler = new DataHandler(filedata);
-		attachFile.setDataHandler(dataHandler);
-
-		Path path = Paths.get(file.getCanonicalPath());
-		String type = Files.probeContentType(path);
-		attachFile.setHeader("Content-Type", type);
+		File file = null;
 		
-		attachFile.setDescription(file.getName().split("\\.")[0], "UTF-8");
-		mp.addBodyPart(attachFile);
-
+		for(int i=0; i<order.size();i++)
+		{
+			Map<String,Object> map = order.get(i);
+			for(int j=0; j<Integer.parseInt((map.get("ORDER_AMOUNT").toString()));j++)
+			{
+				file = new File(request.getSession().getServletContext().getRealPath("/images/barcode/barcode.jpg"));
+	
+				MimeBodyPart attachFile = new MimeBodyPart();
+				attachFile.setFileName(MimeUtility.encodeText(map.get("GOODS_NAME").toString()+j+"_barcode.jpg", "UTF-8","B"));
+				FileDataSource filedata = new FileDataSource(file);
+				DataHandler dataHandler = new DataHandler(filedata);
+				attachFile.setDataHandler(dataHandler);
+		
+				Path path = Paths.get(file.getCanonicalPath());
+				String type = Files.probeContentType(path);
+				attachFile.setHeader("Content-Type", type);
+				
+				attachFile.setDescription(file.getName().split("\\.")[0], "UTF-8");
+				mp.addBodyPart(attachFile);
+			}
+		}
 		try { 
 			Properties props = new Properties();
 
@@ -226,6 +232,8 @@ public class OrderController {
 			}catch(MessagingException e) { e.printStackTrace();
 			}catch(Exception e) { e.printStackTrace(); 
 		}
+		commandMap.put("ORDER_PAYMENT", "E");
+		adminOrderService.updateOrderPayment(commandMap.getMap());
 
 	}
 }
