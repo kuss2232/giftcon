@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import share.conn.adminNotify.AdminNotifyService;
 import share.conn.giftcon.CommandMap;
+import share.conn.Paging.AdminQNAPaging;
 import share.conn.Paging.Paging;
 
 
@@ -29,7 +30,7 @@ public class AdminNotifyController {
 	private int blockCount = 7;
 	private int blockPage = 5;
 	private String pagingHtml;
-	private Paging page;
+	private AdminQNAPaging page;
 		
 
 	@Resource(name = "adminNotifyService")
@@ -59,7 +60,7 @@ public class AdminNotifyController {
 			noticeList = adminNotifyService.notifySearch(commandMap.getMap());
 
 			totalCount = noticeList.size();
-			page = new Paging(currentPage, totalCount, blockCount, blockPage, "adminNotifyList.conn", SearchNum, SearchKeyword);
+			page = new AdminQNAPaging(currentPage, totalCount, blockCount, blockPage, "adminNotifyList.conn", SearchNum, SearchKeyword);
 			pagingHtml = page.getPagingHtml().toString();
 
 			int lastCount = totalCount;
@@ -82,7 +83,7 @@ public class AdminNotifyController {
 		} else {
 			totalCount = noticeList.size();
 
-			page = new Paging(currentPage, totalCount, blockCount, blockPage, "adminNotifyList.conn");
+			page = new AdminQNAPaging(currentPage, totalCount, blockCount, blockPage, "adminNotifyList.conn");
 			pagingHtml = page.getPagingHtml().toString();
 
 			int lastCount = totalCount;

@@ -109,4 +109,21 @@
 ]]>
 </select>
 
+
+<select id="findCategory"  parameterType="hashmap" resultType="hashmap">
+<![CDATA[
+	SELECT 
+		SMALL_CATEGORY
+	FROM
+		CATEGORY
+	WHERE
+		BIG_CATEGORY = #{BIG_CATEGORY}
+
+
+]]>
+</select>
+
+
+
+
 </mapper>

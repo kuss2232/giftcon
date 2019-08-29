@@ -1,5 +1,6 @@
 package share.conn.adminGoods;
 
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -8,13 +9,17 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import share.conn.giftcon.CommandMap;
 import share.conn.Paging.AdminQNAPaging;
+import share.conn.adminCategory.AdminCategoryService;
+
 
 
 @Controller
@@ -23,6 +28,8 @@ public class AdminGoodsController {
 	@Resource(name = "adminGoodsService")
 	private AdminGoodsService adminGoodsService;
 	
+	@Resource(name = "adminCategoryService")
+	private AdminCategoryService adminCategoryService;
 	//페이징 변수
 	private int totalCount;
 	private int searchNum;
@@ -123,10 +130,17 @@ public class AdminGoodsController {
 	public ModelAndView goodsInsertForm() throws Exception {
 
 		ModelAndView mv = new ModelAndView();
-		
 		mv.setViewName("/admin/Goods/admin_InsertGoods");
 
 		return mv;
+	}
+	//상품카테고리 불러오기
+	@RequestMapping(value = "/giftcon/findSmall.conn")
+	@ResponseBody
+	public void goodsfindSmall(HttpServletResponse response, CommandMap commandMap) throws Exception {
+		PrintWriter out = response.getWriter();
+		List<Map<String,Object>> list1= adminCategoryService.searchBigCategory(commandMap.getMap());
+		out.print(list1);
 	}
 		
 	// 상품 등록

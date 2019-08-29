@@ -43,6 +43,7 @@
 <script src="/giftcon/css/jquery/jquery-1.12.4.min.js"></script>
 <script language="Javascript">
 
+/*
 function BIG_CATEGORYChange(frm) {
  var x = document.frm.BIG_CATEGORY.options.selectedIndex;
  var groups=document.frm.BIG_CATEGORY.options.length;
@@ -50,7 +51,7 @@ function BIG_CATEGORYChange(frm) {
  for (i=0; i<groups; i++)
   group[i]=new Array();
  
- group[0][0]=new Option("대분류를 먼저 선택하세요","");
+  group[0][0]=new Option("대분류를 먼저 선택하세요","");
  group[1][0]=new Option("치킨/피자/버거 브랜드 선택","");
  group[1][1]=new Option("BBQ","BBQ");
  group[1][2]=new Option("BHC","BHC");
@@ -68,7 +69,7 @@ function BIG_CATEGORYChange(frm) {
  group[5][0]=new Option("편의점/마트 브랜드 선택","");
  group[5][1]=new Option("GS25","GS25");
  group[5][2]=new Option("CU","CU");
- group[5][3]=new Option("이마트24","이마트24");
+ group[5][3]=new Option("이마트24","이마트24"); 
  
  temp = document.frm.SMALL_CATEGORY;
  for (m = temp.options.length-1 ; m > 0 ; m--)
@@ -78,6 +79,60 @@ function BIG_CATEGORYChange(frm) {
  }
  temp.options[0].selected=true
 }
+*/
+
+
+/* $(document).ready(function(){
+	$("#BIG_CATEGORY").on("click", function(e){ //목록으로 버튼
+		alert("asd");
+		e.preventDefault();
+	$.ajax({
+		type:"POST",
+		data : ("#BIG_CATEGORY").val(),
+		url : "/goods/goodsInsertForm.conn",
+		dataType:"json",
+		error: function(error){
+			
+		},
+		success : function(result){
+			alert("선택됨");
+		}
+	});
+	}
+} */
+
+function BIG_CATEGORYChange(){
+	var BIG_CATEGORY = $("#BIG_CATEGORY").val();
+	alert("asdasdasd");
+	$.ajax({
+		type:"POST",
+		data : {"SearchKeyword":BIG_CATEGORY},
+		url : "/giftcon/findSmall.conn",
+		success : function(list1){
+			
+			$(#'output').html(list1);
+		},
+		error: function(error){
+			alert(error);
+			
+		}
+	});
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* function GOODS_CATEGORY2Change() {
  var GOODS_CATEGORY1 = document.frm.GOODS_CATEGORY1.options.selectedIndex;
@@ -174,7 +229,7 @@ function BIG_CATEGORYChange(frm) {
 								<span class="fa arrow">▼</span>
 							</a>
 							<ul class="nav nav-second-level">
-								<li><a href="/giftcon/adminOrder.conn">- 주문목록&수정</a></li>
+								<li><a href="/giftcon/adminOrder.conn">- 주문목록%nbsp;수정</a></li>
 							</ul>
 						</li>
 						<li class="active">
@@ -186,7 +241,7 @@ function BIG_CATEGORYChange(frm) {
 								<li><a href="/giftcon/notify/adminNotifyList.conn">- 공지사항</a></li>
 								<li><a href="/giftcon/event/adminEventList.conn">- 이벤트</a></li>
 								<li><a href="/giftcon/faq/adminFaqList.conn">- FAQ</a></li>
-								<li><a href="/giftcon/adminQnaList.conn">- Q&A</a></li>
+								<li><a href="/giftcon/adminQnaList.conn">- Q%nbsp;A</a></li>
 								<li><a href="/giftcon/adminCategory1.conn">- 카테고리추가</a></li>
 								<li><a href="/giftcon/adminReviewList.conn">- 리뷰관리</a>
 							</ul>
@@ -231,6 +286,10 @@ function BIG_CATEGORYChange(frm) {
 						</select>
 						<SELECT id="SMALL_CATEGORY" name="SMALL_CATEGORY" size=1>
 						 <OPTION value=''>대분류를 먼저 선택하세요</OPTION>
+						 <c:forEach var="small" items="${list1}">
+						 <option value="${small.SMALL_CATEGORY }">
+						 </option>
+						 </c:forEach>
 						</SELECT>
 					</td>
 				</tr>
