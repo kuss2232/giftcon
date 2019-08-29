@@ -53,6 +53,11 @@
 			<mvc:exclude-mapping path="/Terms of service.conn"/>
 			<mvc:exclude-mapping path="/privacy.conn"/>
 			<mvc:exclude-mapping path="/budget.conn"/>
+			<mvc:exclude-mapping path="/findIdForm.conn"/>
+			<mvc:exclude-mapping path="/findPwForm.conn"/>
+			<mvc:exclude-mapping path="/findId.conn"/>
+			<mvc:exclude-mapping path="/chgPwform.conn"/>
+			<mvc:exclude-mapping path="/chgPw.conn"/>
 			<bean class="share.conn.giftcon.AuthenticationInterceptor"
 				id="authenticationInterceptor" />
 				

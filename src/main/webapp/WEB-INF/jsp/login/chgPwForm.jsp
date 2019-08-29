@@ -24,7 +24,7 @@
 					<!-- start:contents -->
 					<div class="findBox">
 						<div>
-							<p class="notiTxt2 mb30"><span class="point4">ez**</span>님의 본인인증이 완료되었습니다. 새로운 비밀번호를 설정해주세요.</p>
+							<p class="notiTxt2 mb30"><span class="point4">${map.MEMBER_ID}</span>님의 본인인증이 완료되었습니다. 새로운 비밀번호를 설정해주세요.</p>
 						</div>
 						<div>
 							<label for="n_pw">새 비밀번호</label>

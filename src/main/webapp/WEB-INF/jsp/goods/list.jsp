@@ -115,7 +115,7 @@
 		</ul>					
 		</div>
 		<div>
-			<div class="paginate">>${pagingHtml}</div>
+			<div class="paginate"><ul class="numList">${pagingHtml}</ul></div>
 		</div>
 	</div>
 </div>
