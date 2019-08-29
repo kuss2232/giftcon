@@ -46,7 +46,7 @@
 								<c:forEach var="orderList"  items="${orderList}" varStatus="stat">		
 									<tr class="gradeA even" role="row" height="30px">
 										<td style="text-align:center;vertical-align:middle;">${orderList.ORDER_NUM}</td>	<!-- 주문번호 -->							
-										<td style="text-align:center;vertical-align:middle;"><img src="/giftcon/resources/images/처갓집.jpg"></td>	<!-- 상품이미지 -->
+										<td style="text-align:center;vertical-align:middle;"><img src="/giftcon/resources/file/goodsFile/${orderList.GOODS_IMG }"></td>	<!-- 상품이미지 -->
 										<td style="text-align:center;vertical-align:middle;">${orderList.GOODS_NAME}</td>	<!-- 상품이름 -->
 										<td style="text-align:center;vertical-align:middle;">${orderList.GOODS_SIMPLE}</td>	<!-- 상품간략설명 -->
 										<td style="text-align:center;vertical-align:middle;">${orderList.MEMBER_ID}</td>	<!-- 회원ID -->

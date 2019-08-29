@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import share.conn.adminEvent.AdminEventService;
 import share.conn.giftcon.CommandMap;
+import share.conn.Paging.AdminQNAPaging;
 import share.conn.Paging.Paging;
 
 @Controller
@@ -26,7 +27,7 @@ public class AdminEventController {
 	private int blockCount = 7;
 	private int blockPage = 5;
 	private String pagingHtml;
-	private Paging page;
+	private AdminQNAPaging page;
 	private String filePath3 = "D:\\java\\Git\\giftcon\\src\\main\\webapp\\file\\Eventfile\\";
 		
 	@Resource(name = "AdminEventService")
@@ -47,7 +48,7 @@ public class AdminEventController {
 		List<Map<String, Object>> eventList = adminEventService.eventList(commandMap.getMap());
 		
 		totalCount = eventList.size();
-			page = new Paging(currentPage, totalCount, blockCount, blockPage, "adminEventList.conn");
+			page = new AdminQNAPaging(currentPage, totalCount, blockCount, blockPage, "adminEventList.conn");
 			pagingHtml = page.getPagingHtml().toString();
 
 			int lastCount = totalCount;
@@ -83,7 +84,7 @@ public class AdminEventController {
 
 			
 			 totalCount = endEventList.size();
-				page = new Paging(currentPage, totalCount, blockCount, blockPage, "adminEventList.conn");
+				page = new AdminQNAPaging(currentPage, totalCount, blockCount, blockPage, "adminEventList.conn");
 				pagingHtml = page.getPagingHtml().toString();
 
 				int lastCount = totalCount;
