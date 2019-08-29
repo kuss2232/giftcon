@@ -6,8 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
+<meta charset="UTF-8">
 </head>
 <body>
 <div class="subWrap">
@@ -55,7 +54,6 @@
 						
 						
 					<!-- start:seld_list -->
-					<p class="careTxt9">* 배송상품의 상세주문현황은 1:1문의 또는 고객센터를 통해 주문번호와 함께 접수해주시기 바랍니다.</p>
 					<table summary="쿠폰 발송내역 조회 리스트" class="tbI">
 				  	<colgroup>
 				  		<col width="9%">
@@ -81,23 +79,43 @@
 						  <th class="last">주문상태</th>
 						  <th>전송 / 취소</th>
 						</tr>
-							<c:forEach var="list" items="${list}">
-								<tr>
-						 			<td ><fmt:formatDate value="${list.ORDER_DATE }" type="date"/></td>
-						 			<td >${list.ORDER_NUM}</td>
-						 			<td >${list.GOODS_NAME}</td>
-						 			<td >${list.ORDER_AMOUNT_SUM }</td>
-						 			<td >${list.ORDER_PAY_SUM }</td>
-						 			<td ><img alt="this.src='/giftcon/images/XBox.png'" src="/giftcon/resources/file/goodsFile/${list.GOODS_IMG }" width="80" height="80" ></td>
-						 			<td >${list.ORDER_PAYMENT }</td>
-						 	<td><c:if test="${list.ORDER_PAYMENT eq 'N' }"><input style="width:60pt;height:20pt; color: BLACK;"  type="button" value="주문 취소" onclick="fn_restoreAmount(${list.ORDER_NUM})"/></c:if>
-						 	<c:if test="${list.ORDER_PAYMENT eq 'Y' }"><input style="width:60pt;height:20pt; color: BLACK;"  type="button" value="결제 취소"/> 
-						 	<input style="width:60pt;height:20pt; color:BLACK"  type="button" value="이메일 전송" onclick="fn_emailSend(${list.ORDER_NUM})"/></c:if>
-						 <c:if test="${list.ORDER_PAYMENT eq 'E' }"><input style="width:60pt;height:20pt; color: BLACK;"  type="button" value="이메일 전송" onclick="fn_emailSend(${list.ORDER_NUM})"/></c:if>
-						 			</td>
-								</tr>
-							</c:forEach>
-					  </tbody>
+						<c:set var="NUM" value="0" />
+					<c:forEach var="list" items="${list}">
+						<c:if test="${NUM ne list.ORDER_NUM}">
+							<c:url var="Detail" value="/orderDetail.conn" >
+								<c:param name="ORDER_NUM" value="${list.ORDER_NUM }" />
+							</c:url>
+							<c:set var="NUM" value="${list.ORDER_NUM}" />
+							<tr>
+								<td><fmt:formatDate value="${list.ORDER_DATE }"
+										type="date" /></td>
+								<td>${list.ORDER_NUM}</td>
+								<td><a href="${Detail}">${list.GOODS_NAME}<c:if test="${list.COUNTS > 1}">외 ${list.COUNTS-1}개</c:if></a></td>
+								<td>${list.ORDER_AMOUNT_SUM }</td>
+								<td>${list.ORDER_PAY_SUM }</td>
+								<td><img alt="this.src='/giftcon/images/XBox.png'"
+									src="/giftcon/resources/file/goodsFile/${list.GOODS_IMG }"
+									width="80" height="80"></td>
+								<td><c:if test="${list.ORDER_PAYMENT eq 'N' }">결제 대기중</c:if>
+									<c:if test="${list.ORDER_PAYMENT eq 'Y' }">결제 완료</c:if> 
+									<c:if test="${list.ORDER_PAYMENT eq 'E' }">전송 완료</c:if>
+									<c:if test="${list.ORDER_PAYMENT eq 'W' }">취소 대기중</c:if>
+									<c:if test="${list.ORDER_PAYMENT eq 'C' }">취소 완료</c:if></td>
+								<td><c:if test="${list.ORDER_PAYMENT eq 'N' }">
+										<input style="width: 60pt; height: 20pt; color: BLACK;"	type="button" value="주문 취소" onclick="fn_restoreAmount(${list.ORDER_NUM})" />
+									</c:if> 
+									<c:if test="${list.ORDER_PAYMENT eq 'Y' }">
+										<input style="width: 60pt; height: 20pt; color: BLACK;" type="button" value="결제 취소" onclick="fn_paymentCancle(${list.ORDER_NUM})" />
+										<input style="width: 60pt; height: 20pt; color: BLACK;" type="button" value="이메일 전송" onclick="fn_emailSend(${list.ORDER_NUM})" />
+									</c:if> 
+									<c:if test="${list.ORDER_PAYMENT eq 'E' }">
+										<input style="width: 60pt; height: 20pt; color: BLACK;" type="button" value="이메일 전송" onclick="fn_emailSend(${list.ORDER_NUM})" />
+									</c:if>
+								</td>
+							</tr>
+						</c:if>
+					</c:forEach>
+				</tbody>
 					</table>
 					<!-- /end:seld_list -->
 					<!-- start:paginate -->
@@ -125,6 +143,22 @@ function fn_emailSend(num)
 		}
 	});
 }
+
+function fn_paymentCancle(num)
+{
+	$.ajax({
+		type : "POST",
+		url : "/giftcon/paymentCancleWait.conn",
+		data : {"ORDER_NUM":num},
+		success : function() {
+			alert("결제취소 신청하였습니다.");
+		},
+		error : function(e) {
+			alert('error' + e);
+		}
+	});	
+}
+
 function fn_restoreAmount(num)
 {
 	$.ajax({

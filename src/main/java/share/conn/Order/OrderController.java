@@ -50,8 +50,6 @@ public class OrderController {
 	@Resource(name="adminOrderService")
 	private AdminOrderService adminOrderService;
 	
-	
-	
 	//상세보기에서 주문
 	@RequestMapping("/orderForm.conn")
 	public ModelAndView orderForm(CommandMap commandMap, HttpSession session, HttpServletRequest request, RedirectAttributes redirectAttribute) throws Exception{
@@ -137,8 +135,6 @@ public class OrderController {
 	//카트테이블에서 오더 테이블에서 넘기는거
 	@RequestMapping("/insertCartOrder.conn")
 	public void insertCartOrder(CommandMap commandMap,HttpServletResponse response) throws Exception{
-		System.out.println(commandMap.get("ORDER_AMOUNT") + " ********* "+commandMap.get("GOODS_NUM"));
-		
 		 adminOrderService.changeAmount(commandMap.getMap());
 		cartService.addOrderToCart(commandMap.getMap());
 	}
@@ -146,7 +142,6 @@ public class OrderController {
 	
 	@RequestMapping("/insertOrder.conn")
 	public void insertOrder(CommandMap commandMap,HttpServletResponse response)throws Exception{
-		System.out.println(commandMap.get("ORDER_AMOUNT") + " ********* "+commandMap.get("GOODS_NUM"));
 		adminOrderService.changeAmount(commandMap.getMap());
 		orderService.insertOrder(commandMap.getMap());
 	}
@@ -160,17 +155,30 @@ public class OrderController {
 		mv.addObject("list",list);
 		
 		return mv;
+	}
+	
+	@RequestMapping("/orderDetail.conn")
+	public ModelAndView orderDetail(CommandMap commandMap, HttpServletRequest request)throws Exception{
+		ModelAndView mv = new ModelAndView("/mypage/userOrderDetail");
+		List<Map<String, Object>> adOrderList = adminOrderService.orderDetail(commandMap.getMap());
+		//mv.addObject("OrderCount", adOrderList.size());
+		mv.addObject("orderList", adOrderList);
 		
+		return mv;
 	}
 	
 	//주문 취소시 수량 복구 & 삭제
 	@RequestMapping("/restoreAmount.conn")
-	public ModelAndView restoreAmount(CommandMap commandMap, HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("redirect:/orderList.conn");
-
+	public void restoreAmount(HttpServletResponse response,CommandMap commandMap, HttpServletRequest request) throws Exception {
 		adminOrderService.restoreAmount(commandMap.getMap());
 		adminOrderService.orderDelete(commandMap.getMap());
-		return mv;
+	}
+	
+	//결제 취소
+	@RequestMapping("/paymentCancleWait.conn")
+	public void paymentCancle(HttpServletResponse response,CommandMap commandMap, HttpServletRequest request) throws Exception{
+		commandMap.put("ORDER_PAYMENT", "W");
+		adminOrderService.updateOrderPayment(commandMap.getMap());
 	}
 	
 	@RequestMapping("/send_email.conn")
@@ -244,6 +252,5 @@ public class OrderController {
 		}
 		commandMap.put("ORDER_PAYMENT", "E");
 		adminOrderService.updateOrderPayment(commandMap.getMap());
-
 	}
 }
