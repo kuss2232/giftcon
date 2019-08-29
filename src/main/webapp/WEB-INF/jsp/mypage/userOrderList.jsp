@@ -129,50 +129,67 @@
 </body>
 <script>
 function fn_emailSend(num)
-{
-	$.ajax({
-		type : "POST",
-		url : "/giftcon/send_email.conn",
-		data :  {"ORDER_NUM":num},
-		success : function() {
-			alert("이메일이 발송되었습니다.");
-			location.href="/giftcon/orderList.conn";
-		},
-		error : function(e) {
-			alert('error' + e);
-		}
-	});
+{	
+	if(confirm("이메일 전송을 하시면 결제 취소가 어렵습니다.\n정말로 전송하시겠습니까?")){
+		$.ajax({
+			type : "POST",
+			url : "/giftcon/send_email.conn",
+			data :  {"ORDER_NUM":num},
+			success : function() {
+				alert("이메일이 발송되었습니다.");
+				location.href="/giftcon/orderList.conn";
+			},
+			error : function(e) {
+				alert('error' + e);
+			}
+		});
+	} else {
+		alert("이메일 전송이 취소되었습니다!")
+		return false;
+	}
 }
 
 function fn_paymentCancle(num)
-{
-	$.ajax({
-		type : "POST",
-		url : "/giftcon/paymentCancleWait.conn",
-		data : {"ORDER_NUM":num},
-		success : function() {
-			alert("결제취소 신청하였습니다.");
-		},
-		error : function(e) {
-			alert('error' + e);
-		}
-	});	
+{	
+	if(confirm("정말 결제를 취소 하시겠습니까?")){
+		$.ajax({
+			type : "POST",
+			url : "/giftcon/paymentCancleWait.conn",
+			data : {"ORDER_NUM":num},
+			success : function() {
+				alert("결제취소 신청하였습니다.");
+				location.href="/giftcon/orderList.conn";
+			},
+			error : function(e) {
+				alert('error' + e);
+			}
+		});	
+	} else {
+		alert("결제 취소가 중단되었습니다!")
+		return false;
+	}
+		
 }
 
 function fn_restoreAmount(num)
-{
-	$.ajax({
-		type : "POST",
-		url : "/giftcon/restoreAmount.conn",
-		data : {"ORDER_NUM":num},
-		success : function() {
-			alert("주문취소 성공");
-			location.href="/giftcon/orderList.conn";
-		},
-		error : function(e) {
-			alert('error' + e);
-		}
-	});	
+{	
+	if(confirm("정말 주문을 취소 하시겠습니까?")){
+		$.ajax({
+			type : "POST",
+			url : "/giftcon/restoreAmount.conn",
+			data : {"ORDER_NUM":num},
+			success : function() {
+				alert("주문취소 성공");
+				location.href="/giftcon/orderList.conn";
+			},
+			error : function(e) {
+				alert('error' + e);
+			}
+		});	
+	} else {
+			alert('주문 취소가 중단되었습니다!')
+			return false;
+	}
 }
 </script>
 </html>
