@@ -135,12 +135,15 @@ public class AdminGoodsController {
 		return mv;
 	}
 	//상품카테고리 불러오기
-	@RequestMapping(value = "/giftcon/findSmall.conn")
-	@ResponseBody
-	public void goodsfindSmall(HttpServletResponse response, CommandMap commandMap) throws Exception {
-		PrintWriter out = response.getWriter();
+	@RequestMapping(value = "/findSmall.conn", produces="application/text; charset=utf8")
+	public @ResponseBody String goodsfindSmall(HttpServletResponse response, CommandMap commandMap) throws Exception {
 		List<Map<String,Object>> list1= adminCategoryService.searchBigCategory(commandMap.getMap());
-		out.print(list1);
+		String qwe ="";
+		for(int i=0; i < list1.size(); i++) {
+		qwe += "<option value='" + list1.get(i).get("SMALL_CATEGORY")+"'>"+list1.get(i).get("SMALL_CATEGORY")+"</option>";
+		};
+		System.out.println(qwe);
+		return qwe;
 	}
 		
 	// 상품 등록

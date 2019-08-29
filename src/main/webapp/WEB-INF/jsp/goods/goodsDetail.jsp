@@ -80,10 +80,15 @@
 				<div class="subInfoBox"></div>
 
 					<p class="btnProd">
-
+					<%if(session.getAttribute("MEMBER_ID") != null){ %>
 						<a href="javascript:insertCart(10091);"
 							class="btnBigLineBlack2 w213 mr10"
 							onclick="addCart(${goodsDetail.GOODS_NUM})">장바구니 담기</a>
+					<%
+					} else {%>
+						<a href="/giftcon/loginForm.conn"
+							class="btnBigLineBlack2 w213 mr10">장바구니 담기</a>
+					<%} %>
 							<a href="/giftcon/orderForm.conn?GOODS_NUM=${goodsDetail.GOODS_NUM}" 
 							class="btnBigBgBlue8 w213" onmousedown="_AceTM.BuyNow(1);">주문하기</a>
 
