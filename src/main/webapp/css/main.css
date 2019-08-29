@@ -232,11 +232,11 @@ div.budgetCal div.calBox {float: left; margin-right: 20px; width: 163px;}
 div.budgetCal div.last {margin-right: 0;}
 div.calBox p.tBox {margin-bottom: 5px; width: 163px;}
 div.calBox p.tBox span.titTxt {padding-left: 5px; font-size: 14px; font-weight: 600; color: #333;}
-div.calBox p.tBox span.icoMoney {display: inline-block; width: 15px; height: 18px; background: url(../images/main/ico_popup.png) no-repeat 0 0; vertical-align: top;}
-div.calBox p.tBox span.icoPeople {display: inline-block; margin-top: -3px; width: 17px; height: 23px; background: url(../images/main/ico_popup.png) no-repeat 0 -68px; vertical-align: top;}
-div.calBox p.tBox span.icoPrice {display: inline-block; margin-top: -2px; width: 15px; height: 20px; background: url(../images/main/ico_popup.png) no-repeat 0 -141px; vertical-align: top;}
-div.budgetCal span.icoDivision {display: inline-block; float: left; margin: 32px 20px 0 0; width: 20px; height: 17px; background: url(../images/main/ico_popup.png) no-repeat 0 -211px; vertical-align: top;}
-div.budgetCal span.icoEquals {display: inline-block; float: left; margin: 37px 20px 0 0; width: 20px; height: 11px; background: url(../images/main/ico_popup.png) no-repeat 0 -278px; vertical-align: top;}
+div.calBox p.tBox span.icoMoney {display: inline-block; width: 15px; height: 18px; background: url(/giftcon/images/main/ico_popup.png) no-repeat 0 0; vertical-align: top;}
+div.calBox p.tBox span.icoPeople {display: inline-block; margin-top: -3px; width: 17px; height: 23px; background: url(/giftcon/images/main/ico_popup.png) no-repeat 0 -68px; vertical-align: top;}
+div.calBox p.tBox span.icoPrice {display: inline-block; margin-top: -2px; width: 15px; height: 20px; background: url(/giftcon/images/main/ico_popup.png) no-repeat 0 -141px; vertical-align: top;}
+div.budgetCal span.icoDivision {display: inline-block; float: left; margin: 32px 20px 0 0; width: 20px; height: 17px; background: url(/giftcon/images/main/ico_popup.png) no-repeat 0 -211px; vertical-align: top;}
+div.budgetCal span.icoEquals {display: inline-block; float: left; margin: 37px 20px 0 0; width: 20px; height: 11px; background: url(/giftcon/images/main/ico_popup.png) no-repeat 0 -278px; vertical-align: top;}
 
 div.priceArea1 {display: inline-block; padding: 20px; width: 620px; background: #f5f5f5; position: relative;}
 div.priceArea1 div.priceBar { float: left; margin-top: 20px; width: 620px; height: 6px; background: #f7c600; position: relative;}
