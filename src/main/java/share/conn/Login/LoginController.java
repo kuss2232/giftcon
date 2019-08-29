@@ -111,17 +111,22 @@ public class LoginController {
 	public ModelAndView chgPw(CommandMap commandMap) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		Map<String, Object> map = loginService.findPwd(commandMap.getMap());
+		if(map != null) {
 		System.out.println("DB에서 가져온 PW : "+ map.get("MEMBER_PASSWD"));
 		mv.addObject("map", map);
-		/*
-		 * mv.addObject("MEMBER_ID", map.get("MEMBER_ID")); mv.addObject("MEMBER_NAME",
-		 * map.get("MEMBER_NAME")); mv.addObject("MEMBER_EMAIL",
-		 * map.get("MEMBER_EMAIL"));
-		 */
 		mv.setViewName("/login/chgPwForm");
+		}else {
+			System.out.println("틀림틀림틀림틀림틀림틀림틀림틀림틀림틀림");
+			mv.setViewName("/login/noInfo");
+		}
 		return mv;
 	}
 	
+	@RequestMapping("noInfo.conn")
+	public ModelAndView noInfo()throws Exception{
+		ModelAndView mv = new ModelAndView("/login/noInfo");
+		return mv;
+	}
 	
 	@RequestMapping("/chgPw.conn")
 	public @ResponseBody Map<String, String> findPw(CommandMap commandMap) throws Exception {
