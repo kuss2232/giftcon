@@ -33,14 +33,11 @@
 <!-- Custom Theme JavaScript -->
 <script src="/giftcon/css/jquery/sb-admin-2.js"></script>
 <title>공지사항 등록하기</title>
-</head>
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/ui.css'/>" />
 <!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="<c:url value='/js/common.js'/>" charset="utf-8"></script>
-<div class="row" style="padding-left: 15px; width: 700px;">
-	<h1 class="page-header">공지사항</h1>
-</div>
+</head>
 <body>
 
 <div id="wrapper">

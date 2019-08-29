@@ -47,7 +47,7 @@
 	$('.searchOption').val($('.searchOptionVal').val());
 
 	var onList = function() {
-		location.href = 'admin_notice';
+		location.href = 'adminNotifyList.conn';
 	};
 </script>
 </head>
