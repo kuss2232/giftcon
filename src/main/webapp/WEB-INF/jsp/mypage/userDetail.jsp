@@ -5,31 +5,9 @@
 <html>
 <head>
 <title>마이페이지</title>
-<script type="text/javascript"
-	src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script type="text/javascript">
-<script language="Javascript">
-
-function checkemailaddy(){
-        if (form.email_select.value == '1') {
-            form.email2.readonly = false;
-            form.email2.value = '';
-            form.email2.focus();
-        }
-        else {
-            form.email2.readonly = true;
-            form.email2.value = form.email_select.value;
-        }
-    }
-
-
-</script>
-
-
+<script type="text/javascript"src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
-
-
 	<div class="subWrap">
 		<div class="subLayout">
 			<form id="userFrm" name="userFrm" action="/mypage/userDetail.do"
@@ -79,7 +57,7 @@ function checkemailaddy(){
 								@ <input type="text" id="emailServer" name="MEMBER_EMAIL2"
 								class="ipt2 w110 emailonly" title="이메일주소입력"
 								value="${MEMBER.MEMBER_EMAIL2}" maxlength="20"> 
-								<select class="selectMail" id="setEmailServer" onChange="checkemailaddy();">
+								<select class="selectMail" id="setEmailServer" onchange="$('#emailServer').val($('#setEmailServer').val());">
 									<option value="">직접입력</option>
 									<option value="naver.com">naver.com</option>
 									<option value="nate.com">nate.com</option>
