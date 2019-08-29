@@ -43,74 +43,17 @@
 <script src="/giftcon/css/jquery/jquery-1.12.4.min.js"></script>
 <script language="Javascript">
 
-/*
-function BIG_CATEGORYChange(frm) {
- var x = document.frm.BIG_CATEGORY.options.selectedIndex;
- var groups=document.frm.BIG_CATEGORY.options.length;
- var group=new Array(groups);
- for (i=0; i<groups; i++)
-  group[i]=new Array();
- 
-  group[0][0]=new Option("대분류를 먼저 선택하세요","");
- group[1][0]=new Option("치킨/피자/버거 브랜드 선택","");
- group[1][1]=new Option("BBQ","BBQ");
- group[1][2]=new Option("BHC","BHC");
- group[1][3]=new Option("피자마루","피자마루");
- group[2][0]=new Option("커피/음료 브랜드 선택","");
- group[2][1]=new Option("스타벅스","스타벅스");
- group[2][2]=new Option("이디야","이디야");
- group[2][3]=new Option("쥬시","쥬시");
- group[3][0]=new Option("아이스크림/빙수 브랜드 선택","");
- group[3][1]=new Option("베스킨라벤스31","베스킨라벤스31");
- group[3][2]=new Option("설빙","설빙");
- group[4][0]=new Option("베이커리/도넛 브랜드 선택","");
- group[4][1]=new Option("파리바게트","파리바게트");
- group[4][2]=new Option("뚜레주르","뚜레주르");
- group[5][0]=new Option("편의점/마트 브랜드 선택","");
- group[5][1]=new Option("GS25","GS25");
- group[5][2]=new Option("CU","CU");
- group[5][3]=new Option("이마트24","이마트24"); 
- 
- temp = document.frm.SMALL_CATEGORY;
- for (m = temp.options.length-1 ; m > 0 ; m--)
-  temp.options[m]=null
- for (i=0;i<group[x].length;i++){
-  temp.options[i]=new Option(group[x][i].text,group[x][i].value)
- }
- temp.options[0].selected=true
-}
-*/
-
-
-/* $(document).ready(function(){
-	$("#BIG_CATEGORY").on("click", function(e){ //목록으로 버튼
-		alert("asd");
-		e.preventDefault();
-	$.ajax({
-		type:"POST",
-		data : ("#BIG_CATEGORY").val(),
-		url : "/goods/goodsInsertForm.conn",
-		dataType:"json",
-		error: function(error){
-			
-		},
-		success : function(result){
-			alert("선택됨");
-		}
-	});
-	}
-} */
-
 function BIG_CATEGORYChange(){
 	var BIG_CATEGORY = $("#BIG_CATEGORY").val();
 	alert("asdasdasd");
 	$.ajax({
 		type:"POST",
-		data : {"SearchKeyword":BIG_CATEGORY},
-		url : "/giftcon/findSmall.conn",
-		success : function(list1){
+		data: {"SearchKeyword":BIG_CATEGORY},
+		url: "/giftcon/findSmall.conn",
+		success: function(qwe){
+			alert(qwe);
+			$("#SMALL_CATEGORY").html(qwe);
 			
-			$(#'output').html(list1);
 		},
 		error: function(error){
 			alert(error);
@@ -120,58 +63,7 @@ function BIG_CATEGORYChange(){
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* function GOODS_CATEGORY2Change() {
- var GOODS_CATEGORY1 = document.frm.GOODS_CATEGORY1.options.selectedIndex;
- var x = document.frm.GOODS_CATEGORY2.options.selectedIndex;
- var groups=document.frm.GOODS_CATEGORY2.options.length;
- var group=new Array(groups);
- for (i=0; i<groups; i++)
-  group[i]=new Array();
- if(GOODS_CATEGORY1 == 1) {
-  group[0][0]=new Option("중분류를 먼저 선택하세요","");
-  group[1][0]=new Option("삼성컴퓨터 선택","");
-  group[1][1]=new Option("섬성 팬티엄III","ss3");
-  group[1][2]=new Option("삼성 팬티엄IV","ss4");
-  group[1][3]=new Option("삼성 센스 노트북","ssnote");
-  group[2][0]=new Option("대우 컴퓨터 선택","");
-  group[2][1]=new Option("대우 데스크탑 프로","dw");
-  group[3][0]=new Option("엘지 컴퓨터 선택","");
-  group[3][1]=new Option("LG IBM PC","lgpc");
-  group[3][2]=new Option("LG IBM NOTEBOOK ","lgnote");
- } else if(GOODS_CATEGORY1 == 2) {
-  group[0][0]=new Option("중분류를 먼저 선택하세요","");
-  group[1][0]=new Option("엡손 프린터 선택","");
-  group[1][1]=new Option("엡손 잉크","epson_ink");
-  group[1][2]=new Option("엡손 레이져","epson_laser");
-  group[2][0]=new Option("휴렛캑커드 프린터 선택","");
-  group[2][1]=new Option("HP 잉크젯","hp_ink");
-  group[2][2]=new Option("HP 레이져젯","hp_laser");
- }
- 
- temp = document.frm.third;
- for (m = temp.options.length-1 ; m > 0 ; m--)
-  temp.options[m]=null
- for (i=0;i<group[x].length;i++){
-  temp.options[i]=new Option(group[x][i].text,group[x][i].value)
- }
- temp.options[0].selected=true
-} */
-
-</scRIPT>
+</script>
 
 
 
@@ -275,7 +167,7 @@ function BIG_CATEGORYChange(){
 				<tr>
 					<th scope="row">카테고리</th>
 					<td>
-						<select id="BIG_CATEGORY" name="BIG_CATEGORY" onchange="BIG_CATEGORYChange();" size=1>
+						<select id="BIG_CATEGORY" name="BIG_CATEGORY" onchange="BIG_CATEGORYChange();">
 						<OPTION value=''>대분류</OPTION>
 						<OPTION value='치킨/피자/버거'>치킨/피자/버거</OPTION>
 						<OPTION value='커피/음료'>커피/음료</OPTION>
@@ -284,12 +176,9 @@ function BIG_CATEGORYChange(){
 						<OPTION value='편의점/마트'>편의점/마트</OPTION>
 						 
 						</select>
-						<SELECT id="SMALL_CATEGORY" name="SMALL_CATEGORY" size=1>
+						<SELECT id="SMALL_CATEGORY" name="SMALL_CATEGORY">
 						 <OPTION value=''>대분류를 먼저 선택하세요</OPTION>
-						 <c:forEach var="small" items="${list1}">
-						 <option value="${small.SMALL_CATEGORY }">
-						 </option>
-						 </c:forEach>
+						
 						</SELECT>
 					</td>
 				</tr>
