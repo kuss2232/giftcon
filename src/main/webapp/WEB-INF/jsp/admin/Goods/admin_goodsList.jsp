@@ -219,11 +219,11 @@ function fn_goInsertForm(){
 							<a href="/giftcon/goods/adminGoodsList.conn"><button type="button" style="margin-left:-350px; width:50px; height:50px;" >전체</button></a>
 							<select  name="select" onchange="window.open(value,'_self');">
 								<option value ="">--카테고리--</option>
-								<option value ="/giftcon/goods/adminGoodsList.conn?searchNum=3&isSearch=치킨/피자/버거">치킨/피자/버거</option>
-								<option value ="/giftcon/goods/adminGoodsList.conn?searchNum=3&isSearch=커피/음료">커피/음료</option>
-								<option value ="/giftcon/goods/adminGoodsList.conn?searchNum=3&isSearch=아이스크림/빙수">아이스크림/빙수</option>
-								<option value ="/giftcon/goods/adminGoodsList.conn?searchNum=3&isSearch=베이커리/도넛">베이커리/도넛</option>
-								<option value ="/giftcon/goods/adminGoodsList.conn?searchNum=3&isSearch=편의점/마트">편의점/마트</option>
+								<option value ="/giftcon/goods/adminGoodsList.conn?searchNum=3&SearchKeyword=치킨/피자/버거">치킨/피자/버거</option>
+								<option value ="/giftcon/goods/adminGoodsList.conn?searchNum=3&SearchKeyword=커피/음료">커피/음료</option>
+								<option value ="/giftcon/goods/adminGoodsList.conn?searchNum=3&SearchKeyword=아이스크림/빙수">아이스크림/빙수</option>
+								<option value ="/giftcon/goods/adminGoodsList.conn?searchNum=3&SearchKeyword=베이커리/도넛">베이커리/도넛</option>
+								<option value ="/giftcon/goods/adminGoodsList.conn?searchNum=3&SearchKeyword=편의점/마트">편의점/마트</option>
 							</select>										
 						</div>
 						<div class="col-sm-6" style="text-align:right;">

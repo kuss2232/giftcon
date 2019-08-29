@@ -194,10 +194,11 @@
 				<div id="dataTables-example_wrapper"
 					class="dataTables_wrapper form-inline dt-bootstrap no-footer">
 					<div class="row" style="margin-bottom: 5px;">
-						<div class="col-sm-6">
-													</div>
-													</br></br>
-						<div class="col-sm-6" style="text-align: right; margin-left:550px;">
+					<div style="text-align: left;">
+			<button id="noticeAdd" class="btn btn-outline btn-default">공지사항 등록</button>	
+			</div>
+													
+						<div class="col-sm-6" style= margin-left:600px;">
 							<div class="dataTables_info" id="dataTables-example_info"
 								role="status" aria-live="polite">총 게시글 수 : ${totalCount}</div>
 						</div>
@@ -227,7 +228,7 @@
 												value="${noticeList.NOTICE_NUM}" />
 										</c:url>
 										<tr class="gradeA even" role="row">
-											<td style="text-align: center; vertical-align: middle;">${noticeList.NOTICE_NUM}</td>
+											<td style="text-align: center; vertical-align:middle;">${noticeList.NOTICE_NUM}</td>
 										<td style="text-align: center; vertical-align: middle;" >
 										
 										<a href=" #" onclick="goDetail(${noticeList.NOTICE_NUM});">${noticeList.NOTICE_TITLE}</a></td>
@@ -282,11 +283,7 @@
 									</span>
 								</form>
 							</div>
-							<div style="text-align: left;">
-														<button id="noticeAdd"
-									class="btn btn-outline btn-default">공지사항 등록</button>
-									
-							</div>
+							
 						</div>
 					</div>
 				</div>

@@ -111,7 +111,7 @@ function delchk(){
 										<option value="0">아이디</option>
 										<option value="1">제목</option>
 									</select>
-									<input class="form-control" type="text" name="isSearch" id="isSearch"/>
+									<input class="form-control" type="text" name="SearchKeyword" id="SearchKeyword"/>
 									<span>
 									<button type="submit" class="btn btn-default">검색</button>
 									

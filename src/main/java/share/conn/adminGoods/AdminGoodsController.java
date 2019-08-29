@@ -62,7 +62,8 @@ public class AdminGoodsController {
 			
 			
 			if(searchNum == 0) { //상품 번호
-				commandMap.put("SearchKeyword", SearchKeyword);
+				int Search = Integer.parseInt(SearchKeyword);
+				commandMap.put("SearchKeyword", Search);
 				adGoodsList = adminGoodsService.adGoodsNumSearch(commandMap.getMap());
 				totalCount = adGoodsList.size();
 			}else if(searchNum == 1) { // 상품명
