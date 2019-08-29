@@ -516,14 +516,17 @@ ORDER BY
 		A.SMALL_CATEGORY,
 		B.GOODS_NAME,
 		B.GOODS_PRICE,
-		B.GOODS_NUM
+		B.GOODS_NUM,
+		B.GOODS_DCPRICE
 	FROM
 		CATEGORY A, GOODS B
-	WHERE
+	
+		
+		WHERE
 		A.CATEGORY_NUM = B.CATEGORY_NUM AND
 		B.GOODS_PRICE >= #{priceMin}
 		AND B. GOODS_PRICE <= #{priceMax}
-]]>
+]]>		
 </select>
 
 </mapper>

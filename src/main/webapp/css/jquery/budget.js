@@ -1,4 +1,3 @@
-
 $(document).ready(function() {
 	"use strict";
 	
@@ -64,22 +63,22 @@ $(document).ready(function() {
 	
 	$.form.find("#btnGoodsDetail").on('click', function(event) {
 		event.preventDefault();
-		var goodsNo = $.form.find("input[name='goodsNo']:checked").val();
-		if(goodsNo == null || goodsNo == '' || goodsNo == 0) {
+		var GOODS_NUM = $.form.find("input[name='GOODS_NUM']:checked").val();
+		if(GOODS_NUM == null || GOODS_NUM == '' || GOODS_NUM == 0) {
 			alert("상세보기 상품을 선택해 주세요.");
 			return;
 		}
-		document.location.href = "/goods/goodsDetail.do?goodsNo="+goodsNo;
+		document.location.href = "/giftcon/goods/detail.conn?GOODS_NUM="+GOODS_NUM;
 	});
 	
 	$.form.find("#btnOrder").on('click', function(event) {
 		event.preventDefault();
-		var goodsNo = $.form.find("input[name='goodsNo']:checked").val();
-		if(goodsNo == null || goodsNo == '' || goodsNo == 0) {
+		var GOODS_NUM = $.form.find("input[name='GOODS_NUM']:checked").val();
+		if(GOODS_NUM == null || GOODS_NUM == '' || GOODS_NUM == 0) {
 			alert("발송 상품을 선택해 주세요.");
 			return;
 		}
-		document.location.href = "/order/order.do?goodsNo="+goodsNo;
+		window.location.href = "/giftcon/orderForm.conn?GOODS_NUM="+GOODS_NUM;
 	});
 	
 	$.form.find("#budget").on('input propertychange', onSetPrice);
@@ -87,52 +86,53 @@ $(document).ready(function() {
 });
 
 function getGoodsList() {
-	
-	$.form = $("#budgetForm");
-	
 	$.ajax({
 		type:"POST",
-		data:$("#budgetForm").serialize(),
-		url:"/popup/budgetSearch.do",
-		dataType:"json",
+		data: {"price":$("#price").val()},
+		dataType: "json",
+		url:"/giftcon/budgeting.conn",
 		success:function(data) {
-
 			var trHTML = '';
 			var totalCount = 0;
 			$.form.find("#tbBudgetSearchResult").find("tbody:last").empty();
 			
-			if (data.resCd == 'SUCCESS') {
 				
-				totalCount = data.resObj.length; 
+				totalCount = data.length; 
 				
 				if (totalCount == 0) {
 					trHTML += '<tr><td class="alignC1" colspan="5">조회된 상품이 없습니다.</td></tr>';
 				} else {
-					$.each(data.resObj, function (i, item) {
+					for(var i in data){
 						trHTML += '<tr>';
-						trHTML += '<td><input type="radio" name="goodsNo" value="'+item.goodsNo+'"></td>';
-						trHTML += '<td>'+item.categoryName+'</td>';
-						trHTML += '<td>'+item.brandName+'</td>';
-						trHTML += '<td>'+item.goodsName+'</td>';
-						trHTML += '<td class="last">'+cutNumber(item.salePrice)+'</td>';
+						trHTML += '<td><input type="radio" name="GOODS_NUM" value="'+data[i].GOODS_NUM+'"></td>';
+						trHTML += '<td>'+data[i].BIG_CATEGORY+'</td>';
+						trHTML += '<td>'+data[i].SMALL_CATEGORY+'</td>';
+						trHTML += '<td>'+data[i].GOODS_NAME+'</td>';
+						trHTML += '<td>'+data[i].GOODS_PRICE+'</td>';
+						/*trHTML += '<td class="last">'+cutNumber(data[i].GOODS_DCPRICE )+'</td>';*/
 						trHTML += '<tr>';
-					});
+					};
+						/*alert(item.BIG_CATEGORY);
+						trHTML += '<tr>';
+						trHTML += '<td><input type="radio" name="GOODS_NUM" value="'+item.GOODS_NUM+'"></td>';
+						trHTML += '<td>'+item.BIG_CATEGORY+'</td>';
+						trHTML += '<td>'+item.SMALL_CATEGORY+'</td>';
+						trHTML += '<td>'+item.GOODS_NAME+'</td>';
+						trHTML += '<td class="last">'+cutNumber(item.GOODS_DCPRICE)+'</td>';
+						trHTML += '<tr>';
+					});*/
 					
 					$.form.find(".popupBtns").show();
 				}
 
-			} else {
-				trHTML += '<tr><td class="alignC1" colspan="5">조회된 상품이 없습니다.</td></tr>';
-				$.form.find(".popupBtns").hide();
-			}
 
 			$.form.find(".calculateResultTxt").html("총 "+cutNumber(totalCount)+"건");
 			$.form.find(".calculateResultTxt").show();
 			
 			$.form.find("#tbBudgetSearchResult").find("tbody:last").append(trHTML);
 		},
-		error:function(data) {
-			alert("다시 시도해 주세요.");
+		error:function(data,e,a) {
+			alert("다시 시도해 주세요." + e + data + a);
 			return;
 		}
 	});
@@ -232,7 +232,7 @@ $(document).ready(function() {
 			if(tgEnIdx >= tgTotalCount) tgEnIdx = tgTotalCount - 1;
 			
 			for(var i=tgStIdx; i<=tgEnIdx; i++) {
-				liHTML += '<li><a href="/goods/goodsDetail.do?goodsNo='+arrGoodsNo[i]+'"><img src="'+arrGoodsImg[i]+'" alt=""></a></li>';
+				liHTML += '<li><a href="/goods/goodsDetail.do?GOODS_NUM='+arrGoodsNo[i]+'"><img src="'+arrGoodsImg[i]+'" alt=""></a></li>';
 			}
 		}
 		$("#todayGoodsList").append(liHTML);
@@ -276,25 +276,9 @@ $(document).ready(function() {
 
 });
 
-	function calcul() {
-		alert("ad");
-		$("#price").val($("#budget").val() /  $("#people").val()) ;
-	}
+function calcul() {
+	if(document.getElementById("budget").value && document.getElementById("people").value){
+		  document.getElementById('price').value =Math.round(parseInt(document.getElementById("budget").value) /  parseInt(document.getElementById('people').value));
+		 }
 	
-
-
-/*
-function quickMenuToggle() {
-	if( $('#quickMenuButton').hasClass("btnQuickClose") ) {
-		$('#quickArea').css('width', '6px');
-		$('#quickMenuButton').removeClass("btnQuickClose");
-		$('#quickMenuButton').addClass("btnQuickOpen");
-	} else {
-		$('#quickArea').css('width', '106px');
-		$('#quickMenuButton').removeClass("btnQuickOpen");
-		$('#quickMenuButton').addClass("btnQuickClose");
-		
-	}
-}
-*/
-
+} 

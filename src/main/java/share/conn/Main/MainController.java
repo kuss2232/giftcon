@@ -1,13 +1,18 @@
 package share.conn.Main;
 
+import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import share.conn.Cart.CartService;
@@ -109,4 +114,19 @@ public class MainController {
 		mv.setViewName("/main/budget");
 		return mv;
 	}
+	   
+	@RequestMapping("budgeting.conn")
+	   public @ResponseBody List<Map<String,Object>> budgeting(CommandMap commandMap, HttpServletResponse response) throws Exception{
+	    System.out.println("lllllll  "+commandMap.getMap().get("price"));
+		int price = Integer.parseInt(commandMap.get("price").toString());
+	      int priceMax = (int)(price*1.2);
+	      int priceMin = (int)(price*0.8);
+	      
+	      Map<String, Object> priceMap = new HashMap<String, Object>();
+	      priceMap.put("priceMax", priceMax);
+	      priceMap.put("priceMin", priceMin);
+	      
+	      List<Map<String, Object>> goodsList = mainService.goodsBudget(priceMap);
+	      return goodsList;
+	   }
 }
