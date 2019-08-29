@@ -132,7 +132,7 @@
      					<select class="form-control" name="BIG_CATEGORY"  id="selectCateogry">
 										<option value="치킨/피자/버거">치킨/피자/버거</option>
 										<option value="커피/음료">커피/음료</option>
-										<option value="아이스크림">아이스크림</option>
+										<option value="아이스크림/빙수">아이스크림/빙수</option>
 										<option value="편의점/마트">편의점/마트</option>
 										<option value="베이커리/도넛">베이커리/도넛</option>
 							</select> 

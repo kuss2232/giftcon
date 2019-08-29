@@ -163,7 +163,7 @@
 
 							<a href="javascript:fn_login('치킨/피자/버거')"><font size="3px">치킨/피자/버거</font></a>&nbsp;&nbsp;&nbsp;/
 
-							<a href="javascript:fn_login('아이스크림')"> <font size="3px">아이스크림</font></a>&nbsp;&nbsp;&nbsp;/
+							<a href="javascript:fn_login('아이스크림/빙수')"> <font size="3px">아이스크림/빙수</font></a>&nbsp;&nbsp;&nbsp;/
 
 							<a href="javascript:fn_login('베이커리/도넛')"><font size="3px">베이커리/도넛</font></a>&nbsp;&nbsp;&nbsp;/
 
