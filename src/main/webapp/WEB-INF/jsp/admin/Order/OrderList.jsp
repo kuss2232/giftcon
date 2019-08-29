@@ -132,6 +132,7 @@
 								<option value ="/giftcon/adminOrder.conn?isSearch=N">입금대기</option>
 								<option value ="/giftcon/adminOrder.conn?isSearch=Y">구매완료</option>
 								<option value ="/giftcon/adminOrder.conn?isSearch=E">사용완료</option>
+								<option value ="/giftcon/adminOrder.conn?isSearch=W">취소대기</option><!-- "결제 취소 대기" -->
 							</select>													
 						</div>
 						<div class="col-sm-6" style="text-align:right;">
@@ -170,7 +171,8 @@
 										
 										<td style="text-align:center;vertical-align:middle;">
 											<input type="hidden" name="order_num" value="${orderList.ORDER_NUM}"/>
-										${orderList.ORDER_NUM}</td>	<!-- 주문번호 -->
+											${orderList.ORDER_NUM}<!-- 주문번호 -->
+										</td>
 										<td style="text-align:center;vertical-align:middle;"><a href="${Detail}"><img width="100" height="100" src="/giftcon/resources/file/goodsFile/${orderList.GOODS_IMG }"></a></td>	<!-- 상품이미지 -->
 										<td style="text-align:center;vertical-align:middle;">
 										<a href="${Detail}">${orderList.GOODS_NAME}
@@ -182,12 +184,14 @@
 										<c:if test="${orderList.ORDER_PAYMENT eq 'N'}">입금 대기</c:if>
 										<c:if test="${orderList.ORDER_PAYMENT eq 'Y'}">결제 완료</c:if>
 										<c:if test="${orderList.ORDER_PAYMENT eq 'E'}">사용 완료</c:if>
-											<select class="form-control" id="select${orderList.ORDER_NUM}" 
-											onchange="fn_PAY_Modify(${orderList.ORDER_NUM})">
+										<c:if test="${orderList.ORDER_PAYMENT eq 'W'}">취소 대기</c:if>
+										<c:if test="${orderList.ORDER_PAYMENT eq 'C'}">결제 취소</c:if>
+											<select class="form-control" id="select${orderList.ORDER_NUM}" onchange="fn_PAY_Modify(${orderList.ORDER_NUM})">
 												<option value ="">상태 변경</option>
 												<option value ="N">입금대기</option>
 												<option value ="Y">결제완료</option>
 												<option value ="E">사용완료</option><!-- "이메일 전송이 완료됐을 시" -->
+												<c:if test="${orderList.ORDER_PAYMENT eq 'W'}"><option value ="C">결제 취소</option></c:if>
 											</select>
 										</td>		<!-- 주문상태 -->
 										<td style="text-align:center;vertical-align:middle;">
