@@ -109,18 +109,8 @@ function getGoodsList() {
 						trHTML += '<td>'+data[i].SMALL_CATEGORY+'</td>';
 						trHTML += '<td>'+data[i].GOODS_NAME+'</td>';
 						trHTML += '<td>'+data[i].GOODS_PRICE+'</td>';
-						/*trHTML += '<td class="last">'+cutNumber(data[i].GOODS_DCPRICE )+'</td>';*/
 						trHTML += '<tr>';
 					};
-						/*alert(item.BIG_CATEGORY);
-						trHTML += '<tr>';
-						trHTML += '<td><input type="radio" name="GOODS_NUM" value="'+item.GOODS_NUM+'"></td>';
-						trHTML += '<td>'+item.BIG_CATEGORY+'</td>';
-						trHTML += '<td>'+item.SMALL_CATEGORY+'</td>';
-						trHTML += '<td>'+item.GOODS_NAME+'</td>';
-						trHTML += '<td class="last">'+cutNumber(item.GOODS_DCPRICE)+'</td>';
-						trHTML += '<tr>';
-					});*/
 					
 					$.form.find(".popupBtns").show();
 				}
