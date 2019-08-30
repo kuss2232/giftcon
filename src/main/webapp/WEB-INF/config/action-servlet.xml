@@ -53,6 +53,7 @@
 			<mvc:exclude-mapping path="/Terms of service.conn"/>
 			<mvc:exclude-mapping path="/privacy.conn"/>
 			<mvc:exclude-mapping path="/budget.conn"/>
+			<mvc:exclude-mapping path="/budgeting.conn"/>
 			<mvc:exclude-mapping path="/findIdForm.conn"/>
 			<mvc:exclude-mapping path="/findPwForm.conn"/>
 			<mvc:exclude-mapping path="/findId.conn"/>
