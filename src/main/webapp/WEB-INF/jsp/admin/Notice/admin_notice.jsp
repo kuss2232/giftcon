@@ -183,22 +183,22 @@
 		</nav>
 		<div id="page-wrapper" align="center">
 			<!-- 메인container-->
-			<div class="row" style="padding-left: 15px; width: 900px;">
+			<div class="row" align="center">
 	<h1 class="page-header">공지사항</h1>
 </div>
 <div class="row" align="center">
 	<div class="panel panel-default">
-		<div class="panel-heading">공지사항 검색, 등록, 수정, 삭제 기능하는 페이지입니다.</div>
+		<div class="panel-heading">공지사항 검색, 등록, 수정, 삭제 기능하는 페이지입니다.
+		</div>
 		<div class="panel-body">
 			<div class="dataTable_wrapper">
 				<div id="dataTables-example_wrapper"
 					class="dataTables_wrapper form-inline dt-bootstrap no-footer">
 					<div class="row" style="margin-bottom: 5px;">
-					<div style="text-align: left;">
-			<button id="noticeAdd" class="btn btn-outline btn-default">공지사항 등록</button>	
-			</div>
-													
-						<div class="col-sm-6" style= margin-left:600px;">
+					<div class = "col-sm-6">
+						<button id="noticeAdd" class="btn btn-outline btn-default">공지사항 등록</button>
+					</div>							
+						<div class="col-sm-6" style= text-align:right;>
 							<div class="dataTables_info" id="dataTables-example_info"
 								role="status" aria-live="polite">총 게시글 수 : ${totalCount}</div>
 						</div>

@@ -195,7 +195,7 @@
 					<h2 class="box-title" align="center">목록</h2>
 					<div align="right">
 						<a href="/giftcon/admincategoryInsertForm.conn"><input
-							type="image" src="/giftcon/resources/images/answer.png">추가</a>
+							type="image" src="/giftcon/resources/images/answer.png"><br/>추가</a>
 					</div>
 
 

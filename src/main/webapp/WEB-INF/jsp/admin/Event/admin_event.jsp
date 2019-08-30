@@ -242,7 +242,11 @@ cursor: pointer;
 		<li class="on" style="margin-left:738px;">총 게시물수 : ${totalCount}</li>
 		
 	</ul>
-	
+			<c:url var="viewURL"  value="/event/adminEventForm.conn">
+			</c:url>
+			<div style="margin-left:1000px;">
+	        <a href="${viewURL}"><input type="image" src="/giftcon/resources/images/answer.png" ><br/>이벤트등록</a>
+	        </div>
 					<div class="col-sm-12">
 							<table
 								class="table table-striped table-bordered table-hover dataTable no-footer"
@@ -259,7 +263,7 @@ cursor: pointer;
 										<th style="width: 10%; text-align: center;">관리</th>
 									</tr>
 								</thead>
-								<form id="commonForm" name="commonForm"></form>
+							
 								<tbody>
 									<c:forEach var="eventList"  items="${eventList}" varStatus="stat">
 									<tr class="gradeA even" role="row">
@@ -284,9 +288,6 @@ cursor: pointer;
 										<c:param name="EVENT_NUM"
 														value="${eventList.EVENT_NUM }" /> 
 												</c:url>
-						<a href="${viewURL}">
-												<input type="image" src="/giftcon/resources/images/answer.png" >
-					</a>&nbsp;&nbsp;
 					<a onclick="fn_eventDelete(${eventList.EVENT_NUM})">  
 				<input type="image"
 					src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Trash_font_awesome.svg/32px-Trash_font_awesome.svg.png" >
