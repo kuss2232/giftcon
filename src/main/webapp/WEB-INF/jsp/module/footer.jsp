@@ -49,7 +49,7 @@
 						<option value="http://www.ppurio.com/mgr/index.qri">[문자-개인] 뿌리오</option>
 						<option value="http://enfax.ppurio.com/mgr/index.qri">[온라인팩스] 엔팩스</option>
 						<option value="https://bizmailer.co.kr/bizsmart/manager/main.do">[대량메일] 비즈메일러</option>
-						<option value="http://www.donutbook.co.kr/">[모바일쿠폰] 도넛북</option>
+						<option value="http://www.donutbook.co.kr/">[모바일쿠폰] 쉐어콘</option>
 						<option value="http://callmix.co.kr/html/index.html">[050번호] 콜믹스</option>
 						<option value="https://telpass.bedal365.co.kr/index1.html">[지역정보책자] 텔패스</option>
 						<option value="http://www.bedal365.co.kr/info3.html">[배달App] 배달365</option>
