@@ -24,7 +24,7 @@
 				<h3 class="logoDaou">다우기술</h3>
 				<div class="infoBox">
 					<ul class="infoList">
-						<li>㈜다우기술 서초동 1303-37 W타워 14층 1401호</li>
+						<li>㈜도훈기술 서초동 1303-37 W타워 14층 1401호</li>
 						<li>대표이사: 김도훈</li>
 						<li>사업자등록번호: 220-81-02810</li>
 					</ul>
