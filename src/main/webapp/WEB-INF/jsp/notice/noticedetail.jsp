@@ -41,12 +41,12 @@
 								<span>조회 : ${noticeDetail.NOTICE_HITCOUNT}</span> | <span>날짜 : ${noticeDetail.NOTICE_REGDATE}</span>
 							</span>
 						</div>
-						<div class="notiCont">${noticeDetail.NOTICE_CNT}</div>
+						<div class="notiCont"><pre>${noticeDetail.NOTICE_CNT}</pre></div>
+						<c:if test="${(noticeDetail.NOTICE_IMG ne null)&&(noticeDetail.NOTICE_IMG ne 'NONE')}">
 						<div class="notiCont">
-							<c:if test="${noticeDetail.NOTICE_IMG ne null}">
 								<img src="/giftcon/file/noticeFile/${noticeDetail.NOTICE_IMG}" width="500">
-							</c:if>
-                 	</div>
+                 		</div>
+                 		</c:if>
 					</div>
 					<!-- /end:contents -->
 					<!-- start:btm -->

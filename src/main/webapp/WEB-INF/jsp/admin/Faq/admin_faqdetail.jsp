@@ -131,7 +131,7 @@
 											${faqDetail.FAQ_CATEGORY} | 조회 : ${faqDetail.FAQ_HITCOUNT}</span>
 									</span>
 								</div>
-								<div class="notiCont">${faqDetail.FAQ_CNT}</div>
+								<div class="notiCont"><pre>${faqDetail.FAQ_CNT}</pre></div>
 							</div>
 							<!-- /end:contents -->
 							<!-- start:btm -->

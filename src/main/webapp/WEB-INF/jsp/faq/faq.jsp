@@ -87,7 +87,7 @@ function refreshFAQ(){
 								</a>
 								<div id="view_0" class="faqView" style="display: none;">
 									<span class="icoAnswer">답변</span>
-									<p>${row.FAQ_CNT}</p>
+									<pre>${row.FAQ_CNT}</pre>
 								</div>
 							</li>
 							</c:forEach>
