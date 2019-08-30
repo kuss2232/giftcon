@@ -120,6 +120,18 @@ public class MypageController {
 		return mv;
 	}
 	
+	@RequestMapping("userSecession.conn")
+	public ModelAndView userSecession(CommandMap commandMap, HttpServletRequest request) throws Exception{
+		
+		ModelAndView mv = new ModelAndView();
+		HttpSession memId = request.getSession();
+		commandMap.put("MEMBER_ID", memId.getAttribute("MEMBER_ID"));
+		mypageService.userSecession(commandMap.getMap());
+		
+		mv.setViewName("redirect:/logout.conn");
+		return mv;
+	}
+	
 	//Q&A리스트 
 	@RequestMapping("/myQnalist.conn")
 	public ModelAndView qnalist(CommandMap commandMap, HttpSession session,HttpServletRequest request) throws Exception{

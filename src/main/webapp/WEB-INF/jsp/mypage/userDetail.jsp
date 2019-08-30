@@ -84,7 +84,7 @@
 				<!-- /end:contents -->
 				<!-- start:btn -->
 				<div class="btn2">
-					<a href="/mypage/userBye.do" class="btnBigLineBlue2 w180 mr10">회원탈퇴
+					<a href="" id="btnDelete" class="btnBigLineBlue2 w180 mr10">회원탈퇴
 						바로가기</a> <a href="" id="btnModify" class="btnBigBgBlue2 w227 mr10">회원정보변경</a>
 				</div>
 				<!-- /end:btn -->
@@ -102,11 +102,25 @@
 
       });
       
+      $(document).ready(function(){
+          $("#btnDelete").on("click", function(e){
+             e.preventDefault();
+             fn_delete();
+          });
+
+       });
+      
       function fn_login(){
          var comSubmit = new ComSubmit("userFrm");
          comSubmit.setUrl("/giftcon/userInfoUpdate.conn");
          comSubmit.submit();
       }
+      
+      function fn_delete(){
+          var comSubmit = new ComSubmit("userFrm");
+          comSubmit.setUrl("/giftcon/userSecession.conn");
+          comSubmit.submit();
+       }
 
    </script>
 </body>

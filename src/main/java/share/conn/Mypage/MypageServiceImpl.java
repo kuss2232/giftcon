@@ -31,4 +31,9 @@ public class MypageServiceImpl implements MypageService{
 	public void userPwUpdate(Map<String, Object> map) throws Exception{
 		mypageDAO.userPwUpdate(map);
 	}
+	
+	@Override
+	public void userSecession(Map<String, Object> map) throws Exception {
+		mypageDAO.userSecession(map);
+	}
 }

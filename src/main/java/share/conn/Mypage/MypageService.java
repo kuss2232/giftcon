@@ -11,5 +11,6 @@ public interface MypageService {
 	void userInfoUpdate(Map<String, Object> map) throws Exception;
 
 	void userPwUpdate(Map<String, Object> map) throws Exception;
-
+	
+	void userSecession(Map<String, Object> map) throws Exception;
 }
