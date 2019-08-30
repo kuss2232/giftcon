@@ -6,83 +6,75 @@
 <head>
 <title>로그인</title>
 <script type="text/javascript">
-		$(document).ready(function(){
-			$("#btnLogin").on("click", function(e){
-				e.preventDefault();
-				fn_login();
-			});
+$(document).ready(function(){
+	$("#btnLogin").on("click", function(e){
+		e.preventDefault();
+		fn_login();
+	});
 
-		});
-		
-		function fn_login(){
-			var check = "false";
-			if(document.loginFrm.saveId.checked)
+});
+
+function fn_login(){
+	var check = "false";
+	if(document.loginFrm.saveId.checked)
+	{
+		check = "true";
+	}
+	$.ajax({
+		type : "POST",
+		url : "/giftcon/login.conn",
+		data : {"MEMBER_ID":$(MEMBER_ID).val(),
+				"MEMBER_PASSWD":$(MEMBER_PASSWD).val(),
+				"saveId":check},
+		dataType : "text",
+		error : function(request,status,error) {
+			alert("서버가 응답하지 않습니다. \n다시 시도해주시기 바랍니다.");
+			//alert("code = "+ request.status + " message = " + request.responseText + " error = " + error);
+		},
+		success : function(result) {
+			if( result != "null")
 			{
-				check = "true";
+				location.href="/giftcon/main.conn";
 			}
-			$.ajax({
-				type : "POST",
-				url : "/giftcon/login.conn",
-				data : {"MEMBER_ID":$(MEMBER_ID).val(),
-						"MEMBER_PASSWD":$(MEMBER_PASSWD).val(),
-						"saveId":check},
-				dataType : "text",
-				error : function(request,status,error) {
-					alert("서버가 응답하지 않습니다. \n다시 시도해주시기 바랍니다.");
-					//alert("code = "+ request.status + " message = " + request.responseText + " error = " + error);
-				},
-				success : function(result) {
-					if( result != "null")
-					{
-						location.href="/giftcon/main.conn";
-					}
-					else
-					{
-						alert("아이디나 비밀번호가 맞지 않습니다.");
-					}
-				}
-			})
+			else
+			{
+				alert("아이디나 비밀번호가 맞지 않습니다.");
+			}
 		}
+	})
+}
+// 엔터치면 로그인
+function onEnterLogin(){
+	if(event.keyCode == 13){
+		fn_login();  // 실행할 이벤트
+   }
+}
+
+// 아이디저장
+
+$(document).ready(function(){
+	var userInputId = getCookie("userInputId");
+	$("#MEMBER_ID").val(userInputId);
 	
+	if($("#MEMBER_ID").val() != ""){
+		$("#saveId").attr("checked",true);
+	}
+});
 
-	</script>
-	<!-- 엔터치면 로그인 -->
-<script type="text/javascript">
-		function onEnterLogin(){
-			var keyCode = window.event.keyCode;
-			if(keyCode == 13){//엔터키 이면
-				logoinForm.sumbit();
-			}
-		}
-	
-	</script>
-
-<!-- 아이디저장 -->
-<script>
-		$(document).ready(function(){
-			var userInputId = getCookie("userInputId");
-			$("#MEMBER_ID").val(userInputId);
-			
-			if($("#MEMBER_ID").val() != ""){
-				$("#saveId").attr("checked",true);
-			}
-			
-		});
-
-		function getCookie(cookieName){
-			cookieName = cookieName + "=";
-			var cookieData = document.cookie;
-			var start = cookieData.indexOf(cookieName);
-			var cookieValue = "";
-			if(start != -1){
-				start += cookieName.length;
-				var end = cookieData.indexOf(";", start);
-				if(end == -1)end = cookieData.length;
-				cookieValue = cookieData.substring(start, end);
-			}
-			return unescape(cookieValue);
-		}
-	</script>
+function getCookie(cookieName){
+	cookieName = cookieName + "=";
+	var cookieData = document.cookie;
+	var start = cookieData.indexOf(cookieName);
+	var cookieValue = "";
+	if(start != -1){
+		start += cookieName.length;
+		var end = cookieData.indexOf(";", start);
+		if(end == -1)end = cookieData.length;
+		cookieValue = cookieData.substring(start, end);
+	}
+	return unescape(cookieValue);
+}
+</script>
 </head>
 <body>
 

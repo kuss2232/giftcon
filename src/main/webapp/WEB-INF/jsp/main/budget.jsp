@@ -49,7 +49,7 @@
 						<span class="icoMoney"></span>
 						<span class="titTxt">총 예산은?</span>
 					</p>
-					<input onkeyup='calcul()' type="number" class="ipt2 w146" id="budget" style="text-align:right;"> 원
+					<input onchange="calcul()" onkeyup="calcul()" type="number" class="ipt2 w146" id="budget" style="text-align:right;"> 원
 				</div>
 				<span class="icoDivision"></span>
 				<div class="calBox">
@@ -57,7 +57,7 @@
 						<span class="icoPeople"></span>
 						<span class="titTxt">발송 할 인원 수</span>
 					</p>
-					<input onkeyup='calcul()' type="number" class="ipt2 w146" id="people" style="text-align:right;"> 명
+					<input on onchange="calcul()" onkeyup='calcul()' type="number" class="ipt2 w146" id="people" style="text-align:right;"> 명
 				</div>
 				<span class="icoEquals"></span>
 				<div class="calBox last">
@@ -65,7 +65,7 @@
 						<span class="icoPrice"></span>
 						<span class="titTxt">예상되는 상품단가</span>
 					</p>
-					<input type="number" class="ipt2 w146 cutNumber"  id="price" style="text-align:right;" readonly=""  > 원
+					<input type="number" onkeydown="Enter_Check()" class="ipt2 w146 cutNumber"  id="price" style="text-align:right;" readonly=""  > 원
 				</div>
 			</div>
 		</div>

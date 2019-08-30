@@ -272,3 +272,8 @@ function calcul() {
 		 }
 	
 } 
+function Enter_Check(){
+	if(event.keyCode == 13){
+		$.form.find("#btnSearch").trigger('click');
+   }
+}
