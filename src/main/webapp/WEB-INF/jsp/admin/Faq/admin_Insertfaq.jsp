@@ -40,9 +40,6 @@
 <!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="<c:url value='/js/common.js'/>" charset="utf-8"></script>
-<div class="row" style="padding-left: 15px; width: 700px;">
-	<h1 class="page-header">FAQ</h1>
-</div>
 <body>
 <div id="wrapper">
 		<!-- Navigation -->

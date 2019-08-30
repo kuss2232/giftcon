@@ -78,7 +78,7 @@ public class AdminFaqController {
 				totalCount = faqList.size();
 			}
 
-			page = new AdminQNAPaging(currentPage, totalCount, blockCount, blockPage,"faqList.conn",searchNum,SearchKeyword);
+			page = new AdminQNAPaging(currentPage, totalCount, blockCount, blockPage,"adminFaqList.conn",searchNum,SearchKeyword);
 			pagingHtml = page.getPagingHtml().toString();
 
 					int lastCount = totalCount;
@@ -104,7 +104,7 @@ public class AdminFaqController {
 			
 		totalCount = faqList.size();
 
-		page = new AdminQNAPaging(currentPage, totalCount, blockCount, blockPage,"faqList.conn");
+		page = new AdminQNAPaging(currentPage, totalCount, blockCount, blockPage,"adminFaqList.conn");
 		pagingHtml = page.getPagingHtml().toString();
 
 				int lastCount = totalCount;

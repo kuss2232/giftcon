@@ -51,11 +51,11 @@ div.paginate>div>a.disabled:hover {
 							</a>
 								<div id="view_${list.QNA_NUM}" class="view" style="display: none;">
 									<p class="txtDate">[등록일] >${list.QNA_DATE}</p>
-									<p class="txtCont">${list.QNA_CNT}</p>
+									<pre class="txtCont">${list.QNA_CNT}</pre>
 
 									<div class="answerBox">
 										<span class="icoAnswer">답변</span>
-										<p>[답변] : ${list.QNA_COMMENT}</p>
+										<pre>[답변] : ${list.QNA_COMMENT}</pre>
 									</div>
 
 								</div></li>
