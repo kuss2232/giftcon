@@ -124,6 +124,21 @@
 			<div class="dataTable_wrapper">
 				<div id="dataTables-example_wrapper"
 					class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+						<div class="row">
+						<div style="text-align:center;">
+							<div id="dataTables-example_filter" class="dataTables_filter">
+								<form action="/giftcon/adminOrder.conn" method="POST">
+									<label>회원 ID 검색 : </label>
+									<input type="hidden" id="SearchNum" name="SearchNum" value="id">
+									<input class="form-control" type="text" name="isSearch" id="isSearch"/>
+									<span>
+									<button type="submit" class="btn default">검색</button>
+									</span>
+								</form>
+							</div>							
+						</div>
+					</div>
+					
 					<div class="row" style="margin-bottom:5px;">
 						<div class="col-sm-6">
 							<a href="/giftcon/adminOrder.conn"><button type="button" class="btn btn-outline btn-default">전체</button></a>
@@ -216,20 +231,7 @@
 					<div class="paging">
 						${pagingHtml}
 					</div>
-					<div class="row">
-						<div style="text-align:center;">
-							<div id="dataTables-example_filter" class="dataTables_filter">
-								<form action="/giftcon/adminOrder.conn" method="POST">
-									<label>회원 ID 검색 : </label>
-									<input type="hidden" id="SearchNum" name="SearchNum" value="id">
-									<input class="form-control" type="text" name="isSearch" id="isSearch"/>
-									<span>
-									<button type="submit" class="btn default">검색</button>
-									</span>
-								</form>
-							</div>							
-						</div>
-					</div>
+				
 				</div>
 			</div>
 			<!-- /.table-responsive -->							
