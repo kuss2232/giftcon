@@ -46,8 +46,9 @@
 
 <!-- Custom Theme JavaScript -->
 <script src="/giftcon/css/jquery/sb-admin-2.js"></script>
-<script src="/giftcon/js/common.js" charset="utf-8"></script>
 <script src="/giftcon/css/jquery/jquery-1.12.4.min.js"></script>
+<script src="/giftcon/js/common.js" charset="utf-8"></script>
+
 <link rel="stylesheet" type="text/css" />
 <style type="text/css">
  {
@@ -102,40 +103,38 @@ cursor: pointer;
 }
 </style>
 <script type="text/javascript">
-			$(document).ready(function(){
-	
-					$("#EventAdd").on("click",function(e){
-						e.preventDefault();
-						onWrite();
-                         })
-                         });
-			
-			function fn_eventDelete(event_num){ 
-						if(confirm("정말 삭제하시겠습니까 ?") == true){
-								var comSubmit = new ComSubmit(); 
-								alert("삭제되었습니다");
-							comSubmit.setUrl("<c:url value='/event/adminDeleteEvent.conn' />");
-							comSubmit.addParam("EVENT_NUM", event_num);
-							comSubmit.submit(); 
-					}
-						else{
-							return ;}}
+$(document).ready(function(){
 
-				function onWrite(){
-					location.href="/giftcon/event/adminEventForm.conn";
-					}
-				
-				function goDetail(event_num) {
-					var comSubmit = new ComSubmit(); 
-				comSubmit.setUrl("<c:url value='/event/adminEventDetail.conn' />");
-				comSubmit.addParam("EVENT_NUM", event_num);
-				comSubmit.submit(); 
-				
-				}  
-				
-				$(document).ready(function(){
-				        
-				    });
+		$("#EventAdd").on("click",function(e){
+			e.preventDefault();
+			onWrite();
+		})
+});
+
+function fn_eventDelete(event_num){ 
+	if(confirm("정말 삭제하시겠습니까 ?") == true){
+			var comSubmit = new ComSubmit("submit"); 
+			alert("삭제되었습니다");
+		comSubmit.setUrl("/giftcon/event/adminDeleteEvent.conn");
+		comSubmit.addParam("EVENT_NUM", event_num);
+		comSubmit.submit(); 
+	}
+}
+
+function onWrite(){
+	location.href="/giftcon/event/adminEventForm.conn";
+}
+	
+function goDetail(event_num) {
+	var comSubmit = new ComSubmit("submit"); 
+comSubmit.setUrl("<c:url value='/event/adminEventDetail.conn' />");
+comSubmit.addParam("EVENT_NUM", event_num);
+comSubmit.submit(); 
+}  
+	
+$(document).ready(function(){
+        
+});
 </script>
 
 </head>
@@ -263,7 +262,8 @@ cursor: pointer;
 										<th style="width: 10%; text-align: center;">관리</th>
 									</tr>
 								</thead>
-							
+								<form id="submit">
+								</form>
 								<tbody>
 									<c:forEach var="eventList"  items="${eventList}" varStatus="stat">
 									<tr class="gradeA even" role="row">
@@ -277,7 +277,7 @@ cursor: pointer;
 										</c:if>
 										</c:forEach>
 										<td style="text-align: center; vertical-align: middle;">
-										<a href=" #" onclick="goDetail(${eventList.EVENT_NUM});">${eventList.EVENT_TITLE}</a></td>
+										<a href="#" onclick="goDetail(${eventList.EVENT_NUM});">${eventList.EVENT_TITLE}</a></td>
 										<td style="text-align: center; vertical-align: middle;">관리자</td>
 										<td style="text-align: center; vertical-align: middle;">
 										<fmt:formatDate value="${eventList.EVENT_REGDATE}" pattern="YYYY.MM.dd" /></td>
