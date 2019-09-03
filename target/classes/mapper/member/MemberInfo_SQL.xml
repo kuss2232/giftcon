@@ -106,9 +106,11 @@
 <update id="deleteMember" parameterType="hashmap" >
 <![CDATA[
 		UPDATE
-		MEMBER SET 
-		MEMBER_STATE = 2
-		WHERE MEMBER_NUM = #{MEMBER_NUM}
+			MEMBER 
+		SET 
+			MEMBER_STATE = 2
+		WHERE 
+			MEMBER_ID = #{MEMBER_ID}
 	]]>
 </update>
 

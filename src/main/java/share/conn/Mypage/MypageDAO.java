@@ -31,5 +31,8 @@ public class MypageDAO extends AbstractDAO{
 		update("memberInfo.chgPw2", map);
 	}
 
+	public void userSecession(Map<String, Object> map) {
+		update("memberInfo.deleteMember", map);
+	}
 
 }

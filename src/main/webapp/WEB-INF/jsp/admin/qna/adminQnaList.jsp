@@ -168,28 +168,7 @@ function fn_qnaDetail(qna_num){
 							<div id="dataTables-example_wrapper"
 								class="dataTables_wrapper form-inline dt-bootstrap no-footer">
 								<div class="row" style="margin-bottom: 5px;">
-									<!--<div class="col-sm-6">
-							<a href="/MODA/qna/adminQnaList">
-								<button type="button" class="btn btn-outline btn-default">전체</button>
-							</a>
-							<select class="form-control" name="select" onchange="window.open(value,'_self');">
-								<option value="">--카테고리--</option>
-								<option value="/MODA/qna/adminQnaList?categoryNum=1">상품문의</option>
-								<option value="/MODA/qna/adminQnaList?categoryNum=2">배송문의</option>
-								<option value="/MODA/qna/adminQnaList?categoryNum=3">입금문의</option>
-								<option value="/MODA/qna/adminQnaList?categoryNum=4">교환&amp;반품문의</option>
-								<option value="/MODA/qna/adminQnaList?categoryNum=5">기타문의</option>
-							</select>
-							<select class="form-control" name="select" onchange="window.open(value,'_self');">
-								<option value="">--답변상태--</option>
-								<option value="/MODA/qna/adminQnaList?repState=1">답변대기</option>
-								<option value="/MODA/qna/adminQnaList?repState=2">답변완료</option>
-								<option value="/MODA/qna/adminQnaList?repState=3">문의종료</option>
-							</select>
-						</div>
-						 <div class="col-sm-6" style="text-align:right;">
-							<div class="dataTables_info" id="dataTables-example_info" role="status" aria-live="polite">총 Q&amp;A수 : 1</div>
-						</div> -->
+						
 								</div>
 								<div class="row">
 									<div class="col-sm-12">
@@ -219,7 +198,8 @@ function fn_qnaDetail(qna_num){
 														<td style="text-align: center; vertical-align: middle;">${adQnaList.QNA_NUM}</td>
 														<td style="text-align: center; vertical-align: middle;">${adQnaList.QNA_CATEGORY}</td>
 														<td style="text-align: center; vertical-align: middle;">${adQnaList.MEMBER_ID}</td>
-														<td style="text-align: center; vertical-align: middle;">${adQnaList.QNA_TITLE}</td>
+														<td style="text-align: center; vertical-align: middle;">
+										<a href=" #" onclick="fn_qnaDetail(${adQnaList.QNA_NUM });">${adQnaList.QNA_TITLE}</a></td>
 														<td style="text-align: center; vertical-align: middle;">
 															<fmt:formatDate value="${adQnaList.QNA_DATE}"
 																pattern="YY.MM.dd HH:mm" />
@@ -231,21 +211,7 @@ function fn_qnaDetail(qna_num){
 														</td>
 														<td style="text-align: center; vertical-align: middle;">
 
-															<%--
-											<c:url var="viewURL" value="/adminQnaDetail.conn" >
-												<c:param name="QNA_NUM" value="${adQnaList.QNA_NUM }" />
-											</c:url>
-											<a href="${viewURL}"> 
-												<input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Cog_font_awesome.svg/32px-Cog_font_awesome.svg.png">
-											</a>&nbsp;&nbsp; 
-											
-											 <c:url var="viewURL2" value="/ginftcon/adminQnaReplyDelete.conn">
-													<c:param name="QNA_NUM"	value="${adQnaList.QNA_NUM}" />
-											</c:url>  
-											<a href="${viewURL2}"> 
-												<input type="image"	src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Trash_font_awesome.svg/32px-Trash_font_awesome.svg.png"
-														onclick="return delchk()">
-											</a> --%> <a onclick="fn_qnaDetail(${adQnaList.QNA_NUM})">
+									 <a onclick="fn_qnaDetail(${adQnaList.QNA_NUM})">
 																<input type="image"
 																src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Cog_font_awesome.svg/32px-Cog_font_awesome.svg.png">
 														</a> <a onclick="fn_qnaDelete(${adQnaList.QNA_NUM})"> <input
