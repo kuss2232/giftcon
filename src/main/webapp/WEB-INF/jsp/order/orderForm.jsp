@@ -47,6 +47,8 @@
 				data : {},
 				success : function(result){
 					order_num = result;
+				},
+				complete : function(){
 					for(var j=1;j<=i;j++)
 					{
 						$.ajax({
@@ -66,10 +68,8 @@
 							}
 						})
 					}
-				},
-				error : function(e, e1, e2){
-					alert("1."+e+"   2."+e1 + "   3."+e2);
 				}
+				
 			})
 			
 			location.href="/giftcon/main.conn";
