@@ -59,6 +59,7 @@ public class LoginController {
 				session.setAttribute("MEMBER_ID", commandMap.get("MEMBER_ID"));
 				session.setAttribute("MEMBER_NUM", check.get("MEMBER_NUM"));
 				session.setAttribute("MEMBER_ADMIN", check.get("MEMBER_ADMIN"));
+				session.setAttribute("MEMBER_STATE", check.get("MEMBER_STATE"));
 				//session.setMaxInactiveInterval(60*60*4);
 				//세션에 멤버아이디 띄움
 				request.setAttribute("MEMBER",check);//로그인한 member정보 main에 보내줌

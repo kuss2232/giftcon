@@ -105,7 +105,11 @@
       $(document).ready(function(){
           $("#btnDelete").on("click", function(e){
              e.preventDefault();
-             fn_delete();
+             if(confirm("정말 탈퇴하시겠습니까?")){
+				fn_delete();
+             } else {
+				return false;
+             }
           });
 
        });
