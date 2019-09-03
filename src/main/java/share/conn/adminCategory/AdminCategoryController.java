@@ -123,8 +123,10 @@ public class AdminCategoryController {
 	//카테고리 삭제
 	@RequestMapping(value = "/adminCategoryDelete.conn")
 	public ModelAndView adminCategoryDelete(CommandMap commandMap) throws Exception{
-		ModelAndView mv = new ModelAndView("/admin/Category/adminCategory1.conn");
+		ModelAndView mv = new ModelAndView();
 		adminCategoryService.deleteCategory(commandMap.getMap());
+		
+		mv.setViewName("redirect:/adminCategory1.conn");
 		return mv;
 	}
 	

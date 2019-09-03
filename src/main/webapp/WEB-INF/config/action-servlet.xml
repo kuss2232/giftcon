@@ -72,7 +72,7 @@
 		<mvc:argument-resolvers>
 			<bean class="share.conn.giftcon.CustomMapArgumentResolver" />
 		</mvc:argument-resolvers>
-	</mvc:annotation-driven>
+	</mvc:annotation-driven> 
 
 	<bean
 		class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />
