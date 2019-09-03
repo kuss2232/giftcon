@@ -45,7 +45,7 @@
 
 function BIG_CATEGORYChange(){
 	var BIG_CATEGORY = $("#BIG_CATEGORY").val();
-	alert("상품이 등록되었습니다");
+	//alert("상품이 등록되었습니다");
 	$.ajax({
 		type:"POST",
 		data: {"SearchKeyword":BIG_CATEGORY},
