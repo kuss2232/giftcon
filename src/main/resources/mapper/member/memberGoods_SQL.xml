@@ -121,6 +121,11 @@ UPDATE GOODS SET GOODS_HITCOUNT = NVL(GOODS_HITCOUNT, 0) +1 WHERE GOODS_NUM = #{
 		REVIEW_REGDATE DESC
 ]]>
 </select>
+
+<!-- 마지막 주문 번호 -->
+<select id ="lastOrderNum" resultType="integer">
+	SELECT MAX(ORDER_NUM) FROM ORDERS
+</select>
 <!--주문 내역 생성 -->
 <insert id="createOrder" parameterType="hashmap" >
 <![CDATA[
@@ -133,7 +138,7 @@ UPDATE GOODS SET GOODS_HITCOUNT = NVL(GOODS_HITCOUNT, 0) +1 WHERE GOODS_NUM = #{
 		ORDER_PRICE,
 		ORDER_PAYMENT
 	) VALUES (
-		ORDER_NUM_SEQ.NEXTVAL,
+		#{ORDER_NUM},
 		#{ORDER_AMOUNT},
 		(SELECT MEMBER_NUM FROM MEMBER WHERE MEMBER_ID = #{MEMBER_ID}),
 		#{GOODS_NUM},

@@ -53,5 +53,10 @@ public class OrderServiceImpl implements OrderService{
 		return orderDAO.orderMailSub(map);
 	}
 	
+	@Override
+	public int lastOrderNum() throws Exception{
+		return orderDAO.lastOrderNum();
+	}
+	
 	
 }

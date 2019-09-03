@@ -48,5 +48,9 @@ public class OrderDAO extends AbstractDAO{
 	public List<Map<String, Object>> orderMailSub(Map<String, Object> map){
 		return selectList("adminOrderlist.orderMailSub", map);
 	}
+	
+	public int lastOrderNum() {
+		return Integer.parseInt(selectOne("memberGoods.lastOrderNum").toString());
+	}
 
 }

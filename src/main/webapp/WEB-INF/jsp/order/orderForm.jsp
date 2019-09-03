@@ -14,7 +14,7 @@
 <link rel="stylesheet" type="text/css" href="/giftcon/css/main.css">
 <script type="text/javascript">
 		$(document).ready(function(){
-			$("#btnOrder").on("click", function(e){
+			$("#orderBtn").on("click", function(e){
 				e.preventDefault();
 				fn_order();
 				fn_amount(num);
@@ -22,9 +22,11 @@
 
 		});
 		
+		
 		function fn_order(){
 			var i = $("#number").val();
 			var url = "";
+			var order_num = 0;
 			
 			var comSubmit = new ComSubmit("order");
 			if( $("input[name='ORDER_PAYMENT']:checked").length==0){  
@@ -39,24 +41,37 @@
 			else
 				url = "/giftcon/insertOrder.conn";
 			
-			for(var j=1;j<=i;j++)
-			{
-				$.ajax({
-					type : "POST",
-					url : url,
-					data : {"ORDER_AMOUNT":$("#CART_AMOUNT"+j).val(),
-						"MEMBER_ID":$("#MEMBER_ID"+j).val(),
-						"GOODS_NUM":$("#GOODS_NUM"+j).val(),
-						"CART_NUM":$("#CART_NUM"+j).val(),
-						"ORDER_PRICE":$("#totalPrice"+j).val(),
-						"ORDER_PAYMENT":$("#ORDER_PAYMENT").val()
-						},
-					//data : userData,
-					error : function(erromr,e) {
-						alert("서버가 응답하지 않습니다. \n다시 시도해주시기 바랍니다."+ erromr + e);
+			$.ajax({
+				type : "POST",
+				url : "/giftcon/lastOrderNum.conn",
+				data : {},
+				success : function(result){
+					order_num = result;
+					for(var j=1;j<=i;j++)
+					{
+						$.ajax({
+							type : "POST",
+							url : url,
+							data : {"ORDER_NUM":order_num,
+								"ORDER_AMOUNT":$("#CART_AMOUNT"+j).val(),
+								"MEMBER_ID":$("#MEMBER_ID"+j).val(),
+								"GOODS_NUM":$("#GOODS_NUM"+j).val(),
+								"CART_NUM":$("#CART_NUM"+j).val(),
+								"ORDER_PRICE":$("#totalPrice"+j).val(),
+								"ORDER_PAYMENT":$("#ORDER_PAYMENT").val()
+								},
+							//data : userData,
+							error : function(e) {
+								alert("서버가 응답하지 않습니다. \n다시 시도해주시기 바랍니다.");
+							}
+						})
 					}
-				})
-			}
+				},
+				error : function(e, e1, e2){
+					alert("1."+e+"   2."+e1 + "   3."+e2);
+				}
+			})
+			
 			location.href="/giftcon/main.conn";
 			
 		}
@@ -250,7 +265,7 @@
 					<!-- /end:send_step03 -->
 					<!-- start:btn_more -->
 					
-					<div class="btn1"><a href="javascript:goOrder();" id="btnOrder" class="btnBigBgBlue4 w300">주문하기</a></div>
+					<div class="btn1"><a href="javascript:goOrder();" id="orderBtn" class="btnBigBgBlue4 w300">주문하기</a></div>
 					<!-- /end:btn_more -->
 					</form>
 				</div>

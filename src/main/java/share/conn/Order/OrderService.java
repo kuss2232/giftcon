@@ -21,4 +21,6 @@ public interface OrderService {
 	
 	
 	public List<Map<String,Object>> orderMailSub(Map<String, Object> map) throws Exception;
+	
+	public int lastOrderNum() throws Exception;
 }

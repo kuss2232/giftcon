@@ -79,7 +79,6 @@ public class CartController {
 
 		mv.addObject("cartList", cartList);
 		mv.setViewName("mypage/cartList");
-
 		return mv;
 	}
 	
@@ -119,6 +118,7 @@ public class CartController {
 	//회원별 장바구니 전체 상품 수
 	@RequestMapping(value = "/cart/addOrderToCart.conn")
 	public void addOrderToCart(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		//갯수 검사 하기
 		cartService.addOrderToCart(commandMap.getMap());
 	}
 }

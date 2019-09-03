@@ -1,6 +1,7 @@
 package share.conn.Order;
 
 import java.io.File;
+import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -30,6 +31,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -136,7 +138,16 @@ public class OrderController {
 	@RequestMapping("/insertCartOrder.conn")
 	public void insertCartOrder(CommandMap commandMap,HttpServletResponse response) throws Exception{
 		 adminOrderService.changeAmount(commandMap.getMap());
-		cartService.addOrderToCart(commandMap.getMap());
+		 cartService.addOrderToCart(commandMap.getMap());
+	}
+	
+	//마지막 오더 번호
+	@RequestMapping("/lastOrderNum.conn")
+	public void lastOrderNum(HttpServletResponse response) throws Exception{
+		PrintWriter out = response.getWriter();
+		int num = orderService.lastOrderNum()+1;
+		System.out.println(num+"******************");
+		out.print(num);
 	}
 	
 	
@@ -145,6 +156,7 @@ public class OrderController {
 		adminOrderService.changeAmount(commandMap.getMap());
 		orderService.insertOrder(commandMap.getMap());
 	}
+	
 	
 	@RequestMapping("/orderList.conn")
 	public ModelAndView orderList(CommandMap commandMap, HttpServletRequest request)throws Exception{
@@ -161,7 +173,7 @@ public class OrderController {
 	public ModelAndView orderDetail(CommandMap commandMap, HttpServletRequest request)throws Exception{
 		ModelAndView mv = new ModelAndView("/mypage/userOrderDetail");
 		List<Map<String, Object>> adOrderList = adminOrderService.orderDetail(commandMap.getMap());
-		//mv.addObject("OrderCount", adOrderList.size());
+		mv.addObject("OrderCount", adOrderList.size());
 		mv.addObject("orderList", adOrderList);
 		
 		return mv;
@@ -181,6 +193,7 @@ public class OrderController {
 		adminOrderService.updateOrderPayment(commandMap.getMap());
 	}
 	
+	//이메일 보내기
 	@RequestMapping("/send_email.conn")
 	public void sendEmail(HttpServletResponse response, HttpServletRequest request, CommandMap commandMap, HttpSession session) throws Exception{
 		List<Map<String, Object>> order = orderService.orderMailSub(commandMap.getMap());
