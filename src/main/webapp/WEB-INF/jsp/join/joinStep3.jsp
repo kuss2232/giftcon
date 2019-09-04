@@ -8,6 +8,9 @@
 	<link rel="stylesheet" type="text/css" href="/giftcon/css/jquery/swiper.min.css">
 	<link rel="stylesheet" type="text/css" href="/giftcon/css/jquery/jquery-ui.css">
 	<link rel="stylesheet" type="text/css" href="/giftcon/css/main.css">
+	
+	
+	
 </head>	
 <%@ include file="/WEB-INF/include-header.jspf" %>
 <%@ include file="/WEB-INF/include-body.jspf" %>
@@ -16,7 +19,7 @@
 		<div class="contents">
 			
 
-</script>
+
 			<!-- /end:sub_lnb -->
 			<!-- start:contents -->
 			<div class="subWrap">
@@ -100,9 +103,22 @@
 							  </td>
 							</tr>
 							<tr>
+							  <th scope="row"><label for="GENDER"><span class="mustTxt">*</span> 성별</label></th>
+							  <td class="last"><input type="radio" id="gender1" name="MEMBER_GENDER" value="1">&nbsp;남자  &nbsp;
+							  				   <input type="radio" id="gender2" name="MEMBER_GENDER" value = "2">&nbsp;여자 
+								  <span class="inpTxt" id="emailTxt">* 체크해주세요!!</span>
+							  </td>
+							</tr>
+							<tr>
+							  <th scope="row"><label for="BIRTHDAY"><span class="mustTxt">*</span> 생년월일</label></th>
+							  <td class="last"><input type="text" class="ipt2 w230 emailonly" id="birthday" name="MEMBER_BIRTHDAY" title="생년월일입력" maxlength="50" placeholder="ex) 901010"> 
+								  <span class="inpTxt" id="emailTxt">* 6자리로 입력해주세요 ex) 901010</span>
+							  </td>
+							</tr>
+							<tr>
 							  <th scope="row"><label for="emal"><span class="mustTxt">*</span> 이메일주소</label></th>
 							  <td class="last"><input type="text" class="ipt2 w230 emailonly" id="emailId" name="MEMBER_EMAIL" title="이메일아이디입력" maxlength="50" value="${MEMBER_EMAIL}" disabled="disabled"> 
-								  <span class="inpTxt" id="emailTxt"></span>
+								<span class="inpTxt" id="emailTxt"></span>
 							  </td>
 							</tr>
 						  </tbody>
@@ -164,15 +180,27 @@ function fn_checkId() {
 	}
 }
 function fn_insert(){
+	var  regexp = /^[0-9]*$/
+	v = $("#btnjoin").val();
+	if(!regexp.test(v)){
+		alert("생년월일 6자리만 입력하세요");
+		$("#btnjoin").val(v.replace(regexp,""));
+	}
 	var comSubmit = new ComSubmit(); 
+	var gender = $("input[name='MEMBER_GENDER']:checked").val();
 	comSubmit.setUrl("<c:url value='/joinComplete.conn' />");
 	comSubmit.addParam("MEMBER_ID", $("#userId").val());
 	comSubmit.addParam("MEMBER_PASSWD", $("#userPwd").val());
 	comSubmit.addParam("MEMBER_EMAIL", $("#emailId").val());
 	comSubmit.addParam("MEMBER_PHONE", $("#mobile").val());
 	comSubmit.addParam("MEMBER_NAME", $("#userName").val());
+	comSubmit.addParam("MEMBER_GENDER", gender);
+	comSubmit.addParam("MEMBER_BIRTHDAY", $("#birthday").val());
 	comSubmit.submit(); 
 }
+
+
+
 </script>
 </body>
 </html>

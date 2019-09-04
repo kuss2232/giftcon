@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Random;
 
+
 import javax.annotation.Resource;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -67,6 +68,7 @@ public class JoinController {
 		//String emailId = (String) Map.getMap().get("MEMBER_ID");
 		String emailId = request.getParameter("MEMBER_EMAIL");
 		System.out.println(emailId);
+		
 		mv.addObject("MEMBER_EMAIL",emailId);
 		mv.setViewName("/join/joinStep3");
 		//session.setAttribute("emailId",emailId);
@@ -111,7 +113,7 @@ public class JoinController {
 		mv.addObject("authNum",authNUm);
 		mv.setViewName("/join/joinStep1");
 
-		System.out.println("오드넘"+authNUm);
+		System.out.println("인증번호"+authNUm);
 		return mv;
 	}
 	@RequestMapping(value="/joinStep1/modal_email_auth_success.conn", method = RequestMethod.POST)
@@ -196,6 +198,7 @@ public class JoinController {
 	@RequestMapping(value="/joinComplete.conn", method=RequestMethod.POST)
 	public ModelAndView joinComplete(CommandMap commandMap, HttpServletRequest request) throws Exception{
 		ModelAndView mv = new ModelAndView();
+		System.out.println("sss"+ commandMap.get("MEMBER_GENDER"));
 		String paramId = request.getParameter("MEMBER_ID");
 		if( joinService.checkId(paramId) < 1) {
 			joinService.insertMember(commandMap.getMap());
