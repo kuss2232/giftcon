@@ -537,8 +537,8 @@ ORDER BY
 <select id="callData" parameterType="hashmap" resultType="hashmap">
 	<![CDATA[
 		SELECT
-			A.BIRTHDAY,
-			A.GENDER,
+			A.MEMBER_BIRTHDAY,
+			A.MEMBER_GENDER,
 			B.GOODS_NAME,
 			C.BIG_CATEGORY,
 			C.SMALL_CATEGORY
@@ -559,14 +559,14 @@ ORDER BY
 			GOODS_NAME,
 			BIG_CATEGORY,
 			SMALL_CATEGORY,
-			GENDER
+			MEMBER_GENDER
 		)VALUES(
 			SYSDATE,
 			#{AGE},
 			#{GOODS_NAME},
 			#{BIG_CATEGORY},
 			#{SMALL_CATEGORY},
-			#{GENDER})
+			#{MEMBER_GENDER})
 	]]>
 </insert>
 

@@ -323,7 +323,8 @@ public class GoodsController {
 		commandMap.put("MEMBER_ID", MEMBER_ID);
 		//데이타 불러옴
 		Map<String, Object> data = goodsService.callData(commandMap.getMap());
-		String AGE = (String)data.get("BIRTHDAY");
+		System.out.println("ddd" + data.get("MEMBER_GENDER"));
+		String AGE = (String)data.get("MEMBER_BIRTHDAY");
 		data.put("AGE", AGE.substring(0, 2));
 //		System.out.println("나이는??"+AGE.substring(0, 2));
 		//데이터테이블에 넣음

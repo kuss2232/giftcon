@@ -98,7 +98,7 @@
 								<li><a href="/giftcon/adminQnaList.conn">- Q&A</a></li>
 								<li><a href="/giftcon/adminCategory1.conn">- 카테고리추가</a></li>
 								<li><a href="/giftcon/adminReviewList.conn">- 리뷰관리</a></li>
-								<li><a href="/giftcon/adminOut.conn" id="outputData">- 상품조회정보 생성</a></li>
+								<li><a href="/giftcon/adminOut.conn"onClick ="alert('C:data1로 가서 확인하세요!');">- 상품조회정보 생성</a></li>
 							</ul>
 						</li>
 					</ul>
@@ -117,11 +117,5 @@
 	</div>
 	<!-- /#wrapper -->
 </body>
-<script type="text/javascript">
-$(document).ready(function(){
-	$("#outPutData").on("click", function(){
-		alert("성공!");
-	});
-});
-</script>
+
 </html>
