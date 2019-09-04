@@ -20,4 +20,6 @@ public interface GoodsService {
 	public List<Map<String, Object>> goodsSaleCategoryList2(String[] category) throws Exception;
 	public List<Map<String, Object>> goodsGrade() throws Exception;
 	public Map<String, Object> goodsDetail(Map<String, Object> map) throws Exception;
+	public Map<String, Object> callData(Map<String, Object>map) throws Exception;
+	public void inputData(Map<String, Object> map) throws Exception;
 }

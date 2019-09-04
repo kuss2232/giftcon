@@ -117,5 +117,12 @@ public class GoodsDAO extends AbstractDAO{
 	public Map<String, Object> goodsDetail(Map<String, Object> map) throws Exception {
 		return (Map<String, Object>) selectOne("memberGoods.goodsDetail", map);
 	}
-
+	
+	public Map<String, Object> callData(Map<String, Object> map) throws Exception{
+		return (Map<String, Object>) selectOne1("memberGoods.callData", map);
+	}
+	
+	public void inputData(Map<String, Object>map) throws Exception{
+		insert("memberGoods.inputData",map);
+	}
 }

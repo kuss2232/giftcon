@@ -534,4 +534,40 @@ ORDER BY
 ]]>		
 </select>
 
+<select id="callData" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+		SELECT
+			A.BIRTHDAY,
+			A.GENDER,
+			B.GOODS_NAME,
+			C.BIG_CATEGORY,
+			C.SMALL_CATEGORY
+		FROM
+			MEMBER A, GOODS B, CATEGORY C
+		WHERE
+			A.MEMBER_ID = #{MEMBER_ID}
+			AND B.GOODS_NUM = #{GOODS_NUM}
+			AND B.CATEGORY_NUM = C.CATEGORY_NUM
+	]]>
+</select>
+
+<insert id="inputData" parameterType="hashmap">
+	<![CDATA[
+		INSERT INTO DATATABLE1(
+			DAY_CHECK,
+			AGE,
+			GOODS_NAME,
+			BIG_CATEGORY,
+			SMALL_CATEGORY,
+			GENDER
+		)VALUES(
+			SYSDATE,
+			#{AGE},
+			#{GOODS_NAME},
+			#{BIG_CATEGORY},
+			#{SMALL_CATEGORY},
+			#{GENDER})
+	]]>
+</insert>
+
 </mapper>

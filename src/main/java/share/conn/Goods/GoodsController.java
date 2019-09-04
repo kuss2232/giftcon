@@ -318,13 +318,24 @@ public class GoodsController {
 	public ModelAndView goodsDetail(CommandMap commandMap, HttpServletResponse response, HttpServletRequest request,
 	         HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
+		String MEMBER_ID = (String)session.getAttribute("MEMBER_ID");
+		if(MEMBER_ID != null) {
+		commandMap.put("MEMBER_ID", MEMBER_ID);
+		//데이타 불러옴
+		Map<String, Object> data = goodsService.callData(commandMap.getMap());
+		String AGE = (String)data.get("BIRTHDAY");
+		data.put("AGE", AGE.substring(0, 2));
+//		System.out.println("나이는??"+AGE.substring(0, 2));
+		//데이터테이블에 넣음
+		goodsService.inputData(data);
+		}
 		
-		System.out.println(commandMap.get("GOODS_NUM"));
+//		System.out.println("GOODS_NUM" +commandMap.get("GOODS_NUM"));
 		Map<String, Object> goodsDetail = goodsService.goodsDetail(commandMap.getMap());
 		List<Map<String, Object>> reviewDetail = reviewService.searchReview(commandMap.getMap());
 		
 		mv.addObject("reviewDetail", reviewDetail);
-		mv.addObject("MEMBER_ID",session.getAttribute("MEMBER_ID"));
+		mv.addObject("MEMBER_ID",MEMBER_ID);
 		mv.addObject("MEMBER_NUM",session.getAttribute("MEMBER_NUM"));
 		mv.addObject("goodsDetail", goodsDetail);
 		mv.setViewName("goods/goodsDetail");		

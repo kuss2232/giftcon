@@ -101,5 +101,14 @@ public class GoodsServiceImpl implements GoodsService{
 		Map<String, Object> goodsDetail = goodsDAO.goodsDetail(map);
 		return goodsDetail;
 	}
-
+	
+	
+	public Map<String, Object> callData(Map<String, Object>map) throws Exception{
+		Map<String, Object> data = goodsDAO.callData(map);
+		return data;
+	}
+	
+	public void inputData(Map<String, Object>map) throws Exception{
+		goodsDAO.inputData(map);
+	}
 }
