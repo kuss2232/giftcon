@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 	<link rel="stylesheet" type="text/css" href="/giftcon/css/common.css">
 	<link rel="stylesheet" type="text/css" href="/giftcon/css/sub.css">
 	<link rel="stylesheet" type="text/css" href="/giftcon/css/jquery/swiper.min.css">
@@ -306,5 +307,6 @@ $(function () {
 	</div>
 	<!--/end:contents -->
 </div>
+	
 </body>
 </html>
