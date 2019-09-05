@@ -57,9 +57,10 @@ $(document).ready(function(){
 	function fn_email_code() {
 		var emailId = $("#email_Id").val();
 		var email = {"MEMBER_EMAIL":emailId}
-		if (emailId.length < 1) {
+		var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+		if (emailId.length< 1) {
 			alert("이메일을 입력하세요.");
-		} else if (emailId.value == "") {
+		} else if (regExp.test(emailId) == false) {
 			alert("이메일을 정확히 입력하세요.");
 			console.log("로그 내용1");
 		} else {
