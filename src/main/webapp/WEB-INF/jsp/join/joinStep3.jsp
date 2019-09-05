@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@include file="../module/header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -180,11 +181,12 @@ function fn_checkId() {
 	}
 }
 function fn_insert(){
-	var  regexp = /^[0-9]*$/
-	v = $("#btnjoin").val();
+	var  regexp = /^([0-9][0-9]|\d{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/;
+	v = $("#birthday").val();
 	if(!regexp.test(v)){
 		alert("생년월일 6자리만 입력하세요");
 		$("#btnjoin").val(v.replace(regexp,""));
+		return;
 	}
 	var comSubmit = new ComSubmit(); 
 	var gender = $("input[name='MEMBER_GENDER']:checked").val();
@@ -197,6 +199,7 @@ function fn_insert(){
 	comSubmit.addParam("MEMBER_GENDER", gender);
 	comSubmit.addParam("MEMBER_BIRTHDAY", $("#birthday").val());
 	comSubmit.submit(); 
+	alert("회원가입이 되셧습니다.!!")
 }
 
 
@@ -204,3 +207,4 @@ function fn_insert(){
 </script>
 </body>
 </html>
+<%@include file="../module/footer.jsp"%>

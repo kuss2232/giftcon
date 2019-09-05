@@ -186,10 +186,10 @@ $(function () {
 							</li>
 						</ul> -->
 					</li>
-						<li  align="center">
+						<li>
 								<a href="/giftcon/notice.conn" title="고객센터" class="">고객센터</a>
 						</li>
-						<li  align="center">
+						<li>
 					<a href="#"  id="budgetBtn">
 					맞춤 계산기</a>
 						</li>
