@@ -253,6 +253,9 @@ UPDATE GOODS SET GOODS_HITCOUNT = NVL(GOODS_HITCOUNT, 0) +1 WHERE GOODS_NUM = #{
 	<if test='big.equals("5")'>
 		AND C.BIG_CATEGORY = '편의점/마트'
 	</if>
+	<if test='big.equals("6")'>
+		AND C.BIG_CATEGORY = '문화/생활/기타'
+	</if>
 </select>
 <!-- 카테고리2 상품리스트 -->
 <select id="goodsSmallCategoryList" parameterType="hashmap" resultType="hashmap">

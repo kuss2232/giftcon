@@ -225,6 +225,7 @@ function fn_goInsertForm(){
 								<option value ="/giftcon/goods/adminGoodsList.conn?searchNum=3&SearchKeyword=아이스크림/빙수">아이스크림/빙수</option>
 								<option value ="/giftcon/goods/adminGoodsList.conn?searchNum=3&SearchKeyword=베이커리/도넛">베이커리/도넛</option>
 								<option value ="/giftcon/goods/adminGoodsList.conn?searchNum=3&SearchKeyword=편의점/마트">편의점/마트</option>
+								<option value ="/giftcon/goods/adminGoodsList.conn?searchNum=3&SearchKeyword=문화/생활/기타">문화/생활/기타</option>
 							</select>										
 						</div>
 						<div class="col-sm-6" style="text-align:right;">

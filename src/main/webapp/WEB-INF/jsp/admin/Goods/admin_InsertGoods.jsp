@@ -173,6 +173,7 @@ function BIG_CATEGORYChange(){
 						<OPTION value='아이스크림/빙수'>아이스크림/빙수</OPTION>
 						<OPTION value='베이커리/도넛'>베이커리/도넛</OPTION>
 						<OPTION value='편의점/마트'>편의점/마트</OPTION>
+						<OPTION value='문화/생활/기타'>문화/생활/기타</OPTION>
 						 
 						</select>
 						<SELECT id="SMALL_CATEGORY" name="SMALL_CATEGORY">

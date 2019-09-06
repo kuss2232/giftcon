@@ -170,7 +170,9 @@
 
 							<a href="javascript:fn_login('편의점/마트')"> <font size="3px">편의점/마트</font></a>&nbsp;&nbsp;&nbsp;/
 
-							<a href="javascript:fn_login('커피/음료')"><font size="3px">커피/음료</font></a>&nbsp;&nbsp;&nbsp;
+							<a href="javascript:fn_login('커피/음료')"><font size="3px">커피/음료</font></a>&nbsp;&nbsp;&nbsp;/
+							
+							<a href="javascript:fn_login('문화/생활/기타')"><font size="3px">문화/생활/기타</font></a>&nbsp;&nbsp;&nbsp;
 
 						</div>
 						<!-- /end:product_search -->

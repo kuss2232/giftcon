@@ -135,6 +135,7 @@
 										<option value="아이스크림/빙수">아이스크림/빙수</option>
 										<option value="편의점/마트">편의점/마트</option>
 										<option value="베이커리/도넛">베이커리/도넛</option>
+										<option value="문화/생활/기타">문화/생활/기타</option>
 							</select> 
 					</div>
 				<!--  <a href ="#this" class="btn" id="insert">작성하기</a> -->

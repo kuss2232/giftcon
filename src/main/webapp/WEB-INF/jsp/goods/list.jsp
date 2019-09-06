@@ -81,6 +81,7 @@ $(document).ready(function() {
 					<c:url var="viewURL3" value=""><c:param name="big" value="3" /></c:url>
 					<c:url var="viewURL4" value=""><c:param name="big" value="4" /></c:url>
 					<c:url var="viewURL5" value=""><c:param name="big" value="5" /></c:url>
+					<c:url var="viewURL6" value=""><c:param name="big" value="6" /></c:url>
 				<li><a href="${viewURL1}" id="BIG_CATEGORY" class="">
 				<img src="/giftcon/images/big/aajjw8f85icn.jpg" alt="치킨/피자/버거"></a></li>
 				<li><a href="${viewURL2}" id="BIG_CATEGORY" class="">
@@ -91,6 +92,8 @@ $(document).ready(function() {
 				<img src="/giftcon/images/big/ban.png" alt="베이커리/도넛"></a></li>
 				<li><a href="${viewURL5}" id="BIG_CATEGORY" class="">
 				<img src="/giftcon/images/big/he4t8c1h5kyy.jpg" alt="편의점/마트"></a></li>
+				<li><a href="${viewURL6}" id="BIG_CATEGORY" class="">
+				<img src="/giftcon/images/big/ticket.jpg" alt="문화/생활/기타"></a></li>
 			</ul>
 		</div>
 		<div class="searchCate">
