@@ -4,17 +4,34 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<style>
+	.quick{position:absolute; right:100px; top:280px; width:90px;}
+	.quicktop{}
+	.quicktop span{display:inline-block; width:88px; height:21px; text-align:center; color:#999999; font-size:12px; border:solid 1px #d9d9d9; margin-bottom:1px; cursor:pointer; background:#fff;}
+	.quicktop span.on{display:inline-block; width:88px; height:20px; margin-bottom:11px; text-align:center; color:#fff; background:#333333; font-weight:normal;}
+
+	.quick_in{width:69px;overflow:hidden; border:solid 1px #d9d9d9;margin:0 auto; margin-bottom:10px; background: #fff;}
+	.quick_in ul{}
+	.quick_in ul li{border-bottom:solid 1px #d9d9d9;}
+	.quick_in ul li:last-child, .quick_in ul li.last {border-bottom:none;}
+	.quick_in ul li img{width:58px; height:auto; margin-left:5px; padding: 5px 0;}
+	.quickbt{}
+	.quickbt span{display:inline-block;}
+	.quickbt span:first-child{margin-right:9px;}
+	.quick_etcbt{display:block; width:88px; height:18px; text-align:center; border:solid 1px #d9d9d9; color:#999999; font-size:12px; padding:3px 0 0 0; margin-bottom:1px; }
+	</style>
+	
 <style>
-#floatMenu {
+#floatdiv{z-index:9999;}
+#floatdiv {
 	position: absolute;
-	width: 200px;
-	height: 200px;
+	width: 100px;
+	height: 100px;
 	left: 50px;
-	top: 10px;
-	background-color: #606060;
-	color: #fff;
+	top: 10px;	
 }
 </style>
+
 <script>
 $(document).ready(function() {
 
@@ -34,7 +51,6 @@ $(document).ready(function() {
 		$("#floatMenu").stop().animate({
 			"top" : newPosition
 		}, 500);
-
 	}).scroll();
 
 });
@@ -57,13 +73,17 @@ $(document).ready(function() {
 	<%}	}%>
 		
 	
-	<div style="height:5px">
+
+<div class="quick" id="floatMenu" style="top: 280px;">
+
+<a href="/giftcon/goods/list.conn" title="추천상품바로가기" style="display:block; margin-bottom:4px;">
+	<img src="/giftcon/images/download.jpg" width="100" alt="추천상품보기" style="margin-left: 5px;"><br>
+	 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button"value="전체상품" style="font-size:14px; color:black;">
+</a>
+<a href="/giftcon/cart/cartlist.conn">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button"value="장바구니" style="font-size:14px; color:black;"></a>
 
 </div>
-<div id="floatMenu">
-플로팅 메뉴
-</div>
-	
+
 </body>
 </html>
 <%@include file="../module/footer.jsp"%>

@@ -6,6 +6,34 @@
 <html>
 <head>
 
+<style>
+.form {
+ width: 498px;
+ height: 300px;
+ border-radius: 25px;
+ border: 5px double #999;
+ margin: 30px auto;
+}
+.form2 {
+ font-size:15px;
+ margin: 15px auto;
+ margin-left:30px;
+
+
+
+
+
+}
+.form3 {
+ float: left;
+ /*   background:#f00;  */
+}
+
+
+
+
+</style>
+
 <title>이메일인증</title>
 	<link rel="stylesheet" type="text/css" href="/giftcon/css/common.css">
 	<link rel="stylesheet" type="text/css" href="/giftcon/css/sub.css">
@@ -137,28 +165,27 @@ $(document).ready(function(){
 		}
 	}
 </script>
-<div id = "emailCheck" style="display:none; align:center;">
-<form id="frm" name="frm" method="post" class="form-horizontal">
+<div id = "emailCheck" style="display:none;">
+<form id="frm" name="frm" method="post">
 
 	<input name="agreement" value="o" type="hidden">
 	<section style="padding: 30px 20px;">
-		<div class="form-group">
-			<label for="inputEmail3" class="col-xs-4 col-lg-4 control-label">이메일</label>
-			<div class="col-xs-20 col-lg-20 form-inline">
-				<input name="MEMBER_EMAIL" id="email_Id" class="form-control" size="25" type="text"> 
+	<div class= form>
+		<div class="form2">
+			이메일:  <input type="text" name="MEMBER_EMAIL" id="email_Id"  size="25" > 
 				<a href="#" id="check"	class="btn btn-default form-control">인증번호받기</a>
+			
+		</div>
+		<div class="form2">
+			
+			<div class="form3">
+				인증번호:  <input id="sing_code" type="password"><br><br>
+				<a href="#" id="confirm">회원가입하기</a>
 			</div>
 		</div>
-		<div class="form-group">
-			<label for="inputEmail3" class="col-sm-4 control-label">인증번호</label>
-			<div class="col-sm-20">
-				<input id="sing_code" type="password">
 
-			</div>
-		</div>
-
-		<div class="text-center" style="padding-top: 10px">
-			<a href="#" id="confirm" class="btn btn-default">회원가입하기</a>
+		
+		
 		</div>
 	</section>
 </form>

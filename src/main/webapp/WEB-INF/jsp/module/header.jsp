@@ -20,7 +20,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta http-equiv="Cache-Control" content="No-Cache">
 <meta http-equiv="Pragma" content="No-Cache">
-<meta name="description" content="대량 쿠폰 발송, 웰컴 BIZ 포인트 3천원, 최대 12% 적립, 예산 검색, MMS 꾸미기, 포인트 교환소">
+
 
 <!-- Include the CSRF token within meta tags -->
 <meta name="_csrf" content="6bfd5a00-f0ec-4ac5-8233-e1ac1cfc06a2">
