@@ -178,7 +178,7 @@ public class OrderController {
 		
 		return mv;
 	}
-	
+
 	//주문 취소시 수량 복구 & 삭제
 	@RequestMapping("/restoreAmount.conn")
 	public void restoreAmount(HttpServletResponse response,CommandMap commandMap, HttpServletRequest request) throws Exception {

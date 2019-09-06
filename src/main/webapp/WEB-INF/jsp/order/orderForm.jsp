@@ -9,6 +9,8 @@
 <title>Insert title here</title>
 <script src="/giftcon/js/common.js" charset="utf-8"></script>
 <script src="/giftcon/css/jquery/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<!-- <script src="/giftcon/js/kakaoSdk.js"></script> -->
 <link rel="stylesheet" type="text/css" href="/giftcon/css/sub.css">
 <link rel="stylesheet" type="text/css" href="/giftcon/css/common.css">
 <link rel="stylesheet" type="text/css" href="/giftcon/css/main.css">
@@ -19,14 +21,22 @@
 				fn_order();
 				fn_amount(num);
 			});
+			if(! /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+	            $('#kakaoMobile').attr('disabled', 'disabled');
+	            $('#kakaoMobile').removeClass('btn_pay_hover');
+	            $('#kakaoMobile').css('cursor','no-drop');
+	        }
 
 		});
 		
 		
 		function fn_order(){
+			
 			var i = $("#number").val();
-			var url = "";
-			var order_num = 0;
+			var kakao = $("input[name='ORDER_PAYMENT']:checked").val();
+			var IMP = window.IMP; 
+	        IMP.init('imp97218771'); 
+	        var msg;
 			
 			var comSubmit = new ComSubmit("order");
 			if( $("input[name='ORDER_PAYMENT']:checked").length==0){  
@@ -34,12 +44,50 @@
 			      return;
 			}
 			
-			alert("결제되었습니다.");
+			if($("input[name='ORDER_PAYMENT']:checked").val() == "pc")
+			{
+				IMP.request_pay({
+		            pg : 'kakaopay',
+		            pay_method : 'card',
+		            merchant_uid : 'merchant_' + new Date().getTime(),
+		            name : $("#gnames").val() + "외 "+i-1+"건" ,   // 상품명
+		            amount : $("#totalPrice1").val(),         // 금액
+		            buyer_email : 'TEST@naver.com',
+		            buyer_name : 'TEST',
+		            buyer_tel : '01000000000',
+		            buyer_addr : '123',
+		            buyer_postcode : '123-456',
+		        }, function(rsp) {
+		        	if ( rsp.success ) {
+		        		fn_DbAdd(i);
+		            } else {
+		                msg = '결제에 실패하였습니다. 다시 시도해주십시오.';
+		                msg += '\n내용 : ' + rsp.error_msg;
+		                alert(msg);
+		                location.href = "<%=request.getContextPath()%>/main.conn";
+		            }
+
+		        });
+			}
+			else
+			{
+				fn_DbAdd(i);
+			}
+			
+		}
+		
+		function fn_DbAdd(i)
+		{
+			var url = "";
+			var order_num = 0;
+			var total = 0;
+			
 			if(i>=2)
 				url = "/giftcon/insertCartOrder.conn";
-			
 			else
 				url = "/giftcon/insertOrder.conn";
+			
+			total = Integer.parseInt($("#totalPrice1").val());
 			
 			$.ajax({
 				type : "POST",
@@ -61,32 +109,57 @@
 								"CART_NUM":$("#CART_NUM"+j).val(),
 								"ORDER_PRICE":$("#totalPrice"+j).val(),
 								"ORDER_PAYMENT":$("#ORDER_PAYMENT").val()
-								},
-							//data : userData,
+							},
 							error : function(e) {
 								alert("서버가 응답하지 않습니다. \n다시 시도해주시기 바랍니다.");
 							}
 						})
 					}
 				}
-				
 			})
-			
 			location.href="/giftcon/main.conn";
-			
 		}
 		
-	      function fn_Amount(num) 
-	      {
-	         $("#CART_AMOUNT"+num).val($("#AMOUNT"+num).val());
-	         
-	         var price = $("#gp").text()*1;
-	         var amount = $("#AMOUNT"+num).val()*1;
-	         var disPrice = $("#gdp").text()*1;
-	         var q = price*amount;
-	         var w = disPrice*amount;
-	         var e = (price-disPrice)*amount;
-
+/*  		function fn_Kpay(agent,i,price)
+		{
+ 			$.ajax({
+ 				type : "POST",
+ 				url : "/giftcon/kakaos.conn",
+ 				data : {
+ 					"Content-Type" : "application/x-www-form-urlencoded;charset=utf-8",
+ 					"Authorization" : "KakaoAK " + "0b02f095cf5f90b9bbe7eadcd70b9062", 
+ 	 		    	"cid": "TC0ONETIME",
+ 	 				"partner_order_id": "1001",
+ 	 				"partner_user_id": "sharecon",
+ 	 				"item_name": "라이언빵",
+ 	 				"quantity": "1",
+ 	 				"total_amount": price,
+ 	 				"vat_amount": "200",
+ 	 				"tax_free_amount": "0",
+ 	 				"approval_url": "localhost:8080/giftcon/kakaoPaySuccess.conn",
+ 	 				"fail_url": "localhost:8080/giftcon/main.conn",
+ 	 				"cancel_url": "localhost:8080/giftcon/main.conn"
+ 				},
+ 				success : function(data){
+ 					localhost.href=data;
+ 				},
+ 				error : function(request,status,error){
+ 					alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+ 				}
+ 			})
+		} */
+		
+		function fn_Amount(num) 
+		{
+		    $("#CART_AMOUNT"+num).val($("#AMOUNT"+num).val());
+		    
+		    var price = $("#gp").text()*1;
+		    var amount = $("#AMOUNT"+num).val()*1;
+		    var disPrice = $("#gdp").text()*1;
+		    var q = price*amount;
+		    var w = disPrice*amount;
+		    var e = (price-disPrice)*amount;
+		
 			$("#priceOne1").text(q);
 			$("#priceOne2").text(w);
 			$("#priceOne2_1").text(w);
@@ -94,6 +167,8 @@
 			$("#disPrice").text(e)
 			$(".totalP").val(w);
 		}
+
+	      
 
 	</script>
 </head>
@@ -136,10 +211,12 @@
 							  <th class="alignC last">유효기간</th>
 							</tr>
 							<c:set var="i" value="0"/>
+							<c:set var="gname" value="a"/>
 							<c:forEach items="${list}" var="goods">
 								<tr>
 									<c:set var="i" value="${i+1}"/>
 									<td class="alignC"><img src="/giftcon/resources/file/goodsFile/${goods.GOODS_IMG}" alt="">
+										<c:if test="${i == 1}"><c:set var="gname" value="${goods.GOODS_NAME}"/></c:if>
 									<input type="hidden" value="${totalPrice}" id="totalPrice${i}" class="totalP">
 									<input type="hidden" value="${MEMBER_ID}" id="MEMBER_ID${i}">
 									<input type="hidden" value="${goods.GOODS_NUM}" id="GOODS_NUM${i}">
@@ -163,6 +240,7 @@
 							</c:forEach>
 						  </tbody>
 						</table>
+						<input type="hidden" value="${gname}" id="gnames"/>
 						<input type="hidden" value="${i}" id="number"/>
 						<p class="priceOne">발송금액 :<span id="priceOne2_1">${totalPrice}</span>원</p>
 						
@@ -219,12 +297,18 @@
 										<p><span class="icoPay1"></span></p>
 										<span class="txtMethod">무통장입금</span>
 									</div>
-<!-- 									<div class="payMethod">
-										<input type="radio" name="payMethod" id="payMethod" value="P">
-										<p><span class="icoPay2"></span></p>
-										<span class="txtMethod">휴대폰결제</span>
+ 									<div class="payMethod">
+										<input type="radio" class="btn_pay btn_pay_hover" name="ORDER_PAYMENT" id="kakaoPC" value="pc">
+										<p><span class="icoPay3"></span></p>
+										<span class="txtMethod">카카오페이 PC</span>
 									</div>
-									<div class="payMethod last">
+<!-- 									<div class="payMethod">
+										<input type="radio" class="btn_pay btn_pay_hover" name="ORDER_PAYMENT" id="kakaoMobile" value="mobile">
+										<p><span class="icoPay2"></span></p>
+										<span class="txtMethod">카카오페이 모바일</span>
+									</div> 
+-->
+<!-- 									<div class="payMethod last">
 										<input type="radio" name="payMethod" id="payMethod" value="A">
 										<p><span class="icoPay3"></span></p>
 										<span class="txtMethod">신용카드</span>
