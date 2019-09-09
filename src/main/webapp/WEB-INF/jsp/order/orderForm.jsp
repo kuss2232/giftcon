@@ -33,6 +33,7 @@
 		function fn_order(){
 			
 			var i = $("#number").val();
+			var gname = $("#gnames").val();
 			var kakao = $("input[name='ORDER_PAYMENT']:checked").val();
 			var IMP = window.IMP; 
 	        IMP.init('imp97218771'); 
@@ -44,13 +45,19 @@
 			      return;
 			}
 			
+			/* fn_Kpay("agag",i,$("#totalPrice1").val()); */
+			
+			if(i > 1)
+				gname += "외 " + (i-1) + "건";
+			alert(gname);
+			
 			if($("input[name='ORDER_PAYMENT']:checked").val() == "pc")
 			{
 				IMP.request_pay({
 		            pg : 'kakaopay',
 		            pay_method : 'card',
 		            merchant_uid : 'merchant_' + new Date().getTime(),
-		            name : $("#gnames").val() + "외 "+i-1+"건" ,   // 상품명
+		            name : gname ,   // 상품명
 		            amount : $("#totalPrice1").val(),         // 금액
 		            buyer_email : 'TEST@naver.com',
 		            buyer_name : 'TEST',
@@ -59,7 +66,7 @@
 		            buyer_postcode : '123-456',
 		        }, function(rsp) {
 		        	if ( rsp.success ) {
-		        		fn_DbAdd(i);
+		        		fn_DbAdd();
 		            } else {
 		                msg = '결제에 실패하였습니다. 다시 시도해주십시오.';
 		                msg += '\n내용 : ' + rsp.error_msg;
@@ -71,32 +78,38 @@
 			}
 			else
 			{
-				fn_DbAdd(i);
+				fn_DbAdd();
 			}
 			
 		}
 		
-		function fn_DbAdd(i)
+		function fn_DbAdd()
 		{
+			var i = $("#number").val();
 			var url = "";
 			var order_num = 0;
 			var total = 0;
-			
+			var payment = "";
 			if(i>=2)
 				url = "/giftcon/insertCartOrder.conn";
 			else
 				url = "/giftcon/insertOrder.conn";
 			
-			total = Integer.parseInt($("#totalPrice1").val());
+			if($("#ORDER_PAYMENT").val() == "pc")
+				payment = "Y";
+			else
+				payment = "N";
 			
+			total = $("#totalPrice1").val();
 			$.ajax({
 				type : "POST",
 				url : "/giftcon/lastOrderNum.conn",
 				data : {},
 				success : function(result){
 					order_num = result;
+					alert(order_num);
 				},
-				complete : function(){
+				complete : function(e){
 					for(var j=1;j<=i;j++)
 					{
 						$.ajax({
@@ -108,46 +121,43 @@
 								"GOODS_NUM":$("#GOODS_NUM"+j).val(),
 								"CART_NUM":$("#CART_NUM"+j).val(),
 								"ORDER_PRICE":$("#totalPrice"+j).val(),
-								"ORDER_PAYMENT":$("#ORDER_PAYMENT").val()
+								"ORDER_PAYMENT":payment
 							},
 							error : function(e) {
 								alert("서버가 응답하지 않습니다. \n다시 시도해주시기 바랍니다.");
+							},
+							complete : function(e){
+								location.href="/giftcon/main.conn";
 							}
 						})
 					}
 				}
 			})
-			location.href="/giftcon/main.conn";
+			
 		}
 		
-/*  		function fn_Kpay(agent,i,price)
+  		function fn_Kpay(agent,i,price)
 		{
  			$.ajax({
  				type : "POST",
  				url : "/giftcon/kakaos.conn",
  				data : {
- 					"Content-Type" : "application/x-www-form-urlencoded;charset=utf-8",
- 					"Authorization" : "KakaoAK " + "0b02f095cf5f90b9bbe7eadcd70b9062", 
- 	 		    	"cid": "TC0ONETIME",
- 	 				"partner_order_id": "1001",
- 	 				"partner_user_id": "sharecon",
  	 				"item_name": "라이언빵",
  	 				"quantity": "1",
  	 				"total_amount": price,
- 	 				"vat_amount": "200",
- 	 				"tax_free_amount": "0",
- 	 				"approval_url": "localhost:8080/giftcon/kakaoPaySuccess.conn",
- 	 				"fail_url": "localhost:8080/giftcon/main.conn",
- 	 				"cancel_url": "localhost:8080/giftcon/main.conn"
+ 	 				"tax_free_amount": "0"
  				},
+ 				dataType : "Json",
  				success : function(data){
- 					localhost.href=data;
+ 					//alert(data.next_redirect_pc_url);
+ 					location.href=data.next_redirect_pc_url;
+ 					
  				},
  				error : function(request,status,error){
  					alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
  				}
  			})
-		} */
+		} 
 		
 		function fn_Amount(num) 
 		{
