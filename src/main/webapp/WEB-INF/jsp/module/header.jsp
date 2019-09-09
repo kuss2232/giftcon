@@ -116,9 +116,9 @@ $(function () {
 				//css 설정 
 				,css: { border: 'none', textAlign: 'left' } 
 				//모달창 외부 클릭시 닫기 
-				,onOverlayClick: $.unblockUI });	}) 
-		$("#closebtn").click(function(){ //모달창 닫기 
-			$.unblockUI(); 
+				,onOverlayClick: $.unblockUI });	}) //계산기 바깥화면 클릭시 : ui를닫는다
+		$("#closebtn").click(function(){ //모달창 닫기창 클릭시
+			$.unblockUI(); //ui가 닫힌다.
 		}) 
 	})
 
@@ -172,29 +172,16 @@ $(function () {
 					<li align="center">
 						<a href="/giftcon/goods/list.conn" title="모바일쿠폰샵 바로가기" class="" >전체 상품</a>
 					</li>
-					<li  align="center">
+					<li align="center">
 						<a href="/giftcon/eventList.conn" title="기획전/이벤트 바로가기" class="">이벤트</a>
-						
-						<!-- <ul class="smenu s02" style="display: none;">
-							<li>
-								<a href="/contents/promotionList.do" class="first">기획/테마전</a>
-							</li>
-							<li>
-								<a href="/contents/eventList.do" class="first">이벤트</a>
-							</li>
-							<li>
-								<a href="/contents/eventNoticeList.do">당첨자발표</a>
-							</li>
-						</ul> -->
 					</li>
-						<li>
-								<a href="/giftcon/notice.conn" title="고객센터" class="">고객센터</a>
-						</li>
-						<li>
-					<a href="#"  id="budgetBtn">
-					맞춤 계산기</a>
-						</li>
-									</ul>
+					<li align="center">
+						<a href="/giftcon/notice.conn" title="고객센터" class="">고객센터</a>
+					</li>
+					<li align="center">
+						<a href="#"  id="budgetBtn" title="맞춤계산기">맞춤 계산기</a>
+					</li>
+				</ul>
 				
 				
 				 <!-- 띠 배너  -->
@@ -225,10 +212,11 @@ $(function () {
 		<a href="" class="btnClose">닫기</a>
 	</div>
 	<!--/end:title -->
+	
 	<!-- start:contents -->
 	<div class="contWrap">
 
-		<form id="budgetForm" name="budgetForm" action="/index.do" method="POST">
+		<form id="budgetForm" name="budgetForm"  method="POST">
 			<input type="hidden" name="orderType">
 			<input type="hidden" name="priceSearchStart" value="12960">
 			<input type="hidden" name="priceSearchEnd" value="19440">
