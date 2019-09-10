@@ -17,7 +17,7 @@ public class AuthenticationInterceptor extends HandlerInterceptorAdapter{
 		//세션 받아와서 오브젝트 객체에 담아줌
 		HttpSession session = request.getSession();
 		Object obj = session.getAttribute("MEMBER_ID");
-		System.out.println("pre 멤버 아이디::::::" + (String)obj);
+		session.setMaxInactiveInterval(60*60);
 		if(obj == null) {
 			response.sendRedirect("/giftcon/loginForm.conn");
 			return false;
@@ -31,10 +31,6 @@ public class AuthenticationInterceptor extends HandlerInterceptorAdapter{
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
-		// TODO Auto-generated method stub
-		HttpSession session = request.getSession();
-		Object obj = session.getAttribute("MEMBER_ID");
-		System.out.println("post 멤버 아이디::::::" + (String)obj);
 		super.postHandle(request, response, handler, modelAndView);
 	}
 
