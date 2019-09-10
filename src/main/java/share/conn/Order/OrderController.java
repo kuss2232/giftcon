@@ -146,7 +146,6 @@ public class OrderController {
 	public void lastOrderNum(HttpServletResponse response) throws Exception{
 		PrintWriter out = response.getWriter();
 		int num = orderService.lastOrderNum()+1;
-		System.out.println(num+"******************");
 		out.print(num);
 	}
 	

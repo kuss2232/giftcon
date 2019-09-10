@@ -7,9 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="/giftcon/js/common.js" charset="utf-8"></script>
-<script src="/giftcon/css/jquery/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<script src="/giftcon/css/jquery/jquery.blockUI.js"></script>
 <!-- <script src="/giftcon/js/kakaoSdk.js"></script> -->
 <link rel="stylesheet" type="text/css" href="/giftcon/css/sub.css">
 <link rel="stylesheet" type="text/css" href="/giftcon/css/common.css">
@@ -38,17 +37,17 @@
 			var IMP = window.IMP; 
 	        IMP.init('imp97218771'); 
 	        var msg;
-			
+	        if(i > 1)
+				gname += "외 " + (i-1) + "건";
 			var comSubmit = new ComSubmit("order");
 			if( $("input[name='ORDER_PAYMENT']:checked").length==0){  
 			      alert("결제방식 선택 안됨");
 			      return;
 			}
+			if($("input[name='ORDER_PAYMENT']:checked").val())
+			fn_Kpay(gname,i,$("#totalPrice1").val()); 
 			
-			/* fn_Kpay("agag",i,$("#totalPrice1").val()); */
-			
-			if(i > 1)
-				gname += "외 " + (i-1) + "건";
+			<%-- 
 			alert(gname);
 			
 			if($("input[name='ORDER_PAYMENT']:checked").val() == "pc")
@@ -79,10 +78,10 @@
 			else
 			{
 				fn_DbAdd();
-			}
+			} --%>
 			
 		}
-		
+		var win;
 		function fn_DbAdd()
 		{
 			var i = $("#number").val();
@@ -95,12 +94,13 @@
 			else
 				url = "/giftcon/insertOrder.conn";
 			
-			if($("#ORDER_PAYMENT").val() == "pc")
+			if($("input[name='ORDER_PAYMENT']:checked").val() == "pc")
 				payment = "Y";
 			else
 				payment = "N";
 			
 			total = $("#totalPrice1").val();
+			
 			$.ajax({
 				type : "POST",
 				url : "/giftcon/lastOrderNum.conn",
@@ -138,26 +138,35 @@
 		
   		function fn_Kpay(agent,i,price)
 		{
+  			//잠깐 나타났다가 사라지는 함수
+			//$.growlUI('타이틀', '내용'); 
+			var ReturnValue;
+			
  			$.ajax({
  				type : "POST",
  				url : "/giftcon/kakaos.conn",
  				data : {
- 	 				"item_name": "라이언빵",
- 	 				"quantity": "1",
+ 	 				"item_name": agent,
+ 	 				"quantity": i,
  	 				"total_amount": price,
  	 				"tax_free_amount": "0"
  				},
  				dataType : "Json",
  				success : function(data){
- 					//alert(data.next_redirect_pc_url);
- 					location.href=data.next_redirect_pc_url;
- 					
+					if(win == null || win.closed)
+						win = window.open(data.next_redirect_pc_url, "","width=500, height=600, history=no, resizable=off, status=no, scrollbars=no");
+					else 
+						win.focus();
  				},
  				error : function(request,status,error){
  					alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
  				}
  			})
 		} 
+  		function fn_window()
+  		{
+  			fn_DbAdd();
+  		}
 		
 		function fn_Amount(num) 
 		{
@@ -343,7 +352,6 @@
 										</p>
 
 									</div>
-									
 									<div class="lastPayMoney">
 										
 										<p class="contInfo">
@@ -363,6 +371,12 @@
 					<!-- /end:btn_more -->
 					</form>
 				</div>
+			</div>
+			<div id="budget1">
+				<table>
+					<tbody>
+					</tbody>
+				</table>
 			</div>
 </body>
 </html>
