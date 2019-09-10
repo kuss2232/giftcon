@@ -105,7 +105,7 @@ public class OrderController {
 			mv.addObject("GOODS_NUM",request.getParameter("GOODS_NUM"));
 			mv.addObject("AMOUNT", 1);		 //****상품 수량 받아와야함
 
-		}else {
+		}else {			//장바구니 - > 주문
 			List<Map<String, Object>> list = orderService.cartOrderList(commandMap.getMap());
 			Map<String, Object> member = orderService.memberInfo(commandMap.getMap());
 
@@ -122,7 +122,7 @@ public class OrderController {
 				}
 				price += Integer.parseInt(goods.get("GOODS_PRICE").toString()) * Integer.parseInt((goods.get("CART_AMOUNT").toString()));
 			}
-
+			mv.addObject("type", "cart");
 			mv.addObject("price", price);
 			mv.addObject("totalPrice",totalPrice);
 			mv.addObject("member",member);

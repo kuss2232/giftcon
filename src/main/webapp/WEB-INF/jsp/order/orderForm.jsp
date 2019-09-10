@@ -33,20 +33,21 @@
 			
 			var i = $("#number").val();
 			var gname = $("#gnames").val();
-			var kakao = $("input[name='ORDER_PAYMENT']:checked").val();
+			var type = $("input[name='ORDER_PAYMENT']:checked").val();
 			var IMP = window.IMP; 
 	        IMP.init('imp97218771'); 
 	        var msg;
 	        if(i > 1)
 				gname += "외 " + (i-1) + "건";
 			var comSubmit = new ComSubmit("order");
-			if( $("input[name='ORDER_PAYMENT']:checked").length==0){  
+			if( type.length==0){  
 			      alert("결제방식 선택 안됨");
 			      return;
 			}
-			if($("input[name='ORDER_PAYMENT']:checked").val())
-			fn_Kpay(gname,i,$("#totalPrice1").val()); 
-			
+			if(type == "pc")
+				fn_Kpay(gname,i,$("#totalPrice1").val()); 
+			else
+				fn_Db_Add();
 			<%-- 
 			alert(gname);
 			
@@ -89,7 +90,7 @@
 			var order_num = 0;
 			var total = 0;
 			var payment = "";
-			if(i>=2)
+			if($("#type").val() != "")
 				url = "/giftcon/insertCartOrder.conn";
 			else
 				url = "/giftcon/insertOrder.conn";
@@ -107,7 +108,6 @@
 				data : {},
 				success : function(result){
 					order_num = result;
-					alert(order_num);
 				},
 				complete : function(e){
 					for(var j=1;j<=i;j++)
@@ -133,7 +133,6 @@
 					}
 				}
 			})
-			
 		}
 		
   		function fn_Kpay(agent,i,price)
@@ -193,6 +192,7 @@
 </head>
 <body>
 <div class="subWrap">
+	<input type="hidden" id="type" value="${type }"/>
 				<div class="subLayout">
 				<form id="order"></form>
 				<form id="orders">
@@ -353,7 +353,6 @@
 
 									</div>
 									<div class="lastPayMoney">
-										
 										<p class="contInfo">
 											<span class="tit">결제금액</span>
 											<span class="txt"><span id="priceOne2">${totalPrice}</span>원</span>
@@ -371,12 +370,6 @@
 					<!-- /end:btn_more -->
 					</form>
 				</div>
-			</div>
-			<div id="budget1">
-				<table>
-					<tbody>
-					</tbody>
-				</table>
 			</div>
 </body>
 </html>
