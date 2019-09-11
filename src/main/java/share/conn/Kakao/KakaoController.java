@@ -38,7 +38,7 @@ public class KakaoController {
         
     }
     
-    @RequestMapping(value = "/kakaos")
+    @RequestMapping(value = "/kakaos") 
     public void kakaos(@ModelAttribute("sharecon") Map<String, Object> map, CommandMap commandMap, HttpServletResponse response) throws IOException {
         //
     	PrintWriter out = response.getWriter();
