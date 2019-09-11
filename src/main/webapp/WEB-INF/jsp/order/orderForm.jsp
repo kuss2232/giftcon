@@ -44,10 +44,11 @@
 			      alert("결제방식 선택 안됨");
 			      return;
 			}
+			alert(type);
 			if(type == "pc")
 				fn_Kpay(gname,i,$("#totalPrice1").val()); 
 			else
-				fn_Db_Add();
+				fn_DbAdd();
 			<%-- 
 			alert(gname);
 			
@@ -153,7 +154,7 @@
  				dataType : "Json",
  				success : function(data){
 					if(win == null || win.closed)
-						win = window.open(data.next_redirect_pc_url, "","width=500, height=600, history=no, resizable=off, status=no, scrollbars=no");
+						win = window.open(data.next_redirect_pc_url, "","width=500, height=600, directories=0, history=no, resizable=0, status=no, scrollbars=no, toolbar=no, menubar=no, location=0, channelmode=1");
 					else 
 						win.focus();
  				},
