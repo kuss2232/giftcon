@@ -59,6 +59,7 @@
 			<mvc:exclude-mapping path="/findId.conn"/>
 			<mvc:exclude-mapping path="/chgPwform.conn"/>
 			<mvc:exclude-mapping path="/chgPw.conn"/>
+			<mvc:exclude-mapping path="/chart.conn"/>
 			<bean class="share.conn.giftcon.AuthenticationInterceptor"
 				id="authenticationInterceptor" />
 				

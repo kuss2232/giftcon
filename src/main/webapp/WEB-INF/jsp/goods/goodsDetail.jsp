@@ -328,10 +328,9 @@ function addCart(num)
 	});
 }
 
-
-
-
 </script>
+<!-- <a href="/giftcon/chart.conn">asd</a> -->
+<%@include file="../asd.jsp"%>
 </body>
 </html>
 <%@include file="../module/footer.jsp"%>
