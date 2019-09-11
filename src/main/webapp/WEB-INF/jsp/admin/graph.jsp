@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
 <head>
 
@@ -29,9 +30,64 @@
 
 <!-- Custom Theme JavaScript -->
 <script src="/giftcon/css/jquery/sb-admin-2.js"></script>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<style type="text/css">
+.selectBody {
+    padding-left: 6px;
+    width: 160px;
+    height: 28px;
+    border: 1px solid #ccc;
+    vertical-align: top;
+}
+</style>
+<script src="/giftcon/css/jquery/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+$("#btn").on("click",function() {
+	google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+	
+    var startDate = $("#startDate").val();
+    var endDate = $("#endDate").val();
+    var category = $("#category").val();
+    var ages = $("#ages").val();
+
+    function drawChart() {
+    	var jsonData = $.ajax({
+    	url: "/giftcon/graphing.conn",
+    		dataType:"json",
+    		data:{"startDate":startDate,
+    				"endDate":endDate,
+    				"category":category,
+    				"ages": ages},
+    		async:false,
+    		success:function(data){
+    			alert("성공");
+    		}
+    	}).responseText;
+//	alert(jsonData);	
+	var data = new google.visualization.DataTable(jsonData);
+   	
+	var options = {
+		title: '클릭수(상대값)',
+		hAxis: {title: 'Month',  titleTextStyle: {color: '#333'}},
+		vAxis: {minValue: 0}
+	};
+
+	var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+	chart.draw(data, options);
+
+    }
+	});
+});
+</script>
+
 </head>
 <body>
-	<div id="wrapper">
+<div id="wrapper">
 		<!-- Navigation -->
 		<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0; background-color: #337AB7">
 			<div class="navbar-header" style="background-color: #337AB7">
@@ -110,13 +166,73 @@
 		</nav>
 		<div id="page-wrapper">
 			<!-- 메인container-->
-			<%@include file="./adminMainLayout.jsp"%>
+			<div id="page-wrapper">
+		<!-- 메인container-->
+		<h1 class="page-header">EVENT</h1>
+		<div class="row" style="padding-left: 15px; width: 700px;">
+			<div class="panel panel-default">
+				<div class="panel-heading">연령별 남녀 검색량 비교</div>
+				<div class="panel-body">
+					<form id="frm" enctype="multipart/form-data"
+						onsubmit="return joinValidation(this)">
+						<table class="event_view">
+							<colgroup>
+								<col width="15%">
+								<col width="*" />
+							</colgroup>
+							<caption>분야 통계</caption>
+							<tbody>
+							<br/><br/>
+								<tr>
+									<th >연령</th>
+									<td style="width:250px;">
+										<select class="selectBody" id="ages" name="ages">
+											<option value>선택</option>
+											<option value="10">10대</option>
+											<option value="20">20대</option>
+											<option value="30">30대</option>
+											<option value="40">40대</option>
+											<option value="50">50대</option>
+											<option value="60">60대</option>
+										</select>
+									</td>
+									<th style="width: 40px;">분야</th>
+									<td>
+										<select class="selectBody" id="category">
+											<option value>선택</option>
+											<option value="50001865">아이스크림</option>
+											<option value="50000149">과자</option>
+											<option value="50000148">음료</option>
+											<option value="50000160">농산물</option>
+											<option value="50000026">간편조리식품</option>
+											<option value="50000150">가공식품</option>
+										</select>
+									</td>
+								</tr>
+								<th style="width: 20px;">기간</th>
+								<td style="width: *;"><input type="date" id="startDate"
+									 class="wdp_90" /> 부터 <input type="date"
+									id="endDate" class="wdp_90" />까지</td>
+								
+							</tbody>
+						</table>
+						<br />
+						<button id="btn" type="button">실행</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="chart_div" style="width: 100%; height: 500px;"></div>
 			
 			<!-- // container -->
 		</div>
 		<!-- /#page-wrapper -->
 	</div>
-	<!-- /#wrapper -->
+	
+	
+	
+	
+	
 </body>
-
 </html>
