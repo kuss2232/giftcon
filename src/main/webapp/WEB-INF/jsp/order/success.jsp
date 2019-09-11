@@ -18,11 +18,26 @@ function fn_opener()
 	self.close();
 }
 </script>
+<style>
+div.kakao {display: inline-block; width: 350px; padding: 30px 30px 22px 30px; background: #f9f9f9;}
+div.kakao > div {margin-bottom: 8px;}
+div.kakao > div p.Txt {font-size: 22px; font-weight: 600; color: #333; text-align: center;}
+div.btns {margin-top: 60px; width: 400px; text-align: center;}
+input.btnBigBgBlue2 {display: inline-block; font-size: 18px; font-weight: 600; color: #fff; text-align: center; background: #2164bf; border: 1px solid #2164bf; line-height: 57px;}
+input.btnBigBgBlue2:hover {background: #0049ad; border: 1px solid #0049ad;}
+</style>
 <body>
- 
-카카오페이 결제가 정상적으로 완료되었습니다.
-<br/>
-<input type="button" id="complete" value="결제 완료">
+<div class="subWrap">
+	<div class="subLayout">
+		<div class="kakao">
+			<div>
+				<p class="TxT">카카오페이 결제가 정상적으로 완료되었습니다.</p>
+			</div>
+		</div>
+		<div class="btns">
+			<input class="btnBigBgBlue2 w227" type="button" id="complete" value="결제 완료">
+		</div>
+	</div>
+</div>
 </body>
-
 </html>
