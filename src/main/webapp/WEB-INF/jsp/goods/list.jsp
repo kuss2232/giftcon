@@ -230,7 +230,7 @@ function addCart(num)
 		},
 		success : function() {
 			alert("장바구니에 등록되었습니다.");
-			location.href="/giftcon/main.conn";
+			location.href="/giftcon/goods/list.conn";
 		}
 	});
 }

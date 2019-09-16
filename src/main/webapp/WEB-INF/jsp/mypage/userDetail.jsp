@@ -56,14 +56,17 @@
 								title="이메일아이디입력" value="${MEMBER.MEMBER_EMAIL1}" maxlength="25">
 								@ <input type="text" id="emailServer" name="MEMBER_EMAIL2"
 								class="ipt2 w110 emailonly" title="이메일주소입력"
-								value="${MEMBER.MEMBER_EMAIL2}" maxlength="20"> 
-								<select class="selectMail" id="setEmailServer" onchange="$('#emailServer').val($('#setEmailServer').val());">
+								value="${MEMBER.MEMBER_EMAIL2}" maxlength="20">
+																				<!-- 이메일 변경시 자동입력 명령어 --> 
+							<select class="selectMail" id="setEmailServer" onchange="$('#emailServer').val($('#setEmailServer').val());">
 									<option value="">직접입력</option>
 									<option value="naver.com">naver.com</option>
 									<option value="nate.com">nate.com</option>
 									<option value="hanmail.net">hanmail.net</option>
 									<option value="gmail.com">gmail.com</option>
-							</select> <span class="inpTxt" id="emailTxt"></span></td>
+							</select>
+								<span class="inpTxt" id="emailTxt"></span>
+							</td>
 						</tr>
 						<tr>
 							<th scope="row">광고성정보 수신동의</th>
@@ -96,6 +99,7 @@
 	<script type="text/javascript">
       $(document).ready(function(){
          $("#btnModify").on("click", function(e){
+        	alert("변경되었습니다.");
             e.preventDefault();
             fn_login();
          });
@@ -115,6 +119,7 @@
        });
       
       function fn_login(){
+    	  //form id값인 userfrm 에있는 정보를 가져간다.
          var comSubmit = new ComSubmit("userFrm");
          comSubmit.setUrl("/giftcon/userInfoUpdate.conn");
          comSubmit.submit();

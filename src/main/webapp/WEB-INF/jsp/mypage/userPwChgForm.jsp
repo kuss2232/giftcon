@@ -46,8 +46,10 @@
 			</div>
 			
 	<script type="text/javascript">
+	//비밀번호 변경 스크립트
 		$(document).ready(function(){
 			$("#btnPwdMod").on("click", function(e){
+				
 				e.preventDefault();
 				fn_login();
 				
