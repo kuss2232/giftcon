@@ -1,12 +1,10 @@
 package share.conn.Main;
 
-import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -32,17 +30,12 @@ public class MainController {
 	@Resource(name="cartService")
 	private CartService cartService;
 	
-	private int currentPage = 1;
-	private int blockCount = 4;
-	private int blockPage = 1;
-	private Paging page;
-	
 	@RequestMapping("/main.conn")
 	public ModelAndView mainList(CommandMap commandMap, HttpSession session)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		
-		List<Map<String, Object>> bestList = mainService.GoodsBestList();
-		List<Map<String, Object>> saleList = mainService.GoodsSaleList1();
+		List<Map<String, Object>> bestList = mainService.GoodsBestList().subList(0, 8);
+		List<Map<String, Object>> saleList = mainService.GoodsSaleList1().subList(0, 8);
 		List<Map<String, Object>> smallcategoryList = goodsService.smallCategoryList();
 		int count = 0;
 		
@@ -53,22 +46,16 @@ public class MainController {
 			session.setAttribute("count", count);
 		}
 		
-		int totalCount = 8;
-		page = new Paging(currentPage, totalCount, blockCount, blockPage, "main.conn");
-		int lastCount = totalCount;
-		if (page.getEndCount() < totalCount)
-			lastCount = page.getEndCount() + 1;
-		bestList = bestList.subList(page.getStartCount(), lastCount);
-		saleList = saleList.subList(page.getStartCount(), lastCount);
-		
 		mv.addObject("MEMBER_NUM", session.getAttribute("MEMBER_NUM"));
 		mv.addObject("smallcategoryList", smallcategoryList);
 		mv.addObject("bestList", bestList);
 		mv.addObject("saleList", saleList);
-		
 		mv.setViewName("/main/main");
 		return mv;
 	}
+	
+	
+	
 	
 	@RequestMapping("eventList.conn")
 	public ModelAndView eventList(CommandMap commandMap)throws Exception{
