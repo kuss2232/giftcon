@@ -573,4 +573,16 @@ ORDER BY
 	]]>
 </insert>
 
+
+<select id="goodsAmountCheck" parameterType="hashmap" resultType="hashmap">
+<![CDATA[
+   SELECT
+      GOODS_AMOUNT
+   FROM
+      GOODS
+   WHERE
+      GOODS_NUM = #{GOODS_NUM}
+]]>
+</select>
+
 </mapper>

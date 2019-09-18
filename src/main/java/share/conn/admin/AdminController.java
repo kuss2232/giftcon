@@ -51,7 +51,7 @@ public class AdminController {
 			if(!ex.exists()) {//data1 파일이 존재하지않으면
 				ex.mkdirs();//폴더생성
 			}
-			
+			//파일을 지정된경로에 UTF-8형식으로 저장시킴
 			bw = Files.newBufferedWriter(Paths.get("C://data1//data.csv"), Charset.forName("UTF-8"));
 			bw.write("BC,GOODS_NAME,DAY_CHECK,GENDER,SC,AGE");
 			bw.newLine();//줄바꿈

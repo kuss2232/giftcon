@@ -330,7 +330,7 @@ function addCart(num)
 
 </script>
 <!-- <a href="/giftcon/chart.conn">asd</a> -->
-<%@include file="../asd.jsp"%>
+<!-- <img src="/giftcon/images/word232.png"/> -->
 </body>
 </html>
 <%@include file="../module/footer.jsp"%>

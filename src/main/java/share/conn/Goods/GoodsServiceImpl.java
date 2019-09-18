@@ -111,4 +111,10 @@ public class GoodsServiceImpl implements GoodsService{
 	public void inputData(Map<String, Object>map) throws Exception{
 		goodsDAO.inputData(map);
 	}
+	
+	   //상품 재고
+	   @Override
+	   public Map<String, Object> goodsAmount(Map<String, Object> map) throws Exception {
+	      return goodsDAO.goodsAmount(map);
+	   }
 }

@@ -35,18 +35,10 @@ public class Home {
 			 //connection.eval("library(graphics)"); 
 			 connection.eval("library(RCurl)");
 			 connection.eval("library(d3Network)");
+			 connection.eval("library(png)");
 			 
-			 connection.eval(
-	                    "name <- c('한글','Jessica Lange','Winona Ryder','Michelle Pfeiffer','Whoopi Goldberg','Emma Thompson','Julia Roberts','Sharon Stone','Meryl Streep', 'Susan Sarandon','Nicole Kidman')");
-	         connection.eval(
-	                    "pemp <- c('한글','한글','Jessica Lange','Winona Ryder','Winona Ryder','Angela Bassett','Emma Thompson', 'Julia Roberts','Angela Bassett', 'Meryl Streep','Susan Sarandon')");
-	         connection.eval("emp <- data.frame(이름=name,상사이름=pemp)");
-        
-            connection.eval("d3ForceDirected(emp,width=600,height=600,file='aaa.jsp')");
-            
-            connection.eval("aa <- '한글'");
-           
-            System.out.println(connection.eval("aa").asString());
+			 connection.eval("png(file = \"D:/java/R/word232.png\", width=5, height=5, units=\"in\", res=300, )");
+			 
             connection.close();
             
             BufferedReader reader = new BufferedReader(new FileReader("D:\\Rstudio\\q\\aaa.jsp"));
