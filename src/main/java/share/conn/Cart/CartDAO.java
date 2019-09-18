@@ -39,7 +39,7 @@ public class CartDAO extends AbstractDAO{
 	}
 	
 	public Integer cartCount() throws Exception{
-		return (Integer)selectOne("cart.cartCount");
+		return Integer.parseInt(selectOne("cart.cartCount").toString());
 	}
 	
 	public Object addOrderToCart(Map<String,Object> map) throws Exception{
