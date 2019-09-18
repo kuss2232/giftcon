@@ -108,14 +108,10 @@ $(function () {
 	<script>
 	$(function(){ 
 		$("#budgetBtn").click(function(){ 
-			//잠깐 나타났다가 사라지는 함수
-			//$.growlUI('타이틀', '내용'); 
-			$.blockUI({ //html태그를 문자열로 적용해도 무관함 
-				//message : "<table><tr><td>태그테스트</td></tr><table>" 
+			//잠깐 나타났다가 사라지는 함수 
+			$.blockUI({ //html태그를 문자열로 적용해도 무관함  
 				message: $('#budgetSearch')
-				//css 설정 
 				,css: { border: 'none', textAlign: 'left' } 
-				//모달창 외부 클릭시 닫기 
 				,onOverlayClick: $.unblockUI });	}) //계산기 바깥화면 클릭시 : ui를닫는다
 		$("#closebtn").click(function(){ //모달창 닫기창 클릭시
 			$.unblockUI(); //ui가 닫힌다.
@@ -204,8 +200,8 @@ $(function () {
 	<div>
 		${soldOut}
 	</div>
-	
 	<div class="popupWrap w700" id="budgetSearch" style="cursor: default; display:none;" >
+	
 	<!-- start:title -->
 	<div class="titArea" align="center">
 		<h1 class="tit">예산검색하기</h1>
@@ -245,7 +241,7 @@ $(function () {
 						<span class="icoPeople"></span>
 						<span class="titTxt">발송 할 인원 수</span>
 					</p>
-					<input on onchange="calcul()" onkeyup='calcul()' type="number" class="ipt2 w146" id="people" style="text-align:right;"> 명
+					<input onchange="calcul()" onkeyup='calcul()' type="number" class="ipt2 w146" id="people" style="text-align:right;"> 명
 				</div>
 				<span class="icoEquals"></span>
 				<div class="calBox last">
@@ -259,7 +255,7 @@ $(function () {
 		</div>
 		<!--/end:calculate -->
 		<!-- start:search_result -->
-		<p class="calculateResultTxt" style="display: none;">총 90건</p>
+		<p class="calculateResultTxt" style="display: none;"></p>
 		<div class="calculateResult">
 			<table summary="예산 검색 결과 표" class="tbL" id="tbBudgetSearchResult">
 			  <colgroup>

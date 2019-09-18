@@ -22,4 +22,5 @@ public interface GoodsService {
 	public Map<String, Object> goodsDetail(Map<String, Object> map) throws Exception;
 	public Map<String, Object> callData(Map<String, Object>map) throws Exception;
 	public void inputData(Map<String, Object> map) throws Exception;
+	public Map<String, Object> goodsAmount(Map<String, Object> map) throws Exception;
 }
