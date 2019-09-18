@@ -29,13 +29,7 @@ public class MainController {
 	
 	@Resource(name="cartService")
 	private CartService cartService;
-	
-	private int currentPage = 1;
-	private int blockCount = 4;
-	private int blockPage = 1;
-	private Paging page;
-	
-	
+		
 	@RequestMapping("/main.conn")
 	public ModelAndView mainList(CommandMap commandMap, HttpSession session)throws Exception{
 		ModelAndView mv = new ModelAndView();
@@ -52,13 +46,23 @@ public class MainController {
 			session.setAttribute("count", count);
 		}
 		
-		int totalCount = 8;
-		page = new Paging(currentPage, totalCount, blockCount, blockPage, "main.conn");
-		int lastCount = totalCount;
-		if (page.getEndCount() < totalCount)
-			lastCount = page.getEndCount() + 1;
-		bestList = bestList.subList(page.getStartCount(), lastCount);
-		saleList = saleList.subList(page.getStartCount(), lastCount);
+		if(bestList.size()<4) {
+			bestList.add(null);
+			bestList.add(null);
+			bestList.add(null);
+			bestList.add(null);
+		}
+		
+		if(saleList.size()<4) {
+			saleList.add(null);
+			saleList.add(null);
+			saleList.add(null);
+			saleList.add(null);
+		}
+		
+		bestList = bestList.subList(0, 4);
+		saleList = saleList.subList(0, 4);
+		
 		
 		mv.addObject("MEMBER_NUM", session.getAttribute("MEMBER_NUM"));
 		mv.addObject("smallcategoryList", smallcategoryList);
