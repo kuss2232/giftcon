@@ -62,20 +62,7 @@ public class OrderController {
 		//멤버id, 굿즈넘
 		String MEMBER_ID = (String) session.getAttribute("MEMBER_ID");
 		commandMap.put("MEMBER_ID",MEMBER_ID );
-		int qq = 10;
-		if(commandMap.get("GOODS_NUM") != null)
-			qq = orderService.goodsAmount(commandMap.getMap());
-		if(qq < 1) {
-			//상품수량이 1개보다 작으면 이전페이지로 돌아옴
-			String viewName ="redirect:" + request.getHeader("Referer");
-			StringBuffer soldOut = new StringBuffer();
-			soldOut.append("<script language='javascript'>");
-			soldOut.append("alert('품절된 상품입니다.');");
-			soldOut.append("</script>");
-			redirectAttribute.addFlashAttribute("soldOut", soldOut);
-			mv.setViewName(viewName);
-			return mv;
-		}
+		
 		if(commandMap.get("MEMBER_NUM") == null) {
 			//멤버 정보
 			Map<String, Object> member = orderService.memberInfo(commandMap.getMap());
@@ -111,6 +98,19 @@ public class OrderController {
 
 			for(int i=0; i <list.size(); i++) {
 				Map<String, Object> goods = list.get(i);
+				int qq = Integer.parseInt(orderService.goodsAmount(goods).get("GOODS_AMOUNT").toString());
+	            System.out.println(qq + "*************************");
+	            if(qq < 1) {
+	               //상품수량이 1개보다 작으면 이전페이지로 돌아옴
+	               String viewName ="redirect:" + request.getHeader("Referer");
+	               StringBuffer soldOut = new StringBuffer();
+	               soldOut.append("<script language='javascript'>");
+	               soldOut.append("alert('품절된 상품입니다.');");
+	               soldOut.append("</script>");
+	               redirectAttribute.addFlashAttribute("soldOut", soldOut);
+	               mv.setViewName(viewName);
+	               return mv;
+	            }
 				if(goods.get("GOODS_DCPRICE") == null) {
 					totalPrice += (Integer) Integer.parseInt(goods.get("GOODS_PRICE").toString()) * Integer.parseInt((goods.get("CART_AMOUNT").toString()));
 				}

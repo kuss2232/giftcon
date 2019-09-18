@@ -16,8 +16,8 @@ public class OrderDAO extends AbstractDAO{
 		return (Map<String, Object>)selectOne("memberInfo.selectMember", map);
 	}
 	
-	public int goodsAmount(Map<String, Object> map){
-		return (Integer) selectOne("memberGoods.goodsAmount", map);
+	public Map<String, Object> goodsAmount(Map<String, Object> map){
+		return selectOne1("memberGoods.goodsAmountCheck", map);
 	}
 	
 	public Map<String, Object> goodsInfo(Map<String, Object> map) {

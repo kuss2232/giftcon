@@ -7,7 +7,7 @@ public interface OrderService {
 	//멤버정보
 	public Map<String, Object> memberInfo(Map<String, Object> map) throws Exception;
 	//상품수량
-	public int goodsAmount(Map<String, Object> map) throws Exception;
+	public Map<String, Object> goodsAmount(Map<String, Object> map) throws Exception;
 	//상품정보
 	public Map<String, Object> goodsInfo(Map<String, Object> map)throws Exception;
 	//주문추가
