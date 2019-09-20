@@ -35,7 +35,7 @@ div.paginate>div>a.disabled:hover {
 
 					<ul class="myAskList">
 						<c:forEach items="${qnaList}" var="list">
-							<li id="list_${list.QNA_NUM}" class><a href="#"
+							<li id="list_${list.QNA_NUM}"><a href="#"
 								onclick="javascript:goDetail(${list.QNA_NUM}); return false;"> 
 							<span class="txtCate">${list.QNA_CATEGORY}</span> 
 								<span class="tit">${list.QNA_TITLE}</span>

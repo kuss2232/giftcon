@@ -44,7 +44,7 @@
 			      alert("결제방식 선택 안됨");
 			      return;
 			}
-			alert(type);
+			
 			if(type == "pc")
 				fn_Kpay(gname,i,$("#totalPrice1").val()); 
 			else

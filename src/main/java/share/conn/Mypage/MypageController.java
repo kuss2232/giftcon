@@ -81,7 +81,7 @@ public class MypageController {
 				}
 						
 				mv.addObject("MEMBER", member);
-				mv.setViewName("/mypage/userDetail");
+				mv.setViewName("mypage/userDetail");
 				return mv;
 			}
 			
