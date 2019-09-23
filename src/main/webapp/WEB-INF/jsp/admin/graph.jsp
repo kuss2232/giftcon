@@ -45,40 +45,41 @@
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
 <script type="text/javascript">
+
 $(document).ready(function(){
-$("#btn").on("click",function() {
-	google.charts.load('current', {'packages':['corechart']});
+$("#btn").on("click",function() {//실행버튼 클릭시
+	google.charts.load('current', {'packages':['corechart']});//구글api 실행
     google.charts.setOnLoadCallback(drawChart);
 	
-    var startDate = $("#startDate").val();
-    var endDate = $("#endDate").val();
-    var category = $("#category").val();
-    var ages = $("#ages").val();
+    var startDate = $("#startDate").val();//시작일
+    var endDate = $("#endDate").val();//종료일
+    var category = $("#category").val();//카테고리
+    var ages = $("#ages").val();//연령대
 
     function drawChart() {
-    	var jsonData = $.ajax({
+    	var jsonData = $.ajax({// 텍스트화된 모든 변수들을 jsondata에 저장
     	url: "/giftcon/graphing.conn",
     		dataType:"json",
-    		data:{"startDate":startDate,
-    				"endDate":endDate,
-    				"category":category,
-    				"ages": ages},
+    		data:{"startDate":startDate,//시작일
+    				"endDate":endDate,//종료일
+    				"category":category,//카테고리
+    				"ages": ages},//연령대
     		async:false,
     		success:function(data){
     			alert("성공");
     		}
-    	}).responseText;
-//	alert(jsonData);	
-	var data = new google.visualization.DataTable(jsonData);
+    	}).responseText;//받은 변수들을 텍스화시킴	
+	var data = new google.visualization.DataTable(jsonData);//시각화된 jsondata를 data에 저장
    	
-	var options = {
+	var options = { //그래프 옵션설정
 		title: '클릭수(상대값)',
 		hAxis: {title: 'Month',  titleTextStyle: {color: '#333'}},
 		vAxis: {minValue: 0}
 	};
 
+	//chart_div 라는 id를 가진 태그에 AreaChart 를 만든후 chart 에 저장
 	var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
-	chart.draw(data, options);
+	chart.draw(data, options);//저장된 chart를 시각화시킴
 
     }
 	});
@@ -168,13 +169,12 @@ $("#btn").on("click",function() {
 			<!-- 메인container-->
 			<div id="page-wrapper">
 		<!-- 메인container-->
-		<h1 class="page-header">EVENT</h1>
+		<h1 class="page-header">Graph</h1>
 		<div class="row" style="padding-left: 15px; width: 700px;">
 			<div class="panel panel-default">
 				<div class="panel-heading">연령별 남녀 검색량 비교</div>
 				<div class="panel-body">
-					<form id="frm" enctype="multipart/form-data"
-						onsubmit="return joinValidation(this)">
+					<form id="frm" enctype="multipart/form-data">
 						<table class="event_view">
 							<colgroup>
 								<col width="15%">
@@ -187,7 +187,7 @@ $("#btn").on("click",function() {
 									<th >연령</th>
 									<td style="width:250px;">
 										<select class="selectBody" id="ages" name="ages">
-											<option value>선택</option>
+											<option>선택</option>
 											<option value="10">10대</option>
 											<option value="20">20대</option>
 											<option value="30">30대</option>
@@ -199,7 +199,7 @@ $("#btn").on("click",function() {
 									<th style="width: 40px;">분야</th>
 									<td>
 										<select class="selectBody" id="category">
-											<option value>선택</option>
+											<option>선택</option>
 											<option value="50001865">아이스크림</option>
 											<option value="50000149">과자</option>
 											<option value="50000148">음료</option>
@@ -224,15 +224,10 @@ $("#btn").on("click",function() {
 		</div>
 	</div>
 	<div id="chart_div" style="width: 100%; height: 500px;"></div>
-			
+			<!--이곳에 그래프가 그려진다  -->
 			<!-- // container -->
 		</div>
 		<!-- /#page-wrapper -->
 	</div>
-	
-	
-	
-	
-	
 </body>
 </html>

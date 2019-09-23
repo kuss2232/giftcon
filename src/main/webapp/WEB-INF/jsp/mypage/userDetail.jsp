@@ -10,8 +10,7 @@
 <body>
 	<div class="subWrap">
 		<div class="subLayout">
-			<form id="userFrm" name="userFrm" action="/mypage/userDetail.do"
-				method="post">
+			<form id="userFrm" name="userFrm" method="post">
 				<!-- start:Tab -->
 
 
@@ -118,6 +117,8 @@
 
        });
       
+     
+      
       function fn_login(){
     	  //form id값인 userfrm 에있는 정보를 가져간다.
          var comSubmit = new ComSubmit("userFrm");
@@ -130,6 +131,7 @@
           comSubmit.setUrl("/giftcon/userSecession.conn");
           comSubmit.submit();
        }
+  
 
    </script>
 </body>

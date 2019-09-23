@@ -1,8 +1,10 @@
 package share.conn.Kakao;
 
+import java.awt.List;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
@@ -43,18 +45,19 @@ public class KakaoController {
         //
     	PrintWriter out = response.getWriter();
         Map<String, String> paramMap = new HashMap<String, String>();
+        List sty = new List();
 
         paramMap.put("cid", "TC0ONETIME");
         paramMap.put("partner_order_id", "1234");
         paramMap.put("partner_user_id", "sharecon");
-        paramMap.put("item_name", commandMap.get("item_name").toString());
-        paramMap.put("quantity", commandMap.get("quantity").toString());
-        paramMap.put("total_amount", commandMap.get("total_amount").toString());
+        paramMap.put("item_name", commandMap.get("item_name").toString());//상품이름
+        paramMap.put("quantity", commandMap.get("quantity").toString());//상품수량
+        paramMap.put("total_amount", commandMap.get("total_amount").toString());//총 수량
         paramMap.put("vat_amount", String.valueOf(((int)Integer.parseInt(commandMap.get("total_amount").toString())/10)));
-        paramMap.put("tax_free_amount", commandMap.get("tax_free_amount").toString());
-        paramMap.put("approval_url", "http://localhost:8080/giftcon/kakaoPaySuccess.conn");
-        paramMap.put("fail_url", "http://localhost:8080/giftcon/kakaoPayCancel.conn");
-        paramMap.put("cancel_url", "http://localhost:8080/giftcon/kakaoPayCancel.conn");
+        paramMap.put("tax_free_amount", commandMap.get("tax_free_amount").toString());//세금 0 원
+        paramMap.put("approval_url", "http://localhost:8080/giftcon/kakaoPaySuccess.conn");//결제완료시
+        paramMap.put("fail_url", "http://localhost:8080/giftcon/kakaoPayCancel.conn");//결제 실패시
+        paramMap.put("cancel_url", "http://localhost:8080/giftcon/kakaoPayCancel.conn");//결제 취소시
         
         String str = apiHelper.readyPay(paramMap);
         out.print(str);
@@ -63,7 +66,7 @@ public class KakaoController {
     }
     
     private void tid(String str) {
-    	tid = str.split("\"")[3];
+    	tid = str.split("\"")[3];//4번쨰 고유번호를 보여줌
     }
     
 	
@@ -81,8 +84,8 @@ public class KakaoController {
 	 * return (kakaoPayApprovalVO) ad; }
 	 */
 	  
-    @RequestMapping(value = "/kakaoPaySuccess", method = RequestMethod.GET)
-    public ModelAndView kakaoPaySuccess(@RequestParam("pg_token") String pg_token) {
+    @RequestMapping(value = "/kakaoPaySuccess")
+    public ModelAndView kakaoPaySuccess() {
         //System.out.println("kakaoPaySuccess get............................................");
         //System.out.println("kakaoPaySuccess pg_token : " + pg_token);
     	ModelAndView mv = new ModelAndView("/order/success");

@@ -122,13 +122,12 @@ public class JoinController {
 		System.out.println("authNUm?" + authNUm);
 		return str;
 	}
-
 	private void sendEmail(String email, String authNum) {
 		String host = "smtp.gmail.com";//이메일 호스트
 		String subject = "giftcon 인증 번호 전달";
 		String fromName = "giftcon 관리자";
 		String from = "ezenyoon2@gmail.com"; //보내는 사람
-		String to1 = email;
+		String to1 = email;//받는사람
 
 		String content = "인증번호[" + authNum + "]";
 
@@ -139,7 +138,7 @@ public class JoinController {
 			props.put("mail.smtp.host", "smtp.gmail.com");
 			props.put("mail.smtp.port", "465");
 			props.put("mail.smtp.starttls.enable","true");
-			props.put( "mail.smtp.auth", "true");
+			props.put("mail.smtp.auth", "true");
 			props.put("mail.smtp.debug", "true");
 			props.put("mail.smtp.socketFactory.port", "465"); 
 			props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory"); 
@@ -150,37 +149,20 @@ public class JoinController {
 				 @Override protected PasswordAuthentication getPasswordAuthentication() {
 				 return new PasswordAuthentication("ezenyoon2@gmail.com", "ezenacademy@"); }
 			};
-
+			//mimeMessage를 쓰기위해 세션으로 저장
 			Session session = Session.getInstance(props, auth);
 
-			//session.setDebug(true); // 메일을 전송할 때 상세한 상황을 콘솔에 출력한다.
-
-			/*
-			 * props.put("mail.smtp,starttls.enable", "true");
-			 * props.put("mail.transport.protocol", "smtp"); props.put("mail.smtp.host",
-			 * host); props.setProperty("mail.smtp.socketFactory.class",
-			 * "javax.net.ssl.SSLSocketFactory"); props.put("mail.smtp.port", "465");
-			 * props.put("mail.smtp.user", from); props.put("mail.smtp.auth","true");
-			 * 
-			 * Session mailSession = Session.getInstance(props,new
-			 * javax.mail.Authenticator() {
-			 * 
-			 * @Override protected PasswordAuthentication getPasswordAuthentication() {
-			 * return new PasswordAuthentication("ezenyoon2@gmail.com", "ezenacademy@"); }
-			 * 
-			 * });
-			 */
 			Message msg = new MimeMessage(session);
+			//msg에 관리자이름,utf-8형식,보내는사람을 셋팅한후
 			msg.setFrom(new InternetAddress(from,MimeUtility.encodeText(fromName,"UTF-8","B")));//보내는사람설정
 
-			InternetAddress[] address1 = {new InternetAddress(to1)
-			};
+			InternetAddress[] address1 = {new InternetAddress(to1)};//address1에 보낼사람들의 정보를 담아 셋팅
 			msg.setRecipients(Message.RecipientType.TO, address1);//받는사람설정1
 			msg.setSubject(subject);//제목설정
 			msg.setSentDate(new java.util.Date());//보내는 날짜설정
 			msg.setContent(content,"text/html; charset=UTF-8");//내용설정
 
-			Transport.send(msg);
+			Transport.send(msg);//셋팅이 완료된 메일을 보낸다.
 		}catch(MessagingException e) {
 			e.printStackTrace();
 		}catch(Exception e) {

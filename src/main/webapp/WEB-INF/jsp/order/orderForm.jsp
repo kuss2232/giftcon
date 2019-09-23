@@ -31,15 +31,13 @@
 		
 		function fn_order(){
 			
-			var i = $("#number").val();
-			var gname = $("#gnames").val();
-			var type = $("input[name='ORDER_PAYMENT']:checked").val();
-			var IMP = window.IMP; 
-	        IMP.init('imp97218771'); 
-	        var msg;
+			var i = $("#number").val();//총 상품 갯수
+			var gname = $("#gnames").val();//가장 처음오는 상품명
+			var type = $("input[name='ORDER_PAYMENT']:checked").val();// 체크된 값을 가져온다.
+			
 	        if(i > 1)
-				gname += "외 " + (i-1) + "건";
-			var comSubmit = new ComSubmit("order");
+				gname += "외 " + (i-1) + "건";//상품갯수가 2개이상일때 첫번째상품 이후는 ~~건으로 나타냄
+			
 			if( type.length==0){  
 			      alert("결제방식 선택 안됨");
 			      return;
@@ -108,7 +106,7 @@
 				url : "/giftcon/lastOrderNum.conn",
 				data : {},
 				success : function(result){
-					order_num = result;
+					order_num = result;//db에서의 가장마지막 주문번호
 				},
 				complete : function(e){
 					for(var j=1;j<=i;j++)
@@ -116,7 +114,7 @@
 						$.ajax({
 							type : "POST",
 							url : url,
-							data : {"ORDER_NUM":order_num,
+							data : {"ORDER_NUM":order_num,//가장 마지막 주문번호가 호출됨
 								"ORDER_AMOUNT":$("#CART_AMOUNT"+j).val(),
 								"MEMBER_ID":$("#MEMBER_ID"+j).val(),
 								"GOODS_NUM":$("#GOODS_NUM"+j).val(),
@@ -138,27 +136,27 @@
 		
   		function fn_Kpay(agent,i,price)
 		{
-  			//잠깐 나타났다가 사라지는 함수
-			//$.growlUI('타이틀', '내용'); 
+  			
 			var ReturnValue;
 			
  			$.ajax({
  				type : "POST",
  				url : "/giftcon/kakaos.conn",
  				data : {
- 	 				"item_name": agent,
- 	 				"quantity": i,
- 	 				"total_amount": price,
- 	 				"tax_free_amount": "0"
+ 	 				"item_name": agent,//상품이름
+ 	 				"quantity": i,//수량
+ 	 				"total_amount": price,//가격
+ 	 				"tax_free_amount": "0"//세금 0원으로 지정
  				},
  				dataType : "Json",
  				success : function(data){
-					if(win == null || win.closed)
+					if(win == null || win.closed)//win이 널이가나 닫혀있으면
+					//window 폼을 next_redirect_pc_url주소로된 새창을 연다 
 						win = window.open(data.next_redirect_pc_url, "","width=500, height=600, directories=0, history=no, resizable=0, status=no, scrollbars=no, toolbar=no, menubar=no, location=0, channelmode=1");
 					else 
 						win.focus();
  				},
- 				error : function(request,status,error){
+ 				error : function(request,status,error){//에러코드 출력
  					alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
  				}
  			})
@@ -193,7 +191,7 @@
 </head>
 <body>
 <div class="subWrap">
-	<input type="hidden" id="type" value="${type }"/>
+	<input type="hidden" id="type" value="${type}"/>
 				<div class="subLayout">
 				<form id="order"></form>
 				<form id="orders">
@@ -232,7 +230,7 @@
 							</tr>
 							<c:set var="i" value="0"/>
 							<c:set var="gname" value="a"/>
-							<c:forEach items="${list}" var="goods">
+							<c:forEach items="${list}" var="goods"> <!--  goods에 list값을 한개씩 저장한다. -->
 								<tr>
 									<c:set var="i" value="${i+1}"/>
 									<td class="alignC"><img src="/giftcon/resources/file/goodsFile/${goods.GOODS_IMG}" alt="">

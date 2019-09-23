@@ -68,7 +68,9 @@ public class OrderController {
 			Map<String, Object> member = orderService.memberInfo(commandMap.getMap());
 			//상품정보
 			Map<String, Object> goods = orderService.goodsInfo(commandMap.getMap());
+			//list 객체생성
 			List<Map<String, Object>> list = new ArrayList<Map<String,Object>>();
+			//list에 goods의 value값들을 저장
 			list.add(goods);
 			mv.addObject("member",member);
 			mv.addObject("list",list);
@@ -84,8 +86,6 @@ public class OrderController {
 			}
 			price = Integer.parseInt(goods.get("GOODS_PRICE").toString());
 			
-			mv.addObject("GOODS_PRICE",goods.get("GOODS_PRICE"));
-		    mv.addObject("GOODS_DCPRICE",goods.get("GOODS_DCPRICE"));
 			mv.addObject("price",price);
 			mv.addObject("totalPrice",totalPrice);
 			mv.addObject("MEMBER_ID",MEMBER_ID);
@@ -98,6 +98,7 @@ public class OrderController {
 
 			for(int i=0; i <list.size(); i++) {
 				Map<String, Object> goods = list.get(i);
+				//goods에 value 값에서  goods_amount를 string형식으로 변환후 int 로 재변환한다.
 				int qq = Integer.parseInt(orderService.goodsAmount(goods).get("GOODS_AMOUNT").toString());
 	            System.out.println(qq + "*************************");
 	            if(qq < 1) {
@@ -107,19 +108,24 @@ public class OrderController {
 	               soldOut.append("<script language='javascript'>");
 	               soldOut.append("alert('품절된 상품입니다.');");
 	               soldOut.append("</script>");
-	               redirectAttribute.addFlashAttribute("soldOut", soldOut);
+	               //post방식처럼 url을 전달한다.
+	               redirectAttribute.addFlashAttribute("soldOut", soldOut);//리다이렉트 직전에  flash에 저장함 리다이렉트 이후 소멸됨
 	               mv.setViewName(viewName);
 	               return mv;
 	            }
-				if(goods.get("GOODS_DCPRICE") == null) {
+				if(goods.get("GOODS_DCPRICE") == null) {// 상품 할인가격이 null일때
+					//결제금액 = 상품가격 * 상품수량
 					totalPrice += (Integer) Integer.parseInt(goods.get("GOODS_PRICE").toString()) * Integer.parseInt((goods.get("CART_AMOUNT").toString()));
 				}
-				if(goods.get("GOODS_DCPRICE") != null) {
-					if(Integer.parseInt(goods.get("GOODS_DCPRICE").toString()) > 0)
+				if(goods.get("GOODS_DCPRICE") != null) {// 상품 할인가격이 null 이 아닐떄
+					if(Integer.parseInt(goods.get("GOODS_DCPRICE").toString()) > 0) // 상품할인가격이 0보다 클때
+						// 결제금액 = 상품할인가격  * 상품수량
 						totalPrice += Integer.parseInt(goods.get("GOODS_DCPRICE").toString()) * Integer.parseInt((goods.get("CART_AMOUNT").toString()));
 					else
+						// 결제금액 = 상품가격 * 상품수량
 						totalPrice += Integer.parseInt(goods.get("GOODS_PRICE").toString()) * Integer.parseInt((goods.get("CART_AMOUNT").toString()));
 				}
+				//총 결제금액 = 상품가격*상품수량
 				price += Integer.parseInt(goods.get("GOODS_PRICE").toString()) * Integer.parseInt((goods.get("CART_AMOUNT").toString()));
 			}
 			mv.addObject("type", "cart");

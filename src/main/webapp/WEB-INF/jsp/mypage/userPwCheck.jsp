@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div class="subWrap">
+<div class="subWrap" onkeydown="javascript:onEnterLogin();">
 				<div class="subLayout">
 					<!-- start:Tab -->
 
@@ -61,6 +61,12 @@
 			comSubmit.setUrl("/giftcon/userCheckPw.conn");
 			comSubmit.submit();
 		}
+		
+	    function onEnterLogin(){
+	  		if(event.keyCode == 13){
+	  			fn_login();  // 실행할 이벤트
+	  	   }
+	  	}
 
 	</script>			
 			

@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div class="subWrap">
+<div class="subWrap" onkeydown="javascript:onEnterLogin();">
 				<div class="subLayout">
 					<!-- start:Tab -->
 
@@ -63,6 +63,11 @@
 			comSubmit.submit();
 			alert("변경 되었습니다!");
 		}
+		function onEnterLogin(){
+		  	if(event.keyCode == 13){
+		  		fn_login();  // 실행할 이벤트
+		    }
+		 }
 
 	</script>			
 			

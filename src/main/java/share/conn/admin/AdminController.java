@@ -97,11 +97,11 @@ public class AdminController {
         String clientSecret = "QKzz1K2RBZ";//애플리케이션 클라이언트 시크릿 값";
         
         
-        String startDate = request.getParameter("startDate");
+        String startDate = request.getParameter("startDate"); //변수값들을 string 형식으로 저장
         String endDate = request.getParameter("endDate");
         String category = request.getParameter("category");
         String ages = request.getParameter("ages");
-        System.out.println("시작일"+startDate);
+        System.out.println("시작일:"+startDate);
         
         String apiURL = "https://openapi.naver.com/v1/datalab/shopping/category/gender";
         
@@ -120,14 +120,14 @@ public class AdminController {
         		+ ages
 //        		+ "[\"40\"]"
         		+ "\"]}";
-        URL url = new URL(apiURL);
-        HttpURLConnection con = (HttpURLConnection)url.openConnection();
-        con.setRequestMethod("POST");
-        con.setRequestProperty("X-Naver-Client-Id", clientId);
-        con.setRequestProperty("X-Naver-Client-Secret", clientSecret);
-        con.setRequestProperty("Content-Type", "application/json");
+        URL url = new URL(apiURL);//객체생성
+        HttpURLConnection con = (HttpURLConnection)url.openConnection();//con이라는 객체를 생성하기위해서 openconnection을 사용
+        con.setRequestMethod("POST");//post방식으로 보여줌
+        con.setRequestProperty("X-Naver-Client-Id", clientId);//애플리케이션 클라이언트 아이디 값"
+        con.setRequestProperty("X-Naver-Client-Secret", clientSecret);//애플리케이션 클라이언트 시크릿 값"
+        con.setRequestProperty("Content-Type", "application/json");//타입설정(application/json)형식으로 body에 전송
 
-        con.setDoOutput(true);
+        con.setDoOutput(true);//server 통신에서 출력 가능한 상태로 만듬 - 서버와 통신하고자할때 반드시 true로 변경해야함
         DataOutputStream wr = new DataOutputStream(con.getOutputStream());
         wr.writeBytes(body);
         wr.flush();
@@ -143,33 +143,30 @@ public class AdminController {
 
         String inputLine;
         StringBuffer response = new StringBuffer();
-        while ((inputLine = br.readLine()) != null) {
+        while ((inputLine = br.readLine()) != null) {//br을 읽은값이 null값이 아니면 stringbuffer값에 넣는다
         	response.append(inputLine);
         }
         br.close();
         System.out.println(response.toString());
 
-        JSONParser jsonParse = new JSONParser();
-        JSONObject jsonObj = (JSONObject) jsonParse.parse(response.toString());
-        JSONArray jsonArray = (JSONArray)jsonObj.get("results");
+        JSONParser jsonParse = new JSONParser();//객체생성
+        JSONObject jsonObj = (JSONObject) jsonParse.parse(response.toString());//json으로 변환해서 jsonobj에저장
+        JSONArray jsonArray = (JSONArray)jsonObj.get("results");//json형식으로 변형된 results키값들을 배열형식으로 저장
 
-        List<Object> list1 = new ArrayList<Object>();
+        List<Object> list1 = new ArrayList<Object>();//리스트로된 객체생성
 
         for(int i=0; i<jsonArray.size(); i++) {
         	System.out.println("======jsonData :"+i+"========");
-        	JSONObject qq = (JSONObject) jsonArray.get(i);
-        	JSONArray data = (JSONArray) qq.get("data");
+        	JSONObject qq = (JSONObject) jsonArray.get(i);//객체qq에 jsonarray에 있는 results 값들을 저장
+        	JSONArray data = (JSONArray) qq.get("data");//qq에 data로 저장된 value값을 객체data에 저장
 
-        	JSONArray arr1 = new JSONArray();
-        	JSONArray arr2 = new JSONArray();
-
-        	for(int j=0; j<data.size(); j++) { 
+        	for(int j=0; j<data.size(); j++) {
         		JSONObject data2 = (JSONObject)data.get(j);
-        		if(j%2==0) {
-        			list1.add(data2.get("period"));
-        			list1.add(data2.get("ratio")); 
+        		if(j%2==0) {//성별구분을 위해 나머지값이 짝수면 여자 홀수면 남자
+        			list1.add(data2.get("period")); //배열 리스트에 period키값 추가
+        			list1.add(data2.get("ratio"));  //배열 리스트에 ratio키값 추가
         		}else { 
-        			list1.add(data2.get("ratio"));
+        			list1.add(data2.get("ratio"));	//배열 리스트에 ratio키값 추가
 
         		} 
         	}
@@ -180,7 +177,7 @@ public class AdminController {
 
         JSONArray cols = new JSONArray();
 
-        for(int i=0; i<3; i++) {
+        for(int i=0; i<3; i++) {//그래프에서 보여지는 값들을 inner객체에 각각집어넣어준다
         	JSONObject inner = new JSONObject();
         	if(i == 0) {
         		inner.put("id", "");
@@ -198,32 +195,32 @@ public class AdminController {
         	}
         	cols.add(inner);
         }
-        jsonData.put("cols",cols);
+        jsonData.put("cols",cols);//그래프에서 보여지는 수치들
 
         //            System.out.println("이거는 만든거"+jsonData);            
 
         JSONArray rows = new JSONArray();
 
         for(int i=0; i<list1.size(); i+=3) {
-        	JSONObject jo1 = new JSONObject();
-        	JSONObject jo2 = new JSONObject();
-        	JSONObject jo3 = new JSONObject();
+        	JSONObject jo1 = new JSONObject();//시작날짜
+        	JSONObject jo2 = new JSONObject();//남자 수치값
+        	JSONObject jo3 = new JSONObject();//여자 수치값
 
         	jo1.put("v", list1.get(i));
         	jo2.put("v", list1.get(i+1));
         	jo3.put("v", list1.get(i+2));
 
         	JSONArray arr3 = new JSONArray();
-        	arr3.add(jo1);
-        	arr3.add(jo2);
-        	arr3.add(jo3);
+        	arr3.add(jo1);//arr3에 시작값저장
+        	arr3.add(jo2);//arr3에 남자 수치값저장
+        	arr3.add(jo3);//arr3에 여자 수치값저장
 
         	JSONObject jo0 = new JSONObject();
         	jo0.put("c", arr3);
         	rows.add(jo0);
         }
 
-        jsonData.put("rows", rows);
+        jsonData.put("rows", rows);//그래프에 들어있는 숫자값들
         System.out.println(jsonData);
         return jsonData;
 	}

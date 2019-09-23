@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/include-header.jspf" %>
-<%@ include file="/WEB-INF/include-body.jspf" %>
+<%-- <%@ include file="/WEB-INF/include-header.jspf" %>
+<%@ include file="/WEB-INF/include-body.jspf" %> --%>
 <link href="/giftcon/css/jquery/bootstrapadmin.min.css" rel="stylesheet" type="text/css">
 <script>
 $(document).ready(function(){
@@ -15,6 +15,7 @@ $(document).ready(function(){
 		fn_confirm();
 	});
 })
+
 	function fn_email_code() {
 		var emailId = $("#email_Id").val();
 		var email = {"MEMBER_EMAIL":emailId}
@@ -28,12 +29,7 @@ $(document).ready(function(){
 				type : "POST",
 				url : "/giftcon/joinStep1/modal_email_auth.conn",
 				data :  {"MEMBER_EMAIL":emailId},
-				//data :  email,
-				dataType : "json",/* ({
-					mode : "email_code",
-					email : email
-				}) */
-
+				dataType : "json",
 				success : function(data) {
 					console.log(data);
 					if (data != 0) {
@@ -42,7 +38,6 @@ $(document).ready(function(){
 						alert("인증번호를 요청하신 이메일로 발송했습니다.");
 						$("#email_Id").attr("disabled", true);
 					}
-
 					if (data != null) {
 						console.log("로그 내용2" + data);
 					}
@@ -52,14 +47,12 @@ $(document).ready(function(){
 				}
 			});
 		}
-
 	}
 	
 	//이메일 확인(인증)
 	function fn_confirm() {
 		var emailId = $("#email_Id").val();
 		var email = {"MEMBER_EMAIL":emailId}
-
 		if (emailId == '@') {
 			alert("이메일을 입력하세요.");
 		} else if (emailId.value == "") {
@@ -71,8 +64,7 @@ $(document).ready(function(){
 				url : "/giftcon/joinStep1/modal_email_auth_success.conn",
 				success : function(data) {
 					var code = $("#sing_code").val();
-					//alert("auth값 : "+data + ", code 값 : "+code); 
-					//console.log("로그 내용1");
+
 					if (data != null) {
 						if (code.value=="") {
 							alert("인증번호를 입력해 주세요");
