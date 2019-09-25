@@ -32,7 +32,7 @@ public class AdminController {
 	
 	@Resource(name = "adminService")
 	private AdminService adminService;
-	
+	//
 	@RequestMapping("/adminMain.conn")
 	public ModelAndView adminMain() {
 		ModelAndView mv = new ModelAndView();
