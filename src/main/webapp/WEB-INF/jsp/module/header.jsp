@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -142,7 +143,7 @@ $(function () {
 					<div>
 </div></form>
 				</div>
-				<form id="logoutFrm" name="logoutFrm" action="/common/logout.do" method="post">
+				<form id="logoutFrm" name="logoutFrm" method="post">
 				<ul class="snb">
 					<%if(session.getAttribute("MEMBER_ID") != null) { %>
 						<li><a href="/giftcon/logout.conn" class="logout" title="로그아웃"><span class="icoLogout"></span><em class="logState">로그아웃</em></a></li>
@@ -156,7 +157,7 @@ $(function () {
 						<li><a href="/giftcon/joinStep1.conn" class="join" title="회원가입"><span class="icojoin"></span><em class="logState">회원가입</em></a></li>
 					<%} %>
 					<li><a href="/giftcon/notice.conn" class="cs" title="고객센터"><span class="icoCs"></span><em class="logState">고객센터</em></a></li>
-					<li class="exc last"><a href="/giftcon/cart/cartlist.conn" class="cart" title="장바구니"><span class="icoCart"><em class="counting" id="headerCartCount"><b><%=session.getAttribute("count") %></b></em></span><em class="logState">장바구니</em></a></li>
+					<li class="exc last"><a href="/giftcon/cart/cartlist.conn" class="cart" title="장바구니"><span class="icoCart"><em class="counting" id="headerCartCount"><b><c:if test="${count >= 0}">${count}</c:if><c:if test="${count == null}">0</c:if></b></em></span><em class="logState">장바구니</em></a></li>
 				</ul>
 				<div>
 </div></form>

@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%-- <%@ include file="/WEB-INF/include-header.jspf" %>
-<%@ include file="/WEB-INF/include-body.jspf" %> --%>
+
 <link href="/giftcon/css/jquery/bootstrapadmin.min.css" rel="stylesheet" type="text/css">
 <script>
 $(document).ready(function(){
@@ -68,8 +67,8 @@ $(document).ready(function(){
 					if (data != null) {
 						if (code.value=="") {
 							alert("인증번호를 입력해 주세요");
-							$("#sing_code").focus();
-						} else if (code.value != data.value) {
+							$("#sing_code").focus();//인증번호칸에 커서가간다
+						} else if (code.value != data.value) {//인증번호와 ajax로 넘어온 인증번호값을 비교
 							alert("인증번호가 맞지 않습니다.");
 						} else {
 							var comSubmit = new ComSubmit(); 

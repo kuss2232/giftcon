@@ -114,7 +114,7 @@ public class LoginController {
 		Map<String, Object> map = loginService.findPwd(commandMap.getMap());
 		if(map != null) {
 		System.out.println("DB에서 가져온 PW : "+ map.get("MEMBER_PASSWD"));
-		mv.addObject("map", map);
+		mv.addObject("map", map);//db에서 값을 가져올떄사용
 		mv.setViewName("/login/chgPwForm");
 		}else {
 			System.out.println("틀림틀림틀림틀림틀림틀림틀림틀림틀림틀림");

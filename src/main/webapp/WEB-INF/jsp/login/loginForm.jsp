@@ -63,14 +63,14 @@ $(document).ready(function(){
 
 function getCookie(cookieName){
 	cookieName = cookieName + "=";
-	var cookieData = document.cookie;
+	var cookieData = document.cookie;//web이가지고있는 쿠키값
 	var start = cookieData.indexOf(cookieName);
 	var cookieValue = "";
 	if(start != -1){
-		start += cookieName.length;
-		var end = cookieData.indexOf(";", start);
-		if(end == -1)end = cookieData.length;
-		cookieValue = cookieData.substring(start, end);
+		start += cookieName.length;//아이디 시작값을 계산
+		var end = cookieData.indexOf(";", start);//아이디 마지막값을 계산
+		if(end == -1)end = cookieData.length;//마지막값인 ;을 못찾았을때
+		cookieValue = cookieData.substring(start, end);// 아이디값의 시작과 끝값 사이의 문자열을 자른후 value에 저장
 	}
 	return unescape(cookieValue);
 }
