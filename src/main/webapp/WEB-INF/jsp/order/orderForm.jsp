@@ -28,12 +28,12 @@
 
 		});
 		
-		
+		var type = "";
 		function fn_order(){
 			
 			var i = $("#number").val();//총 상품 갯수
 			var gname = $("#gnames").val();//가장 처음오는 상품명
-			var type = $("input[name='ORDER_PAYMENT']:checked").val();// 체크된 값을 가져온다.
+			type = $("input[name='ORDER_PAYMENT']:checked").val();// 체크된 값을 가져온다.
 			
 	        if(i > 1)
 				gname += "외 " + (i-1) + "건";//상품갯수가 2개이상일때 첫번째상품 이후는 ~~건으로 나타냄
@@ -94,11 +94,11 @@
 			else
 				url = "/giftcon/insertOrder.conn";
 			
-			if($("input[name='ORDER_PAYMENT']:checked").val() == "pc")
+			if(type == "pc")
 				payment = "Y";
 			else
 				payment = "N";
-			
+			alert(" , : " + payment);
 			total = $("#totalPrice1").val();
 			
 			$.ajax({

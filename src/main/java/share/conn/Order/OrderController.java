@@ -143,6 +143,7 @@ public class OrderController {
 	//카트테이블에서 오더 테이블에서 넘기는거
 	@RequestMapping("/insertCartOrder.conn")
 	public void insertCartOrder(CommandMap commandMap,HttpServletResponse response) throws Exception{
+		System.out.println(commandMap.get("payment") + "**************");
 		 adminOrderService.changeAmount(commandMap.getMap());
 		 cartService.addOrderToCart(commandMap.getMap());
 	}
@@ -158,6 +159,7 @@ public class OrderController {
 	
 	@RequestMapping("/insertOrder.conn")
 	public void insertOrder(CommandMap commandMap,HttpServletResponse response)throws Exception{
+		System.out.println(commandMap.get("payment") + "**************");
 		adminOrderService.changeAmount(commandMap.getMap());
 		orderService.insertOrder(commandMap.getMap());
 	}

@@ -31,8 +31,6 @@ public class AdminReviewServiceImpl implements AdminReviewService{
 	
 	@Override
 	public List<Map<String, Object>> searchReviewList(Map<String, Object> map) throws Exception{
-		System.out.println("들어오는지 확인:::::"+map.get("SearchKeyword"));
-		System.out.println("서치넘 확인:::::::::::"+ map.get("searchNum"));
 		return adminReviewDAO.searchReviewList(map);
 	}
 }

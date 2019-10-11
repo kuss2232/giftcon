@@ -16,7 +16,7 @@
 				<li><a href="http://www.daou.com/" target="_blank" class="line">회사소개</a></li>
 				<li><a href="/giftcon/Terms of service.conn" class="line">이용약관</a></li>
 				<li><a href="/giftcon/privacy.conn" class="line"><strong>개인정보처리방침</strong></a></li>
-				
+				<li><a href="resources/ppt/sharecon_portfolio.pptx" target="_blank"  class="line" ><strong>PPT</strong></a></li>
 			</ul>
 		</div>
 		<div class="fixBox">

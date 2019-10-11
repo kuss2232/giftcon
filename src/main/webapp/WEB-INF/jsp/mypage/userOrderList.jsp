@@ -160,8 +160,8 @@ function fn_paymentCancle(num)
 				alert("결제취소 신청하였습니다.");
 				location.href="/giftcon/orderList.conn";
 			},
-			error : function(e) {
-				alert('error' + e);
+			error : function(request,status,error) {
+				alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 			}
 		});	
 	} else {

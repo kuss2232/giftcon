@@ -106,7 +106,6 @@ public class AdminReviewController {
 		 * mv.addObject("searchNum",searchNum);
 		 * mv.addObject("SearchKeyword",SearchKeyword);
 		 */
-//		System.out.println("reviewCount-------------"+ count.get("CNT"));
 	}
 	
 	@RequestMapping("/adminReviewDelete.conn")
